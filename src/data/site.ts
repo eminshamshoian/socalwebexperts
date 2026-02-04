@@ -16,7 +16,7 @@ export const siteConfig: SiteConfig = {
   name: 'SoCal Web Experts',
   tagline: 'Professional Web Design & Digital Marketing',
   description: 'Full-service digital agency delivering custom websites, SEO, digital marketing, and online growth services for local and service-based businesses.',
-  phone: '(949) 555-0123',
+  phone: '(818) 967-2609',
   email: 'hello@socalwebexperts.com',
   address: 'Los Angeles, California',
   url: 'https://socalwebexperts.com', // Update with your actual domain

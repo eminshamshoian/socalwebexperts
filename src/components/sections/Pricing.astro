@@ -1,0 +1,79 @@
+---
+import Icon from '../ui/Icon.astro';
+import Button from '../ui/Button.astro';
+import { pricingModels } from '../../data/site';
+---
+
+<section class="py-20 md:py-28 bg-[var(--bg-secondary)]">
+  <div class="container">
+    <div class="max-w-2xl mx-auto text-center mb-14 fade-in">
+      <p class="text-primary-500 text-sm font-medium tracking-wide uppercase mb-3">
+        Pricing
+      </p>
+      <h2 class="text-3xl md:text-4xl font-bold text-[var(--text)] mb-4">
+        Transparent pricing
+      </h2>
+      <p class="text-[var(--text-secondary)] text-lg">
+        Two simple options. Same great website. No hidden fees.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-4xl mx-auto">
+      {pricingModels.map((plan, index) => (
+        <div 
+          class={`relative p-6 md:p-8 bg-[var(--bg)] border rounded-xl fade-in ${plan.highlighted ? 'border-primary-500' : 'border-[var(--border)]'}`}
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          {plan.highlighted && (
+            <div class="absolute -top-3 left-6 px-3 py-1 bg-primary-500 text-white text-xs font-medium rounded-full">
+              Most Popular
+            </div>
+          )}
+
+          <div class="mb-6">
+            <h3 class="text-lg font-semibold text-[var(--text)] mb-1">
+              {plan.title}
+            </h3>
+            <p class="text-sm text-[var(--text-secondary)]">
+              {plan.subtitle}
+            </p>
+          </div>
+
+          <!-- Pricing -->
+          <div class="mb-6 pb-6 border-b border-[var(--border)]">
+            <div class="flex items-baseline gap-1">
+              <span class="text-4xl font-bold text-[var(--text)]">{plan.upfront}</span>
+              {plan.upfront !== '$0' && <span class="text-[var(--text-secondary)]">Total</span>}
+            </div>
+            <p class="text-sm text-[var(--text-secondary)] mt-1">
+              + {plan.monthly}/mo for hosting & support
+            </p>
+          </div>
+
+          <!-- Features -->
+          <ul class="space-y-3 mb-8">
+            {plan.features.slice(0, 8).map((feature) => (
+              <li class="flex items-start gap-2.5 text-sm">
+                <Icon name="check" size={16} class="text-primary-500 mt-0.5 shrink-0" />
+                <span class="text-[var(--text)]">{feature}</span>
+              </li>
+            ))}
+          </ul>
+
+          <Button
+            href="/contact"
+            variant={plan.highlighted ? 'primary' : 'secondary'}
+            fullWidth
+          >
+            Get started
+          </Button>
+        </div>
+      ))}
+    </div>
+
+    <!-- Note -->
+    <p class="text-center text-sm text-[var(--text-secondary)] mt-8 fade-in pt-5">
+      Need something custom? <a href="/contact" class="text-primary-500 hover:underline">Contact us</a> for a quote.
+    </p>
+  </div>
+</section>

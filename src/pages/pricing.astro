@@ -1,0 +1,96 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/ui/Icon.astro';
+import Button from '../components/ui/Button.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import { pricingModels } from '../data/site';
+
+const addOns = [
+  { title: 'SEO', price: 'from $500/mo', desc: 'On-page, local SEO, and monthly reporting' },
+  { title: 'Google Ads', price: 'from $500/mo', desc: 'Campaign setup, optimization, and tracking' },
+  { title: 'Social Media', price: 'from $400/mo', desc: 'Content creation and posting schedule' },
+  { title: 'Ecommerce', price: 'from $2,500', desc: 'Shopify setup with payment and shipping' },
+];
+---
+
+<BaseLayout
+  title="Pricing | SoCal Web Experts"
+  description="Simple, transparent pricing for web design and digital marketing. No hidden fees."
+>
+  <section class="py-16 md:py-24">
+    <div class="container">
+      <div class="max-w-2xl mx-auto text-center mb-14 fade-in">
+        <p class="text-primary-500 text-sm font-medium tracking-wide uppercase mb-3">
+          Pricing
+        </p>
+        <h1 class="text-3xl md:text-4xl font-bold text-[var(--text)] mb-4">
+          Simple, transparent pricing
+        </h1>
+        <p class="text-[var(--text-secondary)] text-lg">
+          Two options. Same great website. Pick what works for you.
+        </p>
+      </div>
+
+      <!-- Pricing Cards -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-4xl mx-auto mb-20">
+        {pricingModels.map((plan, index) => (
+          <div 
+            class={`relative p-6 md:p-8 bg-[var(--bg-secondary)] border rounded-xl fade-in ${plan.highlighted ? 'border-primary-500' : 'border-[var(--border)]'}`}
+            style={`animation-delay: ${index * 0.1}s`}
+          >
+            {plan.highlighted && (
+              <div class="absolute -top-3 left-6 px-3 py-1 bg-primary-500 text-white text-xs font-medium rounded-full">
+                Popular
+              </div>
+            )}
+
+            <h3 class="text-lg font-semibold text-[var(--text)] mb-1">{plan.title}</h3>
+            <p class="text-sm text-[var(--text-secondary)] mb-6">{plan.subtitle}</p>
+
+            <div class="mb-6 pb-6 border-b border-[var(--border)]">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl font-bold text-[var(--text)]">{plan.upfront}</span>
+                {plan.upfront !== '$0' && <span class="text-[var(--text-secondary)]">Total</span>}
+              </div>
+              <p class="text-sm text-[var(--text-secondary)] mt-1">+ {plan.monthly}/mo hosting</p>
+            </div>
+
+            <ul class="space-y-3 mb-8">
+              {plan.features.slice(0, 8).map((feature) => (
+                <li class="flex items-start gap-2.5 text-sm">
+                  <Icon name="check" size={16} class="text-primary-500 mt-0.5 shrink-0" />
+                  <span class="text-[var(--text)]">{feature}</span>
+                </li>
+              ))}
+            </ul>
+
+            <Button href="/contact" variant={plan.highlighted ? 'primary' : 'secondary'} fullWidth>
+              Get started
+            </Button>
+          </div>
+        ))}
+      </div>
+
+      <!-- Add-ons -->
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-xl font-semibold text-[var(--text)] mb-6 fade-in pb-5">Add-on services</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {addOns.map((addon, index) => (
+            <div 
+              class="flex items-start justify-between gap-4 p-4 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl fade-in"
+              style={`animation-delay: ${0.2 + index * 0.05}s`}
+            >
+              <div>
+                <h3 class="font-medium text-[var(--text)] mb-1">{addon.title}</h3>
+                <p class="text-sm text-[var(--text-secondary)]">{addon.desc}</p>
+              </div>
+              <span class="text-sm font-medium text-primary-500 whitespace-nowrap">{addon.price}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <FAQ />
+</BaseLayout>

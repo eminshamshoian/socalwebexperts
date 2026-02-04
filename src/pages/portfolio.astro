@@ -1,0 +1,70 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Icon from '../components/ui/Icon.astro';
+import { portfolioItems } from '../data/site';
+---
+
+<BaseLayout
+  title="Portfolio | SoCal Web Experts"
+  description="See our portfolio of web design, SEO, and digital marketing projects for local businesses."
+>
+  <section class="py-16 md:py-24">
+    <div class="container">
+      <div class="max-w-2xl mb-10 fade-in">
+        <p class="text-primary-500 text-sm font-medium tracking-wide uppercase mb-3">
+          Portfolio
+        </p>
+        <h1 class="text-3xl md:text-4xl font-bold text-[var(--text)] mb-4">
+          Our work
+        </h1>
+        <p class="text-[var(--text-secondary)] text-lg">
+          Real projects with real results for local businesses.
+        </p>
+      </div>
+
+
+      <!-- Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+        {portfolioItems.map((item, index) => (
+          <div
+            class="group fade-in"
+            style={`animation-delay: ${index * 0.05}s`}
+          >
+            <div class="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl overflow-hidden hover:border-[var(--text-secondary)]/30 transition-colors">
+              <div class="aspect-[4/3] bg-gradient-to-br from-[var(--bg-tertiary)] to-[var(--bg)] relative">
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <Icon name="code" size={32} class="text-[var(--border)]" />
+                </div>
+                
+                {item.results && (
+                  <div class="absolute inset-0 bg-[var(--bg)]/95 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity p-6">
+                    <div class="text-center">
+                      <p class="text-xs text-[var(--text-secondary)] uppercase tracking-wider mb-2">Results</p>
+                      {item.results.slice(0, 3).map((result) => (
+                        <p class="text-sm font-medium text-[var(--text)]">{result}</p>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div class="p-5">
+                <h3 class="font-semibold text-[var(--text)] mb-2">{item.title}</h3>
+                <p class="text-sm text-[var(--text-secondary)] line-clamp-2">{item.description}</p>
+                
+                <div class="flex flex-wrap gap-1.5 mt-4">
+                  {item.technologies.slice(0, 3).map((tech) => (
+                    <span class="text-xs px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)]">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+

@@ -1,0 +1,104 @@
+---
+import Icon from '../ui/Icon.astro';
+import { faqItems } from '../../data/site';
+
+// FAQ Structured Data
+const faqStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqItems.map(faq => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
+---
+
+<section class="py-20 md:py-28">
+  <script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)}></script>
+  <div class="container">
+    <div class="max-w-2xl mx-auto text-center mb-14 fade-in">
+      <p class="text-primary-500 text-sm font-medium tracking-wide uppercase mb-3">
+        FAQ
+      </p>
+      <h2 class="text-3xl md:text-4xl font-bold text-[var(--text)]">
+        Common questions
+      </h2>
+    </div>
+
+    <div class="max-w-2xl mx-auto divide-y divide-[var(--border)]">
+      {faqItems.map((faq, index) => (
+        <div
+          class="faq-item py-5 fade-in"
+          style={`animation-delay: ${index * 0.03}s`}
+        >
+          <button
+            class="faq-trigger w-full flex items-start justify-between gap-4 text-left"
+            aria-expanded="false"
+          >
+            <span class="font-medium text-[var(--text)] pr-4">
+              {faq.question}
+            </span>
+            <div class="faq-icon w-6 h-6 rounded-full bg-[var(--bg-secondary)] flex items-center justify-center shrink-0 mt-0.5 transition-colors">
+              <Icon name="plus" size={14} class="text-[var(--text-secondary)] transition-transform" />
+            </div>
+          </button>
+          <div class="faq-content hidden">
+            <p class="pt-3 text-[var(--text-secondary)] leading-relaxed pr-10">
+              {faq.answer}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .faq-item[data-open="true"] .faq-icon {
+    background: var(--color-primary-500);
+  }
+
+  .faq-item[data-open="true"] .faq-icon svg {
+    transform: rotate(45deg);
+    color: white;
+  }
+</style>
+
+<script>
+  function initFAQ() {
+    const items = document.querySelectorAll('.faq-item');
+
+    items.forEach(item => {
+      const trigger = item.querySelector('.faq-trigger');
+      const content = item.querySelector('.faq-content');
+
+      trigger?.addEventListener('click', () => {
+        const isOpen = item.getAttribute('data-open') === 'true';
+
+        // Close all other items
+        items.forEach(otherItem => {
+          if (otherItem !== item) {
+            otherItem.setAttribute('data-open', 'false');
+            otherItem.querySelector('.faq-content')?.classList.add('hidden');
+          }
+        });
+
+        // Toggle current item
+        if (isOpen) {
+          item.setAttribute('data-open', 'false');
+          content?.classList.add('hidden');
+        } else {
+          item.setAttribute('data-open', 'true');
+          content?.classList.remove('hidden');
+        }
+      });
+    });
+  }
+
+  initFAQ();
+  document.addEventListener('astro:after-swap', initFAQ);
+</script>

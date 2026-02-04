@@ -1,0 +1,353 @@
+---
+import { navigation, siteConfig } from '../../data/site';
+import Button from '../ui/Button.astro';
+import ThemeToggle from '../ui/ThemeToggle.astro';
+import Icon from '../ui/Icon.astro';
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="header">
+  <div class="absolute inset-0 bg-[var(--bg)]/90 backdrop-blur-xl border-b border-[var(--border)]/30"></div>
+  
+  <nav class="container relative">
+    <div class="flex items-center justify-between h-16 md:h-20">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2 group z-10">
+        <img 
+          src="https://res.cloudinary.com/ds85pv6ht/image/upload/v1770167617/logo-white_hz0s9s.png" 
+          alt="SoCal Web Experts - Professional Web Design & Digital Marketing"
+          class="dark-logo"
+          style="height: 64px; width: auto; max-width: 120px;"
+        />
+        <img 
+          src="https://res.cloudinary.com/ds85pv6ht/image/upload/v1770167617/logo-black_t3ushq.png" 
+          alt="SoCal Web Experts - Professional Web Design & Digital Marketing"
+          class="light-logo"
+          style="height: 64px; width: auto; max-width: 120px;"
+        />
+      
+        <div class="hidden sm:flex flex-col leading-none">
+          <span class="text-sm font-bold text-[var(--text)] tracking-tight">SoCal Web</span>
+          <span class="text-xs text-primary-500 font-medium">Experts</span>
+        </div>
+      </a>
+      
+
+      <!-- Desktop Navigation -->
+      <div class="hidden lg:flex items-center gap-0.5">
+        {navigation.map((item) => (
+          item.children ? (
+            <div class="relative group">
+              <button class="flex items-center gap-1 px-3 py-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors">
+                {item.label}
+                <Icon name="chevron-down" size={14} class="transition-transform group-hover:rotate-180" />
+              </button>
+              <div class="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div class="bg-[var(--bg)] border border-[var(--border)] rounded-lg shadow-xl shadow-black/20 py-1.5 min-w-[180px]">
+                  {item.children.map((child) => (
+                    <a
+                      href={child.href}
+                      class="block px-3 py-2 text-sm text-[var(--text-secondary)] hover:text-primary-500 hover:bg-[var(--bg-secondary)] transition-colors"
+                    >
+                      {child.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class="px-3 py-2 text-sm text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors"
+            >
+              {item.label}
+            </a>
+          )
+        ))}
+      </div>
+
+      <!-- Right Side Actions -->
+      <div class="flex items-center gap-2">
+        <ThemeToggle class="hidden sm:flex" />
+        
+        <a 
+          href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`} 
+          class="hidden md:flex items-center gap-1.5 px-3 py-1.5 text-sm text-[var(--text-secondary)] hover:text-primary-500 transition-colors"
+        >
+          <Icon name="phone" size={14} />
+          <span>{siteConfig.phone}</span>
+        </a>
+        
+        <Button href="/contact" size="sm" class="hidden md:inline-flex">
+          Get Started
+        </Button>
+
+        <!-- Mobile Menu Button -->
+        <button
+          id="mobile-menu-btn"
+          class="lg:hidden p-2 rounded-lg text-[var(--text)] hover:bg-[var(--bg-secondary)] transition-colors z-10"
+          aria-label="Toggle menu"
+        >
+          <Icon name="menu" size={22} class="menu-icon" />
+          <Icon name="close" size={22} class="close-icon hidden" />
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu - Full Screen Overlay -->
+  <div id="mobile-menu" class="lg:hidden fixed inset-0 bg-[var(--bg)] z-40 hidden opacity-0 transition-opacity duration-300">
+    <div class="flex flex-col h-full pt-20 pb-8 px-6 overflow-y-auto">
+      <!-- Close Button -->
+      <button
+        id="mobile-menu-close"
+        class="absolute top-4 right-4 p-2 rounded-lg text-[var(--text)] hover:bg-[var(--bg-secondary)] transition-colors z-50"
+        aria-label="Close menu"
+      >
+        <Icon name="close" size={24} />
+      </button>
+
+      <!-- Main Navigation -->
+      <nav class="flex-1 flex flex-col justify-center -mt-16">
+        {navigation.map((item, idx) => (
+          item.children ? (
+            <div class="mb-6 mobile-nav-item">
+              <button
+                class="mobile-nav-link mobile-dropdown-trigger w-full flex items-center justify-between py-3 text-2xl font-bold text-[var(--text)] hover:text-primary-500 transition-colors"
+                data-dropdown={`dropdown-${idx}`}
+                style={`animation-delay: ${idx * 50}ms`}
+              >
+                <span>{item.label}</span>
+                <Icon name="chevron-down" size={20} class="dropdown-icon transition-transform" />
+              </button>
+              <div 
+                class="mobile-dropdown-content hidden pl-4 space-y-1"
+                id={`dropdown-${idx}`}
+              >
+                {item.children.map((child) => (
+                  <a
+                    href={child.href}
+                    class="block py-2 text-lg font-medium text-[var(--text-secondary)] hover:text-primary-500 transition-colors"
+                  >
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              class="mobile-nav-link block py-3 text-3xl font-bold text-[var(--text)] hover:text-primary-500 transition-colors"
+              style={`animation-delay: ${idx * 50}ms`}
+            >
+              {item.label}
+            </a>
+          )
+        ))}
+      </nav>
+      
+      <!-- Bottom Section -->
+      <div class="border-t border-[var(--border)] pt-6 space-y-4">
+        <div class="flex items-center justify-between">
+          <span class="text-sm text-[var(--text-secondary)]">Theme</span>
+          <ThemeToggle />
+        </div>
+        <a 
+          href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`} 
+          class="flex items-center gap-2 text-[var(--text)]"
+        >
+          <Icon name="phone" size={16} class="text-primary-500" />
+          <span class="text-sm">{siteConfig.phone}</span>
+        </a>
+        <Button href="/contact" fullWidth>
+          Get Started
+        </Button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Spacer for fixed header -->
+<div class="h-16 md:h-20"></div>
+
+<style>
+  #mobile-menu.open {
+    opacity: 1;
+  }
+
+  .mobile-nav-link {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, color 0.2s ease;
+  }
+
+  #mobile-menu.open .mobile-nav-link {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .mobile-dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.3s ease;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .mobile-dropdown-content.open {
+    max-height: 500px;
+    opacity: 1;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .mobile-dropdown-trigger.active .dropdown-icon {
+    transform: rotate(180deg);
+  }
+</style>
+
+<style>
+  /* Dark mode (default): show white logo, hide black logo */
+  .dark-logo { 
+    display: block !important; 
+  }
+  .light-logo { 
+    display: none !important; 
+  }
+  
+  /* Light mode: hide white logo, show black logo */
+  :global(.light) .dark-logo { 
+    display: none !important; 
+  }
+  :global(.light) .light-logo { 
+    display: block !important; 
+  }
+</style>
+
+<script>
+  function closeMobileMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const menuIcon = document.querySelector('.menu-icon');
+    const closeIcon = document.querySelector('.close-icon');
+    const body = document.body;
+
+    if (menu) {
+      menu.classList.remove('open');
+      setTimeout(() => {
+        menu.classList.add('hidden');
+      }, 300);
+      if (menuIcon) menuIcon.classList.remove('hidden');
+      if (closeIcon) closeIcon.classList.add('hidden');
+      body.style.overflow = '';
+    }
+  }
+
+  function initMobileMenu() {
+    const btn = document.getElementById('mobile-menu-btn');
+    const closeBtn = document.getElementById('mobile-menu-close');
+    const menu = document.getElementById('mobile-menu');
+    const menuIcon = btn?.querySelector('.menu-icon');
+    const closeIcon = btn?.querySelector('.close-icon');
+    const body = document.body;
+
+    // Open menu
+    if (btn && menu && menuIcon && closeIcon) {
+      btn.addEventListener('click', () => {
+        const isHidden = menu.classList.contains('hidden');
+        
+        if (isHidden) {
+          menu.classList.remove('hidden');
+          requestAnimationFrame(() => {
+            menu.classList.add('open');
+          });
+          menuIcon.classList.add('hidden');
+          closeIcon.classList.remove('hidden');
+          body.style.overflow = 'hidden';
+        } else {
+          closeMobileMenu();
+        }
+      });
+    }
+
+    // Close menu with close button
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        closeMobileMenu();
+      });
+    }
+
+    // Close menu on link click (non-dropdown links and dropdown child links)
+    if (menu) {
+      menu.querySelectorAll('a.mobile-nav-link, .mobile-dropdown-content a').forEach(link => {
+        link.addEventListener('click', () => {
+          closeMobileMenu();
+        });
+      });
+    }
+
+    // Dropdown functionality
+    const dropdownTriggers = document.querySelectorAll('.mobile-dropdown-trigger');
+    dropdownTriggers.forEach(trigger => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        const dropdownId = trigger.getAttribute('data-dropdown');
+        const dropdown = document.getElementById(dropdownId);
+        
+        if (dropdown) {
+          const isOpen = dropdown.classList.contains('open');
+          
+          // Close all other dropdowns
+          document.querySelectorAll('.mobile-dropdown-content').forEach(dd => {
+            if (dd !== dropdown) {
+              dd.classList.remove('open');
+              dd.classList.add('hidden');
+            }
+          });
+          document.querySelectorAll('.mobile-dropdown-trigger').forEach(tr => {
+            if (tr !== trigger) {
+              tr.classList.remove('active');
+            }
+          });
+          
+          // Toggle current dropdown
+          if (isOpen) {
+            dropdown.classList.remove('open');
+            dropdown.classList.add('hidden');
+            trigger.classList.remove('active');
+          } else {
+            dropdown.classList.remove('hidden');
+            requestAnimationFrame(() => {
+              dropdown.classList.add('open');
+            });
+            trigger.classList.add('active');
+          }
+        }
+      });
+    });
+  }
+
+  // Header scroll effect
+  function initHeaderScroll() {
+    const header = document.getElementById('header');
+    
+    if (header) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 20) {
+          header.classList.add('shadow-sm');
+        } else {
+          header.classList.remove('shadow-sm');
+        }
+      });
+    }
+  }
+
+  initMobileMenu();
+  initHeaderScroll();
+
+  document.addEventListener('astro:after-swap', () => {
+    initMobileMenu();
+    initHeaderScroll();
+  });
+</script>
+

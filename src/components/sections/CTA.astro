@@ -1,0 +1,30 @@
+---
+import Button from '../ui/Button.astro';
+import { siteConfig } from '../../data/site';
+---
+
+<section class="py-20 md:py-28 bg-[var(--bg-secondary)]">
+  <div class="container">
+    <div class="max-w-2xl mx-auto text-center fade-in">
+      <h2 class="text-3xl md:text-4xl font-bold text-[var(--text)] mb-4">
+        Ready to get started?
+      </h2>
+      <p class="text-lg text-[var(--text-secondary)] mb-8">
+        Schedule a free consultation. No pressure, no obligations — just a conversation about your goals.
+      </p>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mt-10">
+        <Button href="/contact" size="lg">
+          Book a call
+        </Button>
+        <span class="text-[var(--text-secondary)]">or</span>
+        <a 
+          href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}
+          class="text-[var(--text)] font-medium hover:text-primary-500 transition-colors"
+        >
+          {siteConfig.phone}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

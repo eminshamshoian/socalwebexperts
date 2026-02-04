@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap (update with your actual domain)
+Sitemap: https://socalwebexperts.com/sitemap-index.xml
+
+# Crawl-delay (optional, adjust as needed)
+# Crawl-delay: 1
+

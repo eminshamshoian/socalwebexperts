@@ -1,0 +1,141 @@
+---
+import { navigation, siteConfig, services } from '../../data/site';
+import Icon from '../ui/Icon.astro';
+---
+
+<style>
+  /* Dark mode (default): show white logo, hide black logo */
+  .dark-logo { 
+    display: block !important; 
+  }
+  .light-logo { 
+    display: none !important; 
+  }
+  
+  /* Light mode: hide white logo, show black logo */
+  :global(.light) .dark-logo { 
+    display: none !important; 
+  }
+  :global(.light) .light-logo { 
+    display: block !important; 
+  }
+</style>
+
+<footer class="pt-10 border-t border-[var(--border)] bg-[var(--bg)]">
+  <div class="container py-16 md:py-20">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-16 pb-5">
+      <!-- Brand -->
+      <div class="col-span-2 md:col-span-1">
+        <a href="/" class="inline-block mb-4">
+          <img 
+            src="https://res.cloudinary.com/ds85pv6ht/image/upload/v1770167617/logo-white_hz0s9s.png" 
+            alt="SoCal Web Experts - Professional Web Design & Digital Marketing" 
+            class="dark-logo"
+            style="height: 64px; width: auto; max-width: 120px;"
+          />
+          <img 
+            src="https://res.cloudinary.com/ds85pv6ht/image/upload/v1770167617/logo-black_t3ushq.png" 
+            alt="SoCal Web Experts - Professional Web Design & Digital Marketing" 
+            class="light-logo"
+            style="height: 64px; width: auto; max-width: 120px;"
+          />
+        </a>
+        <p class="text-sm text-[var(--text-secondary)] leading-relaxed mb-6">
+          Custom websites and digital marketing for local businesses.
+        </p>
+        <div class="flex items-center gap-2">
+          {siteConfig.socials.slice(0, 4).map((social) => (
+            <a
+              href={social.url}
+              class="w-8 h-8 rounded-lg bg-[var(--bg-secondary)] flex items-center justify-center text-[var(--text-secondary)] hover:text-primary-500 hover:bg-[var(--bg-tertiary)] transition-colors"
+              aria-label={social.platform}
+            >
+              <Icon name={social.icon} size={16} />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Services -->
+      <div>
+        <h3 class="text-sm font-semibold text-[var(--text)] mb-5">Services</h3>
+        <ul class="space-y-3">
+          {services.slice(0, 5).map((service) => (
+            <li>
+              <a
+                href={`/services/${service.slug}`}
+                class="text-sm text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors"
+              >
+                {service.title}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h3 class="text-sm font-semibold text-[var(--text)] mb-5">Company</h3>
+        <ul class="space-y-3">
+          {navigation.filter(item => !item.children).map((item) => (
+            <li>
+              <a
+                href={item.href}
+                class="text-sm text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <h3 class="text-sm font-semibold text-[var(--text)] mb-5">Contact</h3>
+        <ul class="space-y-3">
+          <li>
+            <a
+              href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}
+              class="text-sm text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors"
+            >
+              {siteConfig.phone}
+            </a>
+          </li>
+          <li>
+            <a
+              href={`mailto:${siteConfig.email}`}
+              class="text-sm text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors"
+            >
+              {siteConfig.email}
+            </a>
+          </li>
+          {siteConfig.address && (
+            <li class="text-sm text-[var(--text-secondary)]">
+              {siteConfig.address}
+            </li>
+          )}
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom -->
+  <div class="border-t border-[var(--border)] py-5">
+    <div class="container py-6">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-[var(--text-secondary)]">
+        <div class="flex flex-col sm:flex-row items-center gap-3">
+          <p>© {new Date().getFullYear()} {siteConfig.name}</p>
+          <span class="flex items-center gap-1.5 text-[var(--text-secondary)]">
+            <span class="text-base">🇺🇸</span>
+            <span>Proudly Made in USA</span>
+          </span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="/privacy" class="hover:text-[var(--text)] transition-colors">Privacy</a>
+          <a href="/terms" class="hover:text-[var(--text)] transition-colors">Terms</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Icon from '../../components/ui/Icon.astro';
+import Button from '../../components/ui/Button.astro';
+import CTA from '../../components/sections/CTA.astro';
+import { services } from '../../data/site';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  return services.map((service) => ({
+    params: { slug: service.slug },
+    props: { service },
+  }));
+};
+
+const { service } = Astro.props;
+const relatedServices = services.filter(s => s.id !== service.id).slice(0, 3);
+---
+
+<BaseLayout
+  title={`${service.title} | SoCal Web Experts`}
+  description={service.description}
+>
+  <section class="py-16 md:py-24">
+    <div class="container">
+      <div class="grid lg:grid-cols-5 gap-12 lg:gap-16">
+        <!-- Left Content -->
+        <div class="lg:col-span-3">
+          <a href="/services" class="inline-flex items-center gap-1.5 text-sm text-[var(--text-secondary)] hover:text-[var(--text)] mb-6 fade-in">
+            <Icon name="chevron-right" size={14} class="rotate-180" />
+            All services
+          </a>
+          
+          <div class="w-12 h-12 rounded-xl bg-primary-500 flex items-center justify-center mb-6 fade-in" style="animation-delay: 0.05s;">
+            <Icon name={service.icon} size={24} class="text-white" />
+          </div>
+
+          <h1 class="text-3xl md:text-4xl font-bold text-[var(--text)] mb-4 fade-in" style="animation-delay: 0.1s;">
+            {service.title}
+          </h1>
+
+          <p class="text-lg text-[var(--text-secondary)] mb-8 leading-relaxed fade-in" style="animation-delay: 0.15s;">
+            {service.description}
+          </p>
+
+          <div class="flex flex-wrap gap-3 fade-in" style="animation-delay: 0.2s;">
+            <Button href="/contact">
+              Get started
+            </Button>
+            <Button href="/pricing" variant="secondary">
+              View pricing
+            </Button>
+          </div>
+        </div>
+
+        <!-- Right - Features -->
+        <div class="lg:col-span-2 fade-in" style="animation-delay: 0.2s;">
+          <div class="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl p-6">
+            <h2 class="font-semibold text-[var(--text)] mb-4">What's included</h2>
+            <ul class="space-y-3">
+              {service.features.map((feature) => (
+                <li class="flex items-start gap-2.5">
+                  <Icon name="check" size={16} class="text-primary-500 mt-0.5 shrink-0" />
+                  <span class="text-sm text-[var(--text)]">{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Related Services -->
+  <section class="py-16 bg-[var(--bg-secondary)]">
+    <div class="container">
+      <h2 class="text-xl font-semibold text-[var(--text)] mb-6 fade-in">Related services</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {relatedServices.map((related, index) => (
+          <a 
+            href={`/services/${related.slug}`} 
+            class="group flex items-start gap-3 p-4 bg-[var(--bg)] border border-[var(--border)] rounded-xl hover:border-[var(--text-secondary)]/30 transition-colors fade-in"
+            style={`animation-delay: ${index * 0.05}s`}
+          >
+            <div class="w-9 h-9 rounded-lg bg-primary-500/10 flex items-center justify-center shrink-0">
+              <Icon name={related.icon} size={18} class="text-primary-500" />
+            </div>
+            <div>
+              <h3 class="font-medium text-[var(--text)] group-hover:text-primary-500 transition-colors">
+                {related.title}
+              </h3>
+              <p class="text-xs text-[var(--text-secondary)] mt-0.5 line-clamp-1">
+                {related.shortDescription}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <CTA />
+</BaseLayout>

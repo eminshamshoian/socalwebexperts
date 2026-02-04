@@ -1,0 +1,72 @@
+---
+import Icon from '../ui/Icon.astro';
+import Button from '../ui/Button.astro';
+import { portfolioItems } from '../../data/site';
+
+const displayItems = portfolioItems.slice(0, 6);
+---
+
+<section class="py-20 md:py-28 bg-[var(--bg-secondary)]">
+  <div class="container">
+    <div class="mb-10 fade-in">
+      <p class="text-primary-500 text-sm font-medium tracking-wide uppercase mb-3">
+        Work
+      </p>
+      <h2 class="text-3xl md:text-4xl font-bold text-[var(--text)]">
+        Recent projects
+      </h2>
+    </div>
+
+    <!-- Portfolio Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+      {displayItems.map((item, index) => (
+        <div
+          class="group fade-in"
+          style={`animation-delay: ${index * 0.05}s`}
+        >
+          <div class="bg-[var(--bg)] border border-[var(--border)] rounded-xl overflow-hidden hover:border-[var(--text-secondary)]/30 transition-colors">
+            <!-- Image Placeholder -->
+            <div class="aspect-[4/3] bg-gradient-to-br from-[var(--bg-tertiary)] to-[var(--bg-secondary)] relative">
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-12 h-12 rounded-xl bg-[var(--border)] flex items-center justify-center">
+                  <Icon name="code" size={24} class="text-[var(--text-secondary)]" />
+                </div>
+              </div>
+              
+              <!-- Results overlay on hover -->
+              {item.results && (
+                <div class="absolute inset-0 bg-[var(--bg)]/95 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity p-6">
+                  <div class="text-center">
+                    <p class="text-xs text-[var(--text-secondary)] uppercase tracking-wider mb-3">Results</p>
+                    <div class="space-y-1">
+                      {item.results.slice(0, 3).map((result) => (
+                        <p class="text-sm font-medium text-[var(--text)]">{result}</p>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <!-- Content -->
+            <div class="p-5">
+              <h3 class="font-semibold text-[var(--text)] mb-2">
+                {item.title}
+              </h3>
+              <p class="text-sm text-[var(--text-secondary)] line-clamp-2">
+                {item.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="mt-10 text-center fade-in">
+      <Button href="/portfolio" variant="secondary">
+        View all projects
+      </Button>
+    </div>
+  </div>
+</section>
+

@@ -281,52 +281,24 @@ export const testimonials: Testimonial[] = [
 export const portfolioItems: PortfolioItem[] = [
   {
     id: '1',
-    title: 'Law Office Website',
+    title: 'Lawyer',
     category: 'web-design',
     categoryLabel: 'Law Office',
     image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1770513422/New_Website_Blue_Mockup_Instagram_-_Laptop_pyoeww.png',
   },
   {
     id: '2',
-    title: 'Rodriguez Plumbing',
+    title: 'Auto Group',
     category: 'web-design',
-    categoryLabel: 'Plumbing',
-    image: '/portfolio/plumbing.jpg',
+    categoryLabel: 'Auto Dealership',
+    image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1770514261/mockup-autogroup_at8lnx.png',
   },
   {
     id: '3',
-    title: 'Bright Smile Dental',
+    title: 'Therapy Company',
     category: 'web-design',
-    categoryLabel: 'Dental',
-    image: '/portfolio/dental.jpg',
-  },
-  {
-    id: '4',
-    title: 'Casa Bella Restaurant',
-    category: 'social-media',
-    categoryLabel: 'Restaurant',
-    image: '/portfolio/restaurant.jpg',
-  },
-  {
-    id: '5',
-    title: 'Thompson Construction',
-    category: 'google-ads',
-    categoryLabel: 'Construction',
-    image: '/portfolio/construction.jpg',
-  },
-  {
-    id: '6',
-    title: 'Coastal Boutique',
-    category: 'ecommerce',
-    categoryLabel: 'E-Commerce',
-    image: '/portfolio/boutique.jpg',
-  },
-  {
-    id: '7',
-    title: 'Premier Auto Detailing',
-    category: 'seo',
-    categoryLabel: 'Auto Detailing',
-    image: '/portfolio/auto.jpg',
+    categoryLabel: 'Therapy',
+    image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1770514415/therapy-mockup_x42feq.png',
   },
 ];
 
@@ -337,7 +309,7 @@ export const pricingModels: PricingModel[] = [
     title: 'One-Time Payment',
     subtitle: 'Best value for established businesses',
     upfront: '$1,500',
-    monthly: '$25/mo',
+    monthly: '$25',
     description: 'Pay once for your website, then just a small monthly fee for hosting and support.',
     features: [
       'Custom 5-7 page website',
@@ -358,7 +330,7 @@ export const pricingModels: PricingModel[] = [
     title: 'Zero Down',
     subtitle: 'Perfect for startups & new businesses',
     upfront: '$0',
-    monthly: '$150/mo',
+    monthly: '$150',
     description: 'No upfront cost — get your professional website with an affordable monthly investment.',
     features: [
       'Custom 5-7 page website',

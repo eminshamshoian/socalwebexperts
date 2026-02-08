@@ -31,10 +31,11 @@ export interface PortfolioItem {
   id: string;
   title: string;
   category: PortfolioCategory;
-  description: string;
+  categoryLabel: string;
+  description?: string;
   image: string;
   url?: string;
-  technologies: string[];
+  technologies?: string[];
   results?: string[];
 }
 

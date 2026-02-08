@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Icon from '../components/ui/Icon.astro';
 import { portfolioItems } from '../data/site';
 ---
 
@@ -22,43 +21,29 @@ import { portfolioItems } from '../data/site';
         </p>
       </div>
 
-
       <!-- Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         {portfolioItems.map((item, index) => (
           <div
             class="group fade-in"
             style={`animation-delay: ${index * 0.05}s`}
           >
-            <div class="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl overflow-hidden hover:border-[var(--text-secondary)]/30 transition-colors">
-              <div class="aspect-[4/3] bg-gradient-to-br from-[var(--bg-tertiary)] to-[var(--bg)] relative">
-                <div class="absolute inset-0 flex items-center justify-center">
-                  <Icon name="code" size={32} class="text-[var(--border)]" />
-                </div>
-                
-                {item.results && (
-                  <div class="absolute inset-0 bg-[var(--bg)]/95 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity p-6">
-                    <div class="text-center">
-                      <p class="text-xs text-[var(--text-secondary)] uppercase tracking-wider mb-2">Results</p>
-                      {item.results.slice(0, 3).map((result) => (
-                        <p class="text-sm font-medium text-[var(--text)]">{result}</p>
-                      ))}
-                    </div>
-                  </div>
-                )}
+            <div class="rounded-2xl overflow-hidden transition-all duration-300 hover:-translate-y-1">
+              <!-- Mockup Image -->
+              <div class="aspect-[4/3] relative bg-gradient-to-br from-slate-100 via-blue-50 to-slate-100 dark:from-slate-800 dark:via-slate-900 dark:to-slate-800 rounded-2xl overflow-hidden flex items-center justify-center p-6">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  class="w-full h-full object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
               </div>
 
-              <div class="p-5">
-                <h3 class="font-semibold text-[var(--text)] mb-2">{item.title}</h3>
-                <p class="text-sm text-[var(--text-secondary)] line-clamp-2">{item.description}</p>
-                
-                <div class="flex flex-wrap gap-1.5 mt-4">
-                  {item.technologies.slice(0, 3).map((tech) => (
-                    <span class="text-xs px-2 py-0.5 rounded bg-[var(--bg-tertiary)] text-[var(--text-secondary)]">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
+              <!-- Category Label -->
+              <div class="pt-4 text-center">
+                <span class="text-sm font-medium tracking-wide uppercase text-[var(--text-secondary)]">
+                  {item.categoryLabel}
+                </span>
               </div>
             </div>
           </div>
@@ -67,4 +52,3 @@ import { portfolioItems } from '../data/site';
     </div>
   </section>
 </BaseLayout>
-

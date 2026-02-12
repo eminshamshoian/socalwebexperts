@@ -1,53 +1,62 @@
 ---
 import Button from '../ui/Button.astro';
+import Icon from '../ui/Icon.astro';
 import { portfolioItems } from '../../data/site';
 
 const displayItems = portfolioItems;
 ---
 
-<section class="py-20 md:py-28 bg-[var(--bg-secondary)]">
+<section class="py-24 md:py-32 bg-[var(--bg-secondary)] border-t border-[var(--border)]">
   <div class="container">
-    <div class="mb-10 fade-in">
-      <p class="text-primary-500 text-sm font-medium tracking-wide uppercase mb-3">
-        Work
-      </p>
-      <h2 class="text-3xl md:text-4xl font-bold text-[var(--text)]">
-        Recent projects
-      </h2>
+    <!-- Header -->
+    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-20">
+      <div class="fade-in">
+        <p class="text-primary-500 text-sm font-medium tracking-widest uppercase mb-6">
+          Work
+        </p>
+        <h2 class="text-[var(--text)]">
+          Work built for<br class="hidden md:block"/> leads and trust
+        </h2>
+      </div>
+      <div class="fade-in" style="animation-delay: 0.1s;">
+        <Button href="/portfolio" variant="secondary" size="md">
+          All works
+          <Icon name="arrow-right" size={16} />
+        </Button>
+      </div>
     </div>
 
     <!-- Portfolio Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {displayItems.map((item, index) => (
         <div
           class="group fade-in"
-          style={`animation-delay: ${index * 0.05}s`}
+          style={`animation-delay: ${index * 0.08}s`}
         >
-          <div class="rounded-xl border border-[var(--border)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-primary-500/40 hover:shadow-lg hover:shadow-black/10">
+          <div class="rounded-2xl border border-[var(--border)] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-primary-500/30 hover:shadow-2xl hover:shadow-primary-500/5">
             <!-- Image -->
             <div class="aspect-[16/10] overflow-hidden bg-[var(--bg-tertiary)] flex items-center justify-center">
               <img
                 src={item.image}
                 alt={item.title}
-                class="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
+                class="w-full h-full object-contain group-hover:scale-[1.04] transition-transform duration-700"
                 loading="lazy"
               />
             </div>
 
             <!-- Info -->
-            <div class="px-4 py-3 bg-[var(--bg-secondary)]">
-              <h3 class="text-sm font-medium text-[var(--text)]">{item.title}</h3>
-              <p class="text-xs text-[var(--text-secondary)] mt-0.5">{item.categoryLabel}</p>
+            <div class="px-6 py-6 bg-[var(--bg)]">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h3 class="text-base font-semibold text-[var(--text)]">{item.title}</h3>
+                  <p class="text-sm text-[var(--text-secondary)] mt-1">{item.categoryLabel}</p>
+                </div>
+                <Icon name="arrow-right" size={16} class="text-[var(--text-secondary)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
             </div>
           </div>
         </div>
       ))}
-    </div>
-
-    <div class="mt-10 text-center fade-in">
-      <Button href="/portfolio" variant="secondary">
-        View all projects
-      </Button>
     </div>
   </div>
 </section>

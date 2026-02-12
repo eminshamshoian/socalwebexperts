@@ -14,80 +14,87 @@ const addOns = [
 ---
 
 <BaseLayout
-  title="Pricing | SoCal Web Experts"
-  description="Simple, transparent pricing for web design and digital marketing. No hidden fees."
+  title="Web Design Pricing | $0 Down Monthly or Ownership | SoCal Web Experts"
+  description="Choose $0 down monthly with hosting + ongoing updates, or an ownership build with low monthly hosting. Built for speed, security, and lead generation."
 >
-  <section class="py-16 md:py-24">
+  <section class="py-24 md:py-32">
     <div class="container">
-      <div class="max-w-2xl mx-auto text-center mb-14 fade-in">
-        <p class="text-primary-500 text-sm font-medium tracking-wide uppercase mb-3">
+      <div class="max-w-3xl mx-auto text-center mb-16 md:mb-24 fade-in">
+        <p class="text-primary-500 text-sm font-medium tracking-widest uppercase mb-6">
           Pricing
         </p>
-        <h1 class="text-3xl md:text-4xl font-bold text-[var(--text)] mb-4">
-          Simple, transparent pricing
+        <h1 class="text-[var(--text)] text-center mb-6">
+          Simple pricing. Built for growth.
         </h1>
-        <p class="text-[var(--text-secondary)] text-lg">
-          Two options. Same great website. Pick what works for you.
+        <p class="text-lg md:text-xl text-[var(--text-secondary)] text-center leading-relaxed">
+          Pick the option that fits your business - both are designed to help you win more customers.
         </p>
       </div>
 
       <!-- Pricing Cards -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-4xl mx-auto mb-20">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto mb-16 md:mb-24">
         {pricingModels.map((plan, index) => (
           <div 
-            class={`relative p-6 md:p-8 bg-[var(--bg-secondary)] border rounded-xl fade-in ${plan.highlighted ? 'border-primary-500' : 'border-[var(--border)]'}`}
+            class={`relative p-8 md:p-10 bg-[var(--bg-secondary)] border rounded-2xl fade-in ${plan.highlighted ? 'border-primary-500' : 'border-[var(--border)]'}`}
             style={`animation-delay: ${index * 0.1}s`}
           >
             {plan.highlighted && (
-              <div class="absolute -top-3 left-6 px-3 py-1 bg-primary-500 text-white text-xs font-medium rounded-full">
-                Popular
+              <div class="absolute -top-4 left-8 px-5 py-1.5 bg-primary-500 text-white text-xs font-semibold rounded-full tracking-wide">
+                Most Popular
               </div>
             )}
 
-            <h3 class="text-lg font-semibold text-[var(--text)] mb-1">{plan.title}</h3>
-            <p class="text-sm text-[var(--text-secondary)] mb-6">{plan.subtitle}</p>
+            <h3 class="text-xl font-semibold text-[var(--text)] mb-2">{plan.title}</h3>
+            <p class="text-[var(--text-secondary)] mb-8">{plan.subtitle}</p>
 
-            <div class="mb-6 pb-6 border-b border-[var(--border)]">
-              <div class="flex items-baseline gap-1">
-                <span class="text-4xl font-bold text-[var(--text)]">{plan.upfront}</span>
-                {plan.upfront !== '$0' && <span class="text-[var(--text-secondary)]">Total</span>}
+            <div class="mb-8 py-8 border-b border-[var(--border)]">
+              <div class="flex items-baseline gap-2">
+                <span class="text-5xl md:text-6xl font-bold text-[var(--text)] tracking-tight">{plan.upfront}</span>
+                {plan.upfront !== '$0' && <span class="text-lg text-[var(--text-secondary)]">Total</span>}
               </div>
-              <p class="text-sm text-[var(--text-secondary)] mt-1">+ {plan.monthly}/mo hosting</p>
+              <p class="text-[var(--text-secondary)] mt-2">+ {plan.monthly}/mo hosting</p>
             </div>
 
-            <ul class="space-y-3 mb-8">
+            <ul class="space-y-4 mb-10">
               {plan.features.slice(0, 8).map((feature) => (
-                <li class="flex items-start gap-2.5 text-sm">
-                  <Icon name="check" size={16} class="text-primary-500 mt-0.5 shrink-0" />
+                <li class="flex items-start gap-3">
+                  <div class="w-5 h-5 rounded-full bg-primary-500/15 flex items-center justify-center shrink-0 mt-0.5">
+                    <Icon name="check" size={12} class="text-primary-500" />
+                  </div>
                   <span class="text-[var(--text)]">{feature}</span>
                 </li>
               ))}
             </ul>
 
-            <Button href="/contact" variant={plan.highlighted ? 'primary' : 'secondary'} fullWidth>
-              Get started
+            <Button href="/contact" variant={plan.highlighted ? 'primary' : 'secondary'} fullWidth size="lg">
+              {plan.id === 'growth' ? 'Start the Growth Plan' : 'Get the Ownership Build'}
             </Button>
           </div>
         ))}
       </div>
 
       <!-- Add-ons -->
-      <div class="max-w-4xl mx-auto">
-        <h2 class="text-xl font-semibold text-[var(--text)] mb-6 fade-in pb-5">Add-on services</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div class="max-w-5xl mx-auto mb-16 md:mb-24">
+        <h2 class="text-[var(--text)] mb-6 fade-in">Optional add-ons</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {addOns.map((addon, index) => (
             <div 
-              class="flex items-start justify-between gap-4 p-4 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl fade-in"
+              class="flex items-start justify-between gap-4 p-6 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-2xl fade-in"
               style={`animation-delay: ${0.2 + index * 0.05}s`}
             >
               <div>
-                <h3 class="font-medium text-[var(--text)] mb-1">{addon.title}</h3>
+                <h3 class="font-medium text-[var(--text)] mb-2">{addon.title}</h3>
                 <p class="text-sm text-[var(--text-secondary)]">{addon.desc}</p>
               </div>
               <span class="text-sm font-medium text-primary-500 whitespace-nowrap">{addon.price}</span>
             </div>
           ))}
         </div>
+      </div>
+
+      <div class="max-w-5xl mx-auto p-8 md:p-10 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] fade-in">
+        <h2 class="text-[var(--text)] mb-4">If you do not see more inquiries over time, the website is not doing its job.</h2>
+        <p class="text-lg text-[var(--text-secondary)] leading-relaxed">We build for performance, trust, and conversion so your website actually produces.</p>
       </div>
     </div>
   </section>

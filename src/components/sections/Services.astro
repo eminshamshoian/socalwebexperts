@@ -1,42 +1,46 @@
 ---
-import SectionHeading from '../ui/SectionHeading.astro';
-import Card from '../ui/Card.astro';
 import Icon from '../ui/Icon.astro';
 import { services } from '../../data/site';
 ---
 
-<section class="py-20 md:py-28">
+<section class="py-24 md:py-32 border-t border-[var(--border)]">
   <div class="container">
-    <!-- Section Header - Left aligned, simpler -->
-    <div class="max-w-2xl mb-14 fade-in">
-      <p class="text-primary-500 text-sm font-medium tracking-wide uppercase mb-3">
-        Services
-      </p>
-      <h2 class="text-3xl md:text-4xl font-bold text-[var(--text)] mb-4">
-        Everything you need to grow online
-      </h2>
-      <p class="text-[var(--text-secondary)] text-lg">
-        From design to marketing, we handle it all so you can focus on running your business.
-      </p>
+    <!-- Section Header -->
+    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-20">
+      <div class="fade-in">
+        <p class="text-primary-500 text-sm font-medium tracking-widest uppercase mb-6">
+          Services
+        </p>
+        <h2 class="text-[var(--text)]">
+          Everything you need<br class="hidden md:block"/> to win online
+        </h2>
+      </div>
+      <div class="flex items-end fade-in" style="animation-delay: 0.1s;">
+        <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed max-w-lg">
+          We build and manage the whole system so you can focus on running your business.
+        </p>
+      </div>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-5">
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--border)] rounded-2xl overflow-hidden">
       {services.map((service, index) => (
         <a 
           href={`/services/${service.slug}`} 
-          class="group block p-6 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-xl hover:border-[var(--text-secondary)]/30 transition-all duration-200 fade-in"
-          style={`animation-delay: ${index * 0.05}s`}
+          class="group block p-8 bg-[var(--bg)] hover:bg-[var(--bg-secondary)] transition-all duration-500 fade-in"
+          style={`animation-delay: ${index * 0.06}s`}
         >
-          <div class="flex items-start justify-between mb-4">
-            <div class="w-10 h-10 rounded-lg bg-primary-500/10 flex items-center justify-center">
-              <Icon name={service.icon} size={20} class="text-primary-500" />
+          <div class="flex items-center justify-between mb-6">
+            <div class="w-12 h-12 rounded-2xl bg-primary-500/10 flex items-center justify-center group-hover:bg-primary-500/20 transition-colors duration-300">
+              <Icon name={service.icon} size={22} class="text-primary-500" />
             </div>
-            <Icon name="arrow-right" size={16} class="text-[var(--text-secondary)] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+            <Icon name="arrow-right" size={18} class="text-[var(--text-secondary)] opacity-0 -translate-x-3 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
           </div>
-          <h3 class="text-lg font-semibold text-[var(--text)] mb-2 group-hover:text-primary-500 transition-colors">
+          
+          <h3 class="text-[var(--text)] mb-3 group-hover:text-primary-500 transition-colors duration-300">
             {service.title}
           </h3>
-          <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
+          <p class="text-[var(--text-secondary)] leading-relaxed">
             {service.shortDescription}
           </p>
         </a>

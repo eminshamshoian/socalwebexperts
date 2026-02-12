@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Button from '../components/ui/Button.astro';
+---
+
+<BaseLayout
+  title="About SoCal Web Experts | Built for Local Business Growth"
+  description="We build fast, secure, lead-generating websites for local businesses - done-for-you, with ongoing support and updates."
+>
+  <section class="py-24 md:py-32">
+    <div class="container">
+      <div class="max-w-3xl mb-16 md:mb-24">
+        <p class="text-primary-500 text-sm font-medium tracking-widest uppercase mb-6 fade-in">About</p>
+        <h1 class="text-[var(--text)] mb-6 fade-in" style="animation-delay: 0.05s;">
+          Websites should pay for themselves
+        </h1>
+        <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed fade-in" style="animation-delay: 0.1s;">
+          We started SoCal Web Experts for one reason: too many businesses have websites that look "okay" but do not bring customers.
+        </p>
+      </div>
+
+      <div class="grid lg:grid-cols-3 gap-6 md:gap-8">
+        <div class="lg:col-span-2 p-8 md:p-10 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] fade-in" style="animation-delay: 0.12s;">
+          <h2 class="text-[var(--text)] mb-4">Our mission</h2>
+          <p class="text-lg text-[var(--text-secondary)] leading-relaxed">
+            Build websites that earn trust fast, rank better over time, and turn visitors into leads without you lifting a finger.
+          </p>
+        </div>
+
+        <div class="p-8 md:p-10 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] fade-in" style="animation-delay: 0.16s;">
+          <h2 class="mb-6">What makes us different</h2>
+          <ul class="space-y-3 text-[var(--text-secondary)]">
+            <li>Built to convert, not just design</li>
+            <li>Performance-first builds</li>
+            <li>SEO-friendly structure from day one</li>
+            <li>Done-for-you updates and support</li>
+            <li>Built for competitive service markets</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="my-16 md:my-24 p-8 md:p-10 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] fade-in" style="animation-delay: 0.2s;">
+        <p class="text-xl md:text-2xl font-semibold text-[var(--text)] mb-6">
+          If your website is not bringing leads, it is not doing its job.
+        </p>
+        <Button href="/contact" size="md">
+          Let's Fix That
+        </Button>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

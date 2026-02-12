@@ -3,44 +3,39 @@ import Icon from '../ui/Icon.astro';
 import { processSteps } from '../../data/site';
 ---
 
-<section class="py-20 md:py-28">
+<section class="py-24 md:py-32 border-t border-[var(--border)]">
   <div class="container">
-    <div class="max-w-2xl mb-14 fade-in">
-      <p class="text-primary-500 text-sm font-medium tracking-wide uppercase mb-3">
+    <!-- Header -->
+    <div class="max-w-3xl mb-20 fade-in">
+      <p class="text-primary-500 text-sm font-medium tracking-widest uppercase mb-6">
         Process
       </p>
-      <h2 class="text-3xl md:text-4xl font-bold text-[var(--text)] mb-4">
-        Simple process, real results
+      <h2 class="text-[var(--text)] mb-8">
+        Simple. Done-for-you.
       </h2>
-      <p class="text-[var(--text-secondary)] text-lg">
-        From first call to launch, we keep things straightforward and on schedule.
+      <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
+        Quick process, clear steps, and no tech stress.
       </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
+    <!-- Steps – large editorial layout -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-0 border border-[var(--border)] rounded-2xl overflow-hidden">
       {processSteps.map((step, index) => (
-        <div class="relative fade-in" style={`animation-delay: ${index * 0.1}s`}>
-          <!-- Connector line (desktop) -->
-          {index < processSteps.length - 1 && (
-            <div class="hidden lg:block absolute top-5 left-[calc(50%+24px)] right-0 h-px bg-[var(--border)]"></div>
-          )}
-          
-          <div class="relative">
-            <!-- Step number -->
-            <div class="flex items-center gap-3 mb-4">
-              <div class="w-10 h-10 rounded-full bg-primary-500 text-white flex items-center justify-center font-bold text-sm">
-                {step.step}
-              </div>
-              <div class="lg:hidden flex-1 h-px bg-[var(--border)]"></div>
-            </div>
-
-            <h3 class="font-semibold text-[var(--text)] mb-2">
-              {step.title}
-            </h3>
-            <p class="text-sm text-[var(--text-secondary)] leading-relaxed">
-              {step.description}
-            </p>
+        <div 
+          class={`relative p-8 fade-in ${index < processSteps.length - 1 ? 'lg:border-r border-b lg:border-b-0 border-[var(--border)]' : ''}`}
+          style={`animation-delay: ${index * 0.1}s`}
+        >
+          <!-- Large step number -->
+          <div class="text-6xl md:text-7xl font-bold text-primary-500/15 mb-6 leading-none tracking-tighter">
+            0{step.step}
           </div>
+
+          <h3 class="text-[var(--text)] mb-4">
+            {step.title}
+          </h3>
+          <p class="text-[var(--text-secondary)] leading-relaxed">
+            {step.description}
+          </p>
         </div>
       ))}
     </div>

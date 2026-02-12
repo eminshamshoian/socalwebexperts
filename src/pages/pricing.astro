@@ -6,7 +6,6 @@ import FAQ from '../components/sections/FAQ.astro';
 import { pricingModels } from '../data/site';
 
 const addOns = [
-  { title: 'SEO', price: 'from $500/mo', desc: 'On-page, local SEO, and monthly reporting' },
   { title: 'Google Ads', price: 'from $500/mo', desc: 'Campaign setup, optimization, and tracking' },
   { title: 'Social Media', price: 'from $400/mo', desc: 'Content creation and posting schedule' },
   { title: 'Ecommerce', price: 'from $2,500', desc: 'Shopify setup with payment and shipping' },
@@ -75,7 +74,7 @@ const addOns = [
 
       <!-- Add-ons -->
       <div class="max-w-5xl mx-auto mb-16 md:mb-24">
-        <h2 class="text-[var(--text)] mb-6 fade-in">Optional add-ons</h2>
+        <h2 class="text-[var(--text)] pb-6 fade-in">Optional add-ons</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
           {addOns.map((addon, index) => (
             <div 
@@ -90,11 +89,6 @@ const addOns = [
             </div>
           ))}
         </div>
-      </div>
-
-      <div class="max-w-5xl mx-auto p-8 md:p-10 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] fade-in">
-        <h2 class="text-[var(--text)] mb-4">If you do not see more inquiries over time, the website is not doing its job.</h2>
-        <p class="text-lg text-[var(--text-secondary)] leading-relaxed">We build for performance, trust, and conversion so your website actually produces.</p>
       </div>
     </div>
   </section>

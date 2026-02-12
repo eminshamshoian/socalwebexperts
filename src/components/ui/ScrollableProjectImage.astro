@@ -69,56 +69,74 @@ const { src, alt } = Astro.props;
         });
       });
     } else {
-      // Mobile: parallax-style scroll-linked image panning
-      let ticking = false;
+      // Mobile: smooth parallax-style scroll-linked image panning
+      // Uses lerp so movement is buttery-smooth at a consistent pace
+      // regardless of how fast the user scrolls the page.
 
-      function updateParallax() {
+      const state = new Map<HTMLElement, { current: number; target: number }>();
+      containers.forEach((c) => state.set(c, { current: 0, target: 0 }));
+
+      let animating = false;
+
+      function tick() {
         const viewportH = window.innerHeight;
+        let needsMore = false;
 
         containers.forEach((container) => {
           const img = container.querySelector<HTMLImageElement>('img');
           if (!img) return;
 
+          const s = state.get(container)!;
           const rect = container.getBoundingClientRect();
 
-          // Skip if completely off-screen (performance optimisation)
-          if (rect.bottom < 0 || rect.top > viewportH) return;
+          // Image scrolling starts when the card top reaches 70% of the
+          // viewport (user can clearly see the image) and finishes when
+          // the card top reaches 20% (still well in view).
+          const startAt = viewportH * 0.70;
+          const endAt   = viewportH * 0.20;
 
-          // progress: 0 when the container's top is at the bottom of the viewport
-          //           1 when the container's bottom is at the top of the viewport
-          const progress = Math.max(
-            0,
-            Math.min(1, (viewportH - rect.top) / (viewportH + rect.height))
-          );
+          const raw = (startAt - rect.top) / (startAt - endAt);
+          s.target = Math.max(0, Math.min(1, raw));
+
+          // Smooth lerp — keeps the image easing at a constant, gentle
+          // pace no matter how aggressively the user scrolls
+          const diff = s.target - s.current;
+          if (Math.abs(diff) > 0.001) {
+            s.current += diff * 0.05;
+            needsMore = true;
+          } else {
+            s.current = s.target;
+          }
 
           const containerH = container.clientHeight;
           const imgH = img.offsetHeight;
           const overflow = Math.max(0, imgH - containerH);
 
           if (overflow > 0) {
-            // Scroll ~65% of the image overflow – enough to reveal content
-            // without racing to the very bottom
-            const scrollAmount = overflow * 0.65 * progress;
+            // Only scroll ~25% of the overflow — a subtle, minimal peek
+            const scrollAmount = overflow * 0.25 * s.current;
             img.style.transform = `translateY(-${scrollAmount}px)`;
           }
         });
 
-        ticking = false;
+        if (needsMore) {
+          requestAnimationFrame(tick);
+        } else {
+          animating = false;
+        }
       }
 
-      window.addEventListener(
-        'scroll',
-        () => {
-          if (!ticking) {
-            requestAnimationFrame(updateParallax);
-            ticking = true;
-          }
-        },
-        { passive: true }
-      );
+      function startLoop() {
+        if (!animating) {
+          animating = true;
+          requestAnimationFrame(tick);
+        }
+      }
 
-      // Run once on init so images already in view get positioned
-      updateParallax();
+      window.addEventListener('scroll', startLoop, { passive: true });
+
+      // Run once so cards already in view get positioned
+      startLoop();
     }
   }
 

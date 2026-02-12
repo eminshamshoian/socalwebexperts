@@ -55,14 +55,17 @@ const addOns = [
             </div>
 
             <ul class="space-y-4 mb-10">
-              {plan.features.map((feature) => (
-                <li class="flex items-start gap-3">
-                  <div class="w-5 h-5 rounded-full bg-primary-500/15 flex items-center justify-center shrink-0 mt-0.5">
-                    <Icon name="check" size={12} class="text-primary-500" />
-                  </div>
-                  <span class="text-[var(--text)]">{feature}</span>
-                </li>
-              ))}
+              {plan.features.map((feature) => {
+                const isIncludedPlan = plan.id === 'growth' && feature === 'Everything in the Ownership Build plan';
+                return (
+                  <li class={`flex items-start gap-3 ${isIncludedPlan ? 'pb-4 mb-4 border-b border-[var(--border)]' : ''}`}>
+                    <div class="w-5 h-5 rounded-full bg-primary-500/15 flex items-center justify-center shrink-0 mt-0.5">
+                      <Icon name="check" size={12} class="text-primary-500" />
+                    </div>
+                    <span class={`${isIncludedPlan ? 'text-[var(--text-secondary)] text-sm font-medium italic' : 'text-[var(--text)]'}`}>{feature}</span>
+                  </li>
+                );
+              })}
             </ul>
 
             <Button href="/contact" variant={plan.highlighted ? 'primary' : 'secondary'} fullWidth size="lg">

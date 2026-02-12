@@ -341,7 +341,7 @@ export const pricingModels: PricingModel[] = [
       'Priority support',
       'Done-for-you maintenance',
       'Clear monthly model',
-      '12-month minimum',
+      'Cancel any time',
     ],
     highlighted: true,
   },

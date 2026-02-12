@@ -1,0 +1,131 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+}
+const { src, alt } = Astro.props;
+---
+
+<div class="scrollable-project-image" data-scrollable>
+  <img
+    src={src}
+    alt={alt}
+    loading="lazy"
+  />
+</div>
+
+<style>
+  .scrollable-project-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .scrollable-project-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    display: block;
+    will-change: transform;
+  }
+
+  /* Only apply the slow hover transition on desktop */
+  @media (hover: hover) and (pointer: fine) {
+    .scrollable-project-image img {
+      transition: transform 2.5s ease-in-out;
+    }
+  }
+</style>
+
+<script>
+  function initScrollableImages() {
+    const containers = document.querySelectorAll<HTMLElement>('[data-scrollable]');
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (!isTouchDevice) {
+      // Desktop: hover to scroll down, mouse leave to scroll back up
+      containers.forEach((container) => {
+        const img = container.querySelector('img');
+        if (!img) return;
+
+        function getOverflow(): number {
+          const containerH = container.clientHeight;
+          const imgH = img!.offsetHeight;
+          return Math.max(0, imgH - containerH);
+        }
+
+        container.addEventListener('mouseenter', () => {
+          const overflow = getOverflow();
+          if (overflow > 0) {
+            img!.style.transform = `translateY(-${overflow}px)`;
+          }
+        });
+
+        container.addEventListener('mouseleave', () => {
+          img!.style.transform = 'translateY(0)';
+        });
+      });
+    } else {
+      // Mobile: parallax-style scroll-linked image panning
+      let ticking = false;
+
+      function updateParallax() {
+        const viewportH = window.innerHeight;
+
+        containers.forEach((container) => {
+          const img = container.querySelector<HTMLImageElement>('img');
+          if (!img) return;
+
+          const rect = container.getBoundingClientRect();
+
+          // Skip if completely off-screen (performance optimisation)
+          if (rect.bottom < 0 || rect.top > viewportH) return;
+
+          // progress: 0 when the container's top is at the bottom of the viewport
+          //           1 when the container's bottom is at the top of the viewport
+          const progress = Math.max(
+            0,
+            Math.min(1, (viewportH - rect.top) / (viewportH + rect.height))
+          );
+
+          const containerH = container.clientHeight;
+          const imgH = img.offsetHeight;
+          const overflow = Math.max(0, imgH - containerH);
+
+          if (overflow > 0) {
+            // Scroll ~65% of the image overflow – enough to reveal content
+            // without racing to the very bottom
+            const scrollAmount = overflow * 0.65 * progress;
+            img.style.transform = `translateY(-${scrollAmount}px)`;
+          }
+        });
+
+        ticking = false;
+      }
+
+      window.addEventListener(
+        'scroll',
+        () => {
+          if (!ticking) {
+            requestAnimationFrame(updateParallax);
+            ticking = true;
+          }
+        },
+        { passive: true }
+      );
+
+      // Run once on init so images already in view get positioned
+      updateParallax();
+    }
+  }
+
+  // Run on load and also handle image lazy-load timing
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollableImages);
+  } else {
+    initScrollableImages();
+  }
+</script>

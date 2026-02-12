@@ -34,6 +34,8 @@ export interface PortfolioItem {
   categoryLabel: string;
   description?: string;
   image: string;
+  /** When true, shows a full-length image that scrolls on hover (desktop) or when visible (mobile) */
+  scrollableImage?: boolean;
   url?: string;
   technologies?: string[];
   results?: string[];

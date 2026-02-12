@@ -1,6 +1,7 @@
 ---
 import Button from '../ui/Button.astro';
 import Icon from '../ui/Icon.astro';
+import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
 import { portfolioItems } from '../../data/site';
 
 const displayItems = portfolioItems;
@@ -36,12 +37,16 @@ const displayItems = portfolioItems;
           <div class="rounded-2xl border border-[var(--border)] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-primary-500/30 hover:shadow-2xl hover:shadow-primary-500/5">
             <!-- Image -->
             <div class="aspect-[16/10] overflow-hidden bg-[var(--bg-tertiary)] flex items-center justify-center">
-              <img
-                src={item.image}
-                alt={item.title}
-                class="w-full h-full object-contain group-hover:scale-[1.04] transition-transform duration-700"
-                loading="lazy"
-              />
+              {item.scrollableImage ? (
+                <ScrollableProjectImage src={item.image} alt={item.title} />
+              ) : (
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  class="w-full h-full object-contain group-hover:scale-[1.04] transition-transform duration-700"
+                  loading="lazy"
+                />
+              )}
             </div>
 
             <!-- Info -->

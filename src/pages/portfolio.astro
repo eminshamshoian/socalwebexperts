@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ScrollableProjectImage from '../components/ui/ScrollableProjectImage.astro';
 import { portfolioItems } from '../data/site';
 ---
 
@@ -31,12 +32,16 @@ import { portfolioItems } from '../data/site';
             <div class="rounded-xl border border-[var(--border)] overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-primary-500/40 hover:shadow-lg hover:shadow-black/10">
               <!-- Image -->
               <div class="aspect-[16/10] overflow-hidden bg-[var(--bg-tertiary)] flex items-center justify-center">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  class="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
-                  loading="lazy"
-                />
+                {item.scrollableImage ? (
+                  <ScrollableProjectImage src={item.image} alt={item.title} />
+                ) : (
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    class="w-full h-full object-contain group-hover:scale-[1.03] transition-transform duration-500"
+                    loading="lazy"
+                  />
+                )}
               </div>
 
               <!-- Info -->

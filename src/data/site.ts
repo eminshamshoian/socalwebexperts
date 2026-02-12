@@ -287,21 +287,24 @@ export const portfolioItems: PortfolioItem[] = [
     title: 'Lawyer',
     category: 'web-design',
     categoryLabel: 'Law Office',
-    image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1770513422/New_Website_Blue_Mockup_Instagram_-_Laptop_pyoeww.png',
+    image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1770874360/lawyer-fullscreen_cbti3t.png',
+    scrollableImage: true,
   },
   {
     id: '2',
     title: 'Auto Group',
     category: 'web-design',
     categoryLabel: 'Auto Dealership',
-    image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1770514261/mockup-autogroup_at8lnx.png',
+    image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1770873518/tag-fullscreen_i2yasa.png',
+    scrollableImage: true,
   },
   {
     id: '3',
     title: 'Therapy Company',
     category: 'web-design',
     categoryLabel: 'Therapy',
-    image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1770514415/therapy-mockup_x42feq.png',
+    image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1770874794/therapy-fullscreen_hjsa2d.png',
+    scrollableImage: true,
   },
 ];
 

@@ -335,7 +335,12 @@ export const pricingModels: PricingModel[] = [
     description: 'Best for businesses that want everything handled and do not want website chores.',
     features: [
       'Custom website build',
-      'Hosting + security included',
+      'Hosting + security',
+      'SEO foundation setup',
+      'Performance-first build',
+      'Mobile-first design',
+      'Clear conversion paths',
+      'Launch support',
       'Ongoing updates handled for you',
       'Performance improvements',
       'Conversion improvements',

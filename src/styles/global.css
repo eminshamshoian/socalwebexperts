@@ -34,9 +34,9 @@
   --color-light-text: #0A0A0A;
   --color-light-text-secondary: #666666;
   
-  /* Fonts – tight, geometric sans-serif like Graphik */
-  --font-heading: 'Outfit', system-ui, -apple-system, sans-serif;
-  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+  /* Fonts – Swiss-inspired geometric sans-serif (BL Melody–style) */
+  --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   
   /* Spacing – consistent scale (use everywhere) */
   --space-1: 0.25rem;   /* 4px */

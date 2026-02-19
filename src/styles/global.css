@@ -251,6 +251,12 @@ button {
 .stagger-5 { animation-delay: 0.40s; }
 .stagger-6 { animation-delay: 0.48s; }
 
+/* ─── Marquee ─── */
+@keyframes marquee-vertical {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(-100% - var(--marquee-gap))); }
+}
+
 /* ─── Divider ─── */
 .section-divider {
   width: 100%;

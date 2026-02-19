@@ -7,61 +7,74 @@ import { portfolioItems } from '../../data/site';
 const displayItems = portfolioItems;
 ---
 
-<section class="py-24 md:py-32 bg-[var(--bg-secondary)] border-t border-[var(--border)]">
-  <div class="container">
-    <!-- Header -->
-    <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-8 mb-20">
+<section class="py-24 md:py-36 relative overflow-hidden">
+  <div aria-hidden class="absolute top-0 inset-x-0 h-40 pointer-events-none" style="background: linear-gradient(to bottom, var(--bg-secondary), transparent);"></div>
+
+  <div class="container relative">
+    <!-- Section header -->
+    <div class="max-w-3xl mx-auto text-center mb-20 md:mb-28">
       <div class="fade-in">
-        <p class="text-primary-500 text-sm font-medium tracking-widest uppercase mb-6">
-          Work
-        </p>
-        <h2 class="text-[var(--text)]">
-          Work built for<br class="hidden md:block"/> leads and trust
-        </h2>
+        <span class="inline-flex items-center gap-2 text-primary-500 text-sm font-medium tracking-widest uppercase mb-6">
+          <span class="w-6 h-px bg-primary-500"></span>
+          Selected Work
+          <span class="w-6 h-px bg-primary-500"></span>
+        </span>
       </div>
-      <div class="fade-in" style="animation-delay: 0.1s;">
-        <Button href="/portfolio" variant="secondary" size="md">
-          All works
-          <Icon name="arrow-right" size={16} />
-        </Button>
-      </div>
+      <h2 class="text-[var(--text)] fade-in" style="animation-delay: 0.05s;">
+        Websites that<br class="hidden sm:block" />
+        <span class="gradient-text">convert and perform</span>
+      </h2>
+      <p class="text-lg text-[var(--text-secondary)] mt-6 max-w-xl mx-auto leading-relaxed fade-in" style="animation-delay: 0.1s;">
+        Real projects built for real businesses. Every pixel designed to build trust and drive leads.
+      </p>
     </div>
 
-    <!-- Portfolio Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <!-- Bento grid -->
+    <div class="portfolio-grid">
       {displayItems.map((item, index) => (
-        <div
-          class="group fade-in"
-          style={`animation-delay: ${index * 0.08}s`}
-        >
-          <div class="rounded-2xl border border-[var(--border)] overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:border-primary-500/30 hover:shadow-2xl hover:shadow-primary-500/5">
-            <!-- Image -->
-            <div class="aspect-[16/10] overflow-hidden bg-[var(--bg-tertiary)] flex items-center justify-center">
-              {item.scrollableImage ? (
-                <ScrollableProjectImage src={item.image} alt={item.title} />
-              ) : (
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  class="w-full h-full object-contain group-hover:scale-[1.04] transition-transform duration-700"
-                  loading="lazy"
-                />
-              )}
+        <div class="group fade-in" style={`animation-delay: ${0.1 + index * 0.08}s`}>
+          <div class="relative h-full rounded-2xl border border-[var(--border)] overflow-hidden transition-all duration-500 hover:border-primary-500/30 hover:shadow-[0_20px_80px_-20px_rgba(249,115,22,0.15)]">
+            <!-- Screenshot -->
+            <div class="relative overflow-hidden" style="aspect-ratio: 16/10;">
+              <ScrollableProjectImage src={item.image} alt={`${item.title} - ${item.categoryLabel} website by SoCal Web Experts`} />
+
+              <!-- Hover overlay -->
+              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 flex flex-col justify-end p-6 md:p-8 pointer-events-none">
+                <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <span class="inline-block px-3 py-1 rounded-full bg-primary-500/20 text-primary-400 text-xs font-medium mb-3 backdrop-blur-sm border border-primary-500/20">
+                    {item.categoryLabel}
+                  </span>
+                  <h3 class="text-white text-xl md:text-2xl font-semibold tracking-tight">{item.title}</h3>
+                </div>
+              </div>
             </div>
 
-            <!-- Info -->
-            <div class="px-6 py-6 bg-[var(--bg)]">
-              <div class="flex items-center justify-between">
-                <div>
-                  <h3 class="text-base font-semibold text-[var(--text)]">{item.title}</h3>
-                  <p class="text-sm text-[var(--text-secondary)] mt-1">{item.categoryLabel}</p>
-                </div>
-                <Icon name="arrow-right" size={16} class="text-[var(--text-secondary)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <!-- Card footer -->
+            <div class="px-5 py-4 flex items-center justify-between bg-[var(--bg)]">
+              <div>
+                <h3 class="text-sm font-semibold text-[var(--text)]">{item.title}</h3>
+                <p class="text-xs text-[var(--text-secondary)] mt-0.5">{item.categoryLabel}</p>
               </div>
             </div>
           </div>
         </div>
       ))}
     </div>
+
+    <!-- CTA -->
+    <div class="flex justify-center mt-16 md:mt-20 fade-in" style="animation-delay: 0.5s;">
+      <Button href="/portfolio" variant="secondary" size="lg">
+        View all projects
+        <Icon name="arrow-right" size={16} />
+      </Button>
+    </div>
   </div>
 </section>
+
+<style>
+  .portfolio-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+</style>

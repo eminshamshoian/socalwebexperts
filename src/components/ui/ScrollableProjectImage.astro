@@ -20,6 +20,7 @@ const { src, alt } = Astro.props;
     width: 100%;
     height: 100%;
     overflow: hidden;
+    cursor: pointer;
   }
 
   .scrollable-project-image img {
@@ -32,118 +33,66 @@ const { src, alt } = Astro.props;
     will-change: transform;
   }
 
-  /* Only apply the slow hover transition on desktop */
   @media (hover: hover) and (pointer: fine) {
     .scrollable-project-image img {
-      transition: transform 2.5s ease-in-out;
+      transition: transform 6s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    .scrollable-project-image img.snap-back {
+      transition: transform 0.4s cubic-bezier(0.33, 0, 0.2, 1);
     }
   }
 </style>
 
 <script>
   function initScrollableImages() {
-    const containers = document.querySelectorAll<HTMLElement>('[data-scrollable]');
-    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    document.querySelectorAll<HTMLElement>('[data-scrollable]').forEach((container) => {
+      const img = container.querySelector<HTMLImageElement>('img');
+      if (!img || container.hasAttribute('data-init')) return;
+      container.setAttribute('data-init', '');
 
-    if (!isTouchDevice) {
-      // Desktop: hover to scroll down, mouse leave to scroll back up
-      containers.forEach((container) => {
-        const img = container.querySelector('img');
-        if (!img) return;
+      function getOverflow() {
+        return Math.max(0, img!.offsetHeight - container.clientHeight);
+      }
 
-        function getOverflow(): number {
-          const containerH = container.clientHeight;
-          const imgH = img!.offsetHeight;
-          return Math.max(0, imgH - containerH);
+      // Desktop: hover to scroll, fast snap-back on leave
+      container.addEventListener('mouseenter', () => {
+        img!.classList.remove('snap-back');
+        const overflow = getOverflow();
+        if (overflow > 0) {
+          img!.style.transform = `translateY(-${overflow}px)`;
         }
-
-        container.addEventListener('mouseenter', () => {
-          const overflow = getOverflow();
-          if (overflow > 0) {
-            img!.style.transform = `translateY(-${overflow}px)`;
-          }
-        });
-
-        container.addEventListener('mouseleave', () => {
-          img!.style.transform = 'translateY(0)';
-        });
       });
-    } else {
-      // Mobile: smooth parallax-style scroll-linked image panning
-      // Uses lerp so movement is buttery-smooth at a consistent pace
-      // regardless of how fast the user scrolls the page.
 
-      const state = new Map<HTMLElement, { current: number; target: number }>();
-      containers.forEach((c) => state.set(c, { current: 0, target: 0 }));
+      container.addEventListener('mouseleave', () => {
+        img!.classList.add('snap-back');
+        img!.style.transform = 'translateY(0)';
+      });
 
-      let animating = false;
+      // Mobile: tap to toggle scroll, tap again to snap back
+      let scrolled = false;
+      container.addEventListener('touchend', (e) => {
+        e.preventDefault();
+        const overflow = getOverflow();
+        if (overflow <= 0) return;
 
-      function tick() {
-        const viewportH = window.innerHeight;
-        let needsMore = false;
-
-        containers.forEach((container) => {
-          const img = container.querySelector<HTMLImageElement>('img');
-          if (!img) return;
-
-          const s = state.get(container)!;
-          const rect = container.getBoundingClientRect();
-
-          // Image scrolling starts when the card top reaches 70% of the
-          // viewport (user can clearly see the image) and finishes when
-          // the card top reaches 20% (still well in view).
-          const startAt = viewportH * 0.70;
-          const endAt   = viewportH * 0.20;
-
-          const raw = (startAt - rect.top) / (startAt - endAt);
-          s.target = Math.max(0, Math.min(1, raw));
-
-          // Smooth lerp — keeps the image easing at a constant, gentle
-          // pace no matter how aggressively the user scrolls
-          const diff = s.target - s.current;
-          if (Math.abs(diff) > 0.001) {
-            s.current += diff * 0.05;
-            needsMore = true;
-          } else {
-            s.current = s.target;
-          }
-
-          const containerH = container.clientHeight;
-          const imgH = img.offsetHeight;
-          const overflow = Math.max(0, imgH - containerH);
-
-          if (overflow > 0) {
-            // Only scroll ~25% of the overflow — a subtle, minimal peek
-            const scrollAmount = overflow * 0.25 * s.current;
-            img.style.transform = `translateY(-${scrollAmount}px)`;
-          }
-        });
-
-        if (needsMore) {
-          requestAnimationFrame(tick);
+        if (!scrolled) {
+          img!.style.transition = 'transform 6s cubic-bezier(0.25, 0.1, 0.25, 1)';
+          img!.style.transform = `translateY(-${overflow}px)`;
+          scrolled = true;
         } else {
-          animating = false;
+          img!.style.transition = 'transform 0.4s cubic-bezier(0.33, 0, 0.2, 1)';
+          img!.style.transform = 'translateY(0)';
+          scrolled = false;
         }
-      }
-
-      function startLoop() {
-        if (!animating) {
-          animating = true;
-          requestAnimationFrame(tick);
-        }
-      }
-
-      window.addEventListener('scroll', startLoop, { passive: true });
-
-      // Run once so cards already in view get positioned
-      startLoop();
-    }
+      });
+    });
   }
 
-  // Run on load and also handle image lazy-load timing
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initScrollableImages);
   } else {
     initScrollableImages();
   }
+
+  document.addEventListener('astro:after-swap', initScrollableImages);
 </script>

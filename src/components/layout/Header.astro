@@ -5,90 +5,94 @@ import ThemeToggle from '../ui/ThemeToggle.astro';
 import Icon from '../ui/Icon.astro';
 ---
 
-<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" id="header">
-  <!-- Backdrop – appears on scroll -->
-  <div class="header-backdrop absolute inset-0 bg-[var(--bg)]/80 backdrop-blur-xl border-b border-transparent transition-all duration-500"></div>
-  
-  <nav class="container relative">
-    <div class="flex items-center justify-between h-20 md:h-24">
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-2.5 group z-10">
-        <img 
-          src="https://res.cloudinary.com/ds85pv6ht/image/upload/v1770167617/logo-white_hz0s9s.png" 
-          alt="SoCal Web Experts"
-          class="dark-logo"
-          style="height: 56px; width: auto; max-width: 110px;"
-        />
-        <img 
-          src="https://res.cloudinary.com/ds85pv6ht/image/upload/v1770167617/logo-black_t3ushq.png" 
-          alt="SoCal Web Experts"
-          class="light-logo"
-          style="height: 56px; width: auto; max-width: 110px;"
-        />
-        <div class="hidden md:flex flex-col leading-none">
-          <span class="text-sm font-semibold text-[var(--text)] tracking-tight">SoCal Web</span>
-          <span class="text-xs text-primary-500 font-medium">Experts</span>
-        </div>
-      </a>
+<header class="fixed z-50 w-full px-2" id="header">
+  <nav class="group" data-scrolled="false">
+    <!-- Inner container: full-width → shrinks to pill on scroll -->
+    <div
+      id="nav-inner"
+      class="mx-auto mt-2 max-w-6xl px-6 transition-all duration-300 lg:px-12"
+    >
+      <div class="relative flex flex-wrap items-center justify-between gap-6 py-3 lg:gap-0 lg:py-4">
 
-      <!-- Desktop Navigation – clean, spaced links -->
-      <div class="hidden lg:flex items-center gap-1">
-        {navigation.map((item) => (
-          item.children ? (
-            <div class="relative group">
-              <button class="flex items-center gap-1.5 px-4 py-2 text-[13px] tracking-wide uppercase font-medium text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors duration-300">
-                {item.label}
-                <Icon name="chevron-down" size={12} class="transition-transform duration-300 group-hover:rotate-180" />
-              </button>
-              <div class="absolute top-full left-0 pt-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-1 group-hover:translate-y-0">
-                <div class="bg-[var(--bg)] border border-[var(--border)] rounded-2xl shadow-2xl shadow-black/20 py-2 min-w-[200px] backdrop-blur-xl">
-                  {item.children.map((child) => (
-                    <a
-                      href={child.href}
-                      class="block px-4 py-2.5 text-sm text-[var(--text-secondary)] hover:text-primary-500 hover:bg-[var(--bg-secondary)] transition-all duration-200"
-                    >
-                      {child.label}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ) : (
-            <a
-              href={item.href}
-              class="px-4 py-2 text-[13px] tracking-wide uppercase font-medium text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors duration-300"
-            >
-              {item.label}
-            </a>
-          )
-        ))}
-      </div>
-
-      <!-- Right Side -->
-      <div class="flex items-center gap-3">
-        <ThemeToggle class="hidden sm:flex" />
-        
-        <a 
-          href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`} 
-          class="hidden md:flex items-center gap-2 px-3 py-2 text-sm text-[var(--text-secondary)] hover:text-primary-500 transition-colors duration-300"
-        >
-          <Icon name="phone" size={14} />
-          <span>{siteConfig.phone}</span>
+        <!-- Logo -->
+        <a href="/" class="flex items-center gap-2.5 group/logo z-10">
+          <img
+            src="https://res.cloudinary.com/ds85pv6ht/image/upload/v1770167617/logo-white_hz0s9s.png"
+            alt="SoCal Web Experts"
+            class="dark-logo"
+            style="height: 50px; width: auto; max-width: 100px;"
+          />
+          <img
+            src="https://res.cloudinary.com/ds85pv6ht/image/upload/v1770167617/logo-black_t3ushq.png"
+            alt="SoCal Web Experts"
+            class="light-logo"
+            style="height: 50px; width: auto; max-width: 100px;"
+          />
+          <div class="hidden md:flex flex-col leading-none">
+            <span class="text-sm font-semibold text-[var(--text)] tracking-tight">SoCal Web</span>
+            <span class="text-xs text-primary-500 font-medium">Experts</span>
+          </div>
         </a>
-        
-        <Button href="/contact" size="sm" class="hidden md:inline-flex">
-          Contact
-        </Button>
 
-        <!-- Mobile Menu Button -->
-        <button
-          id="mobile-menu-btn"
-          class="lg:hidden p-2.5 rounded-xl text-[var(--text)] hover:bg-[var(--bg-secondary)] transition-colors z-10"
-          aria-label="Toggle menu"
-        >
-          <Icon name="menu" size={22} class="menu-icon" />
-          <Icon name="close" size={22} class="close-icon hidden" />
-        </button>
+        <!-- Desktop Navigation -->
+        <div class="absolute inset-0 m-auto hidden size-fit lg:block">
+          <ul class="flex gap-1 text-sm">
+            {navigation.map((item) => (
+              item.children ? (
+                <li class="relative group/dd">
+                  <button class="flex items-center gap-1.5 px-4 py-2 text-[13px] tracking-wide uppercase font-medium text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors duration-300">
+                    {item.label}
+                    <Icon name="chevron-down" size={12} class="transition-transform duration-300 group-hover/dd:rotate-180" />
+                  </button>
+                  <div class="absolute top-full left-0 pt-3 opacity-0 invisible group-hover/dd:opacity-100 group-hover/dd:visible transition-all duration-300 translate-y-1 group-hover/dd:translate-y-0">
+                    <div class="bg-[var(--bg)] border border-[var(--border)] rounded-2xl shadow-2xl shadow-black/20 py-2 min-w-[200px] backdrop-blur-xl">
+                      {item.children.map((child) => (
+                        <a
+                          href={child.href}
+                          class="block px-4 py-2.5 text-sm text-[var(--text-secondary)] hover:text-primary-500 hover:bg-[var(--bg-secondary)] transition-all duration-200"
+                        >
+                          {child.label}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </li>
+              ) : (
+                <li>
+                  <a
+                    href={item.href}
+                    class="block px-4 py-2 text-[13px] tracking-wide uppercase font-medium text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors duration-300"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              )
+            ))}
+          </ul>
+        </div>
+
+        <!-- Right Side -->
+        <div class="flex items-center gap-2">
+          <ThemeToggle class="hidden sm:flex" />
+
+          <a
+            href="/contact"
+            id="header-cta"
+            class="text-sm font-medium px-5 py-2.5 rounded-full bg-primary-500 text-white hover:bg-primary-600 transition-all duration-300 shadow-[0_2px_20px_rgba(249,115,22,0.25)]"
+          >
+            Get Started
+          </a>
+
+          <!-- Mobile menu button -->
+          <button
+            id="mobile-menu-btn"
+            class="lg:hidden p-2.5 rounded-xl text-[var(--text)] hover:bg-[var(--bg-secondary)] transition-colors z-10"
+            aria-label="Toggle menu"
+          >
+            <Icon name="menu" size={22} class="menu-icon" />
+            <Icon name="close" size={22} class="close-icon hidden" />
+          </button>
+        </div>
       </div>
     </div>
   </nav>
@@ -118,7 +122,7 @@ import Icon from '../ui/Icon.astro';
                 <span>{item.label}</span>
                 <Icon name="chevron-down" size={20} class="dropdown-icon transition-transform duration-300" />
               </button>
-              <div 
+              <div
                 class="mobile-dropdown-content hidden pl-4 space-y-1"
                 id={`dropdown-${idx}`}
               >
@@ -143,15 +147,15 @@ import Icon from '../ui/Icon.astro';
           )
         ))}
       </nav>
-      
+
       <!-- Bottom Section -->
       <div class="border-t border-[var(--border)] py-8 space-y-5">
         <div class="flex items-center justify-between">
           <span class="text-sm text-[var(--text-secondary)]">Theme</span>
           <ThemeToggle />
         </div>
-        <a 
-          href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`} 
+        <a
+          href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}
           class="flex items-center gap-2 text-[var(--text)]"
         >
           <Icon name="phone" size={16} class="text-primary-500" />
@@ -165,16 +169,23 @@ import Icon from '../ui/Icon.astro';
   </div>
 </header>
 
-<!-- Spacer -->
-<div class="h-20 md:h-24"></div>
+<!-- Spacer so content doesn't hide behind fixed header -->
+<div class="h-16 md:h-20"></div>
 
 <style>
-  /* Scrolled state – add border + stronger backdrop */
-  #header.scrolled .header-backdrop {
-    border-color: var(--border);
-    background: var(--bg);
+  /* Pill nav on scroll */
+  #nav-inner.scrolled {
+    max-width: 56rem; /* ~max-w-4xl equivalent */
+    border-radius: 1rem;
+    border: 1px solid var(--border);
+    background: rgba(var(--bg-rgb, 10, 10, 10), 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
   }
 
+  /* Mobile menu open state */
   #mobile-menu.open {
     opacity: 1;
   }
@@ -216,6 +227,11 @@ import Icon from '../ui/Icon.astro';
   .light-logo { display: none !important; }
   :global(.light) .dark-logo { display: none !important; }
   :global(.light) .light-logo { display: block !important; }
+
+  /* Light mode pill bg */
+  :global(.light) #nav-inner.scrolled {
+    background: rgba(250, 250, 250, 0.75);
+  }
 </style>
 
 <script>
@@ -273,8 +289,8 @@ import Icon from '../ui/Icon.astro';
         e.preventDefault();
         e.stopPropagation();
         const dropdownId = trigger.getAttribute('data-dropdown');
-        const dropdown = document.getElementById(dropdownId);
-        
+        const dropdown = dropdownId ? document.getElementById(dropdownId) : null;
+
         if (dropdown) {
           const isOpen = dropdown.classList.contains('open');
           document.querySelectorAll('.mobile-dropdown-content').forEach(dd => {
@@ -283,7 +299,7 @@ import Icon from '../ui/Icon.astro';
           document.querySelectorAll('.mobile-dropdown-trigger').forEach(tr => {
             if (tr !== trigger) { tr.classList.remove('active'); }
           });
-          
+
           if (isOpen) {
             dropdown.classList.remove('open');
             dropdown.classList.add('hidden');
@@ -299,16 +315,15 @@ import Icon from '../ui/Icon.astro';
   }
 
   function initHeaderScroll() {
-    const header = document.getElementById('header');
-    if (header) {
-      window.addEventListener('scroll', () => {
-        if (window.scrollY > 40) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
-      });
-    }
+    const navInner = document.getElementById('nav-inner');
+    if (!navInner) return;
+
+    const onScroll = () => {
+      navInner.classList.toggle('scrolled', window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
   }
 
   initMobileMenu();

@@ -314,6 +314,14 @@ export const portfolioItems: PortfolioItem[] = [
     image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1771381166/roofing-fullscreen_pi8spf.png',
     scrollableImage: true,
   },
+  {
+    id: '5',
+    title: 'Construction Company',
+    category: 'web-design',
+    categoryLabel: 'Construction',
+    image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1771552565/screencapture-localhost-4322-2026-02-19-17_55_13_uygvwb.png',
+    scrollableImage: true,
+  },
 ];
 
 // Pricing Models

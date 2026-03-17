@@ -308,6 +308,14 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: '4',
+    title: 'Surgery Center',
+    category: 'web-design',
+    categoryLabel: 'Medical',
+    image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1773711509/surgery-center-website_bbiz1u.png',
+    scrollableImage: true,
+  },
+  {
+    id: '5',
     title: 'Roofing Company',
     category: 'web-design',
     categoryLabel: 'Roofing',
@@ -315,7 +323,7 @@ export const portfolioItems: PortfolioItem[] = [
     scrollableImage: true,
   },
   {
-    id: '5',
+    id: '6',
     title: 'Construction Company',
     category: 'web-design',
     categoryLabel: 'Construction',

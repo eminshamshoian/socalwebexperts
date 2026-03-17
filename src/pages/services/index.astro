@@ -3,6 +3,15 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import Icon from '../../components/ui/Icon.astro';
 import Button from '../../components/ui/Button.astro';
 import { services } from '../../data/site';
+
+const shapes = [
+  `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M120 0 A120 120 0 0 1 0 120" stroke="currentColor" stroke-width="0.6"/><path d="M90 0 A90 90 0 0 1 0 90" stroke="currentColor" stroke-width="0.4"/></svg>`,
+  `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="55" stroke="currentColor" stroke-width="0.6"/><circle cx="60" cy="60" r="30" stroke="currentColor" stroke-width="0.4"/></svg>`,
+  `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 60 Q30 10, 60 60 T120 60" stroke="currentColor" stroke-width="0.6"/><path d="M0 80 Q30 30, 60 80 T120 80" stroke="currentColor" stroke-width="0.4"/></svg>`,
+  `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="60" y1="5" x2="60" y2="115" stroke="currentColor" stroke-width="0.6"/><line x1="5" y1="60" x2="115" y2="60" stroke="currentColor" stroke-width="0.6"/><line x1="20" y1="20" x2="100" y2="100" stroke="currentColor" stroke-width="0.4"/><line x1="100" y1="20" x2="20" y2="100" stroke="currentColor" stroke-width="0.4"/></svg>`,
+  `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M5 60 C5 15, 60 5, 115 60 S115 115, 60 115 S5 100, 5 60" stroke="currentColor" stroke-width="0.6"/></svg>`,
+  `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="15" width="90" height="90" stroke="currentColor" stroke-width="0.6" rx="2"/><rect x="30" y="30" width="60" height="60" stroke="currentColor" stroke-width="0.4" rx="2"/></svg>`,
+];
 ---
 
 <BaseLayout
@@ -10,63 +19,124 @@ import { services } from '../../data/site';
   description="Custom websites built for speed, trust, and Google visibility. Hosting included. Ongoing updates available. Built to generate leads for local businesses."
 >
   <section class="py-24 md:py-32">
-    <div class="container">
-      <div class="max-w-3xl my-16 md:my-24 fade-in">
-        <p class="text-primary-500 text-sm font-medium tracking-widest uppercase my-6">
-          Services
-        </p>
-        <h1 class="text-[var(--text)] my-6">
-          Services built around one outcome: more customers
-        </h1>
-        <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
-          Speed, trust, and SEO structure so you get more calls and inquiries.
-        </p>
+    <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">
+      <!-- Header -->
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 md:mb-24">
+        <div class="fade-in">
+          <p class="text-[11px] md:text-xs tracking-[0.3em] uppercase text-[var(--text-secondary)] font-medium mb-6">
+            Services
+          </p>
+          <h1 class="text-[var(--text)]">
+            Services built around one outcome: <span class="font-serif italic font-normal">more customers</span>
+          </h1>
+        </div>
+        <div class="flex items-end fade-in" style="animation-delay: 0.1s;">
+          <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed max-w-lg">
+            Speed, trust, and SEO structure so you get more calls and inquiries.
+          </p>
+        </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {services.map((service, index) => (
-          <a 
-            href={`/services/${service.slug}`} 
-            class="group block p-8 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-2xl hover:border-[var(--text-secondary)]/30 transition-colors fade-in"
-            style={`animation-delay: ${index * 0.05}s`}
-          >
-            <div class="flex items-start justify-between my-6">
-              <div class="w-12 h-12 rounded-2xl bg-primary-500/10 flex items-center justify-center">
-                <Icon name={service.icon} size={22} class="text-primary-500" />
+      <!-- Service tiles — asymmetric masonry -->
+      <div class="services-grid">
+        {services.map((service, index) => {
+          const isTall = index % 3 === 0;
+          return (
+            <a
+              href={`/services/${service.slug}`}
+              class={`group relative block overflow-hidden border border-[var(--border)] rounded-sm transition-all duration-500 hover:border-primary-500/40 fade-in ${isTall ? 'services-tall' : ''}`}
+              style={`animation-delay: ${index * 0.06}s`}
+            >
+              <!-- Decorative shape -->
+              <div
+                class="absolute -bottom-4 -right-4 w-24 h-24 md:w-32 md:h-32 pointer-events-none svc-shape"
+                aria-hidden="true"
+                set:html={shapes[index % shapes.length]}
+              />
+
+              <div class="relative z-10 h-full flex flex-col justify-between p-7 md:p-9">
+                <div>
+                  <div class="flex items-center justify-between mb-10 md:mb-14">
+                    <Icon name={service.icon} size={22} class="text-primary-500" />
+                    <Icon name="arrow-right" size={16} class="text-[var(--text-secondary)] opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
+                  </div>
+                  <h2 class="text-xl md:text-2xl font-medium text-[var(--text)] tracking-tight mb-3 group-hover:text-primary-500 transition-colors duration-300">
+                    {service.title}
+                  </h2>
+                  <p class="text-sm text-[var(--text-secondary)] leading-relaxed max-w-sm">
+                    {service.shortDescription}
+                  </p>
+                </div>
+
+                <ul class="mt-8 pt-6 border-t border-[var(--border)] space-y-2">
+                  {service.features.slice(0, 3).map((feature) => (
+                    <li class="flex items-start gap-2 text-xs text-[var(--text-secondary)]">
+                      <span class="w-1 h-1 rounded-full bg-primary-500 mt-1.5 shrink-0"></span>
+                      {feature}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <Icon name="arrow-right" size={16} class="text-[var(--text-secondary)] opacity-0 group-hover:opacity-100 transition-opacity" />
-            </div>
-            
-            <h2 class="text-lg font-semibold text-[var(--text)] my-3 group-hover:text-primary-500 transition-colors">
-              {service.title}
-            </h2>
-            <p class="text-[var(--text-secondary)] my-6 leading-relaxed">
-              {service.shortDescription}
-            </p>
-            
-            <ul class="space-y-2">
-              {service.features.slice(0, 3).map((feature) => (
-                <li class="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
-                  <Icon name="check" size={14} class="text-primary-500" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
-          </a>
-        ))}
+            </a>
+          );
+        })}
       </div>
     </div>
   </section>
 
-  <section class="py-24 md:py-32">
-    <div class="container">
-      <div class="max-w-3xl p-8 md:p-10 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)]">
-        <h2 class="text-[var(--text)] my-6">Not sure what you need?</h2>
-        <p class="text-lg text-[var(--text-secondary)] leading-relaxed my-6">We will recommend the simplest path to more leads.</p>
-        <Button href="/contact" size="md">
+  <!-- CTA -->
+  <section class="py-16 md:py-24">
+    <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">
+      <div class="fade-in">
+        <p class="text-2xl md:text-3xl font-medium text-[var(--text)] mb-8 tracking-tight max-w-2xl leading-tight">
+          Not sure what you need? We'll recommend the <span class="font-serif italic font-normal">simplest path</span> to more leads.
+        </p>
+        <Button href="/contact" size="lg">
           Book a Free Strategy Call
+          <Icon name="arrow-right" size={16} />
         </Button>
       </div>
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-auto-rows: minmax(280px, auto);
+    }
+
+    .services-tall {
+      grid-row: span 2;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: minmax(260px, auto);
+    }
+
+    .services-tall {
+      grid-row: span 1;
+    }
+  }
+
+  .svc-shape {
+    color: rgba(132, 204, 22, 0.05);
+    transition: color 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .group:hover .svc-shape {
+    color: rgba(132, 204, 22, 0.1);
+    transform: rotate(15deg) scale(1.1);
+  }
+</style>

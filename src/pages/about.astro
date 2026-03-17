@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Button from '../components/ui/Button.astro';
+import Icon from '../components/ui/Icon.astro';
 ---
 
 <BaseLayout
@@ -8,43 +9,69 @@ import Button from '../components/ui/Button.astro';
   description="We build fast, secure, lead-generating websites for local businesses - done-for-you, with ongoing support and updates."
 >
   <section class="py-24 md:py-32">
-    <div class="container">
-      <div class="max-w-3xl mb-16 md:mb-24">
-        <p class="text-primary-500 text-sm font-medium tracking-widest uppercase mb-6 fade-in">About</p>
-        <h1 class="text-[var(--text)] mb-6 fade-in" style="animation-delay: 0.05s;">
-          Websites should pay for themselves
-        </h1>
-        <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed fade-in" style="animation-delay: 0.1s;">
-          We started SoCal Web Experts for one reason: too many businesses have websites that look "okay" but do not bring customers.
-        </p>
+    <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">
+      <!-- Header -->
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 md:mb-24">
+        <div class="fade-in">
+          <p class="text-[11px] md:text-xs tracking-[0.3em] uppercase text-[var(--text-secondary)] font-medium mb-6">
+            About
+          </p>
+          <h1 class="text-[var(--text)]">
+            Websites should <span class="font-serif italic font-normal">pay for themselves</span>
+          </h1>
+        </div>
+        <div class="flex items-end fade-in" style="animation-delay: 0.1s;">
+          <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed max-w-lg">
+            We started SoCal Web Experts for one reason: too many businesses have websites that look "okay" but do not bring customers.
+          </p>
+        </div>
       </div>
 
-      <div class="grid lg:grid-cols-3 gap-6 md:gap-8">
-        <div class="lg:col-span-2 p-8 md:p-10 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] fade-in" style="animation-delay: 0.12s;">
-          <h2 class="text-[var(--text)] mb-4">Our mission</h2>
-          <p class="text-lg text-[var(--text-secondary)] leading-relaxed">
+      <!-- Mission -->
+      <div class="grid lg:grid-cols-[1fr_2fr] gap-8 lg:gap-16 mb-16 md:mb-24 fade-in" style="animation-delay: 0.15s;">
+        <div>
+          <h2 class="text-[var(--text)] text-xl md:text-2xl font-medium tracking-tight">
+            Our <span class="font-serif italic font-normal underline">mission</span>
+          </h2>
+        </div>
+        <div>
+          <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed max-w-2xl">
             Build websites that earn trust fast, rank better over time, and turn visitors into leads without you lifting a finger.
           </p>
         </div>
+      </div>
 
-        <div class="p-8 md:p-10 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] fade-in" style="animation-delay: 0.16s;">
-          <h2 class="mb-6">What makes us different</h2>
-          <ul class="space-y-3 text-[var(--text-secondary)]">
-            <li>Built to convert, not just design</li>
-            <li>Performance-first builds</li>
-            <li>SEO-friendly structure from day one</li>
-            <li>Done-for-you updates and support</li>
-            <li>Built for competitive service markets</li>
-          </ul>
+      <!-- What makes us different -->
+      <div class="mb-16 md:mb-24 fade-in" style="animation-delay: 0.2s;">
+        <h2 class="text-[var(--text)] text-xl md:text-2xl font-medium tracking-tight pb-10">
+          What makes us <span class="font-serif italic font-normal">different</span>
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {[
+            'Built to convert, not just design',
+            'Performance-first builds',
+            'SEO-friendly structure from day one',
+            'Done-for-you updates and support',
+            'Built for competitive service markets',
+          ].map((item) => (
+            <div class="flex items-start gap-3 p-5 border border-[var(--border)] rounded-sm">
+              <span class="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 shrink-0"></span>
+              <span class="text-[var(--text)] text-base">
+                {item}
+              </span>
+            </div>
+          ))}
         </div>
       </div>
 
-      <div class="my-16 md:my-24 p-8 md:p-10 rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] fade-in" style="animation-delay: 0.2s;">
-        <p class="text-xl md:text-2xl font-semibold text-[var(--text)] mb-6">
-          If your website is not bringing leads, it is not doing its job.
+      <!-- CTA block -->
+      <div class="fade-in" style="animation-delay: 0.25s;">
+        <p class="text-2xl md:text-3xl font-medium text-[var(--text)] pb-8 tracking-tight max-w-2xl leading-tight">
+          If your website is not bringing leads, it is not <span class="font-serif italic font-normal">doing its job.</span>
         </p>
-        <Button href="/contact" size="md">
+        <Button href="/contact" size="lg">
           Let's Fix That
+          <Icon name="arrow-right" size={16} />
         </Button>
       </div>
     </div>

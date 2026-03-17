@@ -4,192 +4,68 @@ import Icon from '../ui/Icon.astro';
 import { stats } from '../../data/site';
 ---
 
-<section class="relative overflow-hidden">
-  <!-- Decorative light rays (desktop only) -->
+<section class="relative pt-24 flex flex-col overflow-hidden">
+  <!-- Subtle ambient glow -->
   <div
     aria-hidden="true"
-    class="pointer-events-none absolute inset-0 hidden lg:block"
-    style="z-index: 2; contain: strict; opacity: 0.5;"
+    class="pointer-events-none absolute inset-0 -z-10"
   >
     <div
-      class="absolute left-0 top-0 h-[80rem] w-[35rem] -rotate-45 rounded-full"
-      style="-translate-y: 350px; transform: translateY(-350px) rotate(-45deg); background: radial-gradient(68.54% 68.72% at 55.02% 31.46%, hsla(0,0%,85%,.08) 0, hsla(0,0%,55%,.02) 50%, hsla(0,0%,45%,0) 80%);"
-    ></div>
-    <div
-      class="absolute left-0 top-0 h-[80rem] w-56 rounded-full"
-      style="transform: translate(5%, -50%) rotate(-45deg); background: radial-gradient(50% 50% at 50% 50%, hsla(0,0%,85%,.06) 0, hsla(0,0%,45%,.02) 80%, transparent 100%);"
-    ></div>
-    <div
-      class="absolute left-0 top-0 h-[80rem] w-56"
-      style="transform: translateY(-350px) rotate(-45deg); background: radial-gradient(50% 50% at 50% 50%, hsla(0,0%,85%,.04) 0, hsla(0,0%,45%,.02) 80%, transparent 100%);"
+      class="absolute left-1/2 top-[60%] -translate-x-1/2 -translate-y-1/2 w-[min(900px,120vw)] h-[500px] rounded-full"
+      style="background: radial-gradient(ellipse, rgba(132,204,22,0.06) 0%, rgba(132,204,22,0.02) 40%, transparent 70%); filter: blur(80px);"
     ></div>
   </div>
 
-  <div class="relative pt-16 md:pt-24">
-    <!-- Night sky background image (dark, large screens) -->
-    <div class="absolute inset-0 -z-20 hidden lg:block fade-in" style="animation-delay: 0.8s;">
-      <img
-        src="https://ik.imagekit.io/lrigu76hy/tailark/night-background.jpg?updatedAt=1745733451120"
-        alt=""
-        aria-hidden="true"
-        class="absolute inset-x-0 top-28 w-full object-cover"
-        style="opacity: 0.45;"
-        width="3276"
-        height="4095"
-        loading="eager"
-      />
-    </div>
+  <!-- Main content — pushed to bottom of viewport -->
+  <div class="flex-1 flex flex-col justify-end mx-auto w-full max-w-[1400px] px-6 lg:px-16 pb-14 md:pb-20">
 
-    <!-- Radial gradient to fade background into page bg at bottom -->
+    <!-- Eyebrow -->
+    <p
+      class="fade-in pb-10 md:pb-14 text-[11px] md:text-xs tracking-[0.3em] uppercase text-[var(--text-secondary)] font-medium"
+      style="animation-delay: 0s;"
+    >
+      Socal Web Experts <span text-primary-500>:</span> Based in Los Angeles, CA
+    </p>
+
+    <!-- Headline -->
+    <h1
+      class="fade-in hero-headline text-[var(--text)]"
+      style="animation-delay: 0.12s;"
+    >
+      Websites that bring<br />
+      Leads. <span class="font-serif italic font-normal">All day.</span>
+    </h1>
+
+    <!-- Subtitle + CTAs -->
     <div
-      aria-hidden="true"
-      class="absolute inset-0 -z-10"
-      style="background: radial-gradient(125% 125% at 50% 100%, transparent 0%, var(--bg) 72%);"
-    ></div>
-
-    <!-- Main content -->
-    <div class="mx-auto max-w-7xl px-6">
-      <div class="flex flex-col items-center text-center w-full">
-
-        <!-- Eyebrow badge -->
-        <div class="fade-in mb-8 flex justify-center" style="animation-delay: 0s;">
-          <a
-            href="/portfolio"
-            class="group inline-flex items-center gap-3 rounded-full border border-[var(--border)] bg-[var(--bg-secondary)] hover:bg-[var(--bg)] px-4 py-1.5 shadow-md shadow-black/10 transition-all duration-300"
-          >
-            <span class="w-2 h-2 rounded-full bg-primary-500 animate-pulse flex-shrink-0"></span>
-            <span class="text-[var(--text-secondary)] text-sm">State of The Art Websites</span>
-            <span class="block h-4 w-px bg-[var(--border)] flex-shrink-0"></span>
-            <div class="size-6 overflow-hidden rounded-full bg-[var(--bg)] group-hover:bg-[var(--bg-secondary)] duration-500 flex-shrink-0">
-              <div class="flex w-12 -translate-x-1/2 duration-500 ease-in-out group-hover:translate-x-0">
-                <span class="flex size-6 items-center justify-center text-[var(--text-secondary)]">
-                  <Icon name="arrow-right" size={12} />
-                </span>
-                <span class="flex size-6 items-center justify-center text-[var(--text-secondary)]">
-                  <Icon name="arrow-right" size={12} />
-                </span>
-              </div>
-            </div>
-          </a>
-        </div>
-
-        <!-- Headline -->
-        <h2
-          class="text-[var(--text)] text-center max-w-4xl mx-auto pb-8 fade-in"
-          style="animation-delay: 0.1s;"
-        >
-        Customers Are Searching Right Now.<br />
-          <span class="gradient-text">Can They Find You?</span>
-        </h2>
-
-        <!-- Subtitle -->
-        <p
-          class="text-xl md:text-2xl text-[var(--text-secondary)] text-center max-w-2xl mx-auto pb-10 leading-relaxed fade-in"
-          style="animation-delay: 0.2s;"
-        >
-        We build ultra fast websites designed to rank, build trust, and turn visitors into real jobs.
-        </p>
-
-        <!-- CTAs -->
-        <div
-          class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8 fade-in"
-          style="animation-delay: 0.3s;"
-        >
-          <Button href="/contact" size="lg">
-            Get More Customers
-          </Button>
-          <Button href="/portfolio" variant="secondary" size="lg">
-            View Our Work
-            <Icon name="arrow-right" size={18} />
-          </Button>
-        </div>
+      class="fade-in mt-10 md:mt-16 flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-16"
+      style="animation-delay: 0.24s;"
+    >
+      <p class="text-base md:text-lg text-[var(--text-secondary)] max-w-md leading-relaxed">
+        SEO, Speed, Contact Forms, Attractive Design. <br /> We got <span class="underline">all</span> of that plus more <span class="underline">covered</span> for you.
+      </p>
+      <div class="flex items-center gap-3 flex-shrink-0">
+        <Button href="/contact" size="lg">
+          Get Started
+        </Button>
+        <Button href="/portfolio" variant="secondary" size="lg">
+          View Our Work
+          <Icon name="arrow-right" size={18} />
+        </Button>
       </div>
     </div>
+  </div>
 
-    <!-- Browser Mockup -->
-    <!-- Outer: no overflow-hidden so badges can bleed outside; padding makes room for them -->
-    <div
-      class="fade-in mt-8 sm:mt-16 md:mt-20 px-2 pb-10"
-      style="animation-delay: 0.5s;"
-    >
-      <!-- Inner: relative so badges and gradient overlay anchor here -->
-      <div class="relative mx-auto max-w-6xl">
-
-        <!-- Gradient overlay fading the bottom into the page bg -->
-        <div
-          aria-hidden="true"
-          class="absolute inset-0 z-10 pointer-events-none rounded-2xl"
-          style="background: linear-gradient(to bottom, transparent 35%, var(--bg));"
-        ></div>
-
-        <!-- Browser window card -->
-        <div
-          class="overflow-hidden rounded-2xl border border-[var(--border)] bg-[var(--bg-secondary)] p-3 sm:p-4"
-          style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 20px 60px rgba(0,0,0,0.4);"
-        >
-          <!-- Browser chrome bar -->
-          <div class="flex items-center gap-2 px-3 py-2.5 bg-[var(--bg-tertiary)] rounded-t-xl border-b border-[var(--border)]">
-            <div class="flex gap-2">
-              <div class="w-3 h-3 rounded-full bg-[#FF5F57]"></div>
-              <div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
-              <div class="w-3 h-3 rounded-full bg-[#28CA41]"></div>
-            </div>
-            <div class="flex-1 mx-4">
-              <div class="flex items-center gap-2 bg-[var(--bg)] rounded-lg px-4 py-1.5 text-xs text-[var(--text-secondary)]">
-                <svg class="w-3 h-3 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-                </svg>
-                <span>theautoguys.com</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Screenshot -->
-          <div class="rounded-b-xl overflow-hidden bg-[var(--bg)]">
-            <img
-              src="https://res.cloudinary.com/ds85pv6ht/image/upload/v1770167617/hero-mockup_tqloss.png"
-              alt="Example website design by SoCal Web Experts - The Auto Guys car dealership website with modern design and conversion-focused layout"
-              class="w-full h-auto block"
-              loading="eager"
-              width="2700"
-              height="1440"
-            />
-          </div>
-        </div>
-
-        <!-- Floating conversions badge — anchored to inner .relative div -->
-        <div class="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 bg-[var(--bg)] border border-[var(--border)] rounded-2xl px-4 py-3 shadow-xl flex items-center gap-3 z-20">
-          <div class="w-10 h-10 rounded-xl bg-green-500/15 flex items-center justify-center">
-            <Icon name="trending-up" size={18} class="text-green-500" />
-          </div>
-          <div>
-            <div class="text-xs text-[var(--text-secondary)]">Conversions</div>
-            <div class="text-lg font-bold text-[var(--text)]">+127%</div>
-          </div>
-        </div>
-
-        <!-- Live Project badge — anchored to inner .relative div -->
-        <a
-          href="https://www.autoguysla.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="absolute -top-3 -right-3 md:-top-4 md:-right-4 bg-primary-500 hover:bg-primary-600 text-white rounded-full px-4 py-2 shadow-lg text-xs font-medium transition-all duration-300 hover:shadow-xl z-20"
-        >
-          Live Project ↗
-        </a>
-
-      </div><!-- end inner .relative -->
-    </div><!-- end outer mockup wrapper -->
-
-    <!-- Stats Bar -->
-    <div class="mx-auto max-w-7xl px-6 mt-24 py-12 border-t border-white/10">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+  <!-- Stats -->
+  <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16 pb-10 md:pb-16">
+    <div class="border-t border-[var(--border)] pt-8 md:pt-10">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
         {stats.map((stat, index) => (
-          <div class="text-center fade-in" style={`animation-delay: ${0.5 + index * 0.08}s`}>
-            <div class="text-4xl md:text-5xl font-bold text-[var(--text)] mb-2 tracking-tight">
+          <div class="fade-in" style={`animation-delay: ${0.36 + index * 0.06}s`}>
+            <div class="text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text)] tracking-tight">
               {stat.value}<span class="text-primary-500">{stat.suffix}</span>
             </div>
-            <div class="text-sm text-[var(--text-secondary)] tracking-wide">
+            <div class="text-xs md:text-sm text-[var(--text-secondary)] mt-1">
               {stat.label}
             </div>
           </div>
@@ -198,3 +74,12 @@ import { stats } from '../../data/site';
     </div>
   </div>
 </section>
+
+<style>
+  .hero-headline {
+    font-size: clamp(2.75rem, 8.5vw, 7.5rem);
+    line-height: 0.95;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+  }
+</style>

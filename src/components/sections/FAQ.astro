@@ -17,7 +17,7 @@ const faqStructuredData = {
 };
 ---
 
-<section class="py-24 md:py-32 border-t border-[var(--border)]">
+<section class="py-24 md:py-32">
   <script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)}></script>
   <div class="container">
     <div class="grid lg:grid-cols-2 gap-16">
@@ -27,7 +27,7 @@ const faqStructuredData = {
           FAQ
         </p>
         <h2 class="text-[var(--text)] mb-8">
-          Common<br/>questions
+          Common<br/><span class="font-serif italic font-normal">questions</span>
         </h2>
         <p class="text-lg text-[var(--text-secondary)] leading-relaxed">
           Can't find what you're looking for? Reach out and we'll get back to you.

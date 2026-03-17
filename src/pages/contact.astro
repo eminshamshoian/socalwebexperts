@@ -10,158 +10,134 @@ import { siteConfig, services } from '../data/site';
   description="Book a free strategy call. We build fast, secure, SEO-ready websites that generate leads for local businesses."
 >
   <section class="py-24 md:py-32">
-    <div class="container">
-      <div class="grid lg:grid-cols-5 gap-12 lg:gap-16">
-        <!-- Left - Info -->
-        <div class="lg:col-span-2">
-          <p class="text-primary-500 text-sm font-medium tracking-widest uppercase my-6 fade-in">
+    <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">
+      <!-- Header -->
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 md:mb-24">
+        <div class="fade-in">
+          <p class="text-[11px] md:text-xs tracking-[0.3em] uppercase text-[var(--text-secondary)] font-medium mb-6">
             Contact
           </p>
-          <h1 class="text-[var(--text)] my-6 fade-in" style="animation-delay: 0.05s;">
-            Let's Talk.
+          <h1 class="text-[var(--text)]">
+            Let's <span class="font-serif italic font-normal">Talk.</span>
           </h1>
-          <p class="text-lg text-[var(--text-secondary)] leading-relaxed my-8 fade-in" style="animation-delay: 0.1s;">
-            Tell us what you do, where you serve, and what "more leads" means for you. We will recommend the simplest plan.
+        </div>
+        <div class="flex items-end fade-in" style="animation-delay: 0.1s;">
+          <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed max-w-lg">
+            Tell us what you do, where you serve, and what "more leads" means for you. We'll recommend the simplest plan.
           </p>
+        </div>
+      </div>
 
-          <!-- Contact Methods -->
-          <div class="space-y-4 my-8">
+      <div class="grid lg:grid-cols-5 gap-12 lg:gap-16">
+        <!-- Left - Contact info -->
+        <div class="lg:col-span-2">
+          <div class="space-y-4 mb-8">
             <a
               href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}
-              class="flex items-center gap-3 p-4 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-2xl hover:border-[var(--text-secondary)]/30 transition-colors fade-in"
+              class="group flex items-center gap-4 py-5 border-b border-[var(--border)] transition-colors fade-in"
               style="animation-delay: 0.15s;"
             >
-              <div class="w-10 h-10 rounded-xl bg-primary-500/10 flex items-center justify-center">
-                <Icon name="phone" size={18} class="text-primary-500" />
-              </div>
-              <div>
+              <Icon name="phone" size={18} class="text-primary-500 shrink-0" />
+              <div class="flex-1">
                 <div class="text-xs text-[var(--text-secondary)] mb-0.5">Call us</div>
-                <div class="font-medium text-[var(--text)]">{siteConfig.phone}</div>
+                <div class="font-medium text-[var(--text)] group-hover:text-primary-500 transition-colors">{siteConfig.phone}</div>
               </div>
             </a>
 
             <a
               href={`mailto:${siteConfig.email}`}
-              class="flex items-center gap-3 p-4 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-2xl hover:border-[var(--text-secondary)]/30 transition-colors fade-in"
+              class="group flex items-center gap-4 py-5 border-b border-[var(--border)] transition-colors fade-in"
               style="animation-delay: 0.2s;"
             >
-              <div class="w-10 h-10 rounded-xl bg-primary-500/10 flex items-center justify-center">
-                <Icon name="mail" size={18} class="text-primary-500" />
-              </div>
-              <div>
+              <Icon name="mail" size={18} class="text-primary-500 shrink-0" />
+              <div class="flex-1">
                 <div class="text-xs text-[var(--text-secondary)] mb-0.5">Email us</div>
-                <div class="font-medium text-[var(--text)]">{siteConfig.email}</div>
+                <div class="font-medium text-[var(--text)] group-hover:text-primary-500 transition-colors">{siteConfig.email}</div>
               </div>
             </a>
           </div>
 
           <p class="text-sm text-[var(--text-secondary)] fade-in" style="animation-delay: 0.25s;">
-            Fast response • Clear next steps • No pressure
+            Fast response · Clear next steps · No pressure
           </p>
         </div>
 
         <!-- Right - Form -->
         <div class="lg:col-span-3 fade-in" style="animation-delay: 0.15s;">
-          <div class="bg-[var(--bg-secondary)] border border-[var(--border)] rounded-2xl p-8">
-            <form
-              id="contact-form"
-              name="contact"
-              method="POST"
-              action="/contact/"
-              data-netlify="true"
-              data-netlify-honeypot="bot-field"
-              class="space-y-6"
-            >
-              <input type="hidden" name="form-name" value="contact" />
-              <!-- Honeypot - hidden from users, bots will fill it -->
-              <p class="hidden" aria-hidden="true">
-                <label>
-                  Don't fill this out if you're human: <input name="bot-field" type="text" tabindex="-1" autocomplete="off" />
-                </label>
-              </p>
+          <form
+            id="contact-form"
+            name="contact"
+            method="POST"
+            action="/contact/"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+            class="space-y-6"
+          >
+            <input type="hidden" name="form-name" value="contact" />
+            <p class="hidden" aria-hidden="true">
+              <label>
+                Don't fill this out if you're human: <input name="bot-field" type="text" tabindex="-1" autocomplete="off" />
+              </label>
+            </p>
 
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <label for="name" class="block text-sm font-medium text-[var(--text)] my-2">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    required
-                    class="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--border)] rounded-xl text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors outline-none text-sm"
-                    placeholder="John Smith"
-                  />
-                </div>
-                <div>
-                  <label for="phone" class="block text-sm font-medium text-[var(--text)] my-2">
-                    Phone
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    required
-                    class="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--border)] rounded-xl text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors outline-none text-sm"
-                    placeholder="(555) 123-4567"
-                  />
-                </div>
-              </div>
-
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                <div>
-                  <label for="email" class="block text-sm font-medium text-[var(--text)] my-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    class="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--border)] rounded-xl text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors outline-none text-sm"
-                    placeholder="john@company.com"
-                  />
-                </div>
-                <div>
-                  <label for="service" class="block text-sm font-medium text-[var(--text)] my-2">
-                    What service?
-                  </label>
-                  <select
-                    id="service"
-                    name="service"
-                    class="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--border)] rounded-xl text-[var(--text)] focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors outline-none appearance-none text-sm"
-                  >
-                    <option value="">Select...</option>
-                    {services.map((s) => (
-                      <option value={s.id}>{s.title}</option>
-                    ))}
-                    <option value="other">Not sure yet</option>
-                  </select>
-                </div>
-              </div>
-
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label for="message" class="block text-sm font-medium text-[var(--text)] my-2">
-                  Notes
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  rows="4"
-                  required
-                  class="w-full px-4 py-3 bg-[var(--bg)] border border-[var(--border)] rounded-xl text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-colors outline-none resize-none text-sm"
-                  placeholder="Tell us about your business and goals..."
-                ></textarea>
+                <label for="name" class="block text-sm font-medium text-[var(--text)] mb-2">Name</label>
+                <input
+                  type="text" id="name" name="name" required
+                  class="w-full px-4 py-3 bg-transparent border border-[var(--border)] rounded-md text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 transition-colors outline-none text-sm"
+                  placeholder="John Smith"
+                />
               </div>
+              <div>
+                <label for="phone" class="block text-sm font-medium text-[var(--text)] mb-2">Phone</label>
+                <input
+                  type="tel" id="phone" name="phone" required
+                  class="w-full px-4 py-3 bg-transparent border border-[var(--border)] rounded-md text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 transition-colors outline-none text-sm"
+                  placeholder="(555) 123-4567"
+                />
+              </div>
+            </div>
 
-              <div id="form-status" class="hidden"></div>
-              <Button type="submit" fullWidth id="submit-btn">
-                <span id="submit-text">Get My Free Plan</span>
-                <span id="submit-loading" class="hidden">Sending...</span>
-              </Button>
-            </form>
-          </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="email" class="block text-sm font-medium text-[var(--text)] mb-2">Email</label>
+                <input
+                  type="email" id="email" name="email" required
+                  class="w-full px-4 py-3 bg-transparent border border-[var(--border)] rounded-md text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 transition-colors outline-none text-sm"
+                  placeholder="john@company.com"
+                />
+              </div>
+              <div>
+                <label for="service" class="block text-sm font-medium text-[var(--text)] mb-2">What service?</label>
+                <select
+                  id="service" name="service"
+                  class="w-full px-4 py-3 bg-transparent border border-[var(--border)] rounded-md text-[var(--text)] focus:border-primary-500 transition-colors outline-none appearance-none text-sm"
+                >
+                  <option value="">Select...</option>
+                  {services.map((s) => (
+                    <option value={s.id}>{s.title}</option>
+                  ))}
+                  <option value="other">Not sure yet</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="message" class="block text-sm font-medium text-[var(--text)] mb-2">Notes</label>
+              <textarea
+                id="message" name="message" rows="5" required
+                class="w-full px-4 py-3 bg-transparent border border-[var(--border)] rounded-md text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 transition-colors outline-none resize-none text-sm"
+                placeholder="Tell us about your business and goals..."
+              ></textarea>
+            </div>
+
+            <div id="form-status" class="hidden"></div>
+            <Button type="submit" id="submit-btn">
+              <span id="submit-text">Get My Free Plan</span>
+              <span id="submit-loading" class="hidden">Sending...</span>
+            </Button>
+          </form>
         </div>
       </div>
     </div>
@@ -186,13 +162,8 @@ import { siteConfig, services } from '../data/site';
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-
         const formData = new FormData(form);
-
-        // Honeypot check - reject if bot filled it
-        if (formData.get('bot-field')) {
-          return;
-        }
+        if (formData.get('bot-field')) return;
 
         submitBtn.disabled = true;
         submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
@@ -208,19 +179,17 @@ import { siteConfig, services } from '../data/site';
           });
 
           if (response.ok) {
-            formStatus.className = 'p-4 bg-green-500/10 border border-green-500/30 rounded-xl text-green-500 text-sm';
+            formStatus.className = 'p-4 border border-primary-500/30 rounded-md text-primary-500 text-sm';
             formStatus.textContent = "Thanks! We'll get back to you within 24 hours.";
             formStatus.classList.remove('hidden');
             form.reset();
-            formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           } else {
             throw new Error('Form submission failed');
           }
         } catch (error) {
-          formStatus.className = 'p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-500 text-sm';
+          formStatus.className = 'p-4 border border-red-500/30 rounded-md text-red-500 text-sm';
           formStatus.textContent = 'Something went wrong. Please try again or call us directly.';
           formStatus.classList.remove('hidden');
-          formStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         } finally {
           submitBtn.disabled = false;
           submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');

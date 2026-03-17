@@ -17,75 +17,102 @@ const addOns = [
   description="Choose $0 down monthly with hosting + ongoing updates, or an ownership build with low monthly hosting. Built for speed, security, and lead generation."
 >
   <section class="py-24 md:py-32">
-    <div class="container">
-      <div class="max-w-3xl mx-auto text-center mb-16 md:mb-24 fade-in">
-        <p class="text-primary-500 text-sm font-medium tracking-widest uppercase mb-6">
-          Pricing
-        </p>
-        <h1 class="text-[var(--text)] text-center mb-6">
-          Simple pricing. Built for growth.
-        </h1>
-        <p class="text-lg md:text-xl text-[var(--text-secondary)] text-center leading-relaxed">
-          Pick the option that fits your business - both are designed to help you win more customers.
-        </p>
+    <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">
+      <!-- Header -->
+      <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 md:mb-24">
+        <div class="fade-in">
+          <p class="text-[11px] md:text-xs tracking-[0.3em] uppercase text-[var(--text-secondary)] font-medium mb-6">
+            Pricing
+          </p>
+          <h1 class="text-[var(--text)]">
+            Simple pricing. Built for <span class="font-serif italic font-normal">growth.</span>
+          </h1>
+        </div>
+        <div class="flex items-end fade-in" style="animation-delay: 0.1s;">
+          <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed max-w-lg">
+            Pick the option that fits your business — both are designed to help you win more customers.
+          </p>
+        </div>
       </div>
 
-      <!-- Pricing Cards -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 max-w-5xl mx-auto mb-16 md:mb-24">
+      <!-- Stacked Pricing Cards -->
+      <div class="space-y-6 mb-24 md:mb-32">
         {pricingModels.map((plan, index) => (
-          <div 
-            class={`relative p-8 md:p-10 bg-[var(--bg-secondary)] border rounded-2xl fade-in ${plan.highlighted ? 'border-primary-500' : 'border-[var(--border)]'}`}
+          <div
+            class={`rounded-lg overflow-hidden fade-in ${plan.highlighted ? 'bg-primary-400' : 'border border-[var(--border)]'}`}
             style={`animation-delay: ${index * 0.1}s`}
           >
-            {plan.highlighted && (
-              <div class="absolute -top-4 left-8 px-5 py-1.5 bg-primary-500 text-white text-xs font-semibold rounded-full tracking-wide">
-                Most Popular
+            <div class="grid grid-cols-1 md:grid-cols-2">
+              <div class="p-8 md:p-10 lg:p-12">
+                <h3 class={`text-base font-medium pb-8 ${plan.highlighted ? 'text-primary-900' : 'text-[var(--text)]'}`}>
+                  {plan.title}
+                </h3>
+                <div class="flex items-baseline gap-3 pb-2">
+                  <span class={`text-5xl md:text-6xl lg:text-7xl font-bold tracking-tighter ${plan.highlighted ? 'text-primary-900' : 'text-[var(--text)]'}`}>
+                    {plan.upfront}
+                  </span>
+                  {plan.upfront !== '$0' && (
+                    <span class={`text-base ${plan.highlighted ? 'text-primary-800' : 'text-[var(--text-secondary)]'}`}>upfront</span>
+                  )}
+                </div>
+                <p class={`text-sm pb-8 ${plan.highlighted ? 'text-primary-800' : 'text-[var(--text-secondary)]'}`}>
+                  + {plan.monthly}/mo for hosting & support
+                </p>
+                <p class={`leading-relaxed pb-10 max-w-sm ${plan.highlighted ? 'text-primary-800' : 'text-[var(--text-secondary)]'}`}>
+                  {plan.description}
+                </p>
+                {plan.highlighted ? (
+                  <a
+                    href="/contact"
+                    class="inline-flex items-center justify-center gap-2 font-medium rounded-md px-8 py-3.5 text-base tracking-tight bg-primary-900 text-white shadow-[4px_4px_0px_0px_#1a2e05] hover:shadow-[2px_2px_0px_0px_#1a2e05] hover:translate-x-[2px] hover:translate-y-[2px] active:shadow-none active:translate-x-1 active:translate-y-1 transition-all duration-150"
+                  >
+                    Start the Growth Plan
+                    <Icon name="arrow-right" size={16} />
+                  </a>
+                ) : (
+                  <Button href="/contact" variant="primary" size="lg">
+                    Get the Ownership Build
+                    <Icon name="arrow-right" size={16} />
+                  </Button>
+                )}
               </div>
-            )}
-
-            <h3 class="text-xl font-semibold text-[var(--text)] mb-2">{plan.title}</h3>
-            <p class="text-[var(--text-secondary)] mb-8">{plan.subtitle}</p>
-
-            <div class="mb-8 py-8 border-b border-[var(--border)]">
-              <div class="flex items-baseline gap-2">
-                <span class="text-5xl md:text-6xl font-bold text-[var(--text)] tracking-tight">{plan.upfront}</span>
-                {plan.upfront !== '$0' && <span class="text-lg text-[var(--text-secondary)]">Total</span>}
+              <div class={`p-8 md:p-10 lg:p-12 border-t md:border-t-0 md:border-l ${plan.highlighted ? 'border-primary-500/30' : 'border-[var(--border)]'}`}>
+                <h4 class={`text-sm font-medium pb-8 ${plan.highlighted ? 'text-primary-900' : 'text-[var(--text)]'}`}>
+                  What's included
+                </h4>
+                <ul class="space-y-4">
+                  {plan.features.map((feature) => (
+                    <li class="flex items-start gap-3">
+                      <Icon name="check" size={16} class={`mt-0.5 shrink-0 ${plan.highlighted ? 'text-primary-900' : 'text-primary-500'}`} />
+                      <span class={`text-sm ${plan.highlighted ? 'text-primary-900' : 'text-[var(--text)]'}`}>
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <p class="text-[var(--text-secondary)] mt-2">+ {plan.monthly}/mo hosting</p>
             </div>
-
-            <ul class="space-y-4 mb-10">
-              {plan.features.map((feature) => {
-                const isIncludedPlan = plan.id === 'growth' && feature === 'Everything in the Ownership Build plan';
-                return (
-                  <li class={`flex items-start gap-3 ${isIncludedPlan ? 'pb-4 mb-4 border-b border-[var(--border)]' : ''}`}>
-                    <div class="w-5 h-5 rounded-full bg-primary-500/15 flex items-center justify-center shrink-0 mt-0.5">
-                      <Icon name="check" size={12} class="text-primary-500" />
-                    </div>
-                    <span class={`${isIncludedPlan ? 'text-[var(--text-secondary)] text-sm font-medium italic' : 'text-[var(--text)]'}`}>{feature}</span>
-                  </li>
-                );
-              })}
-            </ul>
-
-            <Button href="/contact" variant={plan.highlighted ? 'primary' : 'secondary'} fullWidth size="lg">
-              {plan.id === 'growth' ? 'Start the Growth Plan' : 'Get the Ownership Build'}
-            </Button>
           </div>
         ))}
       </div>
 
       <!-- Add-ons -->
-      <div class="max-w-5xl mx-auto mb-16 md:mb-24">
-        <h2 class="text-[var(--text)] pb-6 fade-in">Optional add-ons</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+      <div class="mb-24 md:mb-32">
+        <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 pb-12">
+          <div class="fade-in">
+            <h2 class="text-[var(--text)]">
+              Optional <span class="font-serif italic font-normal">add-ons</span>
+            </h2>
+          </div>
+        </div>
+        <div class="border-t border-[var(--border)]">
           {addOns.map((addon, index) => (
-            <div 
-              class="flex items-start justify-between gap-4 p-6 bg-[var(--bg-secondary)] border border-[var(--border)] rounded-2xl fade-in"
+            <div
+              class="flex flex-col md:flex-row md:items-center justify-between gap-4 py-6 md:py-8 border-b border-[var(--border)] fade-in"
               style={`animation-delay: ${0.2 + index * 0.05}s`}
             >
               <div>
-                <h3 class="font-medium text-[var(--text)] mb-2">{addon.title}</h3>
+                <h3 class="text-lg font-medium text-[var(--text)] pb-1">{addon.title}</h3>
                 <p class="text-sm text-[var(--text-secondary)]">{addon.desc}</p>
               </div>
               <span class="text-sm font-medium text-primary-500 whitespace-nowrap">{addon.price}</span>

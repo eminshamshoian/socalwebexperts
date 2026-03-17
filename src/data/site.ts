@@ -328,7 +328,7 @@ export const portfolioItems: PortfolioItem[] = [
 export const pricingModels: PricingModel[] = [
   {
     id: 'ownership',
-    title: 'Ownership Build',
+    title: 'One Time Payment',
     subtitle: 'Pay once, keep monthly hosting low',
     upfront: '$1,500',
     monthly: '$25',
@@ -347,7 +347,7 @@ export const pricingModels: PricingModel[] = [
   },
   {
     id: 'growth',
-    title: 'Growth Plan',
+    title: 'Pay As You Go',
     subtitle: 'Most popular for done-for-you support',
     upfront: '$0',
     monthly: '$150',

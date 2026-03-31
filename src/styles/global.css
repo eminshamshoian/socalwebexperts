@@ -193,6 +193,22 @@ button {
   border-radius: 2px;
 }
 
+/* ─── Contact form: native <select> / <option> (mobile often ignores transparent bg) ─── */
+.contact-form-select {
+  background-color: var(--bg);
+  color: var(--text);
+  color-scheme: dark;
+}
+
+.light .contact-form-select {
+  color-scheme: light;
+}
+
+.contact-form-select option {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
 /* ─── Selection ─── */
 ::selection {
   background: var(--color-primary-500);

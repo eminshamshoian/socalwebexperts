@@ -4,68 +4,128 @@ import Icon from '../ui/Icon.astro';
 import { stats } from '../../data/site';
 ---
 
-<section class="relative pt-24 flex flex-col overflow-hidden">
-  <!-- Subtle ambient glow -->
-  <div
-    aria-hidden="true"
-    class="pointer-events-none absolute inset-0 -z-10"
-  >
-    <div
-      class="absolute left-1/2 top-[60%] -translate-x-1/2 -translate-y-1/2 w-[min(900px,120vw)] h-[500px] rounded-full"
-      style="background: radial-gradient(ellipse, rgba(132,204,22,0.06) 0%, rgba(132,204,22,0.02) 40%, transparent 70%); filter: blur(80px);"
-    ></div>
+<section
+  class="hero-section relative flex min-h-[min(100dvh,960px)] flex-col overflow-hidden bg-[var(--bg)] py-16 md:py-24 lg:py-32 xl:py-36"
+>
+  <!-- Glowing arcs: indigo/violet complements lime primary -->
+  <div class="hero-glow pointer-events-none absolute inset-0" aria-hidden="true">
+    <svg
+      class="hero-glow-svg hero-glow-svg--a"
+      viewBox="0 0 600 600"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <linearGradient id="hero-arc-grad-a" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color: rgb(165 180 252); stop-opacity: 0.45" />
+          <stop offset="45%" style="stop-color: rgb(129 140 248); stop-opacity: 0.3" />
+          <stop offset="100%" style="stop-color: rgb(79 70 229); stop-opacity: 0.18" />
+        </linearGradient>
+        <filter id="hero-glow-blur-a" x="-40%" y="-40%" width="180%" height="180%">
+          <feGaussianBlur stdDeviation="14" result="b" />
+          <feMerge>
+            <feMergeNode in="b" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      <circle
+        cx="300"
+        cy="300"
+        r="260"
+        stroke="url(#hero-arc-grad-a)"
+        stroke-width="36"
+        opacity="0.5"
+        filter="url(#hero-glow-blur-a)"
+      />
+      <circle cx="300" cy="300" r="260" stroke="url(#hero-arc-grad-a)" stroke-width="10" opacity="0.22" />
+    </svg>
+    <svg
+      class="hero-glow-svg hero-glow-svg--b"
+      viewBox="0 0 500 500"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <defs>
+        <linearGradient id="hero-arc-grad-b" x1="100%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" style="stop-color: rgb(196 181 253); stop-opacity: 0.4" />
+          <stop offset="100%" style="stop-color: rgb(99 102 241); stop-opacity: 0.14" />
+        </linearGradient>
+        <filter id="hero-glow-blur-b" x="-50%" y="-50%" width="200%" height="200%">
+          <feGaussianBlur stdDeviation="20" result="blur" />
+          <feMerge>
+            <feMergeNode in="blur" />
+            <feMergeNode in="SourceGraphic" />
+          </feMerge>
+        </filter>
+      </defs>
+      <circle
+        cx="250"
+        cy="250"
+        r="210"
+        stroke="url(#hero-arc-grad-b)"
+        stroke-width="28"
+        opacity="0.42"
+        filter="url(#hero-glow-blur-b)"
+      />
+    </svg>
+    <div class="hero-glow-vignette absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--bg)]"></div>
   </div>
 
-  <!-- Main content — pushed to bottom of viewport -->
-  <div class="flex-1 flex flex-col justify-end mx-auto w-full max-w-[1400px] px-6 lg:px-16 pb-14 md:pb-20">
-
-    <!-- Eyebrow -->
+  <div class="relative z-[1] mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-6 pb-8 pt-6 md:px-10 md:pb-12 md:pt-8 lg:px-16 lg:pb-16">
+    <!-- Plain kicker (reference-style label, no pills) -->
     <p
-      class="fade-in pb-10 md:pb-14 text-[11px] md:text-xs tracking-[0.3em] uppercase text-[var(--text-secondary)] font-medium"
+      class="hero-kicker fade-in pb-10 max-w-4xl text-[11px] font-normal uppercase leading-relaxed tracking-[0.28em] text-[var(--text-secondary)] md:mb-14 md:text-xs md:tracking-[0.32em]"
       style="animation-delay: 0s;"
     >
-      Socal Web Experts <span text-primary-500>:</span> Based in Los Angeles, CA
+      Based in Los Angeles, CA
     </p>
 
-    <!-- Headline -->
+    <!-- Headline (Inter + serif accent on “All day.”) -->
     <h1
-      class="fade-in hero-headline text-[var(--text)]"
-      style="animation-delay: 0.12s;"
+      class="fade-in hero-headline max-w-[16ch] text-[var(--text)] md:max-w-[20ch]"
+      style="animation-delay: 0.08s;"
     >
       Websites that bring<br />
       Leads. <span class="font-serif italic font-normal">All day.</span>
     </h1>
 
-    <!-- Subtitle + CTAs -->
+    <!-- Subcopy + CTAs -->
     <div
-      class="fade-in mt-10 md:mt-16 flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-16"
-      style="animation-delay: 0.24s;"
+      class="fade-in mt-12 flex flex-col gap-10 md:mt-16 md:flex-row md:items-end md:justify-between lg:mt-20"
+      style="animation-delay: 0.16s;"
     >
-      <p class="text-base md:text-lg text-[var(--text-secondary)] max-w-md leading-relaxed">
-        SEO, Speed, Contact Forms, Attractive Design. <br /> We got <span class="underline">all</span> of that plus more <span class="underline">covered</span> for you.
+      <p class="max-w-xl text-base leading-relaxed text-[var(--text-secondary)] md:text-lg">
+        SEO, Speed, Contact Forms, Attractive Design.<br />
+        We got <span class="underline">all</span> of that plus more <span class="underline">covered</span> for you.
       </p>
-      <div class="flex items-center gap-3 flex-shrink-0">
+      <div class="flex shrink-0 flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8 md:flex-col md:items-end lg:flex-row lg:items-center">
+        <a
+          href="/portfolio"
+          class="group inline-flex items-center gap-2 text-base font-medium text-[var(--text)] transition-colors hover:text-primary-500"
+        >
+          Our work
+          <Icon
+            name="arrow-right"
+            size={18}
+            class="transition-transform duration-300 group-hover:translate-x-1"
+          />
+        </a>
         <Button href="/contact" size="lg">
-          Get Started
-        </Button>
-        <Button href="/portfolio" variant="secondary" size="lg">
-          View Our Work
-          <Icon name="arrow-right" size={18} />
+          Get started
         </Button>
       </div>
     </div>
-  </div>
 
-  <!-- Stats -->
-  <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16 pb-10 md:pb-16">
-    <div class="border-t border-[var(--border)] pt-8 md:pt-10">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12">
+    <!-- Stats — subtle strip -->
+    <div class="hero-stats mt-12 border-t border-[var(--border)]/50 pt-12 md:pt-28">
+      <div class="grid grid-cols-2 gap-y-8 gap-x-6 md:grid-cols-4 md:gap-10">
         {stats.map((stat, index) => (
-          <div class="fade-in" style={`animation-delay: ${0.36 + index * 0.06}s`}>
-            <div class="text-2xl md:text-3xl lg:text-4xl font-bold text-[var(--text)] tracking-tight">
-              {stat.value}<span class="text-primary-500">{stat.suffix}</span>
+          <div class="fade-in text-center md:text-left" style={`animation-delay: ${0.22 + index * 0.05}s`}>
+            <div class="text-xl font-medium tabular-nums tracking-tight text-[var(--text)]/70 md:text-2xl">
+              {stat.value}<span class="text-primary-500/70">{stat.suffix}</span>
             </div>
-            <div class="text-xs md:text-sm text-[var(--text-secondary)] mt-1">
+            <div class="mt-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--text-secondary)]/75 md:text-xs md:tracking-[0.2em]">
               {stat.label}
             </div>
           </div>
@@ -76,10 +136,47 @@ import { stats } from '../../data/site';
 </section>
 
 <style>
+  .hero-glow-svg {
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .hero-glow-svg--a {
+    width: min(120vw, 720px);
+    height: min(120vw, 720px);
+    right: -18%;
+    top: -8%;
+    transform: rotate(-12deg);
+    opacity: 0.72;
+  }
+
+  .hero-glow-svg--b {
+    width: min(95vw, 520px);
+    height: min(95vw, 520px);
+    right: 8%;
+    bottom: -20%;
+    transform: rotate(18deg);
+    opacity: 0.65;
+  }
+
+  .hero-glow-vignette {
+    pointer-events: none;
+  }
+
+  :global(.light) .hero-glow-svg--a,
+  :global(.light) .hero-glow-svg--b {
+    opacity: 0.42;
+  }
+
+  .hero-kicker {
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  }
+
   .hero-headline {
-    font-size: clamp(2.75rem, 8.5vw, 7.5rem);
-    line-height: 0.95;
-    letter-spacing: -0.04em;
-    font-weight: 400;
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: clamp(2.875rem, 7vw, 5.5rem);
+    line-height: 0.94;
+    letter-spacing: -0.062em;
   }
 </style>

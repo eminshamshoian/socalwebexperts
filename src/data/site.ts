@@ -287,8 +287,8 @@ export const portfolioItems: PortfolioItem[] = [
 export const pricingModels: PricingModel[] = [
   {
     id: 'website',
-    title: 'Website build',
-    subtitle: 'One-time build, low monthly hosting',
+    title: 'Website Build',
+    subtitle: 'Dazzling Prices .',
     listUpfront: '$1,500',
     upfront: '$499',
     monthly: '$25',

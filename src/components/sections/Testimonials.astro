@@ -14,7 +14,7 @@ const col4 = [...testimonials.slice(4), ...testimonials.slice(0, 4)];
     <!-- Header -->
     <div class="max-w-3xl mx-auto mb-16 md:mb-20 flex flex-col items-center text-center">
       <div class="fade-in flex justify-center">
-        <span class="inline-flex items-center gap-2 text-primary-500 text-sm font-medium tracking-widest uppercase mb-6">
+        <span class="type-eyebrow inline-flex items-center gap-2 mb-6">
           <span class="w-6 h-px bg-primary-500"></span>
           Testimonials
           <span class="w-6 h-px bg-primary-500"></span>
@@ -24,7 +24,7 @@ const col4 = [...testimonials.slice(4), ...testimonials.slice(0, 4)];
         What our<br class="hidden sm:block" />
         <span class="font-serif italic font-normal">partners say</span>
       </h2>
-      <p class="text-lg text-[var(--text-secondary)] mt-6 max-w-xl mx-auto leading-relaxed fade-in text-center" style="animation-delay: 0.1s;">
+      <p class="type-lead mt-6 max-w-xl mx-auto fade-in text-center" style="animation-delay: 0.1s;">
         Real feedback from real businesses we've helped grow.
       </p>
     </div>
@@ -42,11 +42,11 @@ const col4 = [...testimonials.slice(4), ...testimonials.slice(0, 4)];
                     {t.name.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div class="min-w-0">
-                    <div class="text-sm font-medium text-[var(--text)] truncate">{t.name}</div>
-                    <div class="text-xs text-[var(--text-secondary)] truncate">{t.company}</div>
+                    <div class="type-caption font-medium text-[var(--text)] truncate">{t.name}</div>
+                    <div class="type-meta truncate">{t.company}</div>
                   </div>
                 </div>
-                <p class="text-sm text-[var(--text-secondary)] leading-relaxed">{t.quote}</p>
+                <p class="type-body-card">{t.quote}</p>
                 <div class="flex items-center gap-0.5 mt-3">
                   {Array.from({ length: t.rating }).map(() => (
                     <Icon name="star-filled" size={12} class="text-amber-500" />
@@ -67,11 +67,11 @@ const col4 = [...testimonials.slice(4), ...testimonials.slice(0, 4)];
                     {t.name.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div class="min-w-0">
-                    <div class="text-sm font-medium text-[var(--text)] truncate">{t.name}</div>
-                    <div class="text-xs text-[var(--text-secondary)] truncate">{t.company}</div>
+                    <div class="type-caption font-medium text-[var(--text)] truncate">{t.name}</div>
+                    <div class="type-meta truncate">{t.company}</div>
                   </div>
                 </div>
-                <p class="text-sm text-[var(--text-secondary)] leading-relaxed">{t.quote}</p>
+                <p class="type-body-card">{t.quote}</p>
                 <div class="flex items-center gap-0.5 mt-3">
                   {Array.from({ length: t.rating }).map(() => (
                     <Icon name="star-filled" size={12} class="text-amber-500" />
@@ -92,11 +92,11 @@ const col4 = [...testimonials.slice(4), ...testimonials.slice(0, 4)];
                     {t.name.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div class="min-w-0">
-                    <div class="text-sm font-medium text-[var(--text)] truncate">{t.name}</div>
-                    <div class="text-xs text-[var(--text-secondary)] truncate">{t.company}</div>
+                    <div class="type-caption font-medium text-[var(--text)] truncate">{t.name}</div>
+                    <div class="type-meta truncate">{t.company}</div>
                   </div>
                 </div>
-                <p class="text-sm text-[var(--text-secondary)] leading-relaxed">{t.quote}</p>
+                <p class="type-body-card">{t.quote}</p>
                 <div class="flex items-center gap-0.5 mt-3">
                   {Array.from({ length: t.rating }).map(() => (
                     <Icon name="star-filled" size={12} class="text-amber-500" />
@@ -117,11 +117,11 @@ const col4 = [...testimonials.slice(4), ...testimonials.slice(0, 4)];
                     {t.name.split(' ').map(n => n[0]).join('')}
                   </div>
                   <div class="min-w-0">
-                    <div class="text-sm font-medium text-[var(--text)] truncate">{t.name}</div>
-                    <div class="text-xs text-[var(--text-secondary)] truncate">{t.company}</div>
+                    <div class="type-caption font-medium text-[var(--text)] truncate">{t.name}</div>
+                    <div class="type-meta truncate">{t.company}</div>
                   </div>
                 </div>
-                <p class="text-sm text-[var(--text-secondary)] leading-relaxed">{t.quote}</p>
+                <p class="type-body-card">{t.quote}</p>
                 <div class="flex items-center gap-0.5 mt-3">
                   {Array.from({ length: t.rating }).map(() => (
                     <Icon name="star-filled" size={12} class="text-amber-500" />

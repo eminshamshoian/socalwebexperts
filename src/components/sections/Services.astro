@@ -9,7 +9,7 @@ import { services } from '../../data/site';
       <h2 class="text-[var(--text)] mb-4 md:mb-6">
         Our <span class="font-serif italic font-normal">Services</span>
       </h2>
-      <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
+      <p class="type-lead">
         From a site that sells your business at a glance to social and paid campaigns that keep you visible—we handle the digital pieces so you can focus on customers.
       </p>
     </div>
@@ -25,12 +25,12 @@ import { services } from '../../data/site';
             <Icon name={service.icon} size={28} class="text-primary-500" />
           </div>
           <h3 class="text-[var(--text)] pb-3">{service.title}</h3>
-          <p class="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed flex-1 pb-8">
+          <p class="type-body-card flex-1 pb-8">
             {service.shortDescription}
           </p>
           <a
             href={`/services/${service.slug}`}
-            class="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--text)] transition-colors duration-300 hover:text-primary-500 group/vm"
+            class="type-caption font-medium text-[var(--text)] inline-flex items-center gap-1.5 transition-colors duration-300 hover:text-primary-500 group/vm"
           >
             View more
             <Icon

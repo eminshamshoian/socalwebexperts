@@ -75,7 +75,7 @@ import { stats } from '../../data/site';
   <div class="relative z-[1] mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-6 pb-8 pt-6 md:px-10 md:pb-12 md:pt-8 lg:px-16 lg:pb-16">
     <!-- Plain kicker (reference-style label, no pills) -->
     <p
-      class="hero-kicker fade-in pb-10 max-w-4xl text-[11px] font-normal uppercase leading-relaxed tracking-[0.28em] text-[var(--text-secondary)] md:mb-14 md:text-xs md:tracking-[0.32em]"
+      class="hero-kicker type-eyebrow fade-in pb-10 max-w-4xl md:mb-14"
       style="animation-delay: 0s;"
     >
       Based in Los Angeles, CA
@@ -95,7 +95,7 @@ import { stats } from '../../data/site';
       class="fade-in mt-12 flex flex-col gap-10 md:mt-16 md:flex-row md:items-end md:justify-between lg:mt-20"
       style="animation-delay: 0.16s;"
     >
-      <p class="max-w-xl text-base leading-relaxed text-[var(--text-secondary)] md:text-lg">
+      <p class="type-lead max-w-xl">
         SEO, Speed, Contact Forms, Attractive Design.<br />
         We got <span class="underline">all</span> of that plus more <span class="underline">covered</span> for you.
       </p>
@@ -125,7 +125,7 @@ import { stats } from '../../data/site';
             <div class="text-xl font-medium tabular-nums tracking-tight text-[var(--text)]/70 md:text-2xl">
               {stat.value}<span class="text-primary-500/70">{stat.suffix}</span>
             </div>
-            <div class="mt-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-[var(--text-secondary)]/75 md:text-xs md:tracking-[0.2em]">
+            <div class="type-eyebrow mt-1.5">
               {stat.label}
             </div>
           </div>
@@ -181,14 +181,14 @@ import { stats } from '../../data/site';
   }
 
   .hero-kicker {
-    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-body);
   }
 
   .hero-headline {
-    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-heading);
     font-weight: 700;
     font-size: clamp(2.875rem, 7vw, 5.5rem);
     line-height: 0.94;
-    letter-spacing: -0.062em;
+    letter-spacing: -0.05em;
   }
 </style>

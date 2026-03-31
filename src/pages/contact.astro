@@ -14,7 +14,7 @@ import { siteConfig, services } from '../data/site';
       <!-- Header -->
       <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 md:mb-24">
         <div class="fade-in">
-          <p class="text-[11px] md:text-xs tracking-[0.3em] uppercase text-[var(--text-secondary)] font-medium mb-6">
+          <p class="type-eyebrow mb-6">
             Contact
           </p>
           <h1 class="text-[var(--text)]">
@@ -22,7 +22,7 @@ import { siteConfig, services } from '../data/site';
           </h1>
         </div>
         <div class="flex items-end fade-in" style="animation-delay: 0.1s;">
-          <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed max-w-lg">
+          <p class="type-lead max-w-lg">
             Tell us what you do, where you serve, and what "more leads" means for you. We'll recommend the simplest plan.
           </p>
         </div>
@@ -39,7 +39,7 @@ import { siteConfig, services } from '../data/site';
             >
               <Icon name="phone" size={18} class="text-primary-500 shrink-0" />
               <div class="flex-1">
-                <div class="text-xs text-[var(--text-secondary)] mb-0.5">Call us</div>
+                <div class="type-meta mb-0.5">Call us</div>
                 <div class="font-medium text-[var(--text)] group-hover:text-primary-500 transition-colors">{siteConfig.phone}</div>
               </div>
             </a>
@@ -51,13 +51,13 @@ import { siteConfig, services } from '../data/site';
             >
               <Icon name="mail" size={18} class="text-primary-500 shrink-0" />
               <div class="flex-1">
-                <div class="text-xs text-[var(--text-secondary)] mb-0.5">Email us</div>
+                <div class="type-meta mb-0.5">Email us</div>
                 <div class="font-medium text-[var(--text)] group-hover:text-primary-500 transition-colors">{siteConfig.email}</div>
               </div>
             </a>
           </div>
 
-          <p class="text-sm text-[var(--text-secondary)] fade-in" style="animation-delay: 0.25s;">
+          <p class="type-caption fade-in" style="animation-delay: 0.25s;">
             Fast response · Clear next steps · No pressure
           </p>
         </div>
@@ -82,18 +82,18 @@ import { siteConfig, services } from '../data/site';
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label for="name" class="block text-sm font-medium text-[var(--text)] mb-2">Name</label>
+                <label for="name" class="type-form-label mb-2">Name</label>
                 <input
                   type="text" id="name" name="name" required
-                  class="w-full px-4 py-3 bg-transparent border border-[var(--border)] rounded-md text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 transition-colors outline-none text-sm"
+                  class="type-form-input w-full px-4 py-3 bg-transparent border border-[var(--border)] rounded-md text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 transition-colors outline-none"
                   placeholder="John Smith"
                 />
               </div>
               <div>
-                <label for="phone" class="block text-sm font-medium text-[var(--text)] mb-2">Phone</label>
+                <label for="phone" class="type-form-label mb-2">Phone</label>
                 <input
                   type="tel" id="phone" name="phone" required
-                  class="w-full px-4 py-3 bg-transparent border border-[var(--border)] rounded-md text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 transition-colors outline-none text-sm"
+                  class="type-form-input w-full px-4 py-3 bg-transparent border border-[var(--border)] rounded-md text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 transition-colors outline-none"
                   placeholder="(555) 123-4567"
                 />
               </div>
@@ -101,18 +101,18 @@ import { siteConfig, services } from '../data/site';
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label for="email" class="block text-sm font-medium text-[var(--text)] mb-2">Email</label>
+                <label for="email" class="type-form-label mb-2">Email</label>
                 <input
                   type="email" id="email" name="email" required
-                  class="w-full px-4 py-3 bg-transparent border border-[var(--border)] rounded-md text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 transition-colors outline-none text-sm"
+                  class="type-form-input w-full px-4 py-3 bg-transparent border border-[var(--border)] rounded-md text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 transition-colors outline-none"
                   placeholder="john@company.com"
                 />
               </div>
               <div>
-                <label for="service" class="block text-sm font-medium text-[var(--text)] mb-2">What service?</label>
+                <label for="service" class="type-form-label mb-2">What service?</label>
                 <select
                   id="service" name="service"
-                  class="contact-form-select w-full px-4 py-3 border border-[var(--border)] rounded-md text-[var(--text)] focus:border-primary-500 transition-colors outline-none appearance-none text-sm"
+                  class="contact-form-select type-form-input w-full px-4 py-3 border border-[var(--border)] rounded-md text-[var(--text)] focus:border-primary-500 transition-colors outline-none appearance-none"
                 >
                   <option value="">Select...</option>
                   {services.map((s) => (
@@ -124,10 +124,10 @@ import { siteConfig, services } from '../data/site';
             </div>
 
             <div>
-              <label for="message" class="block text-sm font-medium text-[var(--text)] mb-2">Notes</label>
+              <label for="message" class="type-form-label mb-2">Notes</label>
               <textarea
                 id="message" name="message" rows="5" required
-                class="w-full px-4 py-3 bg-transparent border border-[var(--border)] rounded-md text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 transition-colors outline-none resize-none text-sm"
+                class="type-form-input w-full px-4 py-3 bg-transparent border border-[var(--border)] rounded-md text-[var(--text)] placeholder-[var(--text-secondary)]/50 focus:border-primary-500 transition-colors outline-none resize-none"
                 placeholder="Tell us about your business and goals..."
               ></textarea>
             </div>

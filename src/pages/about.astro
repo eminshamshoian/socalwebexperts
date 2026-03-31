@@ -13,7 +13,7 @@ import Icon from '../components/ui/Icon.astro';
       <!-- Header -->
       <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 md:mb-24">
         <div class="fade-in">
-          <p class="text-[11px] md:text-xs tracking-[0.3em] uppercase text-[var(--text-secondary)] font-medium mb-6">
+          <p class="type-eyebrow mb-6">
             About
           </p>
           <h1 class="text-[var(--text)]">
@@ -21,7 +21,7 @@ import Icon from '../components/ui/Icon.astro';
           </h1>
         </div>
         <div class="flex items-end fade-in" style="animation-delay: 0.1s;">
-          <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed max-w-lg">
+          <p class="type-lead max-w-lg">
             We started SoCal Web Experts for one reason: too many businesses have websites that look "okay" but do not bring customers.
           </p>
         </div>
@@ -30,12 +30,12 @@ import Icon from '../components/ui/Icon.astro';
       <!-- Mission -->
       <div class="grid lg:grid-cols-[1fr_2fr] gap-8 lg:gap-16 mb-16 md:mb-24 fade-in" style="animation-delay: 0.15s;">
         <div>
-          <h2 class="text-[var(--text)] text-xl md:text-2xl font-medium tracking-tight">
+          <h2 class="type-subheading">
             Our <span class="font-serif italic font-normal underline">mission</span>
           </h2>
         </div>
         <div>
-          <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed max-w-2xl">
+          <p class="type-lead max-w-2xl">
             Build websites that earn trust fast, rank better over time, and turn visitors into leads without you lifting a finger.
           </p>
         </div>
@@ -43,7 +43,7 @@ import Icon from '../components/ui/Icon.astro';
 
       <!-- What makes us different -->
       <div class="mb-16 md:mb-24 fade-in" style="animation-delay: 0.2s;">
-        <h2 class="text-[var(--text)] text-xl md:text-2xl font-medium tracking-tight pb-10">
+        <h2 class="type-subheading pb-10">
           What makes us <span class="font-serif italic font-normal">different</span>
         </h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
@@ -56,7 +56,7 @@ import Icon from '../components/ui/Icon.astro';
           ].map((item) => (
             <div class="flex items-start gap-3 p-5 border border-[var(--border)] rounded-sm">
               <span class="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 shrink-0"></span>
-              <span class="text-[var(--text)] text-base">
+              <span class="text-base leading-relaxed text-[var(--text)]">
                 {item}
               </span>
             </div>
@@ -66,7 +66,7 @@ import Icon from '../components/ui/Icon.astro';
 
       <!-- CTA block -->
       <div class="fade-in" style="animation-delay: 0.25s;">
-        <p class="text-2xl md:text-3xl font-medium text-[var(--text)] pb-8 tracking-tight max-w-2xl leading-tight">
+        <p class="type-emphasis pb-8 max-w-2xl">
           If your website is not bringing leads, it is not <span class="font-serif italic font-normal">doing its job.</span>
         </p>
         <Button href="/contact" size="lg">

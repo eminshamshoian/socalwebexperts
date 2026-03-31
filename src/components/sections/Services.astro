@@ -3,82 +3,44 @@ import Icon from '../ui/Icon.astro';
 import { services } from '../../data/site';
 ---
 
-<section class="py-24 md:py-32">
+<section id="services" class="py-24 md:py-32 scroll-mt-24">
   <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">
-    <!-- Header -->
-    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 md:mb-24">
-      <div class="fade-in">
-        <p class="text-[11px] md:text-xs tracking-[0.3em] uppercase text-[var(--text-secondary)] font-medium mb-6">
-          Services
-        </p>
-        <h2 class="text-[var(--text)]">
-          Everything you need<br class="hidden md:block"/> to <span class="font-serif italic font-normal">win online</span>
-        </h2>
-      </div>
-      <div class="flex items-end fade-in" style="animation-delay: 0.1s;">
-        <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed max-w-lg">
-          We build and manage the whole system so you can focus on running your business.
-        </p>
-      </div>
+    <div class="fade-in max-w-2xl mb-16 md:mb-24">
+      <h2 class="text-[var(--text)] mb-4 md:mb-6">
+        Our <span class="font-serif italic font-normal">Services</span>
+      </h2>
+      <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed">
+        From a site that sells your business at a glance to social and paid campaigns that keep you visible—we handle the digital pieces so you can focus on customers.
+      </p>
     </div>
 
-    <!-- Services List -->
-    <div class="border-t border-[var(--border)]">
+    <!-- Three-column service grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-14 md:gap-10 lg:gap-16">
       {services.map((service, index) => (
-        <a
-          href={`/services/${service.slug}`}
-          class="service-row group block border-b border-[var(--border)] fade-in"
-          style={`animation-delay: ${index * 0.06}s`}
+        <article
+          class="fade-in flex flex-col text-left"
+          style={`animation-delay: ${0.08 + index * 0.06}s`}
         >
-          <div class="py-6 md:py-8 transition-all duration-500 group-hover:pl-4 md:group-hover:pl-8">
-            <div class="flex items-center gap-6 md:gap-10">
-              <span class="font-serif italic text-xl md:text-2xl text-[var(--text-secondary)]/30 shrink-0 tabular-nums w-8 md:w-10 transition-colors duration-500 group-hover:text-primary-500">
-                0{index + 1}
-              </span>
-
-              <h3 class="text-lg md:text-xl lg:text-2xl font-medium text-[var(--text)] flex-1 tracking-tight leading-tight transition-colors duration-500 group-hover:text-primary-500">
-                {service.title}
-              </h3>
-
-              <div class="w-10 h-10 md:w-11 md:h-11 rounded-md border border-[var(--border)] flex items-center justify-center shrink-0 transition-all duration-500 group-hover:border-primary-500 group-hover:bg-primary-500">
-                <Icon name="arrow-right" size={16} class="text-[var(--text-secondary)] transition-all duration-500 group-hover:text-white" />
-              </div>
-            </div>
-
-            <!-- Mobile: always visible -->
-            <p class="text-[var(--text-secondary)] text-sm leading-relaxed mt-3 ml-14 md:hidden">
-              {service.shortDescription}
-            </p>
-
-            <!-- Desktop: reveals on hover -->
-            <div class="service-desc hidden md:grid">
-              <div>
-                <p class="text-[var(--text-secondary)] text-base leading-relaxed pt-4 ml-20 max-w-2xl">
-                  {service.shortDescription}
-                </p>
-              </div>
-            </div>
+          <div class="mb-6 text-[var(--text)]">
+            <Icon name={service.icon} size={28} class="text-primary-500" />
           </div>
-        </a>
+          <h3 class="text-[var(--text)] pb-3">{service.title}</h3>
+          <p class="text-sm md:text-base text-[var(--text-secondary)] leading-relaxed flex-1 pb-8">
+            {service.shortDescription}
+          </p>
+          <a
+            href={`/services/${service.slug}`}
+            class="inline-flex items-center gap-1.5 text-sm font-medium text-[var(--text)] transition-colors duration-300 hover:text-primary-500 group/vm"
+          >
+            View more
+            <Icon
+              name="arrow-right"
+              size={16}
+              class="transition-transform duration-300 group-hover/vm:translate-x-0.5"
+            />
+          </a>
+        </article>
       ))}
     </div>
   </div>
 </section>
-
-<style>
-  .service-desc {
-    grid-template-rows: 0fr;
-    opacity: 0;
-    transition: grid-template-rows 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                opacity 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .service-desc > div {
-    overflow: hidden;
-  }
-
-  .service-row:hover .service-desc {
-    grid-template-rows: 1fr;
-    opacity: 1;
-  }
-</style>

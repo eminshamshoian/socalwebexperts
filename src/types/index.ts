@@ -69,10 +69,14 @@ export interface PricingModel {
   id: string;
   title: string;
   subtitle: string;
+  /** Shown struck through before `upfront` when set */
+  listUpfront?: string;
   upfront: string;
   monthly: string;
-  description: string;
+  description?: string;
   features: string[];
+  /** Optional; prefer listing updates in `features` for display */
+  updatesNote?: string;
   highlighted?: boolean;
 }
 

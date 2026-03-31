@@ -1,49 +1,83 @@
 ---
+import Icon from '../ui/Icon.astro';
 import { processSteps } from '../../data/site';
+
+const shapes = [
+  `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M200 0 A200 200 0 0 1 0 200" stroke="currentColor" stroke-width="0.8"/><path d="M160 0 A160 160 0 0 1 0 160" stroke="currentColor" stroke-width="0.5"/></svg>`,
+  `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="90" stroke="currentColor" stroke-width="0.8"/><circle cx="100" cy="100" r="55" stroke="currentColor" stroke-width="0.5"/></svg>`,
+  `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 100 C10 30, 100 10, 190 100 S190 190, 100 190 S10 170, 10 100" stroke="currentColor" stroke-width="0.8"/></svg>`,
+  `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 100 Q50 20, 100 100 T200 100" stroke="currentColor" stroke-width="0.8"/><path d="M0 130 Q50 50, 100 130 T200 130" stroke="currentColor" stroke-width="0.5"/></svg>`,
+];
 ---
 
-<section class="py-24 md:py-32">
+<section class="py-20 md:py-28 overflow-hidden">
   <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">
-    <!-- Header -->
-    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 md:mb-24">
-      <div class="fade-in">
-        <p class="text-[11px] md:text-xs tracking-[0.3em] uppercase text-[var(--text-secondary)] font-medium mb-6">
+    <!-- Compact header -->
+    <div
+      class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 lg:gap-10 mb-10 md:mb-14 fade-in"
+    >
+      <div>
+        <p class="text-[11px] md:text-xs tracking-[0.3em] uppercase text-[var(--text-secondary)] font-medium mb-4">
           Process
         </p>
         <h2 class="text-[var(--text)]">
           Simple. <span class="font-serif italic font-normal">Done-for-you.</span>
         </h2>
       </div>
-      <div class="flex items-end fade-in" style="animation-delay: 0.1s;">
-        <p class="text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed max-w-lg">
-          Four steps. No tech stress. You stay focused on your business.
-        </p>
-      </div>
+      <p class="text-base md:text-lg text-[var(--text-secondary)] leading-relaxed max-w-md lg:text-right lg:pb-1">
+        Four steps. No tech stress. You stay focused on your business.
+      </p>
     </div>
 
-    <!-- Steps -->
-    <div>
+    <div
+      class="process-row grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-4 xl:gap-6"
+    >
       {processSteps.map((step, index) => (
-        <div
-          class="process-step group grid grid-cols-1 md:grid-cols-[8rem_1fr] lg:grid-cols-[12rem_1fr] gap-4 md:gap-12 py-10 md:py-16 border-t border-[var(--border)] fade-in"
-          style={`animation-delay: ${index * 0.1}s`}
+        <article
+          class="process-card group relative rounded-sm border border-[var(--border)] bg-[var(--bg-secondary)]/40 p-5 md:p-6 fade-in overflow-hidden"
+          style={`animation-delay: ${index * 0.08}s`}
         >
-          <!-- Massive serif number -->
-          <div class="font-serif italic text-6xl md:text-7xl lg:text-[7rem] text-primary-500/15 leading-none tracking-tight transition-colors duration-700 group-hover:text-primary-500/30">
-            0{step.step}
-          </div>
+          <div
+            class={`pointer-events-none absolute process-card-shape ${index % 2 === 0 ? '-right-6 -top-6' : '-right-4 -bottom-8'}`}
+            aria-hidden="true"
+            set:html={shapes[index % shapes.length]}
+          />
 
-          <!-- Content -->
-          <div class="max-w-xl">
-            <h3 class="text-xl md:text-2xl font-medium text-[var(--text)] mb-4 tracking-tight transition-colors duration-500 group-hover:text-primary-500">
+          <div class="relative z-10 flex flex-col h-full min-h-[11rem] sm:min-h-0">
+            <div class="flex items-center justify-between gap-3 mb-4">
+              <span class="font-serif italic text-2xl md:text-3xl text-primary-500/35 leading-none tabular-nums transition-colors duration-500 group-hover:text-primary-500/55">
+                0{step.step}
+              </span>
+              <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-sm border border-[var(--border)] bg-[var(--bg)]/80 text-primary-500 transition-all duration-500 group-hover:border-primary-500/35 group-hover:bg-primary-500/5">
+                <Icon name={step.icon} size={18} />
+              </div>
+            </div>
+
+            <h3 class="text-base md:text-lg font-semibold text-[var(--text)] tracking-tight mb-2 transition-colors duration-500 group-hover:text-primary-500">
               {step.title}
             </h3>
-            <p class="text-[var(--text-secondary)] leading-relaxed text-base">
+            <p class="text-sm text-[var(--text-secondary)] leading-relaxed flex-1">
               {step.description}
             </p>
           </div>
-        </div>
+        </article>
       ))}
     </div>
   </div>
 </section>
+
+<style>
+  .process-card-shape {
+    width: clamp(6.5rem, 14vw, 9.5rem);
+    height: clamp(6.5rem, 14vw, 9.5rem);
+    color: rgba(163, 230, 53, 0.1);
+    transition:
+      color 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .process-card:hover .process-card-shape {
+    color: rgba(163, 230, 53, 0.2);
+    transform: rotate(12deg) scale(1.05);
+  }
+</style>

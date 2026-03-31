@@ -34,7 +34,7 @@ import Button from '../ui/Button.astro';
       <div>
         <h4 class="text-xs font-semibold tracking-widest uppercase text-[var(--text)] mb-6">Services</h4>
         <ul class="space-y-4">
-          {services.slice(0, 5).map((service) => (
+          {services.map((service) => (
             <li>
               <a
                 href={`/services/${service.slug}`}

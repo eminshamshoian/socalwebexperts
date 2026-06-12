@@ -4,8 +4,8 @@ import { portfolioItems } from '../../data/site';
 const showcaseItems = portfolioItems.slice(0, 5);
 ---
 
-<section class="showcase-section relative overflow-hidden pb-12 pt-0 md:pb-14 md:pt-0" aria-label="Portfolio design preview showcase">
-  <div class="pointer-events-none absolute inset-0" aria-hidden="true">
+<div class="showcase-block relative z-[1] overflow-hidden pb-10 pt-4 md:pb-14 md:pt-0" aria-label="Portfolio design preview showcase">
+  <div class="pointer-events-none absolute inset-0 hidden md:block" aria-hidden="true">
     <div class="showcase-glow showcase-glow--left"></div>
     <div class="showcase-glow showcase-glow--right"></div>
     <svg class="showcase-squiggle" viewBox="0 0 120 140" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,7 +17,7 @@ const showcaseItems = portfolioItems.slice(0, 5);
   </div>
 
   <div class="mx-auto w-full max-w-[1200px] px-6">
-    <a href="/portfolio" class="showcase-fan fade-in" aria-label="View portfolio projects">
+    <a href="/portfolio" class="showcase-fan" aria-label="View portfolio projects">
       {showcaseItems.map((item, index) => (
         <div class={`showcase-card showcase-card--${index + 1}`} aria-hidden="true">
           <img src={item.image} alt="" loading="lazy" />
@@ -25,12 +25,17 @@ const showcaseItems = portfolioItems.slice(0, 5);
       ))}
     </a>
   </div>
-</section>
+</div>
 
 <style>
-  .showcase-section {
-    margin-top: clamp(-5rem, -6vw, -2.25rem);
-    background: var(--bg);
+  .showcase-block {
+    background: transparent;
+  }
+
+  @media (min-width: 768px) {
+    .showcase-block {
+      margin-top: clamp(-2.5rem, -4vw, -1rem);
+    }
   }
 
   .showcase-fan {
@@ -53,6 +58,8 @@ const showcaseItems = portfolioItems.slice(0, 5);
     border-radius: clamp(0.75rem, 1.6vw, 1.15rem);
     background: #050505;
     box-shadow: 0 2rem 4.5rem rgba(0, 0, 0, 0.5);
+    transform-origin: center center;
+    backface-visibility: hidden;
     transition: transform 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease;
   }
 
@@ -91,29 +98,31 @@ const showcaseItems = portfolioItems.slice(0, 5);
     transform: translate(58%, -43%) rotate(18deg);
   }
 
-  .showcase-fan:hover .showcase-card {
-    border-color: color-mix(in srgb, var(--text) 96%, transparent);
-    box-shadow: 0 2.5rem 5rem rgba(0, 0, 0, 0.58);
-  }
+  @media (hover: hover) and (pointer: fine) {
+    .showcase-fan:hover .showcase-card {
+      border-color: color-mix(in srgb, var(--text) 96%, transparent);
+      box-shadow: 0 2.5rem 5rem rgba(0, 0, 0, 0.58);
+    }
 
-  .showcase-fan:hover .showcase-card--1 {
-    transform: translate(-168%, -45%) rotate(-22deg);
-  }
+    .showcase-fan:hover .showcase-card--1 {
+      transform: translate(-168%, -45%) rotate(-22deg);
+    }
 
-  .showcase-fan:hover .showcase-card--2 {
-    transform: translate(-112%, -51%) rotate(-13deg);
-  }
+    .showcase-fan:hover .showcase-card--2 {
+      transform: translate(-112%, -51%) rotate(-13deg);
+    }
 
-  .showcase-fan:hover .showcase-card--3 {
-    transform: translate(-50%, -59%) rotate(0deg) scale(1.025);
-  }
+    .showcase-fan:hover .showcase-card--3 {
+      transform: translate(-50%, -59%) rotate(0deg) scale(1.025);
+    }
 
-  .showcase-fan:hover .showcase-card--4 {
-    transform: translate(14%, -51%) rotate(13deg);
-  }
+    .showcase-fan:hover .showcase-card--4 {
+      transform: translate(14%, -51%) rotate(13deg);
+    }
 
-  .showcase-fan:hover .showcase-card--5 {
-    transform: translate(68%, -45%) rotate(22deg);
+    .showcase-fan:hover .showcase-card--5 {
+      transform: translate(68%, -45%) rotate(22deg);
+    }
   }
 
   .showcase-glow {
@@ -168,24 +177,45 @@ const showcaseItems = portfolioItems.slice(0, 5);
   }
 
   @media (max-width: 767px) {
-    .showcase-section {
-      margin-top: -3.5rem;
-      padding-top: 0;
-      padding-bottom: 2.5rem;
+    .showcase-block {
+      margin-top: 0;
+      padding-top: 0.5rem;
+      padding-bottom: 1.25rem;
     }
 
     .showcase-fan {
-      min-height: 20rem;
+      min-height: clamp(15.5rem, 66vw, 20rem);
     }
 
     .showcase-card {
-      width: clamp(8rem, 35vw, 11rem);
+      width: clamp(6.75rem, 30vw, 9.25rem);
       border-width: 3px;
+      transition: none;
     }
 
     .showcase-card--3 {
-      width: clamp(10rem, 45vw, 14rem);
+      width: clamp(8.75rem, 40vw, 12.5rem);
       border-width: 4px;
+    }
+
+    .showcase-card--1 {
+      transform: translate(-142%, -43%) rotate(-18deg);
+    }
+
+    .showcase-card--2 {
+      transform: translate(-98%, -49%) rotate(-10deg);
+    }
+
+    .showcase-card--3 {
+      transform: translate(-50%, -55%) rotate(0deg);
+    }
+
+    .showcase-card--4 {
+      transform: translate(-2%, -49%) rotate(10deg);
+    }
+
+    .showcase-card--5 {
+      transform: translate(42%, -43%) rotate(18deg);
     }
 
     .showcase-squiggle {

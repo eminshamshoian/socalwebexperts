@@ -1,10 +1,11 @@
 ---
 import Button from '../ui/Button.astro';
 import Icon from '../ui/Icon.astro';
+import DesignBooklet from './DesignBooklet.astro';
 ---
 
 <section
-  class="hero-section relative flex min-h-[min(100dvh,960px)] flex-col overflow-hidden bg-[var(--bg)] py-16 md:py-24 lg:py-32 xl:py-36"
+  class="hero-section relative flex flex-col overflow-hidden bg-[var(--bg)] pt-12 pb-0 md:min-h-[min(100dvh,960px)] md:py-24 lg:py-32 xl:py-36"
 >
   <!-- Glowing arcs: indigo/violet complements lime primary -->
   <div class="hero-glow pointer-events-none absolute inset-0" aria-hidden="true">
@@ -71,7 +72,7 @@ import Icon from '../ui/Icon.astro';
     <div class="hero-glow-vignette absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--bg)]"></div>
   </div>
 
-  <div class="relative z-[1] mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-6 pb-0 pt-6 md:px-10 md:pb-2 md:pt-8 lg:px-16 lg:pb-4">
+  <div class="relative z-[1] mx-auto flex w-full max-w-[1400px] flex-col px-6 pb-0 pt-0 md:flex-1 md:px-10 md:pb-2 md:pt-8 lg:px-16 lg:pb-4">
     <!-- Plain kicker (reference-style label, no pills) -->
     <p
       class="hero-kicker type-eyebrow fade-in pb-10 max-w-4xl md:mb-14"
@@ -91,7 +92,7 @@ import Icon from '../ui/Icon.astro';
 
     <!-- Subcopy + CTAs -->
     <div
-      class="fade-in mt-12 flex flex-col gap-10 md:mt-16 md:flex-row md:items-end md:justify-between lg:mt-20"
+      class="fade-in mt-8 flex flex-col gap-8 md:mt-16 md:gap-10 md:flex-row md:items-end md:justify-between lg:mt-20"
       style="animation-delay: 0.16s;"
     >
       <p class="type-lead max-w-xl">
@@ -115,8 +116,9 @@ import Icon from '../ui/Icon.astro';
         </Button>
       </div>
     </div>
-
   </div>
+
+  <DesignBooklet />
 </section>
 
 <style>

@@ -43,7 +43,7 @@ const shapes = [
             {service.title}
           </p>
           <h1 class="text-[var(--text)]">
-            {service.title.split(' ').slice(0, -1).join(' ')} <span class="font-serif italic font-normal">{service.title.split(' ').slice(-1)[0]}</span>
+            {service.title}
           </h1>
         </div>
         <div class="flex items-end fade-in" style="animation-delay: 0.1s;">
@@ -80,7 +80,7 @@ const shapes = [
         <div class="fade-in" style="animation-delay: 0.2s;">
           <div class="lg:sticky lg:top-32">
             <p class="type-emphasis pb-6">
-              Ready to <span class="font-serif italic font-normal">get started?</span>
+              Ready to get started?
             </p>
             <div class="flex flex-col gap-3">
               <Button href="/contact" size="lg">
@@ -101,7 +101,7 @@ const shapes = [
   <section class="py-16 md:py-24">
     <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">
       <h2 class="type-subheading mb-10 fade-in">
-        Related <span class="font-serif italic font-normal">services</span>
+        Related services
       </h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         {relatedServices.map((related, index) => (

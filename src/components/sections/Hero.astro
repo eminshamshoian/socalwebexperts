@@ -1,7 +1,6 @@
 ---
 import Button from '../ui/Button.astro';
 import Icon from '../ui/Icon.astro';
-import { stats } from '../../data/site';
 ---
 
 <section
@@ -72,7 +71,7 @@ import { stats } from '../../data/site';
     <div class="hero-glow-vignette absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--bg)]"></div>
   </div>
 
-  <div class="relative z-[1] mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-6 pb-8 pt-6 md:px-10 md:pb-12 md:pt-8 lg:px-16 lg:pb-16">
+  <div class="relative z-[1] mx-auto flex w-full max-w-[1400px] flex-1 flex-col px-6 pb-0 pt-6 md:px-10 md:pb-2 md:pt-8 lg:px-16 lg:pb-4">
     <!-- Plain kicker (reference-style label, no pills) -->
     <p
       class="hero-kicker type-eyebrow fade-in pb-10 max-w-4xl md:mb-14"
@@ -81,13 +80,13 @@ import { stats } from '../../data/site';
       Based in Los Angeles, CA
     </p>
 
-    <!-- Headline (Inter + serif accent on “All day.”) -->
+    <!-- Headline -->
     <h1
       class="fade-in hero-headline max-w-[16ch] text-[var(--text)] md:max-w-[20ch]"
       style="animation-delay: 0.08s;"
     >
       Websites that bring<br />
-      Leads. <span class="font-serif italic font-normal">All day.</span>
+      Leads. All day.
     </h1>
 
     <!-- Subcopy + CTAs -->
@@ -117,21 +116,6 @@ import { stats } from '../../data/site';
       </div>
     </div>
 
-    <!-- Stats — subtle strip -->
-    <div class="hero-stats mt-12 border-t border-[var(--border)]/50 pt-12 md:pt-28">
-      <div class="grid grid-cols-2 gap-y-8 gap-x-6 md:grid-cols-4 md:gap-10">
-        {stats.map((stat, index) => (
-          <div class="fade-in text-center md:text-left" style={`animation-delay: ${0.22 + index * 0.05}s`}>
-            <div class="text-xl font-medium tabular-nums tracking-tight text-[var(--text)]/70 md:text-2xl">
-              {stat.value}<span class="text-primary-500/70">{stat.suffix}</span>
-            </div>
-            <div class="type-eyebrow mt-1.5">
-              {stat.label}
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
   </div>
 </section>
 

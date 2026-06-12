@@ -235,7 +235,7 @@ export const testimonials: Testimonial[] = [
 export const portfolioItems: PortfolioItem[] = [
   {
     id: '1',
-    title: 'Lawyer',
+    title: 'Carter Law Offices',
     category: 'web-design',
     categoryLabel: 'Law Office',
     image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1770874360/lawyer-fullscreen_cbti3t.png',
@@ -243,7 +243,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: '2',
-    title: 'Auto Group',
+    title: 'TAG Auto Group',
     category: 'web-design',
     categoryLabel: 'Auto Dealership',
     image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1770873518/tag-fullscreen_i2yasa.png',
@@ -251,7 +251,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: '3',
-    title: 'Therapy Company',
+    title: 'Comp Therapy',
     category: 'web-design',
     categoryLabel: 'Therapy',
     image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1770874794/therapy-fullscreen_hjsa2d.png',
@@ -266,13 +266,30 @@ export const portfolioItems: PortfolioItem[] = [
     scrollableImage: true,
   },
   {
+    id: '8',
+    title: "Sam's Bakery",
+    category: 'web-design',
+    categoryLabel: 'Bakery',
+    image: '/portfolio/screencapture-sams-bakery-pages-dev-2026-06-12-11_34_01.jpg',
+    scrollableImage: true,
+  },
+  {
     id: '4',
-    title: 'Surgery Center',
+    title: 'Summit Surgical Group',
     category: 'web-design',
     categoryLabel: 'Medical',
     image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1773711509/surgery-center-website_bbiz1u.png',
     scrollableImage: true,
   },
+];
+
+/** Exactly 5 items for the hero card fan */
+export const heroShowcaseItems: PortfolioItem[] = [
+  portfolioItems.find((item) => item.id === '8')!,
+  portfolioItems.find((item) => item.id === '2')!,
+  portfolioItems.find((item) => item.id === '3')!,
+  portfolioItems.find((item) => item.id === '7')!,
+  portfolioItems.find((item) => item.id === '4')!,
 ];
 
 // Pricing Models

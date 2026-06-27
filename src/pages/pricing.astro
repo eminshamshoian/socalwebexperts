@@ -13,8 +13,8 @@ const addOns = [
 ---
 
 <BaseLayout
-  title="Website Pricing | $1,000 Build + $25/mo Hosting | SoCal Web Experts"
-  description="Custom website for $1,000 upfront, $25/mo hosting. Unlimited edits until you're satisfied. Future updates are $100/hour."
+  title="Website Pricing | From $299 Setup + $12/mo Hosting | SoCal Web Experts"
+  description="Custom website starting from $299 setup fee, $12/mo or $99/yr hosting. After your design is approved, updates are $100/hour."
 >
   <section class="py-24 md:py-32">
     <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">
@@ -29,7 +29,7 @@ const addOns = [
         </div>
         <div class="flex items-end fade-in" style="animation-delay: 0.1s;">
           <p class="type-lead max-w-lg">
-            One upfront price, low monthly hosting, and hourly updates only after you are happy with the design.
+            Starting from $299 setup, affordable hosting, and hourly updates only after you are happy with the design.
           </p>
         </div>
       </div>
@@ -52,11 +52,9 @@ const addOns = [
                 >
                   {plan.title}
                 </h2>
-                {plan.listUpfront && (
-                  <p
-                    class={`text-2xl md:text-3xl font-semibold line-through decoration-2 pb-2 ${plan.highlighted ? 'text-primary-900/55 decoration-primary-900/35' : 'text-[var(--text-secondary)] decoration-[var(--text-secondary)]/50'}`}
-                  >
-                    {plan.listUpfront}
+                {plan.upfrontPrefix && (
+                  <p class={`text-sm pb-1 ${plan.highlighted ? 'text-black' : 'text-[var(--text-secondary)]'}`}>
+                    {plan.upfrontPrefix}
                   </p>
                 )}
                 <div class="flex items-baseline gap-3 pb-2">
@@ -66,11 +64,13 @@ const addOns = [
                     {plan.upfront}
                   </span>
                   <span class={`text-base ${plan.highlighted ? 'text-black' : 'text-[var(--text-secondary)]'}`}>
-                    Design & Development Fee
+                    {plan.upfrontLabel ?? 'upfront'}
                   </span>
                 </div>
                 <p class={`text-sm pb-10 ${plan.highlighted ? 'text-black' : 'text-[var(--text-secondary)]'}`}>
-                  + {plan.monthly}/mo hosting
+                  {plan.yearly
+                    ? `${plan.monthly} a month or ${plan.yearly} yearly`
+                    : `+ ${plan.monthly}/mo hosting`}
                 </p>
                 {plan.highlighted ? (
                   <a

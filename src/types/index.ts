@@ -71,8 +71,14 @@ export interface PricingModel {
   subtitle: string;
   /** Shown struck through before `upfront` when set */
   listUpfront?: string;
+  /** e.g. "Starting from" — shown above the upfront price when set */
+  upfrontPrefix?: string;
   upfront: string;
+  /** Label beside upfront price; defaults to "upfront" */
+  upfrontLabel?: string;
   monthly: string;
+  /** When set, hosting is shown as "{monthly} a month or {yearly} yearly" */
+  yearly?: string;
   description?: string;
   features: string[];
   /** Optional; prefer listing updates in `features` for display */

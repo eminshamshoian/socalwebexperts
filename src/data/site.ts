@@ -298,8 +298,11 @@ export const pricingModels: PricingModel[] = [
     id: 'website',
     title: 'Website Build',
     subtitle: 'Dazzling Prices .',
-    upfront: '$1,000',
-    monthly: '$25',
+    upfrontPrefix: 'Starting from',
+    upfront: '$299',
+    upfrontLabel: 'setup fee',
+    monthly: '$12',
+    yearly: '$99',
     features: [
       'Unlimited edits until you\'re satisfied',
       'Custom website build',

@@ -1,18 +1,29 @@
 // Service Types
+export interface ServiceHighlight {
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+}
+
+export interface ServiceDetail {
+  title: string;
+  description: string;
+  icon: string;
+}
+
 export interface Service {
   id: string;
   title: string;
   shortDescription: string;
   description: string;
+  heroHeadline: string;
   icon: string;
-  features: string[];
   slug: string;
-}
-
-export interface ServiceFeature {
-  title: string;
-  description: string;
-  icon?: string;
+  layout: 'classic' | 'media-first' | 'split';
+  features: string[];
+  highlights: ServiceHighlight[];
+  details: ServiceDetail[];
 }
 
 // Testimonial Types
@@ -24,6 +35,20 @@ export interface Testimonial {
   quote: string;
   rating: number;
   avatar?: string;
+}
+
+export interface YelpReview {
+  reviewId: string;
+  businessId: string;
+  businessUrl: string;
+  reviewUrl: string;
+  authorName: string;
+  authorProfileUrl: string;
+  location: string;
+  date: string;
+  rating: number;
+  quote: string;
+  badge?: string;
 }
 
 // Portfolio Types

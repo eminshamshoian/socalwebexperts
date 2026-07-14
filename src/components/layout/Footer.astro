@@ -4,13 +4,6 @@ import Icon from '../ui/Icon.astro';
 import Button from '../ui/Button.astro';
 ---
 
-<style>
-  .dark-logo { display: block !important; }
-  .light-logo { display: none !important; }
-  :global(.light) .dark-logo { display: none !important; }
-  :global(.light) .light-logo { display: block !important; }
-</style>
-
 <footer class="border-t border-[var(--border)] bg-[var(--bg)]">
   <!-- Main Footer -->
   <div class="container py-20">
@@ -98,14 +91,22 @@ import Button from '../ui/Button.astro';
         <ul class="space-y-4">
           {siteConfig.socials.map((social) => (
             <li>
-              <a
-                href={social.url}
-                class="type-caption inline-flex items-center gap-2 hover:text-[var(--text)] transition-colors duration-300"
-                aria-label={social.platform}
-              >
-                <Icon name={social.icon} size={14} />
-                {social.platform}
-              </a>
+              {social.url && social.url !== '#' ? (
+                <a
+                  href={social.url}
+                  class="type-caption inline-flex items-center gap-2 hover:text-[var(--text)] transition-colors duration-300"
+                  aria-label={social.platform}
+                >
+                  <Icon name={social.icon} size={14} />
+                  {social.platform}
+                </a>
+              ) : (
+                <span class="type-caption inline-flex items-center gap-2 text-[var(--text-secondary)]">
+                  <Icon name={social.icon} size={14} aria-hidden="true" />
+                  {social.platform}
+                  <span class="type-meta">(coming soon)</span>
+                </span>
+              )}
             </li>
           ))}
         </ul>
@@ -118,17 +119,11 @@ import Button from '../ui/Button.astro';
     <div class="container py-8">
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="flex items-center gap-4">
-          <a href="/" class="flex items-center gap-2">
+          <a href="/" class="flex items-center gap-2" aria-label="SoCal Web Experts home">
             <img 
               src="/logo-white.png" 
-              alt="SoCal Web Experts" 
-              class="dark-logo"
-              style="height: 64px; width: auto;"
-            />
-            <img 
-              src="/logo-black.png" 
-              alt="SoCal Web Experts" 
-              class="light-logo"
+              alt=""
+              aria-hidden="true"
               style="height: 64px; width: auto;"
             />
           </a>
@@ -139,6 +134,7 @@ import Button from '../ui/Button.astro';
             <span class="type-caption">🇺🇸</span>
             Proudly Made in USA
           </span>
+          <a href="/accessibility" class="hover:text-[var(--text)] transition-colors duration-300">Accessibility</a>
           <a href="/privacy" class="hover:text-[var(--text)] transition-colors duration-300">Privacy</a>
           <a href="/terms" class="hover:text-[var(--text)] transition-colors duration-300">Terms</a>
         </div>

@@ -40,19 +40,23 @@ const faqStructuredData = {
           <div
             class="faq-item py-7 fade-in"
             style={`animation-delay: ${index * 0.05}s`}
+            data-open="false"
           >
             <button
+              type="button"
+              id={`faq-trigger-${index}`}
               class="faq-trigger w-full flex items-start justify-between gap-6 text-left group"
               aria-expanded="false"
+              aria-controls={`faq-panel-${index}`}
             >
               <span class="type-faq-question group-hover:text-primary-500 transition-colors duration-300 pr-4">
                 {faq.question}
               </span>
-              <div class="faq-icon w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center shrink-0 mt-0.5 transition-all duration-300">
+              <span class="faq-icon w-8 h-8 rounded-full border border-[var(--border)] flex items-center justify-center shrink-0 mt-0.5 transition-all duration-300" aria-hidden="true">
                 <Icon name="plus" size={16} class="text-[var(--text-secondary)] transition-transform duration-300" />
-              </div>
+              </span>
             </button>
-            <div class="faq-content hidden">
+            <div id={`faq-panel-${index}`} class="faq-content hidden" role="region" aria-labelledby={`faq-trigger-${index}`}>
               <p class="type-body py-4 pr-14">
                 {faq.answer}
               </p>
@@ -72,7 +76,7 @@ const faqStructuredData = {
 
   .faq-item[data-open="true"] .faq-icon svg {
     transform: rotate(45deg);
-    color: white;
+    color: var(--color-on-primary, #1B2632);
   }
 </style>
 
@@ -87,21 +91,22 @@ const faqStructuredData = {
       trigger?.addEventListener('click', () => {
         const isOpen = item.getAttribute('data-open') === 'true';
 
-        // Close all
         items.forEach(otherItem => {
           if (otherItem !== item) {
             otherItem.setAttribute('data-open', 'false');
             otherItem.querySelector('.faq-content')?.classList.add('hidden');
+            otherItem.querySelector('.faq-trigger')?.setAttribute('aria-expanded', 'false');
           }
         });
 
-        // Toggle
         if (isOpen) {
           item.setAttribute('data-open', 'false');
           content?.classList.add('hidden');
+          trigger?.setAttribute('aria-expanded', 'false');
         } else {
           item.setAttribute('data-open', 'true');
           content?.classList.remove('hidden');
+          trigger?.setAttribute('aria-expanded', 'true');
         }
       });
     });

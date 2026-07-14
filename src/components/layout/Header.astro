@@ -1,12 +1,11 @@
 ---
 import { navigation, siteConfig } from '../../data/site';
 import Button from '../ui/Button.astro';
-import ThemeToggle from '../ui/ThemeToggle.astro';
 import Icon from '../ui/Icon.astro';
 ---
 
 <header class="fixed z-50 w-full px-2" id="header">
-  <nav class="group" data-scrolled="false">
+  <nav class="group" data-scrolled="false" aria-label="Primary">
     <!-- Inner container: full-width → shrinks to pill on scroll -->
     <div
       id="nav-inner"
@@ -15,36 +14,40 @@ import Icon from '../ui/Icon.astro';
       <div class="relative flex flex-wrap items-center justify-between gap-6 pt-3 pb-6 lg:gap-0 lg:py-4">
 
         <!-- Logo -->
-        <a href="/" class="flex items-center gap-2.5 group/logo z-10">
+        <a href="/" class="flex items-center gap-2.5 group/logo z-10" aria-label="SoCal Web Experts home">
           <img
             src="/logo-white.png"
-            alt="SoCal Web Experts"
-            class="dark-logo"
-            style="height: 96px; width: auto;"
-          />
-          <img
-            src="/logo-black.png"
-            alt="SoCal Web Experts"
-            class="light-logo"
+            alt=""
+            aria-hidden="true"
             style="height: 96px; width: auto;"
           />
         </a>
 
         <!-- Desktop Navigation -->
         <div class="absolute inset-0 m-auto hidden size-fit lg:block">
-          <ul class="flex gap-1 text-sm">
+          <ul class="flex gap-1 text-sm" role="menubar">
             {navigation.map((item) => (
               item.children ? (
-                <li class="relative group/dd">
-                  <button class="flex items-center gap-1.5 px-4 py-2 text-[13px] tracking-wide uppercase font-medium text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors duration-300">
+                <li class="relative group/dd" role="none" data-nav-dropdown>
+                  <button
+                    type="button"
+                    class="flex items-center gap-1.5 px-4 py-2 text-[13px] tracking-wide uppercase font-medium text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors duration-300"
+                    aria-expanded="false"
+                    aria-haspopup="true"
+                    data-nav-dropdown-trigger
+                  >
                     {item.label}
                     <Icon name="chevron-down" size={12} class="transition-transform duration-300 group-hover/dd:rotate-180" />
                   </button>
-                  <div class="absolute top-full left-0 pt-3 opacity-0 invisible group-hover/dd:opacity-100 group-hover/dd:visible transition-all duration-300 translate-y-1 group-hover/dd:translate-y-0">
+                  <div
+                    class="absolute top-full left-0 pt-3 opacity-0 invisible group-hover/dd:opacity-100 group-hover/dd:visible group-focus-within/dd:opacity-100 group-focus-within/dd:visible transition-all duration-300 translate-y-1 group-hover/dd:translate-y-0 group-focus-within/dd:translate-y-0"
+                    role="menu"
+                  >
                     <div class="bg-[var(--bg)] border border-[var(--border)] rounded-2xl shadow-2xl shadow-black/20 py-2 min-w-[200px] backdrop-blur-xl">
                       {item.children.map((child) => (
                         <a
                           href={child.href}
+                          role="menuitem"
                           class="block px-4 py-2.5 text-sm text-[var(--text-secondary)] hover:text-primary-500 hover:bg-[var(--bg-secondary)] transition-all duration-200"
                         >
                           {child.label}
@@ -54,9 +57,10 @@ import Icon from '../ui/Icon.astro';
                   </div>
                 </li>
               ) : (
-                <li>
+                <li role="none">
                   <a
                     href={item.href}
+                    role="menuitem"
                     class="block px-4 py-2 text-[13px] tracking-wide uppercase font-medium text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors duration-300"
                   >
                     {item.label}
@@ -69,12 +73,10 @@ import Icon from '../ui/Icon.astro';
 
         <!-- Right Side -->
         <div class="flex items-center gap-2">
-          <ThemeToggle class="hidden sm:flex" />
-
           <a
             href="/contact"
             id="header-cta"
-            class="text-sm font-medium px-5 py-2.5 rounded-md bg-primary-500 text-white transition-all duration-150 shadow-[3px_3px_0px_0px_#3F6212] hover:shadow-[1px_1px_0px_0px_#3F6212] hover:translate-x-[2px] hover:translate-y-[2px]"
+            class="text-sm font-medium px-5 py-2.5 rounded-md bg-primary-500 text-on-primary transition-all duration-150 shadow-[3px_3px_0px_0px_#A35139] hover:shadow-[1px_1px_0px_0px_#A35139] hover:translate-x-[2px] hover:translate-y-[2px]"
           >
             Get Started
           </a>
@@ -82,8 +84,11 @@ import Icon from '../ui/Icon.astro';
           <!-- Mobile menu button -->
           <button
             id="mobile-menu-btn"
+            type="button"
             class="lg:hidden p-2.5 rounded-xl text-[var(--text)] hover:bg-[var(--bg-secondary)] transition-colors z-10"
-            aria-label="Toggle menu"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobile-menu"
           >
             <Icon name="menu" size={22} class="menu-icon" />
             <Icon name="close" size={22} class="close-icon hidden" />
@@ -94,11 +99,18 @@ import Icon from '../ui/Icon.astro';
   </nav>
 
   <!-- Mobile Menu – Full Screen -->
-  <div id="mobile-menu" class="lg:hidden fixed inset-0 bg-[var(--bg)] z-40 hidden opacity-0 transition-opacity duration-300">
+  <div
+    id="mobile-menu"
+    class="lg:hidden fixed inset-0 bg-[var(--bg)] z-40 hidden opacity-0 transition-opacity duration-300"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-label="Mobile navigation"
+  >
     <div class="flex flex-col h-full py-24 px-8 overflow-y-auto">
-      <!-- Close Button -->
       <button
         id="mobile-menu-close"
+        type="button"
         class="absolute top-5 right-5 p-2.5 rounded-xl text-[var(--text)] hover:bg-[var(--bg-secondary)] transition-colors z-50"
         aria-label="Close menu"
       >
@@ -106,13 +118,16 @@ import Icon from '../ui/Icon.astro';
       </button>
 
       <!-- Navigation -->
-      <nav class="flex-1 flex flex-col justify-center -mt-16">
+      <nav class="flex-1 flex flex-col justify-center -mt-16" aria-label="Mobile">
         {navigation.map((item, idx) => (
           item.children ? (
             <div class="mb-4 mobile-nav-item">
               <button
+                type="button"
                 class="mobile-nav-link mobile-dropdown-trigger w-full flex items-center justify-between py-4 text-3xl font-bold text-[var(--text)] hover:text-primary-500 transition-colors"
                 data-dropdown={`dropdown-${idx}`}
+                aria-expanded="false"
+                aria-controls={`dropdown-${idx}`}
                 style={`animation-delay: ${idx * 60}ms`}
               >
                 <span>{item.label}</span>
@@ -146,10 +161,6 @@ import Icon from '../ui/Icon.astro';
 
       <!-- Bottom Section -->
       <div class="border-t border-[var(--border)] py-8 space-y-5">
-        <div class="flex items-center justify-between">
-          <span class="text-sm text-[var(--text-secondary)]">Theme</span>
-          <ThemeToggle />
-        </div>
         <a
           href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}
           class="flex items-center gap-2 text-[var(--text)]"
@@ -218,54 +229,53 @@ import Icon from '../ui/Icon.astro';
   }
 </style>
 
-<style>
-  .dark-logo { display: block !important; }
-  .light-logo { display: none !important; }
-  :global(.light) .dark-logo { display: none !important; }
-  :global(.light) .light-logo { display: block !important; }
-
-  /* Light mode pill bg */
-  :global(.light) #nav-inner.scrolled {
-    background: rgba(250, 250, 250, 0.75);
-  }
-</style>
-
 <script>
-  function closeMobileMenu() {
+  function setMobileMenuState(open) {
     const menu = document.getElementById('mobile-menu');
-    const menuIcon = document.querySelector('.menu-icon');
-    const closeIcon = document.querySelector('.close-icon');
+    const btn = document.getElementById('mobile-menu-btn');
+    const menuIcon = btn?.querySelector('.menu-icon');
+    const closeIcon = btn?.querySelector('.close-icon');
     const body = document.body;
 
-    if (menu) {
+    if (!menu || !btn || !menuIcon || !closeIcon) return;
+
+    if (open) {
+      menu.classList.remove('hidden');
+      requestAnimationFrame(() => { menu.classList.add('open'); });
+      menuIcon.classList.add('hidden');
+      closeIcon.classList.remove('hidden');
+      menu.setAttribute('aria-hidden', 'false');
+      btn.setAttribute('aria-expanded', 'true');
+      btn.setAttribute('aria-label', 'Close menu');
+      body.style.overflow = 'hidden';
+      const firstFocusable = menu.querySelector('a, button, input, select, textarea');
+      if (firstFocusable instanceof HTMLElement) firstFocusable.focus();
+    } else {
       menu.classList.remove('open');
+      menu.setAttribute('aria-hidden', 'true');
+      btn.setAttribute('aria-expanded', 'false');
+      btn.setAttribute('aria-label', 'Open menu');
       setTimeout(() => { menu.classList.add('hidden'); }, 300);
-      if (menuIcon) menuIcon.classList.remove('hidden');
-      if (closeIcon) closeIcon.classList.add('hidden');
+      menuIcon.classList.remove('hidden');
+      closeIcon.classList.add('hidden');
       body.style.overflow = '';
+      btn.focus();
     }
+  }
+
+  function closeMobileMenu() {
+    setMobileMenuState(false);
   }
 
   function initMobileMenu() {
     const btn = document.getElementById('mobile-menu-btn');
     const closeBtn = document.getElementById('mobile-menu-close');
     const menu = document.getElementById('mobile-menu');
-    const menuIcon = btn?.querySelector('.menu-icon');
-    const closeIcon = btn?.querySelector('.close-icon');
-    const body = document.body;
 
-    if (btn && menu && menuIcon && closeIcon) {
+    if (btn && menu) {
       btn.addEventListener('click', () => {
-        const isHidden = menu.classList.contains('hidden');
-        if (isHidden) {
-          menu.classList.remove('hidden');
-          requestAnimationFrame(() => { menu.classList.add('open'); });
-          menuIcon.classList.add('hidden');
-          closeIcon.classList.remove('hidden');
-          body.style.overflow = 'hidden';
-        } else {
-          closeMobileMenu();
-        }
+        const isOpen = btn.getAttribute('aria-expanded') === 'true';
+        setMobileMenuState(!isOpen);
       });
     }
 
@@ -276,6 +286,12 @@ import Icon from '../ui/Icon.astro';
     if (menu) {
       menu.querySelectorAll('a.mobile-nav-link, .mobile-dropdown-content a').forEach(link => {
         link.addEventListener('click', () => { closeMobileMenu(); });
+      });
+
+      menu.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          closeMobileMenu();
+        }
       });
     }
 
@@ -290,20 +306,28 @@ import Icon from '../ui/Icon.astro';
         if (dropdown) {
           const isOpen = dropdown.classList.contains('open');
           document.querySelectorAll('.mobile-dropdown-content').forEach(dd => {
-            if (dd !== dropdown) { dd.classList.remove('open'); dd.classList.add('hidden'); }
+            if (dd !== dropdown) {
+              dd.classList.remove('open');
+              dd.classList.add('hidden');
+            }
           });
           document.querySelectorAll('.mobile-dropdown-trigger').forEach(tr => {
-            if (tr !== trigger) { tr.classList.remove('active'); }
+            if (tr !== trigger) {
+              tr.classList.remove('active');
+              tr.setAttribute('aria-expanded', 'false');
+            }
           });
 
           if (isOpen) {
             dropdown.classList.remove('open');
             dropdown.classList.add('hidden');
             trigger.classList.remove('active');
+            trigger.setAttribute('aria-expanded', 'false');
           } else {
             dropdown.classList.remove('hidden');
             requestAnimationFrame(() => { dropdown.classList.add('open'); });
             trigger.classList.add('active');
+            trigger.setAttribute('aria-expanded', 'true');
           }
         }
       });
@@ -322,11 +346,31 @@ import Icon from '../ui/Icon.astro';
     onScroll();
   }
 
+  function initDesktopDropdownA11y() {
+    document.querySelectorAll('[data-nav-dropdown]').forEach((parent) => {
+      const trigger = parent.querySelector('[data-nav-dropdown-trigger]');
+      if (!trigger) return;
+
+      parent.addEventListener('mouseenter', () => trigger.setAttribute('aria-expanded', 'true'));
+      parent.addEventListener('mouseleave', () => trigger.setAttribute('aria-expanded', 'false'));
+      parent.addEventListener('focusin', () => trigger.setAttribute('aria-expanded', 'true'));
+      parent.addEventListener('focusout', () => {
+        window.setTimeout(() => {
+          if (!parent.contains(document.activeElement)) {
+            trigger.setAttribute('aria-expanded', 'false');
+          }
+        }, 0);
+      });
+    });
+  }
+
   initMobileMenu();
   initHeaderScroll();
+  initDesktopDropdownA11y();
 
   document.addEventListener('astro:after-swap', () => {
     initMobileMenu();
     initHeaderScroll();
+    initDesktopDropdownA11y();
   });
 </script>

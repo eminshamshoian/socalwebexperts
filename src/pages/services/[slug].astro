@@ -15,118 +15,123 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 const { service } = Astro.props as { service: Service };
-const relatedServices = services.filter(s => s.id !== service.id).slice(0, 3);
-
-const shapes = [
-  `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M120 0 A120 120 0 0 1 0 120" stroke="currentColor" stroke-width="0.6"/><path d="M90 0 A90 90 0 0 1 0 90" stroke="currentColor" stroke-width="0.4"/></svg>`,
-  `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="60" cy="60" r="55" stroke="currentColor" stroke-width="0.6"/><circle cx="60" cy="60" r="30" stroke="currentColor" stroke-width="0.4"/></svg>`,
-  `<svg viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 60 Q30 10, 60 60 T120 60" stroke="currentColor" stroke-width="0.6"/><path d="M0 80 Q30 30, 60 80 T120 80" stroke="currentColor" stroke-width="0.4"/></svg>`,
-];
+const relatedServices = services.filter((item) => item.id !== service.id);
+const layoutClass = `service-page service-page--${service.layout}`;
 ---
 
 <BaseLayout
   title={`${service.title} | SoCal Web Experts`}
   description={service.description}
 >
-  <section class="py-24 md:py-32">
+  <section class={`${layoutClass} py-20 md:py-28`}>
     <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">
-      <!-- Back link -->
-      <a href="/#services" class="type-caption inline-flex items-center gap-1.5 hover:text-[var(--text)] transition-colors mb-12 fade-in">
-        <Icon name="chevron-right" size={14} class="rotate-180" />
-        Services
-      </a>
-
-      <!-- Header -->
-      <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 md:mb-24">
-        <div class="fade-in" style="animation-delay: 0.05s;">
-          <p class="type-eyebrow mb-6">
-            {service.title}
-          </p>
-          <h1 class="text-[var(--text)]">
-            {service.title}
-          </h1>
+      <!-- Hero -->
+      <header class={`service-hero fade-in service-hero--${service.layout}`}>
+        <div class="service-hero__copy">
+          <p class="type-eyebrow mb-6">{service.title}</p>
+          <h1 class="text-[var(--text)] max-w-4xl">{service.heroHeadline}</h1>
+          <p class="type-lead mt-6 max-w-2xl">{service.description}</p>
+          <div class="flex flex-wrap gap-3 mt-8">
+            <Button href="/contact" size="lg">
+              Book a Free Strategy Call
+              <Icon name="arrow-right" size={16} />
+            </Button>
+            <Button href="/pricing" variant="secondary" size="lg">
+              View Pricing
+            </Button>
+          </div>
         </div>
-        <div class="flex items-end fade-in" style="animation-delay: 0.1s;">
-          <p class="type-lead max-w-lg">
-            {service.description}
-          </p>
-        </div>
-      </div>
+        {service.layout === 'split' && (
+          <div class="service-hero__media fade-in" style="animation-delay: 0.08s;">
+            <img
+              src={service.highlights[0]?.image}
+              alt={service.highlights[0]?.imageAlt || service.title}
+              class="service-hero__image"
+              loading="eager"
+            />
+          </div>
+        )}
+      </header>
 
-      <!-- Features + CTA -->
-      <div class="grid lg:grid-cols-[2fr_1fr] gap-12 lg:gap-16">
-        <!-- Features as visual blocks -->
-        <div class="fade-in" style="animation-delay: 0.15s;">
-          <div class="features-grid">
-            {service.features.map((feature, index) => (
-              <div class="group/f relative overflow-hidden border border-[var(--border)] rounded-sm p-5 md:p-6 transition-all duration-400 hover:border-primary-500/30">
-                <div
-                  class="absolute -bottom-3 -right-3 w-16 h-16 pointer-events-none feature-shape"
-                  aria-hidden="true"
-                  set:html={shapes[index % shapes.length]}
-                />
-                <div class="relative z-10 flex items-start gap-3">
-                  <span class="w-1.5 h-1.5 rounded-full bg-primary-500 mt-2 shrink-0"></span>
-                  <span class="text-sm md:text-base leading-relaxed text-[var(--text)]">
-                    {feature}
-                  </span>
+      <!-- Highlight row -->
+      <div class={`service-highlights service-highlights--${service.layout} mt-16 md:mt-24`}>
+        {service.highlights.map((item, index) => (
+          <article
+            class="service-highlight fade-in"
+            style={`animation-delay: ${0.08 + index * 0.05}s`}
+          >
+            {service.layout === 'media-first' ? (
+              <>
+                <div class="service-highlight__media">
+                  <img src={item.image} alt={item.imageAlt} loading="lazy" />
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Sticky CTA -->
-        <div class="fade-in" style="animation-delay: 0.2s;">
-          <div class="lg:sticky lg:top-32">
-            <p class="type-emphasis pb-6">
-              Ready to get started?
-            </p>
-            <div class="flex flex-col gap-3">
-              <Button href="/contact" size="lg">
-                Book a Free Strategy Call
-                <Icon name="arrow-right" size={16} />
-              </Button>
-              <Button href="/pricing" variant="secondary" size="lg">
-                View Pricing
-              </Button>
-            </div>
-          </div>
-        </div>
+                <h2 class="service-highlight__title">{item.title}</h2>
+                <p class="service-highlight__desc">{item.description}</p>
+              </>
+            ) : (
+              <>
+                <h2 class="service-highlight__title">{item.title}</h2>
+                <div class="service-highlight__media">
+                  <img src={item.image} alt={item.imageAlt} loading="lazy" />
+                </div>
+                <p class="service-highlight__desc">{item.description}</p>
+              </>
+            )}
+          </article>
+        ))}
       </div>
     </div>
   </section>
 
-  <!-- Related Services -->
-  <section class="py-16 md:py-24">
+  <!-- Details / services grid -->
+  <section class="pb-20 md:pb-28">
     <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">
-      <h2 class="type-subheading mb-10 fade-in">
-        Related services
-      </h2>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {relatedServices.map((related, index) => (
-          <a
-            href={`/services/${related.slug}`}
-            class="group relative flex items-start gap-4 p-5 md:p-6 border border-[var(--border)] rounded-sm overflow-hidden transition-all duration-400 hover:border-primary-500/30 fade-in"
-            style={`animation-delay: ${index * 0.05}s`}
+      <div class={`service-details-head service-details-head--${service.layout} fade-in mb-10 md:mb-14`}>
+        <p class="type-eyebrow mb-4">Services</p>
+        <h2 class="text-[var(--text)] max-w-3xl">
+          {service.layout === 'classic' && 'Everything you need to launch a site that brings customers.'}
+          {service.layout === 'media-first' && 'A practical social system that keeps your brand present.'}
+          {service.layout === 'split' && 'Paid search built around leads, not vanity metrics.'}
+        </h2>
+      </div>
+
+      <div class={`service-details-grid service-details-grid--${service.layout}`}>
+        {service.details.map((detail, index) => (
+          <article
+            class="service-detail fade-in"
+            style={`animation-delay: ${0.08 + index * 0.04}s`}
           >
-            <div
-              class="absolute -bottom-2 -right-2 w-20 h-20 pointer-events-none related-shape"
-              aria-hidden="true"
-              set:html={shapes[index % shapes.length]}
-            />
-            <Icon name={related.icon} size={18} class="text-primary-500 shrink-0 mt-0.5 relative z-10" />
-            <div class="relative z-10">
-              <h3 class="type-card-title group-hover:text-primary-500 transition-colors">
-                {related.title}
-              </h3>
-              <p class="type-body-card mt-1">
-                {related.shortDescription}
-              </p>
+            <div class="service-detail__icon" aria-hidden="true">
+              <Icon name={detail.icon} size={18} />
             </div>
-          </a>
+            <h3 class="service-detail__title">{detail.title}</h3>
+            <p class="service-detail__desc">{detail.description}</p>
+          </article>
         ))}
       </div>
+
+      <!-- Related -->
+      {relatedServices.length > 0 && (
+        <div class="mt-16 md:mt-24 fade-in">
+          <h2 class="type-subheading mb-8">Explore related services</h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {relatedServices.map((related) => (
+              <a
+                href={`/services/${related.slug}`}
+                class="group flex items-start gap-4 border border-[var(--border)] rounded-xl p-5 md:p-6 bg-[var(--bg-secondary)] transition-colors hover:border-primary-500/35"
+              >
+                <span class="service-detail__icon shrink-0" aria-hidden="true">
+                  <Icon name={related.icon} size={18} />
+                </span>
+                <span>
+                  <span class="block type-card-title group-hover:text-primary-500 transition-colors">{related.title}</span>
+                  <span class="block type-body-card mt-2">{related.shortDescription}</span>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   </section>
 
@@ -134,35 +139,186 @@ const shapes = [
 </BaseLayout>
 
 <style>
-  .features-grid {
+  .service-hero {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .service-hero--split {
+    align-items: end;
+  }
+
+  @media (min-width: 1024px) {
+    .service-hero--split {
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+    }
+  }
+
+  .service-hero__image {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+  }
+
+  .service-hero--classic .service-hero__copy,
+  .service-hero--media-first .service-hero__copy {
+    max-width: 52rem;
+  }
+
+  .service-highlights {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 2rem 1.25rem;
   }
 
   @media (min-width: 640px) {
-    .features-grid {
+    .service-highlights {
       grid-template-columns: repeat(2, 1fr);
     }
   }
 
-  .feature-shape {
-    color: rgba(132, 204, 22, 0.04);
-    transition: color 0.5s ease, transform 0.5s ease;
+  @media (min-width: 1024px) {
+    .service-highlights--classic,
+    .service-highlights--media-first {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+    }
+
+    .service-highlights--split {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 2rem;
+    }
   }
 
-  .group\/f:hover .feature-shape {
-    color: rgba(132, 204, 22, 0.1);
-    transform: rotate(10deg) scale(1.15);
+  .service-highlight {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
   }
 
-  .related-shape {
-    color: rgba(132, 204, 22, 0.04);
-    transition: color 0.5s ease, transform 0.5s ease;
+  .service-highlights--media-first .service-highlight {
+    gap: 0.85rem;
   }
 
-  .group:hover .related-shape {
-    color: rgba(132, 204, 22, 0.08);
-    transform: rotate(10deg);
+  .service-highlight__title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .service-highlight__media {
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    aspect-ratio: 1 / 1.05;
+  }
+
+  .service-highlights--split .service-highlight__media {
+    aspect-ratio: 16 / 10;
+  }
+
+  .service-highlight__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .service-highlight__desc {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
+  }
+
+  .service-details-head--media-first {
+    text-align: left;
+  }
+
+  .service-details-head--split {
+    max-width: 40rem;
+  }
+
+  .service-details-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  @media (min-width: 768px) {
+    .service-details-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .service-details-grid--classic,
+    .service-details-grid--media-first {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .service-details-grid--split {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .service-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    min-height: 100%;
+    padding: 1.35rem 1.25rem 1.25rem;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    background: var(--bg-secondary);
+  }
+
+  .service-details-grid--media-first .service-detail {
+    padding-top: 1.5rem;
+  }
+
+  .service-details-grid--split .service-detail {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 1rem 1.1rem;
+  }
+
+  .service-details-grid--split .service-detail__title,
+  .service-details-grid--split .service-detail__desc {
+    width: calc(100% - 3rem);
+    margin-left: auto;
+  }
+
+  .service-detail__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.35rem;
+    height: 2.35rem;
+    border-radius: 9999px;
+    background: var(--color-primary-500);
+    color: var(--color-on-primary, #1B2632);
+  }
+
+  .service-detail__title {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .service-detail__desc {
+    margin: 0;
+    flex: 1;
+    font-size: 0.9375rem;
+    line-height: 1.65;
+    color: var(--text-secondary);
   }
 </style>

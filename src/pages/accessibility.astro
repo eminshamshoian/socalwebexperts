@@ -1,0 +1,94 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LegalDocument from '../components/layout/LegalDocument.astro';
+import { siteConfig } from '../data/site';
+
+const lastUpdated = 'July 13, 2026';
+---
+
+<BaseLayout
+  title={`Accessibility Statement | ${siteConfig.name}`}
+  description="How SoCal Web Experts designs and maintains accessible websites in line with WCAG 2.1 and ADA best practices."
+>
+  <LegalDocument
+    eyebrow="Accessibility"
+    title="Accessibility statement"
+    description="We are committed to making our website usable for people of all abilities and to supporting clients who need accessible digital experiences."
+    lastUpdated={lastUpdated}
+  >
+    <section aria-labelledby="access-commitment">
+      <h2 id="access-commitment">Our commitment</h2>
+      <p>
+        {siteConfig.name} strives to meet or exceed the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA.
+        We also follow recognized practices under the Americans with Disabilities Act (ADA) and applicable California accessibility requirements.
+      </p>
+      <p>
+        Accessibility is an ongoing effort. We review our site regularly, fix issues when they are reported, and apply accessibility standards to client work where requested or required.
+      </p>
+    </section>
+
+    <section aria-labelledby="access-measures">
+      <h2 id="access-measures">Measures we take</h2>
+      <ul>
+        <li>Semantic HTML structure with clear headings and landmarks</li>
+        <li>Keyboard-accessible navigation, buttons, forms, and interactive components</li>
+        <li>Visible focus indicators for keyboard users</li>
+        <li>Text alternatives for meaningful images and decorative handling where appropriate</li>
+        <li>Sufficient color contrast in the default dark theme</li>
+        <li>Form labels, instructions, and error messaging on contact and lead forms</li>
+        <li>Support for reduced motion preferences where animations are used</li>
+        <li>Responsive layouts that work across screen sizes and zoom levels</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="access-conformance">
+      <h2 id="access-conformance">Conformance status</h2>
+      <p>
+        This website is partially conformant with WCAG 2.1 Level AA. Partially conformant means that some parts of the content may not fully conform to the accessibility standard.
+        We are actively working to close known gaps and improve the experience over time.
+      </p>
+    </section>
+
+    <section aria-labelledby="access-assistive">
+      <h2 id="access-assistive">Assistive technology and compatibility</h2>
+      <p>
+        Our site is designed to work with current versions of major browsers and common assistive technologies, including screen readers and keyboard-only navigation.
+        If you use assistive technology and encounter a barrier, please tell us what you were trying to do, which page you were on, and which browser or assistive tool you were using.
+      </p>
+    </section>
+
+    <section aria-labelledby="access-feedback">
+      <h2 id="access-feedback">Feedback and accommodation requests</h2>
+      <p>
+        We welcome accessibility feedback. If you need information from this site in an alternative format, or if you cannot access any part of it, contact us using the details below.
+        Please include:
+      </p>
+      <ul>
+        <li>Your name and preferred contact method</li>
+        <li>The page or feature involved</li>
+        <li>A description of the issue or accommodation needed</li>
+      </ul>
+      <p>
+        We aim to acknowledge accessibility requests within two business days and to provide a substantive response or remediation plan as quickly as possible.
+      </p>
+    </section>
+
+    <section aria-labelledby="access-enforcement">
+      <h2 id="access-enforcement">Formal complaints</h2>
+      <p>
+        If you are not satisfied with our response, you may contact us again with additional detail.
+        You may also have the right to file a complaint with the U.S. Department of Justice or pursue remedies available under federal or state law.
+      </p>
+    </section>
+
+    <section aria-labelledby="access-contact">
+      <h2 id="access-contact">Accessibility contact</h2>
+      <p>
+        Accessibility coordinator: {siteConfig.name}<br />
+        Email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a><br />
+        Phone: <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}>{siteConfig.phone}</a><br />
+        {siteConfig.address && <>Mailing location: {siteConfig.address}</>}
+      </p>
+    </section>
+  </LegalDocument>
+</BaseLayout>

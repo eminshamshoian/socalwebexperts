@@ -4,6 +4,7 @@ import type {
   PortfolioItem,
   PricingModel,
   FAQItem,
+  YelpReview,
   ProcessStep,
   NavItem,
   ValueProp,
@@ -16,7 +17,7 @@ export const siteConfig: SiteConfig = {
   name: 'SoCal Web Experts',
   tagline: 'Websites That Bring You Customers',
   description: 'Fast, secure, SEO-focused websites built to rank on Google and convert visitors into calls, quote requests, and booked jobs.',
-  phone: '(818) 967-2609',
+  phone: '(747) 221-6603',
   email: 'hello@socalwebexperts.com',
   address: 'Los Angeles, California',
   url: 'https://socalwebexperts.com', // Update with your actual domain
@@ -55,8 +56,10 @@ export const services: Service[] = [
       'Tailored sites built for your brand, with clear service messaging, strong calls-to-action, and a mobile-first experience that turns visitors into leads.',
     description:
       'We design and build custom websites that reflect your business and make it easy for people to trust you and take action. Every page is structured for clarity and conversion: service-focused copy, proof where it matters, and fast, polished UX on every device.',
+    heroHeadline: 'Websites that look sharp and turn visitors into customers.',
     icon: 'code',
     slug: 'web-design',
+    layout: 'classic',
     features: [
       'Custom layout and visual design for your brand',
       'Mobile-first, conversion-focused page structure',
@@ -66,6 +69,64 @@ export const services: Service[] = [
       'Performance-minded build: fast loads and clean UX',
       'Launch support so you are confident going live',
     ],
+    highlights: [
+      {
+        title: 'Brand-First Design',
+        description: 'Layouts and visuals shaped around your business so the site feels uniquely yours, not template-made.',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80',
+        imageAlt: 'Designer reviewing website analytics on a laptop',
+      },
+      {
+        title: 'Conversion Structure',
+        description: 'Clear service pages, proof, and calls to action placed where visitors are ready to take the next step.',
+        image: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=900&q=80',
+        imageAlt: 'Person designing a website interface on a computer',
+      },
+      {
+        title: 'Mobile-Ready UX',
+        description: 'Fast, polished experiences on every screen so local customers can call or inquire without friction.',
+        image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=80',
+        imageAlt: 'Smartphone showing a clean mobile website',
+      },
+      {
+        title: 'Launch Support',
+        description: 'From final polish to go-live, we keep the process clear so you launch with confidence.',
+        image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80',
+        imageAlt: 'Team collaborating on a digital project',
+      },
+    ],
+    details: [
+      {
+        title: 'Custom Site Builds',
+        description: 'Purpose-built pages for your services, locations, and offers with a clean visual system.',
+        icon: 'code',
+      },
+      {
+        title: 'Lead-Focused Layouts',
+        description: 'Forms, click-to-call, and booking paths designed to capture inquiries from real customers.',
+        icon: 'target',
+      },
+      {
+        title: 'Performance & SEO Basics',
+        description: 'Fast loads, clean structure, and indexing fundamentals that help you compete locally.',
+        icon: 'zap',
+      },
+      {
+        title: 'Trust & Proof Blocks',
+        description: 'Reviews, credentials, and portfolio moments placed where they strengthen the decision.',
+        icon: 'shield',
+      },
+      {
+        title: 'Content Guidance',
+        description: 'Messaging that answers what customers actually need to know before they contact you.',
+        icon: 'edit',
+      },
+      {
+        title: 'Done-for-You Launch',
+        description: 'We handle the handoff from draft to live site so nothing important gets missed.',
+        icon: 'rocket',
+      },
+    ],
   },
   {
     id: 'social-media',
@@ -73,9 +134,11 @@ export const services: Service[] = [
     shortDescription:
       'Consistent presence and on-brand content so you stay visible, credible, and top-of-mind alongside your website and ads.',
     description:
-      'Social media marketing keeps your business in front of the right audience with a steady rhythm of posts and messaging that matches your brand. We focus on trust and familiarity—so when someone needs your service, they already know who you are.',
+      'Social media marketing keeps your business in front of the right audience with a steady rhythm of posts and messaging that matches your brand. We focus on trust and familiarity, so when someone needs your service, they already know who you are.',
+    heroHeadline: 'Stay visible, stay trusted, stay top of mind.',
     icon: 'share',
     slug: 'social-media',
+    layout: 'media-first',
     features: [
       'Profile optimization and visual consistency with your brand',
       'Content planning aligned to your services and promotions',
@@ -85,6 +148,64 @@ export const services: Service[] = [
       'Cross-channel alignment with your website and offers',
       'Light reporting on what is working and what to adjust',
     ],
+    highlights: [
+      {
+        title: 'On-Brand Presence',
+        description: 'Profiles and visuals that match your website so customers recognize you everywhere they look.',
+        image: 'https://images.unsplash.com/photo-1611926653458-09294b3142bf?auto=format&fit=crop&w=900&q=80',
+        imageAlt: 'Person managing social media on a phone',
+      },
+      {
+        title: 'Content Rhythm',
+        description: 'A practical posting cadence that keeps your channels active without sounding forced.',
+        image: 'https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=900&q=80',
+        imageAlt: 'Social media content planning on a desk',
+      },
+      {
+        title: 'Message Clarity',
+        description: 'Captions and hooks that explain what you do and why customers should choose you.',
+        image: 'https://images.unsplash.com/photo-1554177255-61502b352de3?auto=format&fit=crop&w=900&q=80',
+        imageAlt: 'Creator reviewing content on a laptop',
+      },
+      {
+        title: 'Local Familiarity',
+        description: 'Content aimed at the people nearby who are most likely to need your services.',
+        image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80',
+        imageAlt: 'Team reviewing campaign creative together',
+      },
+    ],
+    details: [
+      {
+        title: 'Profile Setup',
+        description: 'Clean branding, bio clarity, and visuals that match the rest of your digital presence.',
+        icon: 'users',
+      },
+      {
+        title: 'Content Planning',
+        description: 'Monthly themes tied to your services, offers, and seasonal demand.',
+        icon: 'palette',
+      },
+      {
+        title: 'Posting & Scheduling',
+        description: 'Consistent publishing so your audience sees you regularly, not randomly.',
+        icon: 'share',
+      },
+      {
+        title: 'Creative Direction',
+        description: 'Hooks, captions, and visual guidance that keep posts useful and on brand.',
+        icon: 'edit',
+      },
+      {
+        title: 'Engagement Support',
+        description: 'Practical guidance for replies and community touches that build trust.',
+        icon: 'check-circle',
+      },
+      {
+        title: 'Simple Reporting',
+        description: 'Clear notes on what is working so you know what to keep and what to adjust.',
+        icon: 'bar-chart',
+      },
+    ],
   },
   {
     id: 'google-ads',
@@ -92,9 +213,11 @@ export const services: Service[] = [
     shortDescription:
       'Paid search campaigns aimed at high-intent local leads, with careful targeting, tracking, and ongoing optimization so your budget works harder.',
     description:
-      'Google Ads puts your business in front of people who are actively searching for what you offer. We handle campaign structure, geo and audience targeting, ad copy, and conversion tracking—then refine based on real lead data, not guesswork.',
+      'Google Ads puts your business in front of people who are actively searching for what you offer. We handle campaign structure, geo and audience targeting, ad copy, and conversion tracking, then refine based on real lead data, not guesswork.',
+    heroHeadline: 'Reach people already searching for what you offer.',
     icon: 'target',
     slug: 'google-ads',
+    layout: 'split',
     features: [
       'Search campaign setup tailored to your services and area',
       'Keyword and match-type strategy for qualified traffic',
@@ -103,6 +226,64 @@ export const services: Service[] = [
       'Conversion tracking tied to calls, forms, and goals',
       'Budget and bid management with clear priorities',
       'Regular optimization and performance summaries',
+    ],
+    highlights: [
+      {
+        title: 'High-Intent Targeting',
+        description: 'Campaigns aimed at people searching for your services in the areas you actually serve.',
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80',
+        imageAlt: 'Analytics dashboard showing campaign performance',
+      },
+      {
+        title: 'Ad Copy That Converts',
+        description: 'Clear messaging and extensions that earn the click and set the right expectations.',
+        image: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=900&q=80',
+        imageAlt: 'Marketer planning paid search strategy',
+      },
+      {
+        title: 'Tracking & Insights',
+        description: 'Calls, forms, and goals measured so optimization is based on real outcomes.',
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80',
+        imageAlt: 'Laptop with charts and conversion data',
+      },
+      {
+        title: 'Budget Control',
+        description: 'Spend directed toward the keywords and locations that bring qualified leads.',
+        image: 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=900&q=80',
+        imageAlt: 'Business planning budget and growth goals',
+      },
+    ],
+    details: [
+      {
+        title: 'Campaign Setup',
+        description: 'Search campaigns structured around your services, service area, and goals.',
+        icon: 'target',
+      },
+      {
+        title: 'Keyword Strategy',
+        description: 'Match types and terms chosen to attract qualified traffic, not random clicks.',
+        icon: 'search',
+      },
+      {
+        title: 'Local Targeting',
+        description: 'Geo and audience settings that keep spend focused where you want customers.',
+        icon: 'map-pin',
+      },
+      {
+        title: 'Conversion Tracking',
+        description: 'Calls, forms, and key actions connected so results are measurable.',
+        icon: 'trending-up',
+      },
+      {
+        title: 'Bid Management',
+        description: 'Budgets and bids adjusted around priorities that matter to your business.',
+        icon: 'bar-chart',
+      },
+      {
+        title: 'Ongoing Optimization',
+        description: 'Regular refinements and summaries based on real lead performance.',
+        icon: 'refresh-cw',
+      },
     ],
   },
 ];
@@ -231,6 +412,22 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
+// Verified Yelp review
+export const yelpReview: YelpReview = {
+  reviewId: 't3wCBOwua2fHxP_lnm-Rwg',
+  businessId: 'sF9nR-iGFXVFIVYoxv31Ug',
+  businessUrl: 'https://www.yelp.com/biz/socal-web-experts-glendale',
+  reviewUrl: 'https://www.yelp.com/biz/socal-web-experts-glendale?hrid=t3wCBOwua2fHxP_lnm-Rwg',
+  authorName: 'Adena M.',
+  authorProfileUrl: 'https://www.yelp.com/user_details?userid=6kVeiHHr-XIJKtIDKVVwIA',
+  location: 'Glendale, CA',
+  date: 'March 19, 2026',
+  rating: 5,
+  quote:
+    "SoCal Web Experts designed and created a website for my new clothing business. I'm very pleased and happy with their work and they delivered exactly what I asked for. Thank you for helping me build my brand and business and making the process of shopping easy and smooth for my clients. Appreciate the dedication and effort that was shown!",
+  badge: 'First to review on Yelp',
+};
+
 // Portfolio Items
 export const portfolioItems: PortfolioItem[] = [
   {
@@ -262,7 +459,7 @@ export const portfolioItems: PortfolioItem[] = [
     title: 'EV Design Studio',
     category: 'web-design',
     categoryLabel: 'Architecture',
-    image: '/portfolio/screencapture-evdesignstudio.jpg',
+    image: '/portfolio/screencapture-evdesignstudio-pages-dev.png',
     scrollableImage: true,
   },
   {

@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import LegalDocument from '../components/layout/LegalDocument.astro';
+import { siteConfig } from '../data/site';
+
+const lastUpdated = 'July 13, 2026';
+---
+
+<BaseLayout
+  title={`Terms of Service | ${siteConfig.name}`}
+  description="Terms of service for SoCal Web Experts website and digital services."
+>
+  <LegalDocument
+    eyebrow="Terms"
+    title="Terms of service"
+    description="These terms govern your use of our website and form the basis for how we provide web design, marketing, and related services to clients."
+    lastUpdated={lastUpdated}
+  >
+    <section aria-labelledby="terms-agreement">
+      <h2 id="terms-agreement">Agreement to terms</h2>
+      <p>
+        These Terms of Service ("Terms") apply to your access and use of the website operated by {siteConfig.name} ("Company," "we," "us," or "our").
+        By accessing or using the site, you agree to these Terms. If you do not agree, do not use the website.
+      </p>
+      <p>
+        Separate written agreements, proposals, statements of work, or invoices may govern specific client projects.
+        If there is a conflict between these Terms and a signed client agreement, the signed client agreement controls for that project.
+      </p>
+    </section>
+
+    <section aria-labelledby="terms-services">
+      <h2 id="terms-services">Services</h2>
+      <p>
+        We provide web design, development, hosting support, SEO foundations, social media marketing, paid advertising management, and related digital services for businesses.
+        Service scope, deliverables, timelines, and fees are defined in project-specific proposals or contracts.
+      </p>
+      <p>
+        Information on this website is for general marketing purposes and does not constitute a binding offer until confirmed in writing.
+      </p>
+    </section>
+
+    <section aria-labelledby="terms-acceptable">
+      <h2 id="terms-acceptable">Acceptable use</h2>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Use the website in violation of applicable law</li>
+        <li>Attempt to gain unauthorized access to our systems or data</li>
+        <li>Interfere with site security, performance, or availability</li>
+        <li>Scrape, harvest, or misuse site content without permission</li>
+        <li>Submit false, misleading, or harmful information through our forms</li>
+      </ul>
+    </section>
+
+    <section aria-labelledby="terms-ip">
+      <h2 id="terms-ip">Intellectual property</h2>
+      <p>
+        Unless otherwise stated, the website and its content, including text, graphics, logos, layouts, and branding, are owned by {siteConfig.name} or our licensors and are protected by intellectual property laws.
+        You may not copy, modify, distribute, or create derivative works from site content without our prior written consent, except for personal, non-commercial viewing or as permitted by law.
+      </p>
+      <p>
+        Client project ownership and license terms are defined in the applicable client agreement.
+      </p>
+    </section>
+
+    <section aria-labelledby="terms-third-party">
+      <h2 id="terms-third-party">Third-party links and tools</h2>
+      <p>
+        Our website may reference or link to third-party websites, platforms, or tools. We are not responsible for third-party content, policies, or practices.
+        Your use of third-party services is subject to their terms and privacy policies.
+      </p>
+    </section>
+
+    <section aria-labelledby="terms-disclaimer">
+      <h2 id="terms-disclaimer">Disclaimer of warranties</h2>
+      <p>
+        The website and its content are provided on an "as is" and "as available" basis without warranties of any kind, whether express or implied, including implied warranties of merchantability, fitness for a particular purpose, and non-infringement.
+        We do not warrant that the site will be uninterrupted, error-free, or free of harmful components.
+      </p>
+      <p>
+        We do not guarantee specific business results, search rankings, lead volume, or revenue outcomes from information presented on this site or from services generally.
+      </p>
+    </section>
+
+    <section aria-labelledby="terms-liability">
+      <h2 id="terms-liability">Limitation of liability</h2>
+      <p>
+        To the fullest extent permitted by law, {siteConfig.name} and its owners, employees, and contractors will not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to your use of the website.
+      </p>
+      <p>
+        Our total liability for claims arising out of or related to the website will not exceed one hundred U.S. dollars (US $100), except where liability cannot be limited under applicable law.
+      </p>
+    </section>
+
+    <section aria-labelledby="terms-indemnity">
+      <h2 id="terms-indemnity">Indemnification</h2>
+      <p>
+        You agree to indemnify and hold harmless {siteConfig.name} from claims, damages, losses, and expenses (including reasonable attorneys' fees) arising from your misuse of the website or violation of these Terms.
+      </p>
+    </section>
+
+    <section aria-labelledby="terms-governing">
+      <h2 id="terms-governing">Governing law</h2>
+      <p>
+        These Terms are governed by the laws of the State of California, without regard to conflict-of-law principles.
+        Any dispute arising from these Terms or use of the website will be brought in the state or federal courts located in California, and you consent to their jurisdiction.
+      </p>
+    </section>
+
+    <section aria-labelledby="terms-changes">
+      <h2 id="terms-changes">Changes to these terms</h2>
+      <p>
+        We may revise these Terms at any time by posting an updated version on this page.
+        The "Last updated" date indicates the latest revision. Your continued use of the website after changes become effective constitutes acceptance of the revised Terms.
+      </p>
+    </section>
+
+    <section aria-labelledby="terms-contact">
+      <h2 id="terms-contact">Contact</h2>
+      <p>
+        Questions about these Terms may be directed to:<br />
+        {siteConfig.name}<br />
+        Email: <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a><br />
+        Phone: <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}>{siteConfig.phone}</a><br />
+        {siteConfig.address && <>Location: {siteConfig.address}</>}
+      </p>
+    </section>
+  </LegalDocument>
+</BaseLayout>

@@ -10,7 +10,8 @@ const { class: className = '' } = Astro.props;
   id="theme-toggle"
   type="button"
   class={`relative p-2 rounded-lg bg-[var(--bg-secondary)] hover:bg-[var(--bg-tertiary)] transition-colors ${className}`}
-  aria-label="Toggle theme"
+  aria-label="Switch to light mode"
+  aria-pressed="false"
 >
   <!-- Sun Icon (shown in dark mode) -->
   <svg
@@ -59,10 +60,20 @@ const { class: className = '' } = Astro.props;
 </style>
 
 <script>
+  function updateThemeToggleState() {
+    const toggle = document.getElementById('theme-toggle');
+    if (!toggle) return;
+
+    const isLight = document.documentElement.classList.contains('light');
+    toggle.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+    toggle.setAttribute('aria-label', isLight ? 'Switch to dark mode' : 'Switch to light mode');
+  }
+
   function initThemeToggle() {
     const toggle = document.getElementById('theme-toggle');
     
     if (toggle) {
+      updateThemeToggleState();
       toggle.addEventListener('click', () => {
         const html = document.documentElement;
         const isLight = html.classList.contains('light');
@@ -74,6 +85,8 @@ const { class: className = '' } = Astro.props;
           html.classList.add('light');
           localStorage.setItem('socal-theme', 'light');
         }
+
+        updateThemeToggleState();
       });
     }
   }

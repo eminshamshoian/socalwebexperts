@@ -1,262 +1,33 @@
 ---
-import Icon from '../ui/Icon.astro';
-import { testimonials } from '../../data/site';
-
-// Split testimonials into columns for the vertical marquee
-const col1 = testimonials;
-const col2 = [...testimonials].reverse();
-const col3 = [...testimonials.slice(2), ...testimonials.slice(0, 2)];
-const col4 = [...testimonials.slice(4), ...testimonials.slice(0, 4)];
+import ReviewRatings from '../ui/ReviewRatings.astro';
+import YelpReview from '../ui/YelpReview.astro';
 ---
 
-<section class="py-24 md:py-32 overflow-hidden">
+<section class="py-24 md:py-32" aria-labelledby="testimonials-heading">
   <div class="w-full max-w-[1600px] mx-auto px-6 md:px-8">
-    <!-- Header -->
     <div class="max-w-3xl mx-auto mb-16 md:mb-20 flex flex-col items-center text-center">
       <div class="fade-in flex justify-center">
         <span class="type-eyebrow inline-flex items-center gap-2 mb-6">
           <span class="w-6 h-px bg-primary-500"></span>
-          Testimonials
+          Reviews
           <span class="w-6 h-px bg-primary-500"></span>
         </span>
       </div>
-      <h2 class="text-[var(--text)] fade-in text-center" style="animation-delay: 0.05s;">
-        What our partners say
+      <h2 id="testimonials-heading" class="text-[var(--text)] fade-in text-center" style="animation-delay: 0.05s;">
+        What customers say about us
       </h2>
       <p class="type-lead mt-6 max-w-xl mx-auto fade-in text-center" style="animation-delay: 0.1s;">
-        Real feedback from real businesses we've helped grow.
+        Real feedback from local business owners, including verified reviews on Yelp and Google.
       </p>
     </div>
 
-    <!-- 3D Marquee container -->
-    <div class="marquee-3d fade-in mx-auto" style="animation-delay: 0.15s;">
-      <div class="marquee-3d__inner">
-        <!-- Column 1: scrolls down -->
-        <div class="marquee-col">
-          <div class="marquee-track" style="--marquee-duration: 35s;">
-            {[...col1, ...col1, ...col1].map((t) => (
-              <div class="testimonial-card">
-                <div class="flex items-center gap-3 mb-3">
-                  <div class="w-9 h-9 rounded-full bg-primary-500/15 flex items-center justify-center text-primary-500 text-xs font-semibold flex-shrink-0">
-                    {t.name.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <div class="min-w-0">
-                    <div class="type-caption font-medium text-[var(--text)] truncate">{t.name}</div>
-                    <div class="type-meta truncate">{t.company}</div>
-                  </div>
-                </div>
-                <p class="type-body-card">{t.quote}</p>
-                <div class="flex items-center gap-0.5 mt-3">
-                  {Array.from({ length: t.rating }).map(() => (
-                    <Icon name="star-filled" size={12} class="text-amber-500" />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Column 2: scrolls up (reverse) -->
-        <div class="marquee-col">
-          <div class="marquee-track marquee-track--reverse" style="--marquee-duration: 40s;">
-            {[...col2, ...col2, ...col2].map((t) => (
-              <div class="testimonial-card">
-                <div class="flex items-center gap-3 mb-3">
-                  <div class="w-9 h-9 rounded-full bg-primary-500/15 flex items-center justify-center text-primary-500 text-xs font-semibold flex-shrink-0">
-                    {t.name.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <div class="min-w-0">
-                    <div class="type-caption font-medium text-[var(--text)] truncate">{t.name}</div>
-                    <div class="type-meta truncate">{t.company}</div>
-                  </div>
-                </div>
-                <p class="type-body-card">{t.quote}</p>
-                <div class="flex items-center gap-0.5 mt-3">
-                  {Array.from({ length: t.rating }).map(() => (
-                    <Icon name="star-filled" size={12} class="text-amber-500" />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Column 3: scrolls down -->
-        <div class="marquee-col">
-          <div class="marquee-track" style="--marquee-duration: 38s;">
-            {[...col3, ...col3, ...col3].map((t) => (
-              <div class="testimonial-card">
-                <div class="flex items-center gap-3 mb-3">
-                  <div class="w-9 h-9 rounded-full bg-primary-500/15 flex items-center justify-center text-primary-500 text-xs font-semibold flex-shrink-0">
-                    {t.name.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <div class="min-w-0">
-                    <div class="type-caption font-medium text-[var(--text)] truncate">{t.name}</div>
-                    <div class="type-meta truncate">{t.company}</div>
-                  </div>
-                </div>
-                <p class="type-body-card">{t.quote}</p>
-                <div class="flex items-center gap-0.5 mt-3">
-                  {Array.from({ length: t.rating }).map(() => (
-                    <Icon name="star-filled" size={12} class="text-amber-500" />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <!-- Column 4: scrolls up (reverse) -->
-        <div class="marquee-col marquee-col--hide-mobile">
-          <div class="marquee-track marquee-track--reverse" style="--marquee-duration: 36s;">
-            {[...col4, ...col4, ...col4].map((t) => (
-              <div class="testimonial-card">
-                <div class="flex items-center gap-3 mb-3">
-                  <div class="w-9 h-9 rounded-full bg-primary-500/15 flex items-center justify-center text-primary-500 text-xs font-semibold flex-shrink-0">
-                    {t.name.split(' ').map(n => n[0]).join('')}
-                  </div>
-                  <div class="min-w-0">
-                    <div class="type-caption font-medium text-[var(--text)] truncate">{t.name}</div>
-                    <div class="type-meta truncate">{t.company}</div>
-                  </div>
-                </div>
-                <p class="type-body-card">{t.quote}</p>
-                <div class="flex items-center gap-0.5 mt-3">
-                  {Array.from({ length: t.rating }).map(() => (
-                    <Icon name="star-filled" size={12} class="text-amber-500" />
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+    <div class="grid lg:grid-cols-[minmax(240px,320px)_minmax(0,1fr)] gap-8 lg:gap-12 items-stretch max-w-5xl mx-auto">
+      <div class="order-2 lg:order-1">
+        <ReviewRatings />
       </div>
-
-      <!-- Edge gradient overlays -->
-      <div class="marquee-fade marquee-fade--top"></div>
-      <div class="marquee-fade marquee-fade--bottom"></div>
-      <div class="marquee-fade marquee-fade--left"></div>
-      <div class="marquee-fade marquee-fade--right"></div>
+      <div class="order-1 lg:order-2">
+        <YelpReview />
+      </div>
     </div>
   </div>
 </section>
-
-<style>
-  /* ── 3D perspective container ── */
-  .marquee-3d {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    height: 32rem;
-    margin: 0 auto;
-    overflow: hidden;
-    perspective: 300px;
-  }
-
-  .marquee-3d__inner {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
-    height: 100%;
-    transform:
-      translateX(-80px)
-      translateZ(-100px)
-      rotateX(20deg)
-      rotateY(-10deg)
-      rotateZ(20deg);
-    padding: 0.5rem;
-  }
-
-  /* ── Columns ── */
-  .marquee-col {
-    flex: 1;
-    overflow: hidden;
-    height: 100%;
-    position: relative;
-  }
-
-  .marquee-col--hide-mobile {
-    display: none;
-  }
-
-  @media (min-width: 768px) {
-    .marquee-col--hide-mobile {
-      display: block;
-    }
-    .marquee-3d__inner {
-      transform:
-        translateX(-100px)
-        translateZ(-100px)
-        rotateX(20deg)
-        rotateY(-10deg)
-        rotateZ(20deg);
-    }
-  }
-
-  /* ── Marquee track ── */
-  .marquee-track {
-    --marquee-gap: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: var(--marquee-gap);
-    animation: marquee-vertical var(--marquee-duration, 40s) linear infinite;
-  }
-
-  .marquee-track--reverse {
-    animation-direction: reverse;
-  }
-
-  .marquee-3d:hover .marquee-track {
-    animation-play-state: paused;
-  }
-
-  /* ── Testimonial card ── */
-  .testimonial-card {
-    flex-shrink: 0;
-    padding: 1rem;
-    border-radius: 0.75rem;
-    border: 1px solid var(--border);
-    background: var(--bg);
-    width: 100%;
-    min-width: 0;
-  }
-
-  /* ── Edge fade overlays ── */
-  .marquee-fade {
-    position: absolute;
-    pointer-events: none;
-    z-index: 10;
-  }
-
-  .marquee-fade--top {
-    inset: 0 0 auto 0;
-    height: 25%;
-    background: linear-gradient(to bottom, var(--bg), transparent);
-  }
-
-  .marquee-fade--bottom {
-    inset: auto 0 0 0;
-    height: 25%;
-    background: linear-gradient(to top, var(--bg), transparent);
-  }
-
-  .marquee-fade--left {
-    inset: 0 auto 0 0;
-    width: 20%;
-    background: linear-gradient(to right, var(--bg), transparent);
-  }
-
-  .marquee-fade--right {
-    inset: 0 0 0 auto;
-    width: 20%;
-    background: linear-gradient(to left, var(--bg), transparent);
-  }
-
-  /* ── Reduced motion ── */
-  @media (prefers-reduced-motion: reduce) {
-    .marquee-track {
-      animation: none !important;
-    }
-  }
-</style>

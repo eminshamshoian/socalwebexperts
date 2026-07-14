@@ -1,0 +1,119 @@
+---
+import { siteConfig } from '../../data/site';
+
+export interface Props {
+  eyebrow: string;
+  title: string;
+  description: string;
+  lastUpdated: string;
+}
+
+const { eyebrow, title, description, lastUpdated } = Astro.props;
+---
+
+<article class="py-24 md:py-32">
+  <div class="mx-auto w-full max-w-[900px] px-6 lg:px-16">
+    <header class="mb-12 md:mb-16 fade-in">
+      <p class="type-eyebrow mb-6">{eyebrow}</p>
+      <h1 class="text-[var(--text)] mb-6">{title}</h1>
+      <p class="type-lead max-w-2xl">{description}</p>
+      <p class="type-meta mt-6">Last updated: {lastUpdated}</p>
+    </header>
+
+    <div class="legal-prose fade-in space-y-8" style="animation-delay: 0.08s;">
+      <slot />
+    </div>
+
+    <aside
+      class="mt-16 md:mt-20 p-6 md:p-8 border border-[var(--border)] rounded-sm fade-in"
+      style="animation-delay: 0.12s;"
+      aria-labelledby="legal-contact-heading"
+    >
+      <h2 id="legal-contact-heading" class="type-subheading mb-4">Questions about this page?</h2>
+      <p class="type-body mb-6">
+        Contact {siteConfig.name} and we will respond as soon as possible, typically within two business days.
+      </p>
+      <ul class="space-y-3">
+        <li>
+          <a
+            href={`mailto:${siteConfig.email}`}
+            class="type-caption font-medium text-[var(--text)] hover:text-primary-500 transition-colors"
+          >
+            {siteConfig.email}
+          </a>
+        </li>
+        <li>
+          <a
+            href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}
+            class="type-caption font-medium text-[var(--text)] hover:text-primary-500 transition-colors"
+          >
+            {siteConfig.phone}
+          </a>
+        </li>
+        {siteConfig.address && (
+          <li class="type-caption">{siteConfig.address}</li>
+        )}
+      </ul>
+    </aside>
+  </div>
+</article>
+
+<style>
+  .legal-prose :global(h2) {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.3;
+    color: var(--text);
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .legal-prose :global(h2:first-child) {
+    margin-top: 0;
+  }
+
+  .legal-prose :global(h3) {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    line-height: 1.35;
+    color: var(--text);
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .legal-prose :global(p),
+  .legal-prose :global(li) {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+
+  .legal-prose :global(ul),
+  .legal-prose :global(ol) {
+    margin: 0.75rem 0 0;
+    padding-left: 1.25rem;
+  }
+
+  .legal-prose :global(ul) {
+    list-style: disc;
+  }
+
+  .legal-prose :global(ol) {
+    list-style: decimal;
+  }
+
+  .legal-prose :global(li + li) {
+    margin-top: 0.5rem;
+  }
+
+  .legal-prose :global(a) {
+    color: var(--text);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .legal-prose :global(a:hover) {
+    color: var(--color-primary-500);
+  }
+</style>

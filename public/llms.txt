@@ -1,0 +1,31 @@
+# SoCal Web Experts
+> Fast, secure, SEO-ready websites and local digital marketing for Southern California businesses.
+
+This site is for local and service-based businesses that need a website that generates leads — not just a brochure. SoCal Web Experts designs and builds custom-coded sites with conversion paths (calls, forms, booking), SEO foundations, hosting, and optional Google Ads / social media marketing.
+
+## Primary pages
+- [Home](https://socalwebexperts.com/): Overview of services, process, portfolio, pricing, and FAQ
+- [About](https://socalwebexperts.com/about/): Company mission and approach
+- [Custom Web Design](https://socalwebexperts.com/services/web-design/): Brand-first, conversion-focused websites
+- [Social Media Marketing](https://socalwebexperts.com/services/social-media/): On-brand content and posting
+- [Google Ads](https://socalwebexperts.com/services/google-ads/): Paid search for high-intent local leads
+- [Portfolio](https://socalwebexperts.com/portfolio/): Example client websites
+- [Pricing](https://socalwebexperts.com/pricing/): Setup fee, hosting, and add-ons
+- [Contact](https://socalwebexperts.com/contact/): Book a free strategy call
+
+## Business facts
+- Name: SoCal Web Experts
+- Phone: (747) 221-6603
+- Email: hello@socalwebexperts.com
+- Area served: Los Angeles, Glendale, Orange County, California
+- Starting price: $299 setup + $12/mo or $99/yr hosting
+
+## Policies
+- [Privacy Policy](https://socalwebexperts.com/privacy/)
+- [Terms of Service](https://socalwebexperts.com/terms/)
+- [Accessibility Statement](https://socalwebexperts.com/accessibility/)
+
+## Machine-readable
+- Sitemap: https://socalwebexperts.com/sitemap-index.xml
+- Robots: https://socalwebexperts.com/robots.txt
+- Short summary: https://socalwebexperts.com/llm.txt

@@ -1,0 +1,34 @@
+# SoCal Web Experts
+> Custom-coded websites and digital marketing for local businesses in Southern California.
+
+SoCal Web Experts builds fast, secure, conversion-focused websites that help service businesses get more calls, quotes, and booked jobs. Based in Glendale / Los Angeles, California. Serving Los Angeles, Orange County, and surrounding SoCal markets.
+
+## Contact
+- Website: https://socalwebexperts.com/
+- Email: hello@socalwebexperts.com
+- Phone: (747) 221-6603
+- Location: Glendale / Los Angeles, CA
+
+## Services
+- Custom Web Design: https://socalwebexperts.com/services/web-design/
+- Social Media Marketing: https://socalwebexperts.com/services/social-media/
+- Google Ads Management: https://socalwebexperts.com/services/google-ads/
+
+## Pricing
+- Website build starting from $299 setup fee
+- Hosting from $12/mo or $99/yr
+- Post-launch updates at $100/hour
+- Details: https://socalwebexperts.com/pricing/
+
+## Key pages
+- Home: https://socalwebexperts.com/
+- About: https://socalwebexperts.com/about/
+- Portfolio: https://socalwebexperts.com/portfolio/
+- Contact / free strategy call: https://socalwebexperts.com/contact/
+- Privacy: https://socalwebexperts.com/privacy/
+- Terms: https://socalwebexperts.com/terms/
+- Accessibility: https://socalwebexperts.com/accessibility/
+
+## Optional
+- Full LLM site index: https://socalwebexperts.com/llms.txt
+- Sitemap: https://socalwebexperts.com/sitemap-index.xml

@@ -16,16 +16,17 @@ import type {
 export const siteConfig: SiteConfig = {
   name: 'SoCal Web Experts',
   tagline: 'Websites That Bring You Customers',
-  description: 'Fast, secure, SEO-focused websites built to rank on Google and convert visitors into calls, quote requests, and booked jobs.',
+  description:
+    'Custom-coded, SEO-ready websites for Southern California businesses — built to rank on Google and convert visitors into calls, quotes, and booked jobs.',
   phone: '(747) 221-6603',
   email: 'hello@socalwebexperts.com',
-  address: 'Los Angeles, California',
-  url: 'https://socalwebexperts.com', // Update with your actual domain
+  address: 'Glendale, California',
+  url: 'https://socalwebexperts.com',
   socials: [
+    { platform: 'Yelp', url: 'https://www.yelp.com/biz/socal-web-experts-glendale', icon: 'star' },
     { platform: 'Facebook', url: '#', icon: 'facebook' },
     { platform: 'Instagram', url: '#', icon: 'instagram' },
     { platform: 'LinkedIn', url: '#', icon: 'linkedin' },
-    { platform: 'Twitter', url: '#', icon: 'twitter' },
   ],
 };
 

@@ -9,6 +9,10 @@ const lastUpdated = 'July 13, 2026';
 <BaseLayout
   title={`Privacy Policy | ${siteConfig.name}`}
   description="Privacy policy for SoCal Web Experts. Learn what information we collect, how we use it, and your choices."
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Privacy Policy', url: '/privacy/' },
+  ]}
 >
   <LegalDocument
     eyebrow="Privacy"

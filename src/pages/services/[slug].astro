@@ -4,6 +4,7 @@ import Icon from '../../components/ui/Icon.astro';
 import Button from '../../components/ui/Button.astro';
 import CTA from '../../components/sections/CTA.astro';
 import { services } from '../../data/site';
+import { servicePageSchema } from '../../utils/seo';
 import type { GetStaticPaths } from 'astro';
 import type { Service } from '../../types';
 
@@ -17,11 +18,27 @@ export const getStaticPaths: GetStaticPaths = async () => {
 const { service } = Astro.props as { service: Service };
 const relatedServices = services.filter((item) => item.id !== service.id);
 const layoutClass = `service-page service-page--${service.layout}`;
+
+const serviceKeywords: Record<string, string> = {
+  'web-design':
+    'custom web design Los Angeles, website designer Orange County, conversion-focused websites Glendale',
+  'social-media':
+    'social media marketing Los Angeles, Instagram management Orange County, social media agency SoCal',
+  'google-ads':
+    'Google Ads management Los Angeles, PPC agency Orange County, local Google Ads Glendale',
+};
 ---
 
 <BaseLayout
-  title={`${service.title} | SoCal Web Experts`}
+  title={`${service.title} in Los Angeles & OC | SoCal Web Experts`}
   description={service.description}
+  keywords={serviceKeywords[service.slug] || `${service.title} Los Angeles, ${service.title} Orange County`}
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/#services' },
+    { name: service.title, url: `/services/${service.slug}/` },
+  ]}
+  jsonLd={servicePageSchema(service)}
 >
   <section class={`${layoutClass} py-20 md:py-28`}>
     <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">

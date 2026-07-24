@@ -6,8 +6,19 @@ import { siteConfig, services } from '../data/site';
 ---
 
 <BaseLayout
-  title="Contact SoCal Web Experts | Get More Customers Online"
-  description="Book a free strategy call. We build fast, secure, SEO-ready websites that generate leads for local businesses."
+  title="Contact SoCal Web Experts | Free Strategy Call"
+  description="Book a free strategy call with SoCal Web Experts. We build SEO-ready websites that generate leads for local businesses in LA and Orange County."
+  keywords="contact web designer Los Angeles, free website consultation SoCal, hire web designer Glendale"
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Contact', url: '/contact/' },
+  ]}
+  jsonLd={{
+    '@type': 'ContactPage',
+    name: 'Contact SoCal Web Experts',
+    url: 'https://socalwebexperts.com/contact/',
+    description: 'Book a free strategy call for custom web design, Google Ads, or social media marketing.',
+  }}
 >
   <section class="py-24 md:py-32">
     <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">

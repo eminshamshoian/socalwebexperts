@@ -553,24 +553,24 @@ export const faqItems: FAQItem[] = [
 // Stats
 export const stats: Stat[] = [
   {
-    label: 'We launch',
-    value: '40',
+    label: 'Client PageSpeed',
+    value: '95',
     suffix: '+',
     description:
-      'Custom websites built for local SoCal businesses that need more calls, quotes, and booked jobs.',
+      'Typical mobile Lighthouse performance on sites we ship — verified in PageSpeed Insights, not just screenshots.',
   },
   {
-    label: 'Stay hosted',
-    value: '90',
-    suffix: '%',
+    label: 'Kickoff to launch',
+    value: '2–4',
+    suffix: ' wks',
     description:
-      'of clients keep hosting with us after launch for security, updates, and ongoing support.',
+      'Usual timeline for a custom, lead-ready site once content and approvals stay on track.',
   },
   {
-    label: 'Come back',
-    value: '4 in 5',
+    label: 'Custom builds from',
+    value: '$299',
     description:
-      'clients return for design updates, Google Ads help, or another project down the road.',
+      'Setup fee with hosting from $12/mo — clear pricing, unlimited revisions until you approve launch.',
   },
 ];
 

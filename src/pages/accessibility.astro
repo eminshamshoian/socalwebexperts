@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import LegalDocument from '../components/layout/LegalDocument.astro';
 import { siteConfig } from '../data/site';
 
-const lastUpdated = 'July 13, 2026';
+const lastUpdated = 'August 4, 2026';
 ---
 
 <BaseLayout
@@ -23,11 +23,11 @@ const lastUpdated = 'July 13, 2026';
     <section aria-labelledby="access-commitment">
       <h2 id="access-commitment">Our commitment</h2>
       <p>
-        {siteConfig.name} strives to meet or exceed the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA.
+        {siteConfig.name} designs this site to meet the Web Content Accessibility Guidelines (WCAG) 2.1 Level AA.
         We also follow recognized practices under the Americans with Disabilities Act (ADA) and applicable California accessibility requirements.
       </p>
       <p>
-        Accessibility is an ongoing effort. We review our site regularly, fix issues when they are reported, and apply accessibility standards to client work where requested or required.
+        Accessibility is part of how we build — not an afterthought. We test this site, fix issues when they appear, and apply the same standards to client work when accessibility is in scope.
       </p>
     </section>
 
@@ -45,11 +45,22 @@ const lastUpdated = 'July 13, 2026';
       </ul>
     </section>
 
+    <section aria-labelledby="access-testing">
+      <h2 id="access-testing">How we test</h2>
+      <p>
+        We review this site with automated tools (including WAVE and axe-core checks), keyboard-only navigation, and spot checks with common screen reader workflows.
+        When a tool or a user reports an issue, we prioritize a fix and update this statement if our conformance status changes.
+      </p>
+    </section>
+
     <section aria-labelledby="access-conformance">
       <h2 id="access-conformance">Conformance status</h2>
       <p>
-        This website is partially conformant with WCAG 2.1 Level AA. Partially conformant means that some parts of the content may not fully conform to the accessibility standard.
-        We are actively working to close known gaps and improve the experience over time.
+        This website aims for WCAG 2.1 Level AA conformance across its core pages: home, services, portfolio, pricing, contact, and legal pages.
+        Because third-party embeds and browser differences can affect the experience, we treat accessibility as continuous maintenance rather than a one-time checkbox.
+      </p>
+      <p>
+        If you find a barrier, please tell us. Specific reports help us correct issues quickly on a site of this size.
       </p>
     </section>
 

@@ -2,121 +2,24 @@
   command = "pnpm build"
   publish = "dist"
 
-# Pretty URLs / trailing-slash hosting for Astro `trailingSlash: 'always'`
-[build.processing]
-  skip_processing = false
+# Do NOT enable pretty_urls — it strips trailing slashes and fights
+# Astro `trailingSlash: 'always'`, which caused ERR_TOO_MANY_REDIRECTS.
 
-[build.processing.html]
-  pretty_urls = true
-
-# ── Redirects: fix GSC 404s, soft 404s, and duplicate URLs ──
-
-# Common sitemap request (currently 404 in GSC crawl paths)
+# Safe redirects only (no trailing-slash force rules)
 [[redirects]]
   from = "/sitemap.xml"
   to = "/sitemap-index.xml"
   status = 301
-  force = true
 
-# Duplicate homepage
-[[redirects]]
-  from = "/index.html"
-  to = "/"
-  status = 301
-  force = true
-
-# Soft-404: Astro emits /404 as a 200 HTML page — send crawlers away
-[[redirects]]
-  from = "/404"
-  to = "/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/404/"
-  to = "/"
-  status = 301
-  force = true
-
-# Empty services index 404s
 [[redirects]]
   from = "/services"
   to = "/services/web-design/"
   status = 301
-  force = true
 
 [[redirects]]
   from = "/services/"
   to = "/services/web-design/"
   status = 301
-  force = true
-
-# Non-trailing-slash → trailing-slash (canonical URLs in sitemap)
-[[redirects]]
-  from = "/about"
-  to = "/about/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/contact"
-  to = "/contact/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/portfolio"
-  to = "/portfolio/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/pricing"
-  to = "/pricing/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/privacy"
-  to = "/privacy/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/terms"
-  to = "/terms/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/accessibility"
-  to = "/accessibility/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/services/web-design"
-  to = "/services/web-design/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/services/social-media"
-  to = "/services/social-media/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/services/google-ads"
-  to = "/services/google-ads/"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/site-map"
-  to = "/site-map/"
-  status = 301
-  force = true
 
 # ── Headers ──
 [[headers]]

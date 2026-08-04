@@ -5,7 +5,7 @@ import { portfolioImageDimensions, portfolioImageUrl } from '../../utils/images'
 const showcaseItems = heroShowcaseItems.map((item) => ({
   ...item,
   dimensions: portfolioImageDimensions(item.image),
-  optimizedSrc: portfolioImageUrl(item.image, 480),
+  optimizedSrc: portfolioImageUrl(item.image, 320),
 }));
 ---
 

@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { services, siteConfig } from '../data/site';
+
+const pages = [
+  { name: 'Home', href: '/', description: 'Custom websites that generate more customers for SoCal businesses.' },
+  { name: 'About', href: '/about/', description: 'Who we are and how we help local businesses grow online.' },
+  { name: 'Portfolio', href: '/portfolio/', description: 'Selected websites we have designed and launched.' },
+  { name: 'Pricing', href: '/pricing/', description: 'Transparent website setup and hosting pricing.' },
+  { name: 'Contact', href: '/contact/', description: 'Book a free strategy call or send us a message.' },
+  ...services.map((s) => ({
+    name: s.title,
+    href: `/services/${s.slug}/`,
+    description: s.shortDescription,
+  })),
+  { name: 'Privacy Policy', href: '/privacy/', description: 'How we collect and use information.' },
+  { name: 'Terms of Service', href: '/terms/', description: 'Terms for using our website and services.' },
+  { name: 'Accessibility', href: '/accessibility/', description: 'Our accessibility commitment and contact for accommodations.' },
+];
+---
+
+<BaseLayout
+  title={`Sitemap | ${siteConfig.name}`}
+  description="HTML sitemap of all public pages on SoCal Web Experts — web design, marketing, pricing, and contact."
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Sitemap', url: '/site-map/' },
+  ]}
+>
+  <section class="py-24 md:py-32">
+    <div class="mx-auto w-full max-w-[900px] px-6 lg:px-16">
+      <p class="type-eyebrow mb-6 fade-in">Sitemap</p>
+      <h1 class="text-[var(--text)] mb-4 fade-in">All pages</h1>
+      <p class="type-lead mb-12 md:mb-16 fade-in" style="animation-delay: 0.05s;">
+        A complete list of public pages on {siteConfig.name}.
+      </p>
+
+      <ul class="divide-y divide-[var(--border)] fade-in" style="animation-delay: 0.1s;">
+        {pages.map((page) => (
+          <li class="py-5">
+            <a href={page.href} class="group block">
+              <span class="type-card-title group-hover:text-primary-500 transition-colors">
+                {page.name}
+              </span>
+              <span class="type-caption block mt-1">
+                {page.description}
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <p class="type-meta mt-12">
+        Also see the XML sitemap at{' '}
+        <a href="/sitemap-index.xml" class="underline hover:text-[var(--text)]">
+          /sitemap-index.xml
+        </a>
+        .
+      </p>
+    </div>
+  </section>
+</BaseLayout>

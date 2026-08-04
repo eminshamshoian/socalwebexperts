@@ -27,5 +27,6 @@ This site is for local and service-based businesses that need a website that gen
 
 ## Machine-readable
 - Sitemap: https://socalwebexperts.com/sitemap-index.xml
+- HTML sitemap: https://socalwebexperts.com/site-map/
 - Robots: https://socalwebexperts.com/robots.txt
 - Short summary: https://socalwebexperts.com/llm.txt

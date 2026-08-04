@@ -23,10 +23,10 @@ const shapes = [
     { name: 'Portfolio', url: '/portfolio/' },
   ]}
 >
-  <section class="py-24 md:py-32">
+  <section class="portfolio-page">
     <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">
       <!-- Header -->
-      <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 md:mb-24">
+      <div class="portfolio-page__header grid lg:grid-cols-2 gap-8 lg:gap-16">
         <div class="fade-in">
           <p class="type-eyebrow mb-6">
             Portfolio
@@ -44,7 +44,7 @@ const shapes = [
       </div>
 
       <!-- Projects — alternating offset with shapes -->
-      <div class="space-y-14 md:space-y-24">
+      <div class="portfolio-page__list space-y-14 md:space-y-24">
         {portfolioItems.map((item, index) => {
           const isOdd = index % 2 === 1;
           return (
@@ -81,7 +81,7 @@ const shapes = [
 
       <!-- CTA -->
       <div class="mt-16 md:mt-24 fade-in">
-        <Button href="/contact" size="lg">
+        <Button href="/contact/" size="lg">
           Want one like this? Get a Quote
           <Icon name="arrow-right" size={16} />
         </Button>
@@ -91,6 +91,34 @@ const shapes = [
 </BaseLayout>
 
 <style>
+  .portfolio-page {
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
+  }
+
+  .portfolio-page__header {
+    margin-bottom: 4.5rem;
+  }
+
+  .portfolio-page__list {
+    padding-top: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .portfolio-page {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+
+    .portfolio-page__header {
+      margin-bottom: 7rem;
+    }
+
+    .portfolio-page__list {
+      padding-top: 2rem;
+    }
+  }
+
   .portfolio-shape {
     width: clamp(10rem, 18vw, 16rem);
     height: clamp(10rem, 18vw, 16rem);

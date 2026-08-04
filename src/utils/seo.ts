@@ -93,10 +93,12 @@ export function websiteSchema() {
     '@type': 'WebSite',
     '@id': `${siteURL}/#website`,
     name: siteConfig.name,
+    alternateName: ['SWE', 'SoCal WebExperts'],
     url: siteURL,
     description: siteConfig.description,
     publisher: { '@id': `${siteURL}/#organization` },
     inLanguage: 'en-US',
+    copyrightHolder: { '@id': `${siteURL}/#organization` },
   };
 }
 

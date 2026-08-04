@@ -2,7 +2,12 @@
 User-agent: *
 Allow: /
 
-# AI / LLM crawlers - allow indexing of public content
+# Keep junk / duplicate URLs out of the crawl
+Disallow: /404
+Disallow: /404/
+Disallow: /index.html
+
+# AI / LLM crawlers
 User-agent: GPTBot
 Allow: /
 
@@ -24,4 +29,6 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
+# XML sitemaps (canonical index + urlset)
 Sitemap: https://socalwebexperts.com/sitemap-index.xml
+Sitemap: https://socalwebexperts.com/sitemap-0.xml

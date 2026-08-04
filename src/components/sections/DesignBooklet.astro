@@ -4,7 +4,7 @@ import { heroShowcaseItems } from '../../data/site';
 const showcaseItems = heroShowcaseItems;
 ---
 
-<div class="showcase-block relative z-[1] overflow-hidden pb-10 pt-4 md:pb-14 md:pt-0" aria-label="Portfolio design preview showcase">
+<div class="showcase-block relative z-[1] overflow-hidden" aria-label="Portfolio design preview showcase">
   <div class="pointer-events-none absolute inset-0 hidden md:block" aria-hidden="true">
     <div class="showcase-glow showcase-glow--left"></div>
     <div class="showcase-glow showcase-glow--right"></div>
@@ -17,7 +17,7 @@ const showcaseItems = heroShowcaseItems;
   </div>
 
   <div class="mx-auto w-full max-w-[1200px] px-6">
-    <a href="/portfolio" class="showcase-fan" aria-label="View portfolio projects">
+    <a href="/portfolio/" class="showcase-fan" aria-label="View portfolio projects">
       {showcaseItems.map((item, index) => (
         <div class={`showcase-card showcase-card--${index + 1}`} aria-hidden="true">
           <img src={item.image} alt="" loading="lazy" />
@@ -30,11 +30,24 @@ const showcaseItems = heroShowcaseItems;
 <style>
   .showcase-block {
     background: transparent;
+    margin-top: 0;
+    padding-top: 3.5rem;
+    padding-bottom: 2.5rem;
   }
 
   @media (min-width: 768px) {
     .showcase-block {
-      margin-top: clamp(-2.5rem, -4vw, -1rem);
+      margin-top: 1.5rem;
+      padding-top: 4.5rem;
+      padding-bottom: 3.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .showcase-block {
+      margin-top: 2rem;
+      padding-top: 5.5rem;
+      padding-bottom: 4rem;
     }
   }
 

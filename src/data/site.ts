@@ -23,29 +23,28 @@ export const siteConfig: SiteConfig = {
   address: 'Glendale, California',
   url: 'https://socalwebexperts.com',
   socials: [
-    { platform: 'Yelp', url: 'https://www.yelp.com/biz/socal-web-experts-glendale', icon: 'star' },
-    { platform: 'Facebook', url: '#', icon: 'facebook' },
-    { platform: 'Instagram', url: '#', icon: 'instagram' },
-    { platform: 'LinkedIn', url: '#', icon: 'linkedin' },
+    { platform: 'Yelp', url: 'https://www.yelp.ca/biz/socal-web-experts-glendale', icon: 'star' },
+    { platform: 'Facebook', url: 'https://www.facebook.com/people/SoCal-Web-Experts/61587500204976/', icon: 'facebook' },
+    { platform: 'Instagram', url: 'https://www.instagram.com/socalwebexperts/', icon: 'instagram' },
   ],
 };
 
 // Navigation
 export const navigation: NavItem[] = [
   { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
+  { label: 'About', href: '/about/' },
   {
     label: 'Services',
     href: '/#services',
     children: [
-      { label: 'Custom Web Design', href: '/services/web-design' },
-      { label: 'Social Media Marketing', href: '/services/social-media' },
-      { label: 'Google Ads', href: '/services/google-ads' },
+      { label: 'Custom Web Design', href: '/services/web-design/' },
+      { label: 'Social Media Marketing', href: '/services/social-media/' },
+      { label: 'Google Ads', href: '/services/google-ads/' },
     ],
   },
-  { label: 'Portfolio', href: '/portfolio' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'Contact', href: '/contact' },
+  { label: 'Portfolio', href: '/portfolio/' },
+  { label: 'Pricing', href: '/pricing/' },
+  { label: 'Contact', href: '/contact/' },
 ];
 
 // Services
@@ -417,8 +416,8 @@ export const testimonials: Testimonial[] = [
 export const yelpReview: YelpReview = {
   reviewId: 't3wCBOwua2fHxP_lnm-Rwg',
   businessId: 'sF9nR-iGFXVFIVYoxv31Ug',
-  businessUrl: 'https://www.yelp.com/biz/socal-web-experts-glendale',
-  reviewUrl: 'https://www.yelp.com/biz/socal-web-experts-glendale?hrid=t3wCBOwua2fHxP_lnm-Rwg',
+  businessUrl: 'https://www.yelp.ca/biz/socal-web-experts-glendale',
+  reviewUrl: 'https://www.yelp.ca/biz/socal-web-experts-glendale?hrid=t3wCBOwua2fHxP_lnm-Rwg',
   authorName: 'Adena M.',
   authorProfileUrl: 'https://www.yelp.com/user_details?userid=6kVeiHHr-XIJKtIDKVVwIA',
   location: 'Glendale, CA',
@@ -553,9 +552,25 @@ export const faqItems: FAQItem[] = [
 
 // Stats
 export const stats: Stat[] = [
-  { value: '500', label: 'Websites Launched', suffix: '+' },
-  { value: '98', label: 'Client Satisfaction', suffix: '%' },
-  { value: '10', label: 'Years Experience', suffix: '+' },
-  { value: '2M', label: 'Leads Generated', suffix: '+' },
+  {
+    label: 'We launch',
+    value: '40',
+    suffix: '+',
+    description:
+      'Custom websites built for local SoCal businesses that need more calls, quotes, and booked jobs.',
+  },
+  {
+    label: 'Stay hosted',
+    value: '90',
+    suffix: '%',
+    description:
+      'of clients keep hosting with us after launch for security, updates, and ongoing support.',
+  },
+  {
+    label: 'Come back',
+    value: '4 in 5',
+    description:
+      'clients return for design updates, Google Ads help, or another project down the road.',
+  },
 ];
 

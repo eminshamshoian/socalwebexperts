@@ -12,9 +12,16 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      filter: (page) => !page.includes('/404'),
+      filter: (page) =>
+        !page.includes('/404') &&
+        !page.includes('/google') &&
+        !page.endsWith('.html'),
       serialize(item) {
-        const url = item.url;
+        const url = item.url.endsWith('/') || item.url === 'https://socalwebexperts.com'
+          ? item.url
+          : `${item.url}/`;
+        item.url = url === 'https://socalwebexperts.com/' ? url : url;
+
         const isHome = url === 'https://socalwebexperts.com/' || url === 'https://socalwebexperts.com';
         const isService = url.includes('/services/');
         const isCore =
@@ -26,9 +33,10 @@ export default defineConfig({
           url.includes('/privacy') ||
           url.includes('/terms') ||
           url.includes('/accessibility');
+        const isSiteMap = url.includes('/site-map');
 
-        item.changefreq = isLegal ? 'yearly' : isHome || isService || isCore ? 'weekly' : 'monthly';
-        item.priority = isHome ? 1.0 : isService ? 0.9 : isCore ? 0.8 : isLegal ? 0.3 : 0.5;
+        item.changefreq = isLegal || isSiteMap ? 'yearly' : isHome || isService || isCore ? 'weekly' : 'monthly';
+        item.priority = isHome ? 1.0 : isService ? 0.9 : isCore ? 0.8 : isSiteMap ? 0.2 : isLegal ? 0.3 : 0.5;
         item.lastmod = new Date().toISOString();
         return item;
       },

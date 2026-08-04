@@ -15,10 +15,10 @@ const shapes = [
 ];
 ---
 
-<section class="py-24 md:py-32">
+<section class="portfolio-section">
   <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">
     <!-- Header -->
-    <div class="grid lg:grid-cols-2 gap-8 lg:gap-16 mb-16 md:mb-24">
+    <div class="portfolio-header grid lg:grid-cols-2 gap-8 lg:gap-16">
       <div class="fade-in">
         <p class="type-eyebrow mb-6">
           Selected Work
@@ -36,7 +36,7 @@ const shapes = [
     </div>
 
     <!-- Projects — alternating offset layout -->
-    <div class="space-y-14 md:space-y-24">
+    <div class="portfolio-list space-y-14 md:space-y-24">
       {displayItems.map((item, index) => {
         const isOdd = index % 2 === 1;
         return (
@@ -75,7 +75,7 @@ const shapes = [
 
     <!-- CTA -->
     <div class="mt-16 md:mt-24 fade-in">
-      <Button href="/portfolio" variant="secondary" size="lg">
+      <Button href="/portfolio/" variant="secondary" size="lg">
         View all projects
         <Icon name="arrow-right" size={16} />
       </Button>
@@ -84,6 +84,35 @@ const shapes = [
 </section>
 
 <style>
+  .portfolio-section {
+    padding-top: 5.5rem;
+    padding-bottom: 5.5rem;
+  }
+
+  .portfolio-header {
+    margin-bottom: 4.5rem;
+  }
+
+  .portfolio-list {
+    margin-top: 0;
+    padding-top: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .portfolio-section {
+      padding-top: 8rem;
+      padding-bottom: 8rem;
+    }
+
+    .portfolio-header {
+      margin-bottom: 7rem;
+    }
+
+    .portfolio-list {
+      padding-top: 2rem;
+    }
+  }
+
   .portfolio-shape {
     width: clamp(10rem, 18vw, 16rem);
     height: clamp(10rem, 18vw, 16rem);

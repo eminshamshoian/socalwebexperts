@@ -49,11 +49,11 @@ const serviceKeywords: Record<string, string> = {
           <h1 class="text-[var(--text)] max-w-4xl">{service.heroHeadline}</h1>
           <p class="type-lead mt-6 max-w-2xl">{service.description}</p>
           <div class="flex flex-wrap gap-3 mt-8">
-            <Button href="/contact" size="lg">
+            <Button href="/contact/" size="lg">
               Book a Free Strategy Call
               <Icon name="arrow-right" size={16} />
             </Button>
-            <Button href="/pricing" variant="secondary" size="lg">
+            <Button href="/pricing/" variant="secondary" size="lg">
               View Pricing
             </Button>
           </div>
@@ -134,7 +134,7 @@ const serviceKeywords: Record<string, string> = {
           <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
             {relatedServices.map((related) => (
               <a
-                href={`/services/${related.slug}`}
+                href={`/services/${related.slug}/`}
                 class="group flex items-start gap-4 border border-[var(--border)] rounded-xl p-5 md:p-6 bg-[var(--bg-secondary)] transition-colors hover:border-primary-500/35"
               >
                 <span class="service-detail__icon shrink-0" aria-hidden="true">

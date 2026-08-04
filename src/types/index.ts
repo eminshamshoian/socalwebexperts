@@ -154,9 +154,11 @@ export interface ValueProp {
 
 // Stats
 export interface Stat {
-  value: string;
+  /** Short orange label above the number (e.g. "We launch") */
   label: string;
+  value: string;
   suffix?: string;
+  description: string;
 }
 
 // Social Links

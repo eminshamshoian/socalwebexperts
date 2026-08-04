@@ -459,7 +459,7 @@ export const portfolioItems: PortfolioItem[] = [
     title: 'EV Design Studio',
     category: 'web-design',
     categoryLabel: 'Architecture',
-    image: '/portfolio/screencapture-evdesignstudio-pages-dev.png',
+    image: '/portfolio/ev-design-1400.webp',
     scrollableImage: true,
   },
   {
@@ -467,7 +467,7 @@ export const portfolioItems: PortfolioItem[] = [
     title: "Sam's Bakery",
     category: 'web-design',
     categoryLabel: 'Bakery',
-    image: '/portfolio/screencapture-sams-bakery-pages-dev-2026-06-12-11_34_01.jpg',
+    image: '/portfolio/sams-bakery-1400.webp',
     scrollableImage: true,
   },
   {

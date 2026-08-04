@@ -10,7 +10,7 @@ import Icon from '../ui/Icon.astro';
     <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
       <!-- Services -->
       <div>
-        <h4 class="type-eyebrow text-[var(--text)] mb-6">Services</h4>
+        <p class="type-eyebrow text-[var(--text)] mb-6">Services</p>
         <ul class="space-y-4">
           {services.map((service) => (
             <li>
@@ -27,7 +27,7 @@ import Icon from '../ui/Icon.astro';
 
       <!-- Company -->
       <div>
-        <h4 class="type-eyebrow text-[var(--text)] mb-6">Company</h4>
+        <p class="type-eyebrow text-[var(--text)] mb-6">Company</p>
         <ul class="space-y-4">
           {navigation.filter(item => !item.children).map((item) => (
             <li>
@@ -44,7 +44,7 @@ import Icon from '../ui/Icon.astro';
 
       <!-- Contact -->
       <div>
-        <h4 class="type-eyebrow text-[var(--text)] mb-6">Get in touch</h4>
+        <p class="type-eyebrow text-[var(--text)] mb-6">Get in touch</p>
         <ul class="space-y-4">
           <li>
             <a
@@ -72,7 +72,7 @@ import Icon from '../ui/Icon.astro';
 
       <!-- Social -->
       <div>
-        <h4 class="type-eyebrow text-[var(--text)] mb-6">Social</h4>
+        <p class="type-eyebrow text-[var(--text)] mb-6">Social</p>
         <ul class="space-y-4">
           {siteConfig.socials.map((social) => (
             <li>
@@ -105,12 +105,14 @@ import Icon from '../ui/Icon.astro';
       <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="flex items-center gap-4">
           <a href="/" class="flex items-center gap-2" aria-label="SoCal Web Experts home">
-            <img 
-              src="/logo-white.png" 
+            <img
+              src="/logo-white.webp"
               alt="SoCal Web Experts"
-              width="64"
-              height="64"
+              width="192"
+              height="192"
               style="height: 64px; width: auto;"
+              loading="lazy"
+              decoding="async"
             />
           </a>
           <span class="type-meta">© {new Date().getFullYear()} {siteConfig.name}</span>

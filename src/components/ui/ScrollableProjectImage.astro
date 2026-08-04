@@ -1,16 +1,29 @@
 ---
+import {
+  portfolioImageDimensions,
+  portfolioImageSrcSet,
+  portfolioImageUrl,
+} from '../../utils/images';
+
 interface Props {
   src: string;
   alt: string;
 }
 const { src, alt } = Astro.props;
+const dimensions = portfolioImageDimensions(src);
 ---
 
 <div class="scrollable-project-image" data-scrollable>
   <img
-    src={src}
+    src={portfolioImageUrl(src, 960)}
+    srcset={portfolioImageSrcSet(src, [480, 640, 960, 1400])}
+    sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 1279px) 85vw, 1190px"
     alt={alt}
+    width={dimensions.width}
+    height={dimensions.height}
     loading="lazy"
+    decoding="async"
+    fetchpriority="low"
   />
 </div>
 
@@ -21,6 +34,8 @@ const { src, alt } = Astro.props;
     height: 100%;
     overflow: hidden;
     cursor: pointer;
+    content-visibility: auto;
+    contain-intrinsic-size: auto 720px;
   }
 
   .scrollable-project-image img {
@@ -30,12 +45,14 @@ const { src, alt } = Astro.props;
     width: 100%;
     height: auto;
     display: block;
-    will-change: transform;
   }
 
   @media (hover: hover) and (pointer: fine) {
     .scrollable-project-image img {
       transition: transform 6s cubic-bezier(0.25, 0.1, 0.25, 1);
+    }
+    .scrollable-project-image:hover img {
+      will-change: transform;
     }
     .scrollable-project-image img.snap-back {
       transition: transform 0.4s cubic-bezier(0.33, 0, 0.2, 1);
@@ -50,38 +67,48 @@ const { src, alt } = Astro.props;
       if (!img || container.hasAttribute('data-init')) return;
       container.setAttribute('data-init', '');
 
-      function getOverflow() {
-        return Math.max(0, img!.offsetHeight - container.clientHeight);
-      }
+      let overflow = 0;
+      let frame = 0;
+      const updateOverflow = () => {
+        cancelAnimationFrame(frame);
+        frame = requestAnimationFrame(() => {
+          overflow = Math.max(0, img.offsetHeight - container.clientHeight);
+        });
+      };
+
+      if (img.complete) updateOverflow();
+      else img.addEventListener('load', updateOverflow, { once: true });
+
+      const resizeObserver = new ResizeObserver(updateOverflow);
+      resizeObserver.observe(container);
+      resizeObserver.observe(img);
 
       // Desktop: hover to scroll, fast snap-back on leave
       container.addEventListener('mouseenter', () => {
-        img!.classList.remove('snap-back');
-        const overflow = getOverflow();
+        img.classList.remove('snap-back');
         if (overflow > 0) {
-          img!.style.transform = `translateY(-${overflow}px)`;
+          img.style.transform = `translateY(-${overflow}px)`;
         }
       });
 
       container.addEventListener('mouseleave', () => {
-        img!.classList.add('snap-back');
-        img!.style.transform = 'translateY(0)';
+        img.classList.add('snap-back');
+        img.style.transform = 'translateY(0)';
       });
 
       // Mobile: tap to toggle scroll, tap again to snap back
       let scrolled = false;
       container.addEventListener('touchend', (e) => {
         e.preventDefault();
-        const overflow = getOverflow();
         if (overflow <= 0) return;
 
         if (!scrolled) {
-          img!.style.transition = 'transform 6s cubic-bezier(0.25, 0.1, 0.25, 1)';
-          img!.style.transform = `translateY(-${overflow}px)`;
+          img.style.transition = 'transform 6s cubic-bezier(0.25, 0.1, 0.25, 1)';
+          img.style.transform = `translateY(-${overflow}px)`;
           scrolled = true;
         } else {
-          img!.style.transition = 'transform 0.4s cubic-bezier(0.33, 0, 0.2, 1)';
-          img!.style.transform = 'translateY(0)';
+          img.style.transition = 'transform 0.4s cubic-bezier(0.33, 0, 0.2, 1)';
+          img.style.transform = 'translateY(0)';
           scrolled = false;
         }
       });

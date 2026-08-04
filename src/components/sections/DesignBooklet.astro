@@ -1,12 +1,12 @@
 ---
 import { heroShowcaseItems } from '../../data/site';
+import { portfolioImageDimensions, portfolioImageUrl } from '../../utils/images';
 
-const showcaseItems = heroShowcaseItems;
-
-function optimizedImage(src: string): string {
-  if (!src.includes('res.cloudinary.com')) return src;
-  return src.replace('/upload/', '/upload/f_auto,q_auto,w_640,c_limit/');
-}
+const showcaseItems = heroShowcaseItems.map((item) => ({
+  ...item,
+  dimensions: portfolioImageDimensions(item.image),
+  optimizedSrc: portfolioImageUrl(item.image, 480),
+}));
 ---
 
 <div class="showcase-block relative z-[1] overflow-hidden" aria-label="Portfolio design preview showcase">
@@ -36,19 +36,20 @@ function optimizedImage(src: string): string {
           data-showcase-title={item.title}
         >
           <img
-            src={optimizedImage(item.image)}
+            src={item.optimizedSrc}
             alt=""
-            width="640"
-            height="889"
+            width={item.dimensions.width}
+            height={item.dimensions.height}
             loading={index === 2 ? 'eager' : 'lazy'}
             decoding="async"
+            fetchpriority={index === 2 ? 'high' : 'low'}
             data-showcase-image
-            data-showcase-src={optimizedImage(item.image)}
+            data-showcase-src={item.optimizedSrc}
           />
         </div>
       ))}
     </a>
-    <p class="sr-only" aria-live="polite" data-showcase-status>
+    <p class="sr-only" data-showcase-status>
       Showing {showcaseItems[2]?.title ?? 'featured project'}
     </p>
   </div>
@@ -96,7 +97,7 @@ function optimizedImage(src: string): string {
       timer = setInterval(() => {
         offset = (offset + 1) % sources.length;
         apply();
-      }, 4200);
+      }, 2400);
     };
 
     const stop = () => {

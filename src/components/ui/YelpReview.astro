@@ -38,21 +38,6 @@ const initials = yelpReview.authorName
     </div>
   </footer>
 
-  <div class="yelp-featured__embed" aria-hidden="true">
-    <span
-      class="yelp-review"
-      data-review-id={yelpReview.reviewId}
-      data-hostname="www.yelp.com"
-    >
-      Read
-      <a href={yelpReview.authorProfileUrl} rel="nofollow noopener">Adena M.</a>'s
-      <a href={yelpReview.reviewUrl} rel="nofollow noopener">review</a>
-      of
-      <a href={`https://www.yelp.com/biz/${yelpReview.businessId}`} rel="nofollow noopener">SoCal Web Experts</a>
-      on
-      <a href="https://www.yelp.com" rel="nofollow noopener">Yelp</a>
-    </span>
-  </div>
 </article>
 
 <style>
@@ -139,15 +124,6 @@ const initials = yelpReview.authorName
     color: var(--text-secondary);
   }
 
-  .yelp-featured__embed {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-  }
-
   @media (min-width: 768px) {
     .yelp-featured {
       padding: 1.75rem 1.5rem;
@@ -159,5 +135,3 @@ const initials = yelpReview.authorName
     }
   }
 </style>
-
-<script src="https://www.yelp.com/embed/widgets.js" async></script>

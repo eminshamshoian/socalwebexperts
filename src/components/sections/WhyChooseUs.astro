@@ -57,14 +57,11 @@ const pageSpeedUrl = `https://pagespeed.web.dev/report?url=${encodeURIComponent(
 
       <!-- Right: Lighthouse image + live PageSpeed link -->
       <div class="fade-in flex flex-col items-center justify-center gap-5" style="animation-delay: 0.25s;">
-        <a
-          href={pageSpeedUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="pagespeed-link group block w-full max-w-lg rounded-2xl overflow-hidden border border-primary-500/20 shadow-[0_0_60px_rgba(255,177,98,0.12)] transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-500"
+        <div
+          class="block w-full max-w-lg rounded-2xl overflow-hidden border border-primary-500/20 shadow-[0_0_60px_rgba(255,177,98,0.12)]"
         >
           <img
-            src="https://res.cloudinary.com/ds85pv6ht/image/upload/f_auto,q_auto,w_900/v1770169798/lighthouse-score_qpwbbq.png"
+            src="https://res.cloudinary.com/ds85pv6ht/image/upload/f_auto,q_auto:eco,w_700,c_limit/v1770169798/lighthouse-score_qpwbbq.png"
             alt="Example Lighthouse performance report for a SoCal Web Experts build"
             class="w-full h-auto"
             width="900"
@@ -72,7 +69,7 @@ const pageSpeedUrl = `https://pagespeed.web.dev/report?url=${encodeURIComponent(
             loading="lazy"
             decoding="async"
           />
-        </a>
+        </div>
         <p class="type-caption text-center max-w-md">
           Don't take our word for a screenshot.
           <a

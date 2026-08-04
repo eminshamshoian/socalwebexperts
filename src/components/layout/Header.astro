@@ -16,20 +16,22 @@ import Icon from '../ui/Icon.astro';
         <!-- Logo -->
         <a href="/" class="flex items-center gap-2.5 group/logo z-10" aria-label="SoCal Web Experts home">
           <img
-            src="/logo-white.png"
+            src="/logo-white.webp"
             alt="SoCal Web Experts"
-            width="96"
-            height="96"
+            width="192"
+            height="192"
             style="height: 96px; width: auto;"
+            decoding="async"
+            fetchpriority="high"
           />
         </a>
 
         <!-- Desktop Navigation -->
         <div class="absolute inset-0 m-auto hidden size-fit lg:block">
-          <ul class="flex gap-1 text-sm" role="menubar">
+          <ul class="flex gap-1 text-sm">
             {navigation.map((item) => (
               item.children ? (
-                <li class="relative group/dd" role="none" data-nav-dropdown>
+                <li class="relative group/dd" data-nav-dropdown>
                   <button
                     type="button"
                     class="flex items-center gap-1.5 px-4 py-2 text-[13px] tracking-wide uppercase font-medium text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors duration-300"
@@ -42,13 +44,11 @@ import Icon from '../ui/Icon.astro';
                   </button>
                   <div
                     class="absolute top-full left-0 pt-3 opacity-0 invisible group-hover/dd:opacity-100 group-hover/dd:visible group-focus-within/dd:opacity-100 group-focus-within/dd:visible transition-all duration-300 translate-y-1 group-hover/dd:translate-y-0 group-focus-within/dd:translate-y-0"
-                    role="menu"
                   >
                     <div class="bg-[var(--bg)] border border-[var(--border)] rounded-2xl shadow-2xl shadow-black/20 py-2 min-w-[200px] backdrop-blur-xl">
                       {item.children.map((child) => (
                         <a
                           href={child.href}
-                          role="menuitem"
                           class="block px-4 py-2.5 text-sm text-[var(--text-secondary)] hover:text-primary-500 hover:bg-[var(--bg-secondary)] transition-all duration-200"
                         >
                           {child.label}
@@ -58,10 +58,9 @@ import Icon from '../ui/Icon.astro';
                   </div>
                 </li>
               ) : (
-                <li role="none">
+                <li>
                   <a
                     href={item.href}
-                    role="menuitem"
                     class="block px-4 py-2 text-[13px] tracking-wide uppercase font-medium text-[var(--text-secondary)] hover:text-[var(--text)] transition-colors duration-300"
                   >
                     {item.label}

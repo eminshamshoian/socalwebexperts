@@ -95,7 +95,14 @@ import DesignBooklet from './DesignBooklet.astro';
       <p class="type-lead max-w-xl">
         We build custom websites for small businesses that rank higher on Google, load instantly, and convert more visitors into paying customers.
       </p>
-      <div class="flex shrink-0 flex-col items-start gap-5 sm:flex-row sm:items-center sm:gap-8 md:flex-col md:items-end lg:flex-row lg:items-center">
+      <div class="hero-ctas flex w-full shrink-0 flex-row items-center justify-between gap-4 sm:w-auto sm:justify-start sm:gap-8 md:flex-col md:items-end md:w-auto lg:flex-row lg:items-center">
+        <Button
+          href="/contact/"
+          size="sm"
+          class="hero-cta-btn"
+        >
+          Free Quote
+        </Button>
         <a
           href="/portfolio/"
           class="group inline-flex items-center gap-2 text-base font-medium text-[var(--text)] transition-colors hover:text-primary-500"
@@ -107,9 +114,6 @@ import DesignBooklet from './DesignBooklet.astro';
             class="transition-transform duration-300 group-hover:translate-x-1"
           />
         </a>
-        <Button href="/contact/" size="lg">
-          Get started
-        </Button>
       </div>
     </div>
   </div>
@@ -167,5 +171,23 @@ import DesignBooklet from './DesignBooklet.astro';
     font-size: clamp(2.5rem, 6vw, 4.75rem);
     line-height: 1.08;
     letter-spacing: -0.025em;
+  }
+
+  /* Flatter, smaller hero CTA — no neo-brutal offset shadow */
+  .hero-ctas :global(.hero-cta-btn) {
+    box-shadow: none !important;
+    transform: none !important;
+    border-radius: 0.5rem;
+    padding-inline: 1.25rem;
+    padding-block: 0.625rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .hero-ctas :global(.hero-cta-btn:hover),
+  .hero-ctas :global(.hero-cta-btn:active) {
+    box-shadow: none !important;
+    transform: none !important;
+    background-color: var(--color-primary-600);
   }
 </style>

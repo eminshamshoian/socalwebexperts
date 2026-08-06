@@ -61,8 +61,8 @@
   --section-padding: 6rem;   /* py-24 */
   --section-padding-md: 8rem; /* py-32 */
   --section-gap: 5rem;       /* mb-20 between header and content */
-  --block-gap: 2rem;         /* mb-8 between headline and subtitle, etc */
-  --element-gap: 1.5rem;    /* mb-6 between label and heading */
+  --block-gap: 1.5rem;       /* mb-6 between heading and subtitle/lead */
+  --element-gap: 1.5rem;    /* mb-6 between eyebrow/label and heading */
   --item-gap: 1rem;         /* gap-4 between buttons, etc */
   --card-padding: 2rem;      /* p-8 */
   --container-max: 1400px;

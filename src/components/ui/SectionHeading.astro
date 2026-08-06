@@ -23,11 +23,11 @@ const alignments = {
 
 <div class={`max-w-2xl ${alignments[align]} ${className}`}>
   {badge && (
-    <p class="type-eyebrow mb-3">
+    <p class="type-eyebrow mb-6">
       {badge}
     </p>
   )}
-  <h2 class="text-[var(--text)] mb-4">
+  <h2 class="text-[var(--text)] mb-6">
     <slot name="title">
       <Fragment set:html={title} />
     </slot>

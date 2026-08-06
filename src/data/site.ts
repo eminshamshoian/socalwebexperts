@@ -432,10 +432,10 @@ export const yelpReview: YelpReview = {
 export const portfolioItems: PortfolioItem[] = [
   {
     id: '1',
-    title: 'Carter Law Offices',
+    title: 'Billing Fortress',
     category: 'web-design',
-    categoryLabel: 'Law Office',
-    image: 'https://res.cloudinary.com/ds85pv6ht/image/upload/v1770874360/lawyer-fullscreen_cbti3t.png',
+    categoryLabel: 'Medical Billing',
+    image: '/portfolio/screencapture-billingfortress.jpg',
     scrollableImage: true,
   },
   {
@@ -482,11 +482,11 @@ export const portfolioItems: PortfolioItem[] = [
 
 /** Exactly 5 items for the hero card fan */
 export const heroShowcaseItems: PortfolioItem[] = [
+  portfolioItems.find((item) => item.id === '1')!,
   portfolioItems.find((item) => item.id === '8')!,
   portfolioItems.find((item) => item.id === '2')!,
   portfolioItems.find((item) => item.id === '3')!,
   portfolioItems.find((item) => item.id === '7')!,
-  portfolioItems.find((item) => item.id === '4')!,
 ];
 
 // Pricing Models

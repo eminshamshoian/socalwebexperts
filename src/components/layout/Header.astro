@@ -4,7 +4,7 @@ import Button from '../ui/Button.astro';
 import Icon from '../ui/Icon.astro';
 ---
 
-<header class="fixed z-50 w-full px-2" id="header">
+<header class="site-header" id="header">
   <nav class="group" data-scrolled="false" aria-label="Primary">
     <!-- Inner container: full-width → shrinks to pill on scroll -->
     <div
@@ -176,10 +176,35 @@ import Icon from '../ui/Icon.astro';
   </div>
 </header>
 
-<!-- Spacer so content doesn't hide behind fixed header -->
-<div class="h-20 md:h-20"></div>
+<!-- Spacer so page content clears the fixed header -->
+<div class="site-header-spacer" aria-hidden="true"></div>
 
 <style>
+  /* Fixed/sticky nav — pinned to the top on mobile and desktop */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    width: 100%;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    background: rgba(var(--bg-rgb, 27, 38, 50), 0.92);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+  }
+
+  .site-header-spacer {
+    height: 7.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .site-header-spacer {
+      height: 8rem;
+    }
+  }
+
   /* Pill nav on scroll */
   #nav-inner.scrolled {
     max-width: 56rem; /* ~max-w-4xl equivalent */

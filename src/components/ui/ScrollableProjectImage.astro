@@ -8,118 +8,286 @@ import {
 interface Props {
   src: string;
   alt: string;
+  title?: string;
+  shapeIndex?: number;
 }
-const { src, alt } = Astro.props;
+
+const { src, alt, title = '', shapeIndex = 0 } = Astro.props;
 const dimensions = portfolioImageDimensions(src);
+const shapeClass = `portfolio-frame--${(shapeIndex % 4) + 1}`;
+const modalId = `portfolio-modal-${src.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^-|-$/g, '').slice(-48)}-${shapeIndex}`;
 ---
 
-<div class="scrollable-project-image" data-scrollable>
-  <img
-    src={portfolioImageUrl(src, 960)}
-    srcset={portfolioImageSrcSet(src, [480, 640, 960, 1400])}
-    sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 1279px) 85vw, 1190px"
-    alt={alt}
-    width={dimensions.width}
-    height={dimensions.height}
-    loading="lazy"
-    decoding="async"
-    fetchpriority="low"
-  />
-</div>
+<button
+  type="button"
+  class={`portfolio-frame ${shapeClass}`}
+  data-portfolio-open
+  data-modal-id={modalId}
+  data-title={title}
+  aria-haspopup="dialog"
+  aria-controls={modalId}
+  aria-label={title ? `View full page: ${title}` : 'View full page preview'}
+>
+  <span class="portfolio-frame__media">
+    <img
+      src={portfolioImageUrl(src, 960)}
+      srcset={portfolioImageSrcSet(src, [480, 640, 960, 1400])}
+      sizes="(max-width: 767px) calc(100vw - 3rem), (max-width: 1279px) 85vw, 1190px"
+      alt={alt}
+      width={dimensions.width}
+      height={dimensions.height}
+      loading="lazy"
+      decoding="async"
+      fetchpriority="low"
+    />
+  </span>
+</button>
+
+<dialog
+  id={modalId}
+  class="portfolio-modal"
+  data-portfolio-modal
+  aria-label={title ? `${title} full page preview` : 'Full page preview'}
+>
+  <div class="portfolio-modal__chrome">
+    <p class="portfolio-modal__title">{title || 'Project preview'}</p>
+    <button type="button" class="portfolio-modal__close" data-portfolio-close aria-label="Close preview">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+        <path d="M18 6L6 18M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <div class="portfolio-modal__scroll">
+    <img
+      src={portfolioImageUrl(src, 1400)}
+      srcset={portfolioImageSrcSet(src, [640, 960, 1400])}
+      sizes="min(920px, 92vw)"
+      alt={alt}
+      width={dimensions.width}
+      height={dimensions.height}
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+</dialog>
 
 <style>
-  .scrollable-project-image {
+  .portfolio-frame {
     position: relative;
+    display: block;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    padding: 0;
+    border: 0;
+    background: transparent;
     cursor: pointer;
+    text-align: left;
     content-visibility: auto;
     contain-intrinsic-size: auto 720px;
   }
 
-  .scrollable-project-image img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: auto;
+  .portfolio-frame__media {
     display: block;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--bg-secondary);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  @media (hover: hover) and (pointer: fine) {
-    .scrollable-project-image img {
-      transition: transform 6s cubic-bezier(0.25, 0.1, 0.25, 1);
-    }
-    .scrollable-project-image:hover img {
-      will-change: transform;
-    }
-    .scrollable-project-image img.snap-back {
-      transition: transform 0.4s cubic-bezier(0.33, 0, 0.2, 1);
-    }
+  /* Artistic but clean frame shapes — soft organic rectangles */
+  .portfolio-frame--1 .portfolio-frame__media {
+    border-radius: 2.25rem 0.85rem 2.5rem 1.15rem;
+  }
+
+  .portfolio-frame--2 .portfolio-frame__media {
+    border-radius: 1rem 2.5rem 1.15rem 2.25rem;
+  }
+
+  .portfolio-frame--3 .portfolio-frame__media {
+    border-radius: 2.5rem 2.5rem 0.9rem 2.1rem;
+  }
+
+  .portfolio-frame--4 .portfolio-frame__media {
+    border-radius: 1.2rem 2.1rem 2.4rem 0.85rem;
+  }
+
+  .portfolio-frame__media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .portfolio-frame:hover .portfolio-frame__media,
+  .portfolio-frame:focus-visible .portfolio-frame__media {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
+  }
+
+  .portfolio-frame:hover .portfolio-frame__media img,
+  .portfolio-frame:focus-visible .portfolio-frame__media img {
+    transform: scale(1.03);
+  }
+
+  .portfolio-frame:focus-visible {
+    outline: none;
+  }
+
+  .portfolio-frame:focus-visible .portfolio-frame__media {
+    outline: 2px solid var(--color-primary-500);
+    outline-offset: 3px;
+  }
+
+  /* ─── Modal ─── */
+  .portfolio-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    width: min(920px, 94vw);
+    max-width: 94vw;
+    height: min(92dvh, 920px);
+    max-height: 92dvh;
+    margin: auto;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: 1.25rem;
+    background: var(--bg);
+    color: var(--text);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+  }
+
+  .portfolio-modal::backdrop {
+    background: rgba(10, 14, 20, 0.72);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+
+  .portfolio-modal__chrome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(var(--bg-rgb, 27, 38, 50), 0.92);
+  }
+
+  .portfolio-modal__title {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .portfolio-modal__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 0;
+    border-radius: 0.75rem;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  .portfolio-modal__close:hover,
+  .portfolio-modal__close:focus-visible {
+    background: var(--bg-secondary);
+    color: var(--color-primary-500);
+    outline: none;
+  }
+
+  .portfolio-modal__scroll {
+    height: calc(100% - 3.4rem);
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    background: #0f1620;
+  }
+
+  .portfolio-modal__scroll img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 </style>
 
 <script>
-  function initScrollableImages() {
-    document.querySelectorAll<HTMLElement>('[data-scrollable]').forEach((container) => {
-      const img = container.querySelector<HTMLImageElement>('img');
-      if (!img || container.hasAttribute('data-init')) return;
-      container.setAttribute('data-init', '');
+  function initPortfolioModals() {
+    document.querySelectorAll<HTMLElement>('[data-portfolio-open]').forEach((trigger) => {
+      if (trigger.hasAttribute('data-init')) return;
+      trigger.setAttribute('data-init', '');
 
-      let overflow = 0;
-      let frame = 0;
-      const updateOverflow = () => {
-        cancelAnimationFrame(frame);
-        frame = requestAnimationFrame(() => {
-          overflow = Math.max(0, img.offsetHeight - container.clientHeight);
-        });
+      const modalId = trigger.getAttribute('data-modal-id');
+      const modal = modalId ? document.getElementById(modalId) : null;
+      if (!(modal instanceof HTMLDialogElement)) return;
+
+      const closeBtn = modal.querySelector<HTMLElement>('[data-portfolio-close]');
+      const scrollArea = modal.querySelector<HTMLElement>('.portfolio-modal__scroll');
+
+      const openModal = () => {
+        if (scrollArea) scrollArea.scrollTop = 0;
+        if (typeof modal.showModal === 'function') {
+          modal.showModal();
+        } else {
+          modal.setAttribute('open', '');
+        }
+        document.body.style.overflow = 'hidden';
+        closeBtn?.focus();
       };
 
-      if (img.complete) updateOverflow();
-      else img.addEventListener('load', updateOverflow, { once: true });
-
-      const resizeObserver = new ResizeObserver(updateOverflow);
-      resizeObserver.observe(container);
-      resizeObserver.observe(img);
-
-      // Desktop: hover to scroll, fast snap-back on leave
-      container.addEventListener('mouseenter', () => {
-        img.classList.remove('snap-back');
-        if (overflow > 0) {
-          img.style.transform = `translateY(-${overflow}px)`;
-        }
-      });
-
-      container.addEventListener('mouseleave', () => {
-        img.classList.add('snap-back');
-        img.style.transform = 'translateY(0)';
-      });
-
-      // Mobile: tap to toggle scroll, tap again to snap back
-      let scrolled = false;
-      container.addEventListener('touchend', (e) => {
-        e.preventDefault();
-        if (overflow <= 0) return;
-
-        if (!scrolled) {
-          img.style.transition = 'transform 6s cubic-bezier(0.25, 0.1, 0.25, 1)';
-          img.style.transform = `translateY(-${overflow}px)`;
-          scrolled = true;
+      const closeModal = () => {
+        if (typeof modal.close === 'function') {
+          modal.close();
         } else {
-          img.style.transition = 'transform 0.4s cubic-bezier(0.33, 0, 0.2, 1)';
-          img.style.transform = 'translateY(0)';
-          scrolled = false;
+          modal.removeAttribute('open');
         }
+        document.body.style.overflow = '';
+        trigger.focus();
+      };
+
+      trigger.addEventListener('click', (event) => {
+        event.preventDefault();
+        openModal();
+      });
+
+      closeBtn?.addEventListener('click', (event) => {
+        event.preventDefault();
+        closeModal();
+      });
+
+      modal.addEventListener('click', (event) => {
+        const rect = modal.getBoundingClientRect();
+        const { clientX: x, clientY: y } = event;
+        const clickedBackdrop =
+          x < rect.left || x > rect.right || y < rect.top || y > rect.bottom;
+        if (clickedBackdrop) closeModal();
+      });
+
+      modal.addEventListener('close', () => {
+        document.body.style.overflow = '';
       });
     });
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initScrollableImages);
+    document.addEventListener('DOMContentLoaded', initPortfolioModals);
   } else {
-    initScrollableImages();
+    initPortfolioModals();
   }
 
-  document.addEventListener('astro:after-swap', initScrollableImages);
+  document.addEventListener('astro:after-swap', initPortfolioModals);
 </script>

@@ -56,8 +56,13 @@ const shapes = [
               />
 
               <div class={`relative z-10 w-full ${isOdd ? 'lg:w-[70%] lg:ml-auto' : 'lg:w-[85%]'}`}>
-                <div class="relative overflow-hidden rounded-sm" style="aspect-ratio: 16/9;">
-                  <ScrollableProjectImage src={item.image} alt={`${item.title} - ${item.categoryLabel} website`} />
+                <div class="relative" style="aspect-ratio: 16/9;">
+                  <ScrollableProjectImage
+                    src={item.image}
+                    alt={`${item.title} - ${item.categoryLabel} website`}
+                    title={item.title}
+                    shapeIndex={index}
+                  />
                 </div>
 
                 <div class="flex items-baseline justify-between mt-5 md:mt-6">

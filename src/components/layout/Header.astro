@@ -121,26 +121,26 @@ import Icon from '../ui/Icon.astro';
       <nav class="flex-1 flex flex-col justify-center -mt-16" aria-label="Mobile">
         {navigation.map((item, idx) => (
           item.children ? (
-            <div class="mb-4 mobile-nav-item">
+            <div class="mobile-nav-item">
               <button
                 type="button"
-                class="mobile-nav-link mobile-dropdown-trigger w-full flex items-center justify-between py-4 text-3xl font-normal text-[var(--text)] hover:text-primary-500 transition-colors"
+                class="mobile-nav-link mobile-dropdown-trigger w-full flex items-center justify-between gap-3 py-4 text-4xl font-normal leading-none text-[var(--text)] hover:text-primary-500 transition-colors"
                 data-dropdown={`dropdown-${idx}`}
                 aria-expanded="false"
                 aria-controls={`dropdown-${idx}`}
                 style={`animation-delay: ${idx * 60}ms`}
               >
                 <span>{item.label}</span>
-                <Icon name="chevron-down" size={20} class="dropdown-icon transition-transform duration-300" />
+                <Icon name="chevron-down" size={22} class="dropdown-icon shrink-0 transition-transform duration-300" />
               </button>
               <div
-                class="mobile-dropdown-content hidden pl-4 space-y-1"
+                class="mobile-dropdown-content hidden ml-1 border-l border-[var(--border)] pl-5"
                 id={`dropdown-${idx}`}
               >
                 {item.children.map((child) => (
                   <a
                     href={child.href}
-                    class="block py-2.5 text-lg font-medium text-[var(--text-secondary)] hover:text-primary-500 transition-colors"
+                    class="block py-3 text-xl font-normal text-[var(--text-secondary)] hover:text-primary-500 transition-colors"
                   >
                     {child.label}
                   </a>
@@ -150,7 +150,7 @@ import Icon from '../ui/Icon.astro';
           ) : (
             <a
               href={item.href}
-              class="mobile-nav-link block py-4 text-4xl font-normal text-[var(--text)] hover:text-primary-500 transition-colors"
+              class="mobile-nav-link block py-4 text-4xl font-normal leading-none text-[var(--text)] hover:text-primary-500 transition-colors"
               style={`animation-delay: ${idx * 60}ms`}
             >
               {item.label}
@@ -218,9 +218,9 @@ import Icon from '../ui/Icon.astro';
   }
 
   .mobile-dropdown-content.open {
-    max-height: 500px;
+    max-height: 20rem;
     opacity: 1;
-    padding-top: 0.5rem;
+    padding-top: 0.25rem;
     padding-bottom: 0.5rem;
   }
 

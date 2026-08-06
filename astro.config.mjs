@@ -14,7 +14,6 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         !page.includes('/404') &&
-        !page.includes('/google') &&
         !page.endsWith('.html'),
       serialize(item) {
         const url = item.url.endsWith('/') || item.url === 'https://socalwebexperts.com'
@@ -25,7 +24,6 @@ export default defineConfig({
         const isHome = url === 'https://socalwebexperts.com/' || url === 'https://socalwebexperts.com';
         const isService = url.includes('/services/');
         const isCore =
-          url.includes('/about') ||
           url.includes('/contact') ||
           url.includes('/pricing') ||
           url.includes('/portfolio');

@@ -21,6 +21,17 @@
   to = "/services/web-design/"
   status = 301
 
+# Retired About page
+[[redirects]]
+  from = "/about"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/about/"
+  to = "/"
+  status = 301
+
 # ── Headers ──
 [[headers]]
   for = "/*"

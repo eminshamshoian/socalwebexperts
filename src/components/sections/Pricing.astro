@@ -48,7 +48,7 @@ import { pricingModels } from '../../data/site';
               )}
               <div class="flex items-baseline gap-3 pb-2">
                 <span
-                  class={`text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight ${plan.highlighted ? 'text-black' : 'text-[var(--text)]'}`}
+                    class={`text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight ${plan.highlighted ? 'text-black' : 'text-[var(--text)]'}`}
                 >
                   {plan.upfront}
                 </span>
@@ -58,7 +58,7 @@ import { pricingModels } from '../../data/site';
               </div>
               <p class={`text-sm pb-10 ${plan.highlighted ? 'text-black' : 'text-[var(--text-secondary)]'}`}>
                 {plan.yearly
-                  ? `${plan.monthly} a month or ${plan.yearly} yearly`
+                  ? `hosting @ ${plan.monthly} a month or ${plan.yearly} yearly`
                   : `+ ${plan.monthly}/mo hosting`}
               </p>
 

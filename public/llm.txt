@@ -17,12 +17,11 @@ SoCal Web Experts builds fast, secure, conversion-focused websites that help ser
 ## Pricing
 - Website build starting from $299 setup fee
 - Hosting from $12/mo or $99/yr
-- Post-launch updates at $100/hour
+- Post-launch updates: $50 per round; new pages: $100 each
 - Details: https://socalwebexperts.com/pricing/
 
 ## Key pages
 - Home: https://socalwebexperts.com/
-- About: https://socalwebexperts.com/about/
 - Portfolio: https://socalwebexperts.com/portfolio/
 - Contact / free strategy call: https://socalwebexperts.com/contact/
 - Privacy: https://socalwebexperts.com/privacy/

@@ -5,7 +5,6 @@ This site is for local and service-based businesses that need a website that gen
 
 ## Primary pages
 - [Home](https://socalwebexperts.com/): Overview of services, process, portfolio, pricing, and FAQ
-- [About](https://socalwebexperts.com/about/): Company mission and approach
 - [Custom Web Design](https://socalwebexperts.com/services/web-design/): Brand-first, conversion-focused websites
 - [Social Media Marketing](https://socalwebexperts.com/services/social-media/): On-brand content and posting
 - [Google Ads](https://socalwebexperts.com/services/google-ads/): Paid search for high-intent local leads

@@ -32,7 +32,6 @@ export const siteConfig: SiteConfig = {
 // Navigation
 export const navigation: NavItem[] = [
   { label: 'Home', href: '/' },
-  { label: 'About', href: '/about/' },
   {
     label: 'Services',
     href: '/#services',
@@ -503,12 +502,12 @@ export const pricingModels: PricingModel[] = [
     features: [
       'Unlimited edits until you\'re satisfied',
       'Custom website build',
-      'Hosting + security',
       'SEO foundation setup',
       'Performance-first, mobile-first design',
       'Clear conversion paths (calls, forms, booking)',
       'Launch support',
-      'Future updates after launch: $100/hr',
+      'Future updates: $50 per round',
+      'New pages after launch: $100 each',
     ],
     highlighted: true,
   },
@@ -525,7 +524,7 @@ export const faqItems: FAQItem[] = [
     id: '2',
     question: 'What kinds of updates are included?',
     answer:
-      'Unlimited edits and revisions are included until you approve the final design. After launch, content edits, new sections, and changes are available at $100/hour.',
+      'Unlimited edits and revisions are included until you approve the final design. After launch, updates are $50 per round, and new pages are $100 each.',
   },
   {
     id: '3',
@@ -536,7 +535,7 @@ export const faqItems: FAQItem[] = [
     id: '4',
     question: 'What does monthly hosting cover?',
     answer:
-      'The $25/month covers hosting, core security, and keeping your site online. Unlimited edits are included until you\'re satisfied with the design; after launch, ongoing changes are billed at $100/hr.',
+      'Monthly hosting covers keeping your site online with core security. Unlimited edits are included until you\'re satisfied with the design; after launch, updates are $50 per round and new pages are $100 each.',
   },
   {
     id: '5',

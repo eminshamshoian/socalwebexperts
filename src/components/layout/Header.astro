@@ -124,7 +124,7 @@ import Icon from '../ui/Icon.astro';
             <div class="mb-4 mobile-nav-item">
               <button
                 type="button"
-                class="mobile-nav-link mobile-dropdown-trigger w-full flex items-center justify-between py-4 text-3xl font-semibold text-[var(--text)] hover:text-primary-500 transition-colors"
+                class="mobile-nav-link mobile-dropdown-trigger w-full flex items-center justify-between py-4 text-3xl font-normal text-[var(--text)] hover:text-primary-500 transition-colors"
                 data-dropdown={`dropdown-${idx}`}
                 aria-expanded="false"
                 aria-controls={`dropdown-${idx}`}
@@ -150,7 +150,7 @@ import Icon from '../ui/Icon.astro';
           ) : (
             <a
               href={item.href}
-              class="mobile-nav-link block py-4 text-4xl font-semibold text-[var(--text)] hover:text-primary-500 transition-colors"
+              class="mobile-nav-link block py-4 text-4xl font-normal text-[var(--text)] hover:text-primary-500 transition-colors"
               style={`animation-delay: ${idx * 60}ms`}
             >
               {item.label}

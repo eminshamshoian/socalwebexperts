@@ -34,7 +34,7 @@ const addOns = [
         </div>
         <div class="flex items-end fade-in" style="animation-delay: 0.1s;">
           <p class="type-lead max-w-lg">
-            Starting from $299 setup, affordable hosting, and hourly updates only after you are happy with the design.
+            Starting from $299 setup, affordable hosting, and clear post-launch rates — $50 per update round, $100 per new page.
           </p>
         </div>
       </div>
@@ -64,7 +64,7 @@ const addOns = [
                 )}
                 <div class="flex items-baseline gap-3 pb-2">
                   <span
-                    class={`text-5xl md:text-6xl lg:text-7xl font-semibold tracking-tight ${plan.highlighted ? 'text-black' : 'text-[var(--text)]'}`}
+                    class={`text-5xl md:text-6xl lg:text-7xl font-medium tracking-tight ${plan.highlighted ? 'text-black' : 'text-[var(--text)]'}`}
                   >
                     {plan.upfront}
                   </span>
@@ -74,7 +74,7 @@ const addOns = [
                 </div>
                 <p class={`text-sm pb-10 ${plan.highlighted ? 'text-black' : 'text-[var(--text-secondary)]'}`}>
                   {plan.yearly
-                    ? `${plan.monthly} a month or ${plan.yearly} yearly`
+                    ? `hosting @ ${plan.monthly} a month or ${plan.yearly} yearly`
                     : `+ ${plan.monthly}/mo hosting`}
                 </p>
                 {plan.highlighted ? (

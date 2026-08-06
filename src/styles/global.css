@@ -102,13 +102,6 @@ body {
   font-weight: 400;
 }
 
-button,
-input,
-select,
-textarea {
-  font: inherit;
-}
-
 /* ─── Typography – readable display scale ─── */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
@@ -260,8 +253,15 @@ img {
   display: block;
 }
 
-/* Keep in @layer base so Tailwind button utilities (bg/color) win */
+/* Keep form control resets in @layer base so Tailwind size/color utilities win */
 @layer base {
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
   button {
     font-family: inherit;
     cursor: pointer;

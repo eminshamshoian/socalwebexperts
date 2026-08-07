@@ -281,8 +281,8 @@ import Icon from '../ui/Icon.astro';
     display: flex;
     flex: 1;
     flex-direction: column;
-    justify-content: center;
-    margin-top: -4rem;
+    justify-content: flex-start;
+    padding-top: clamp(1rem, 6vh, 4rem);
   }
 
   .mobile-menu__footer {
@@ -365,34 +365,24 @@ import Icon from '../ui/Icon.astro';
   .mobile-dropdown-trigger.active .dropdown-icon {
     transform: rotate(180deg);
   }
+
+  :global(html.mobile-menu-open),
+  :global(html.mobile-menu-open body) {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
 </style>
 
 <script>
-  let scrollLockY = 0;
-
   function lockPageScroll() {
-    scrollLockY = window.scrollY || window.pageYOffset || 0;
-    document.documentElement.style.overflow = 'hidden';
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollLockY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
+    document.documentElement.classList.add('mobile-menu-open');
   }
 
   function unlockPageScroll() {
-    document.documentElement.style.overflow = '';
-    document.body.style.overflow = '';
-    document.body.style.position = '';
-    document.body.style.top = '';
-    document.body.style.left = '';
-    document.body.style.right = '';
-    document.body.style.width = '';
-    window.scrollTo(0, scrollLockY);
+    document.documentElement.classList.remove('mobile-menu-open');
   }
 
-  function setMobileMenuState(open) {
+  function setMobileMenuState(open, restoreFocus = true) {
     const menu = document.getElementById('mobile-menu');
     const btn = document.getElementById('mobile-menu-btn');
     const menuIcon = btn?.querySelector('.menu-icon');
@@ -418,12 +408,12 @@ import Icon from '../ui/Icon.astro';
       menuIcon.classList.remove('hidden');
       closeIcon.classList.add('hidden');
       unlockPageScroll();
-      btn.focus();
+      if (restoreFocus) btn.focus({ preventScroll: true });
     }
   }
 
-  function closeMobileMenu() {
-    setMobileMenuState(false);
+  function closeMobileMenu(restoreFocus = true) {
+    setMobileMenuState(false, restoreFocus);
   }
 
   function initMobileMenu() {
@@ -444,12 +434,16 @@ import Icon from '../ui/Icon.astro';
 
     if (menu) {
       menu.querySelectorAll('a.mobile-nav-link, .mobile-dropdown-content a').forEach(link => {
-        link.addEventListener('click', () => { closeMobileMenu(); });
+        link.addEventListener('click', () => { closeMobileMenu(false); });
       });
+    }
 
-      menu.addEventListener('keydown', (event) => {
+    if (!document.documentElement.hasAttribute('data-mobile-menu-escape-init')) {
+      document.documentElement.setAttribute('data-mobile-menu-escape-init', '');
+      document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
-          closeMobileMenu();
+          const currentMenu = document.getElementById('mobile-menu');
+          if (currentMenu?.classList.contains('open')) closeMobileMenu();
         }
       });
     }

@@ -138,6 +138,20 @@ const structuredData = buildGraph(graphNodes);
     </main>
     <Footer />
 
+    <!-- Forward page navigations always begin at the top. Hash links and Back/Forward keep native behavior. -->
+    <script>
+      function resetForwardNavigationScroll() {
+        if (window.location.hash) return;
+
+        const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming | undefined;
+        if (navigation?.type !== 'navigate') return;
+
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+      }
+
+      window.addEventListener('pageshow', resetForwardNavigationScroll);
+    </script>
+
     <!-- Scroll animation observer -->
     <script>
       function initScrollAnimations() {

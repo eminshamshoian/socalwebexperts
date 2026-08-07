@@ -436,10 +436,14 @@ import Icon from '../ui/Icon.astro';
       menu.querySelectorAll('a.mobile-nav-link, .mobile-dropdown-content a').forEach(link => {
         link.addEventListener('click', () => { closeMobileMenu(false); });
       });
+    }
 
-      menu.addEventListener('keydown', (event) => {
+    if (!document.documentElement.hasAttribute('data-mobile-menu-escape-init')) {
+      document.documentElement.setAttribute('data-mobile-menu-escape-init', '');
+      document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
-          closeMobileMenu();
+          const currentMenu = document.getElementById('mobile-menu');
+          if (currentMenu?.classList.contains('open')) closeMobileMenu();
         }
       });
     }

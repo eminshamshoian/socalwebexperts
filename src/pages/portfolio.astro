@@ -56,7 +56,7 @@ const shapes = [
               />
 
               <div class={`relative z-10 w-full ${isOdd ? 'lg:w-[70%] lg:ml-auto' : 'lg:w-[85%]'}`}>
-                <div class="relative" style="aspect-ratio: 16/9;">
+                <div class="portfolio-item-media relative" style="aspect-ratio: 16/9;">
                   <ScrollableProjectImage
                     src={item.image}
                     alt={`${item.title} - ${item.categoryLabel} website`}
@@ -122,13 +122,19 @@ const shapes = [
   .portfolio-shape {
     width: clamp(10rem, 18vw, 16rem);
     height: clamp(10rem, 18vw, 16rem);
-    color: rgba(255, 177, 98, 0.08);
+    color: rgba(163, 230, 53, 0.14);
     transition: color 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                 transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
   .group:hover .portfolio-shape {
-    color: rgba(255, 177, 98, 0.14);
+    color: rgba(163, 230, 53, 0.28);
     transform: translateY(-50%) rotate(15deg);
+  }
+
+  /* Opaque page fill behind the shaped image so decorative shapes stay in the gap only */
+  .portfolio-item-media {
+    background: var(--bg);
+    isolation: isolate;
   }
 </style>

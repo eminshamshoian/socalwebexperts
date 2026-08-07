@@ -82,8 +82,8 @@ const modalId = `portfolio-modal-${src.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^
     background: transparent;
     cursor: pointer;
     text-align: left;
-    content-visibility: auto;
-    contain-intrinsic-size: auto 720px;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .portfolio-frame:focus,
@@ -133,13 +133,15 @@ const modalId = `portfolio-modal-${src.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^
     transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  .portfolio-frame:hover .portfolio-frame__media {
-    transform: translateY(-3px);
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
-  }
+  @media (hover: hover) and (pointer: fine) {
+    .portfolio-frame:hover .portfolio-frame__media {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
+    }
 
-  .portfolio-frame:hover .portfolio-frame__media img {
-    transform: scale(1.03);
+    .portfolio-frame:hover .portfolio-frame__media img {
+      transform: scale(1.03);
+    }
   }
 
   .portfolio-frame:focus .portfolio-frame__media,

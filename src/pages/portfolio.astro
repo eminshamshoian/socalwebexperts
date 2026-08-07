@@ -1,17 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ScrollableProjectImage from '../components/ui/ScrollableProjectImage.astro';
-import Button from '../components/ui/Button.astro';
-import Icon from '../components/ui/Icon.astro';
-import { portfolioItems } from '../data/site';
-
-const shapes = [
-  `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M200 0 A200 200 0 0 1 0 200" stroke="currentColor" stroke-width="0.8"/><path d="M160 0 A160 160 0 0 1 0 160" stroke="currentColor" stroke-width="0.5"/></svg>`,
-  `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="90" stroke="currentColor" stroke-width="0.8"/><circle cx="100" cy="100" r="55" stroke="currentColor" stroke-width="0.5"/><circle cx="100" cy="100" r="20" stroke="currentColor" stroke-width="0.5"/></svg>`,
-  `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10 100 C10 30, 100 10, 190 100 S190 190, 100 190 S10 170, 10 100" stroke="currentColor" stroke-width="0.8"/></svg>`,
-  `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><line x1="100" y1="10" x2="100" y2="190" stroke="currentColor" stroke-width="0.8"/><line x1="10" y1="100" x2="190" y2="100" stroke="currentColor" stroke-width="0.8"/><line x1="30" y1="30" x2="170" y2="170" stroke="currentColor" stroke-width="0.5"/><line x1="170" y1="30" x2="30" y2="170" stroke="currentColor" stroke-width="0.5"/></svg>`,
-  `<svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0 100 Q50 20, 100 100 T200 100" stroke="currentColor" stroke-width="0.8"/><path d="M0 130 Q50 50, 100 130 T200 130" stroke="currentColor" stroke-width="0.5"/></svg>`,
-];
+import Portfolio from '../components/sections/Portfolio.astro';
 ---
 
 <BaseLayout
@@ -23,118 +12,14 @@ const shapes = [
     { name: 'Portfolio', url: '/portfolio/' },
   ]}
 >
-  <section class="portfolio-page">
-    <div class="mx-auto w-full max-w-[1400px] px-6 lg:px-16">
-      <!-- Header -->
-      <div class="portfolio-page__header grid lg:grid-cols-2 gap-8 lg:gap-16">
-        <div class="fade-in">
-          <p class="type-eyebrow mb-6">
-            Portfolio
-          </p>
-          <h1 class="text-[var(--text)]">
-            Work built for<br class="hidden sm:block" />
-            leads and trust
-          </h1>
-        </div>
-        <div class="flex items-end fade-in" style="animation-delay: 0.1s;">
-          <p class="type-lead max-w-lg">
-            Modern design, clear messaging, and fast performance so customers choose you.
-          </p>
-        </div>
-      </div>
-
-      <!-- Projects — alternating offset with shapes -->
-      <div class="portfolio-page__list space-y-14 md:space-y-24">
-        {portfolioItems.map((item, index) => {
-          const isOdd = index % 2 === 1;
-          return (
-            <div class="group relative fade-in" style={`animation-delay: ${0.1 + index * 0.08}s`}>
-              <div
-                class={`hidden lg:block absolute top-1/2 -translate-y-1/2 pointer-events-none z-0 portfolio-shape ${isOdd ? 'left-4' : 'right-4'}`}
-                aria-hidden="true"
-                set:html={shapes[index % shapes.length]}
-              />
-
-              <div class={`relative z-10 w-full ${isOdd ? 'lg:w-[70%] lg:ml-auto' : 'lg:w-[85%]'}`}>
-                <div class="portfolio-item-media relative" style="aspect-ratio: 16/9;">
-                  <ScrollableProjectImage
-                    src={item.image}
-                    alt={`${item.title} - ${item.categoryLabel} website`}
-                    title={item.title}
-                    shapeIndex={index}
-                  />
-                </div>
-
-                <div class="flex items-baseline justify-between mt-5 md:mt-6">
-                  <h3 class="type-card-title">
-                    {item.title}
-                  </h3>
-                  <span class="type-caption">
-                    {item.categoryLabel}
-                  </span>
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      <!-- CTA -->
-      <div class="mt-16 md:mt-24 fade-in">
-        <Button href="/contact/" size="lg">
-          Want one like this? Get a Quote
-          <Icon name="arrow-right" size={16} />
-        </Button>
-      </div>
-    </div>
-  </section>
+  <Portfolio
+    eyebrow="Portfolio"
+    headingTop="Work built for"
+    headingBottom="leads and trust"
+    description="Modern design, clear messaging, and fast performance so customers choose you."
+    headingLevel="h1"
+    ctaHref="/contact/"
+    ctaLabel="Want one like this? Get a Quote"
+    ctaVariant="primary"
+  />
 </BaseLayout>
-
-<style>
-  .portfolio-page {
-    padding-top: 5.5rem;
-    padding-bottom: 5.5rem;
-  }
-
-  .portfolio-page__header {
-    margin-bottom: 4.5rem;
-  }
-
-  .portfolio-page__list {
-    padding-top: 1.5rem;
-  }
-
-  @media (min-width: 768px) {
-    .portfolio-page {
-      padding-top: 8rem;
-      padding-bottom: 8rem;
-    }
-
-    .portfolio-page__header {
-      margin-bottom: 7rem;
-    }
-
-    .portfolio-page__list {
-      padding-top: 2rem;
-    }
-  }
-
-  .portfolio-shape {
-    width: clamp(10rem, 18vw, 16rem);
-    height: clamp(10rem, 18vw, 16rem);
-    color: rgba(163, 230, 53, 0.14);
-    transition: color 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94),
-                transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  }
-
-  .group:hover .portfolio-shape {
-    color: rgba(163, 230, 53, 0.28);
-    transform: translateY(-50%) rotate(15deg);
-  }
-
-  /* Opaque page fill behind the shaped image so decorative shapes stay in the gap only */
-  .portfolio-item-media {
-    background: var(--bg);
-    isolation: isolate;
-  }
-</style>

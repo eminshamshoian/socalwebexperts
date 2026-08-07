@@ -4,6 +4,28 @@ import Icon from '../ui/Icon.astro';
 import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
 import { portfolioItems } from '../../data/site';
 
+interface Props {
+  eyebrow?: string;
+  headingTop?: string;
+  headingBottom?: string;
+  description?: string;
+  headingLevel?: 'h1' | 'h2';
+  ctaHref?: string;
+  ctaLabel?: string;
+  ctaVariant?: 'primary' | 'secondary';
+}
+
+const {
+  eyebrow = 'Selected Work',
+  headingTop = 'Websites that',
+  headingBottom = 'convert and perform',
+  description = 'Real projects built for real businesses. Every pixel designed to build trust and drive leads.',
+  headingLevel = 'h2',
+  ctaHref = '/portfolio/',
+  ctaLabel = 'View all projects',
+  ctaVariant = 'secondary',
+} = Astro.props;
+
 const displayItems = portfolioItems;
 
 const shapes = [
@@ -21,16 +43,23 @@ const shapes = [
     <div class="portfolio-header grid lg:grid-cols-2 gap-8 lg:gap-16">
       <div class="fade-in">
         <p class="type-eyebrow mb-6">
-          Selected Work
+          {eyebrow}
         </p>
-        <h2 class="text-[var(--text)]">
-          Websites that<br class="hidden sm:block" />
-          convert and perform
-        </h2>
+        {headingLevel === 'h1' ? (
+          <h1 class="text-[var(--text)]">
+            {headingTop}<br class="hidden sm:block" />
+            {headingBottom}
+          </h1>
+        ) : (
+          <h2 class="text-[var(--text)]">
+            {headingTop}<br class="hidden sm:block" />
+            {headingBottom}
+          </h2>
+        )}
       </div>
       <div class="flex items-end fade-in" style="animation-delay: 0.1s;">
         <p class="type-lead max-w-lg">
-          Real projects built for real businesses. Every pixel designed to build trust and drive leads.
+          {description}
         </p>
       </div>
     </div>
@@ -75,8 +104,8 @@ const shapes = [
 
     <!-- CTA -->
     <div class="mt-16 md:mt-24 fade-in">
-      <Button href="/portfolio/" variant="secondary" size="lg">
-        View all projects
+      <Button href={ctaHref} variant={ctaVariant} size="lg">
+        {ctaLabel}
         <Icon name="arrow-right" size={16} />
       </Button>
     </div>
@@ -121,9 +150,11 @@ const shapes = [
                 transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
 
-  .group:hover .portfolio-shape {
-    color: rgba(163, 230, 53, 0.28);
-    transform: translateY(-50%) rotate(15deg);
+  @media (hover: hover) and (pointer: fine) {
+    .group:hover .portfolio-shape {
+      color: rgba(163, 230, 53, 0.28);
+      transform: translateY(-50%) rotate(15deg);
+    }
   }
 
   /* Opaque page fill behind the shaped image so decorative shapes stay in the gap only */

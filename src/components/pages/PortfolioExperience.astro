@@ -1,0 +1,135 @@
+---
+import { portfolioItems } from '../../data/site';
+import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
+---
+
+<section class="page-hero section-shell">
+  <div class="site-container">
+    <p class="section-index texture-tag" data-reveal>Portfolio</p>
+    <div class="page-hero__grid">
+      <h1 data-reveal>Work that makes businesses easier to trust.</h1>
+      <p class="type-lead" data-reveal style="--reveal-delay:100ms">Websites built around real services, clear decisions, and the next action a customer should take.</p>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio-archive section-shell section-rule">
+  <div class="site-container portfolio-archive__grid">
+    {portfolioItems.map((item, index) => (
+      <article data-reveal style={`--reveal-delay:${(index % 3) * 60}ms`}>
+        <div class="portfolio-archive__media">
+          <ScrollableProjectImage
+            src={item.image}
+            alt={`${item.title}, ${item.categoryLabel} website`}
+            title={item.title}
+            shapeIndex={index}
+          />
+        </div>
+        <div class="portfolio-archive__meta">
+          <div><span>0{index + 1}</span><h2>{item.title}</h2></div>
+          <p>{item.categoryLabel}</p>
+        </div>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="archive-cta section-shell section-rule">
+  <div class="site-container">
+    <p class="section-index">Your project could be next</p>
+    <h2>Need a website that works this hard?</h2>
+    <a class="button" href="/contact/">Start a project</a>
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    padding-top: clamp(4rem, 8vw, 8rem);
+  }
+
+  .page-hero__grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .page-hero h1 {
+    max-width: 11ch;
+    font-size: clamp(3.2rem, 8vw, 8rem);
+  }
+
+  .page-hero .type-lead {
+    max-width: 32rem;
+    align-self: end;
+  }
+
+  .portfolio-archive__grid {
+    display: grid;
+    gap: clamp(5rem, 10vw, 10rem) 1.5rem;
+  }
+
+  .portfolio-archive__media {
+    height: min(72vw, 44rem);
+    min-height: 22rem;
+    padding: clamp(1rem, 3vw, 2.5rem);
+    background: var(--project-bg, var(--bg-secondary));
+  }
+
+  article:nth-child(4n + 1) .portfolio-archive__media { --project-bg: #f1b4a5; }
+  article:nth-child(4n + 2) .portfolio-archive__media { --project-bg: #c4d7f1; }
+  article:nth-child(4n + 3) .portfolio-archive__media { --project-bg: #f0d06d; }
+  article:nth-child(4n + 4) .portfolio-archive__media { --project-bg: #bdd6c2; }
+
+  .portfolio-archive__meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1rem;
+  }
+
+  .portfolio-archive__meta > div {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+  }
+
+  .portfolio-archive__meta h2 {
+    font-size: 1.1rem;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+  }
+
+  .portfolio-archive__meta span,
+  .portfolio-archive__meta p {
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+  }
+
+  .archive-cta {
+    background: var(--bg-secondary);
+  }
+
+  .archive-cta h2 {
+    max-width: 12ch;
+    margin-block: 1.5rem 2.5rem;
+  }
+
+  @media (min-width: 800px) {
+    .page-hero__grid {
+      grid-template-columns: 1.3fr 0.7fr;
+    }
+
+    .portfolio-archive__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .portfolio-archive article:nth-child(even) {
+      margin-top: 9rem;
+    }
+
+    .portfolio-archive__media {
+      height: 38rem;
+    }
+  }
+</style>

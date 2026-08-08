@@ -33,7 +33,9 @@ export default defineConfig({
           url.includes('/accessibility');
         const isSiteMap = url.includes('/site-map');
 
-        item.changefreq = isLegal || isSiteMap ? 'yearly' : isHome || isService || isCore ? 'weekly' : 'monthly';
+        item.changefreq = /** @type {typeof item.changefreq} */ (
+          isLegal || isSiteMap ? 'yearly' : isHome || isService || isCore ? 'weekly' : 'monthly'
+        );
         item.priority = isHome ? 1.0 : isService ? 0.9 : isCore ? 0.8 : isSiteMap ? 0.2 : isLegal ? 0.3 : 0.5;
         item.lastmod = new Date().toISOString();
         return item;

@@ -1,0 +1,136 @@
+---
+import { navigation, services, siteConfig, portfolioItems } from '../../data/site';
+---
+
+<footer class="footer">
+  <div class="site-container">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="/" aria-label="SoCal Web Experts home">
+          <img src="/logo-black.png" width="192" height="192" alt="SoCal Web Experts" loading="lazy" />
+        </a>
+        <p>Websites and growth systems for Southern California businesses.</p>
+      </div>
+
+      <div>
+        <p class="footer__label">Navigate</p>
+        {navigation.map((item) => <a href={item.href}>{item.label}</a>)}
+      </div>
+
+      <div>
+        <p class="footer__label">Services</p>
+        {services.map((service) => <a href={`/services/${service.slug}/`}>{service.title}</a>)}
+        <a href="/portfolio/">Selected Projects</a>
+      </div>
+
+      <div>
+        <p class="footer__label">Contact</p>
+        <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+        <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}>{siteConfig.phone}</a>
+        <p>{siteConfig.address}</p>
+        <div class="footer__social">
+          {siteConfig.socials.map((social) => <a href={social.url} target="_blank" rel="noopener noreferrer">{social.platform}</a>)}
+        </div>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <span>© {new Date().getFullYear()} SoCal Web Experts</span>
+      <div>
+        <a href="/site-map/">Sitemap</a>
+        <a href="/accessibility/">Accessibility</a>
+        <a href="/privacy/">Privacy</a>
+        <a href="/terms/">Terms</a>
+      </div>
+      <a href="#main-content">Back to top</a>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--border);
+    background: var(--bg-secondary);
+    padding-block: clamp(5rem, 9vw, 9rem) 2rem;
+  }
+
+  .footer__grid {
+    display: grid;
+    gap: 3.5rem 2rem;
+    padding-block: 4rem;
+  }
+
+  .footer__grid > div:not(.footer__brand) {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.65rem;
+  }
+
+  .footer__brand img {
+    width: 6.5rem;
+    height: 6.5rem;
+    object-fit: contain;
+    margin-bottom: 1.25rem;
+  }
+
+  .footer__brand p {
+    max-width: 24rem;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+  }
+
+  .footer__label {
+    margin-bottom: 0.75rem;
+    color: var(--text-secondary);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .footer__grid a,
+  .footer__grid > div > p:not(.footer__label) {
+    font-size: 0.88rem;
+  }
+
+  .footer__grid a:hover,
+  .footer__bottom a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
+
+  .footer__social {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  .footer__bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.68rem;
+  }
+
+  .footer__bottom div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  @media (min-width: 720px) {
+    .footer__grid {
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+    }
+
+    .footer__bottom {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+</style>

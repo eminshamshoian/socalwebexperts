@@ -17,7 +17,7 @@ export const siteConfig: SiteConfig = {
   name: 'SoCal Web Experts',
   tagline: 'Websites That Bring You Customers',
   description:
-    'Custom-coded, SEO-ready websites for Southern California businesses — built to rank on Google and convert visitors into calls, quotes, and booked jobs.',
+    'Custom coded, SEO ready websites for Southern California businesses, built to rank on Google and convert visitors into calls, quotes, and booked jobs.',
   phone: '(747) 221-6603',
   email: 'hello@socalwebexperts.com',
   address: 'Glendale, California',
@@ -556,11 +556,11 @@ export const stats: Stat[] = [
     value: '95',
     suffix: '+',
     description:
-      'Typical mobile Lighthouse performance on sites we ship — verified in PageSpeed Insights, not just screenshots.',
+      'Typical mobile Lighthouse performance on sites we ship, verified in PageSpeed Insights, not just screenshots.',
   },
   {
     label: 'Kickoff to launch',
-    value: '2–4',
+    value: '2 to 4',
     suffix: ' wks',
     description:
       'Usual timeline for a custom, lead-ready site once content and approvals stay on track.',
@@ -569,7 +569,7 @@ export const stats: Stat[] = [
     label: 'Custom builds from',
     value: '$299',
     description:
-      'Setup fee with hosting from $12/mo — clear pricing, unlimited revisions until you approve launch.',
+      'Setup fee with hosting from $12 per month, clear pricing, and unlimited revisions until you approve launch.',
   },
 ];
 

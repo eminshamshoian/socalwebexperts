@@ -4,8 +4,8 @@
   "description": "Fast, secure, SEO-focused websites built to rank on Google and convert visitors into customers.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#0b0b0c",
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
   "lang": "en-US",
   "icons": [
     {

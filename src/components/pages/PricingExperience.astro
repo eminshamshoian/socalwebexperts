@@ -1,0 +1,256 @@
+---
+import { faqItems, pricingModels } from '../../data/site';
+
+const plan = pricingModels[0];
+const addOns = [
+  { title: 'Google Ads', price: 'From $500 per month', desc: 'Campaign setup, optimization, and conversion tracking.' },
+  { title: 'Social Media', price: 'From $400 per month', desc: 'Content planning, creation, and a consistent posting schedule.' },
+  { title: 'Ecommerce', price: 'From $2,500', desc: 'Shopify setup with payment, product, and shipping configuration.' },
+];
+---
+
+<section class="pricing-page-hero section-shell">
+  <div class="site-container">
+    <p class="section-index texture-tag" data-reveal>Pricing</p>
+    <div>
+      <h1 data-reveal>Professional websites without the agency markup.</h1>
+      <p class="type-lead" data-reveal style="--reveal-delay:100ms">Start with a focused custom build, then add only the growth services your business actually needs.</p>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-main section-shell section-rule">
+  <div class="site-container">
+    <div class="pricing-main__card" data-reveal>
+      <div class="pricing-main__price">
+        <p class="section-index">{plan.title}</p>
+        <span>Starting from</span>
+        <h2>{plan.upfront}</h2>
+        <p>Setup fee, plus {plan.monthly} monthly or {plan.yearly} yearly hosting.</p>
+        <a class="button" href="/contact/">Get started</a>
+      </div>
+      <div class="pricing-main__features">
+        <p class="section-index">What is included</p>
+        <ul>
+          {plan.features.map((feature) => <li><span>✓</span>{feature}</li>)}
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="add-ons section-shell section-rule">
+  <div class="site-container">
+    <div class="add-ons__head">
+      <p class="section-index" data-reveal>Optional growth services</p>
+      <h2 data-reveal>Build on the foundation.</h2>
+    </div>
+    <div class="add-ons__list">
+      {addOns.map((item, index) => (
+        <article data-reveal style={`--reveal-delay:${index * 60}ms`}>
+          <span>0{index + 1}</span>
+          <div><h3>{item.title}</h3><p>{item.desc}</p></div>
+          <strong>{item.price}</strong>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="pricing-faq section-shell section-rule">
+  <div class="site-container">
+    <div class="pricing-faq__head">
+      <p class="section-index">Before you decide</p>
+      <h2>Common pricing questions.</h2>
+    </div>
+    <div class="pricing-faq__items">
+      {faqItems.slice(1, 6).map((faq, index) => (
+        <details data-reveal style={`--reveal-delay:${index * 50}ms`}>
+          <summary><span>0{index + 1}</span>{faq.question}<b>+</b></summary>
+          <p>{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .pricing-page-hero {
+    padding-top: clamp(4rem, 8vw, 8rem);
+  }
+
+  .pricing-page-hero > div > div {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .pricing-page-hero h1 {
+    max-width: 12ch;
+  }
+
+  .pricing-page-hero .type-lead {
+    max-width: 32rem;
+    align-self: end;
+  }
+
+  .pricing-main__card {
+    display: grid;
+    border: 1px solid var(--border);
+  }
+
+  .pricing-main__price,
+  .pricing-main__features {
+    padding: clamp(1.5rem, 5vw, 5rem);
+  }
+
+  .pricing-main__price {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .pricing-main__price .section-index {
+    margin-bottom: clamp(4rem, 9vw, 9rem);
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .pricing-main__price > span {
+    font-size: 0.8rem;
+  }
+
+  .pricing-main__price h2 {
+    margin-block: 0.5rem;
+    color: #fff;
+    font-size: clamp(5rem, 12vw, 11rem);
+  }
+
+  .pricing-main__price > p:not(.section-index) {
+    max-width: 28rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 0.84rem;
+  }
+
+  .pricing-main__price .button {
+    margin-top: 3rem;
+    border-color: #fff;
+    color: #fff;
+  }
+
+  .pricing-main__price .button:hover {
+    background: #fff;
+    color: var(--accent);
+  }
+
+  .pricing-main__features ul {
+    margin: 3rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .pricing-main__features li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    border-bottom: 1px solid var(--border);
+    padding-block: 1rem;
+    font-size: 0.86rem;
+  }
+
+  .add-ons__head,
+  .pricing-faq__head {
+    display: grid;
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .add-ons__head h2,
+  .pricing-faq__head h2 {
+    max-width: 10ch;
+  }
+
+  .add-ons__list,
+  .pricing-faq__items {
+    border-top: 1px solid var(--border);
+  }
+
+  .add-ons article {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+    padding-block: 2rem;
+  }
+
+  .add-ons article > span,
+  .add-ons article p {
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+  }
+
+  .add-ons h3 {
+    margin-bottom: 0.6rem;
+  }
+
+  .add-ons strong {
+    grid-column: 2;
+    font-size: 0.82rem;
+  }
+
+  .pricing-faq details {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .pricing-faq summary {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr auto;
+    padding-block: 1.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    list-style: none;
+  }
+
+  .pricing-faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .pricing-faq summary span,
+  .pricing-faq summary b {
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
+
+  .pricing-faq details[open] summary b {
+    transform: rotate(45deg);
+  }
+
+  .pricing-faq details > p {
+    max-width: 40rem;
+    padding: 0 0 1.5rem 2.5rem;
+    color: var(--text-secondary);
+    font-size: 0.86rem;
+  }
+
+  @media (min-width: 800px) {
+    .pricing-page-hero > div > div {
+      grid-template-columns: 1.3fr 0.7fr;
+    }
+
+    .pricing-main__card {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .add-ons__head,
+    .pricing-faq__head {
+      grid-template-columns: 0.6fr 1.4fr;
+    }
+
+    .add-ons article {
+      grid-template-columns: 3rem 1fr auto;
+    }
+
+    .add-ons strong {
+      grid-column: 3;
+      grid-row: 1;
+    }
+  }
+</style>

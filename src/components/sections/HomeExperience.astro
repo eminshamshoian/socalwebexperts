@@ -1,0 +1,1065 @@
+---
+import {
+  faqItems,
+  portfolioItems,
+  pricingModels,
+  processSteps,
+  services,
+  siteConfig,
+  stats,
+  yelpReview,
+} from '../../data/site';
+import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
+
+const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#f3c49b'];
+const pricing = pricingModels[0];
+---
+
+<section class="home-hero">
+  <div class="site-container">
+    <div class="home-hero__top" data-reveal>
+      <h1 class="hero-title hero-title__motion">We Design.</h1>
+      <div class="home-hero__intro">
+        <p>& build fast, focused websites for local businesses, then help them grow through search, ads, and content.</p>
+        <a class="hero-talk" href="/contact/">Show Me What I Can Get</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-reel" aria-label="Selected website projects">
+    <div class="hero-reel__track">
+      {[...portfolioItems.slice(0, 5), ...portfolioItems.slice(0, 5)].map((item, index) => {
+        return (
+          <article class="hero-reel__item" style={`--card-color:${projectColors[index % projectColors.length]}`}>
+            <div class="hero-reel__media">
+              <ScrollableProjectImage
+                src={item.image}
+                alt={`${item.title}, ${item.categoryLabel} website`}
+                title={item.title}
+                shapeIndex={index + 100}
+              />
+            </div>
+            <p><span>{item.title}</span><span>{item.categoryLabel}</span></p>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<section class="intro section-shell section-rule">
+  <div class="site-container editorial-grid">
+    <div data-reveal>
+      <p class="section-index">About Us</p>
+    </div>
+    <div class="intro__content" data-reveal style="--reveal-delay:100ms">
+      <h2>Senior thinking, direct collaboration, and websites built to perform.</h2>
+      <p class="type-lead">The same people who shape your strategy design and build the final site. No handoffs, no layers, and no template shortcuts.</p>
+      <a href="/contact/">Meet your next web partner <span>↗</span></a>
+    </div>
+  </div>
+
+  <div class="site-container stats">
+    {stats.map((stat, index) => (
+      <article data-reveal style={`--reveal-delay:${index * 70}ms`}>
+        <p>{stat.value}{stat.suffix}</p>
+        <h3>{stat.label}</h3>
+        <span>{stat.description}</span>
+      </article>
+    ))}
+  </div>
+</section>
+
+<section class="work section-shell section-rule">
+  <div class="site-container">
+    <div class="section-head" data-reveal>
+      <div>
+        <p class="section-index">Selected work</p>
+        <h2>Sites made to earn attention and action.</h2>
+      </div>
+      <p class="type-lead">A selection of customer focused websites for businesses across healthcare, retail, architecture, food, and automotive.</p>
+    </div>
+
+    <div class="work__grid">
+      {portfolioItems.slice(0, 4).map((item, index) => {
+        return (
+          <article class={`work-card work-card--${index + 1}`} data-reveal style={`--work-color:${projectColors[index]};--reveal-delay:${index * 55}ms`}>
+            <div class="work-card__media">
+              <ScrollableProjectImage
+                src={item.image}
+                alt={`${item.title}, ${item.categoryLabel} website`}
+                title={item.title}
+                shapeIndex={index + 200}
+              />
+            </div>
+            <div class="work-card__meta">
+              <h3>{item.title}</h3>
+              <p>{item.categoryLabel}</p>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <a class="work__all button" href="/portfolio/">See all {portfolioItems.length} projects</a>
+  </div>
+</section>
+
+<section class="services-home section-shell section-rule" id="services">
+  <div class="site-container">
+    <div class="section-head" data-reveal>
+      <div>
+        <p class="section-index texture-tag">Services</p>
+        <h2>Everything your digital presence needs.</h2>
+      </div>
+      <p class="type-lead">Strategy, design, engineering, and growth are handled as one connected system.</p>
+    </div>
+
+    <div class="service-list">
+      {services.map((service, index) => (
+        <a href={`/services/${service.slug}/`} data-reveal style={`--reveal-delay:${index * 70}ms`}>
+          <span class="service-list__number">0{index + 1}</span>
+          <div>
+            <h3>{service.title}</h3>
+            <ul>
+              {service.features.slice(0, 3).map((feature) => <li>{feature}</li>)}
+            </ul>
+          </div>
+          <p>{service.shortDescription}</p>
+          <span class="service-list__arrow">↗</span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="workflow section-shell section-rule" id="workflow">
+  <div class="workflow__shapes" aria-hidden="true">
+    <span class="workflow-shape workflow-shape--circle workflow-shape--a"></span>
+    <span class="workflow-shape workflow-shape--square workflow-shape--b"></span>
+    <span class="workflow-shape workflow-shape--pill workflow-shape--c"></span>
+    <span class="workflow-shape workflow-shape--blob workflow-shape--d"></span>
+    <span class="workflow-shape workflow-shape--ring workflow-shape--e"></span>
+    <span class="workflow-shape workflow-shape--triangle workflow-shape--f"></span>
+  </div>
+
+  <div class="site-container">
+    <div class="workflow__heading editorial-grid">
+      <p class="section-index" data-reveal>Process</p>
+      <div data-reveal>
+        <h2>A clear path from first call to launch.</h2>
+        <p class="type-lead">Four focused steps, with direct communication and no mystery in the middle.</p>
+      </div>
+    </div>
+
+    <div class="workflow__steps" data-workflow>
+      <span class="workflow__line" aria-hidden="true"></span>
+      {processSteps.map((step, index) => (
+        <article data-reveal style={`--reveal-delay:${index * 70}ms`}>
+          <div><span>0{step.step}</span><b>{index === processSteps.length - 1 ? '100%' : `${(index + 1) * 25}%`}</b></div>
+          <h3>{step.title}</h3>
+          <p>{step.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="proof section-shell">
+  <div class="site-container proof__grid">
+    <div class="proof__statement" data-reveal>
+      <p class="section-index texture-tag">Why SoCal</p>
+      <h2>Built for businesses that need a site to do more than look good.</h2>
+      <p class="type-lead">Fast loads, clear messaging, search foundations, and friction free conversion paths come standard.</p>
+      <a class="button" href="/services/web-design/">How we build</a>
+    </div>
+
+    <div class="proof__review" data-reveal style="--reveal-delay:100ms">
+      <div class="proof__rating">
+        <span>★★★★★</span>
+        <p>Verified Yelp review</p>
+      </div>
+      <blockquote>“{yelpReview.quote}”</blockquote>
+      <footer>
+        <strong>{yelpReview.authorName}</strong>
+        <span>{yelpReview.location}</span>
+        <a href={yelpReview.reviewUrl} target="_blank" rel="noopener noreferrer">Read on Yelp ↗</a>
+      </footer>
+    </div>
+  </div>
+</section>
+
+<section class="pricing-home section-shell section-rule">
+  <div class="site-container">
+    <div class="section-head" data-reveal>
+      <div>
+        <p class="section-index">Pricing</p>
+        <h2>Clear numbers. No agency fog.</h2>
+      </div>
+      <p class="type-lead">A focused starting package for small businesses that need a professional, lead ready website.</p>
+    </div>
+
+    <div class="pricing-home__card" data-reveal>
+      <div>
+        <p class="section-index">{pricing.title}</p>
+        <h3>{pricing.upfront}<span> setup</span></h3>
+        <p>Hosting from {pricing.monthly} per month or {pricing.yearly} yearly.</p>
+        <a class="button" href="/contact/">Start your website</a>
+      </div>
+      <ul>
+        {pricing.features.map((feature) => <li><span>✓</span>{feature}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="faq-home section-shell section-rule">
+  <div class="site-container editorial-grid">
+    <div data-reveal>
+      <p class="section-index texture-tag">FAQ</p>
+      <h2>Good questions deserve clear answers.</h2>
+    </div>
+    <div class="faq-home__list">
+      {faqItems.map((faq, index) => (
+        <details data-reveal style={`--reveal-delay:${index * 45}ms`}>
+          <summary><span>0{index + 1}</span>{faq.question}<i></i></summary>
+          <p>{faq.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="final-cta section-shell">
+  <div class="site-container" data-reveal>
+    <p class="section-index">Free 20 minute intro call</p>
+    <h2>Tell us what you are building.</h2>
+    <p>Share your goals and we will reply within one business day with a clear recommendation and next steps.</p>
+    <div>
+      <a class="button" href="/contact/">Book a call</a>
+      <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}>{siteConfig.phone}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .home-hero {
+    padding-top: clamp(2.75rem, 5vw, 5rem);
+    overflow: hidden;
+  }
+
+  .home-hero__top {
+    display: grid;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .hero-title {
+    display: block;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    font-family: "Inter Variable", "Arial Black", Arial, sans-serif;
+    font-size: clamp(3rem, 14.5vw, 13.2rem);
+    font-weight: 850;
+    line-height: 0.8;
+    letter-spacing: -0.085em;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .hero-title__motion {
+    padding-right: 0.04em;
+    background-color: #050505;
+    background-image:
+      radial-gradient(ellipse at 10% 20%, #ff9b4a 0 8%, transparent 24%),
+      radial-gradient(ellipse at 42% 72%, #bf3b0c 0 10%, transparent 28%),
+      radial-gradient(ellipse at 76% 22%, #ff7a2f 0 8%, transparent 25%),
+      radial-gradient(ellipse at 92% 78%, #7b1d07 0 10%, transparent 30%),
+      linear-gradient(112deg, #050505 10%, #8b2409 28%, #050505 45%, #d94c14 62%, #050505 82%);
+    background-position: 0% 30%, 25% 70%, 75% 25%, 100% 75%, 0% 50%;
+    background-size: 145% 190%, 165% 175%, 150% 185%, 165% 175%, 230% 100%;
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    animation: hero-title-flow 8s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  }
+
+  @keyframes hero-title-flow {
+    0% {
+      background-position: 0% 25%, 25% 75%, 75% 20%, 100% 80%, 0% 50%;
+    }
+    50% {
+      background-position: 65% 70%, 80% 25%, 20% 75%, 40% 20%, 55% 50%;
+    }
+    100% {
+      background-position: 100% 35%, 0% 20%, 45% 30%, 0% 70%, 100% 50%;
+    }
+  }
+
+  .home-hero__intro {
+    display: grid;
+    gap: 1.8rem;
+    margin-top: clamp(2.5rem, 4vw, 3.5rem);
+    justify-items: center;
+    text-align: center;
+  }
+
+  .home-hero__intro p {
+    max-width: 32rem;
+    color: var(--text);
+    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
+    font-weight: 700;
+    line-height: 1.38;
+    letter-spacing: -0.02em;
+  }
+
+  .hero-talk {
+    position: relative;
+    display: inline-block;
+    justify-self: center;
+    padding-bottom: 0.35rem;
+    color: var(--text);
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+  }
+
+  .hero-talk::after {
+    position: absolute;
+    right: -0.08em;
+    bottom: 0;
+    left: -0.08em;
+    height: 0.42em;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M1 7.5 C10 2.5, 18 11.5, 28 7 C38 2.5, 48 11, 58 7 C68 3, 78 11.5, 88 7 C98 2.5, 108 11, 119 6.5' fill='none' stroke='%230a0a0a' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% 100%;
+    content: '';
+    pointer-events: none;
+    transition: transform 220ms ease;
+  }
+
+  .hero-talk:hover::after {
+    transform: translateY(2px) scaleX(1.02);
+  }
+
+  .hero-reel {
+    width: max-content;
+    margin-top: clamp(4rem, 8vw, 8rem);
+    padding-bottom: 1rem;
+  }
+
+  .hero-reel__track {
+    display: flex;
+    gap: 1rem;
+    padding-left: 1rem;
+    animation: reel 42s linear infinite;
+  }
+
+  .hero-reel:hover .hero-reel__track {
+    animation-play-state: paused;
+  }
+
+  .hero-reel__item {
+    width: min(76vw, 31rem);
+    flex: 0 0 auto;
+  }
+
+  .hero-reel__media {
+    height: clamp(21rem, 54vw, 37rem);
+    padding: clamp(1.2rem, 3vw, 2.6rem);
+    overflow: hidden;
+    background: var(--card-color);
+  }
+
+  .hero-reel__media :global(.portfolio-frame),
+  .hero-reel__media :global(.portfolio-frame__media),
+  .work-card__media :global(.portfolio-frame),
+  .work-card__media :global(.portfolio-frame__media) {
+    height: 100%;
+  }
+
+  .hero-reel__media :global(.portfolio-frame__media img) {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top;
+    box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.16);
+  }
+
+  .hero-reel__item > p {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .hero-reel__item > p span:last-child {
+    color: var(--text-secondary);
+  }
+
+  @keyframes reel {
+    to { transform: translateX(calc(-50% - 0.5rem)); }
+  }
+
+  .intro__content h2 {
+    max-width: 14ch;
+    font-size: clamp(2.5rem, 5vw, 5.8rem);
+  }
+
+  .intro__content .type-lead {
+    max-width: 38rem;
+    margin-top: 2rem;
+  }
+
+  .intro__content > a {
+    display: inline-flex;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    font-size: 0.85rem;
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+  }
+
+  .stats {
+    display: grid;
+    margin-top: clamp(5rem, 10vw, 10rem);
+    border-top: 1px solid var(--border);
+  }
+
+  .stats article {
+    padding-block: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stats article > p {
+    font-size: clamp(3rem, 7vw, 7rem);
+    font-weight: 520;
+    line-height: 1;
+    letter-spacing: -0.06em;
+  }
+
+  .stats h3 {
+    margin-top: 1.5rem;
+    font-size: 1rem;
+  }
+
+  .stats article > span {
+    display: block;
+    max-width: 24rem;
+    margin-top: 0.6rem;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+  }
+
+  .section-head {
+    display: grid;
+    gap: 2rem;
+    margin-bottom: clamp(4rem, 8vw, 8rem);
+  }
+
+  .section-head h2 {
+    max-width: 12ch;
+    margin-top: 1.2rem;
+  }
+
+  .section-head > .type-lead {
+    max-width: 32rem;
+    align-self: end;
+  }
+
+  .work__grid {
+    display: grid;
+    gap: 4rem 1.25rem;
+  }
+
+  .work-card__media {
+    aspect-ratio: 1.2;
+    padding: clamp(1.2rem, 3vw, 3rem);
+    overflow: hidden;
+    background: var(--work-color);
+  }
+
+  .work-card__media :global(.portfolio-frame__media img) {
+    width: 100%;
+    height: calc(100% + 2.5rem);
+    object-fit: cover;
+    object-position: top;
+    box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.14);
+  }
+
+  .work-card__meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-top: 1rem;
+  }
+
+  .work-card__meta h3 {
+    font-size: 1.05rem;
+  }
+
+  .work-card__meta p {
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+  }
+
+  .work__all {
+    margin-top: 4rem;
+  }
+
+  .service-list {
+    border-top: 1px solid var(--border);
+  }
+
+  .service-list > a {
+    position: relative;
+    display: grid;
+    grid-template-columns: 2.5rem 1fr auto;
+    gap: 1rem;
+    border-bottom: 1px solid var(--border);
+    padding-block: 2rem;
+    transition: background-color 250ms ease, padding 250ms ease;
+  }
+
+  .service-list > a:hover {
+    padding-inline: 1rem;
+    background: var(--bg-secondary);
+  }
+
+  .service-list__number {
+    color: var(--text-secondary);
+    font-size: 0.68rem;
+  }
+
+  .service-list h3 {
+    font-size: clamp(1.8rem, 4vw, 4.2rem);
+  }
+
+  .service-list ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+    margin: 1.2rem 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .service-list li {
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+  }
+
+  .service-list > a > p {
+    display: none;
+    max-width: 28rem;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+  }
+
+  .service-list__arrow {
+    font-size: 1.25rem;
+  }
+
+  .workflow {
+    position: relative;
+    overflow: hidden;
+    background: var(--text);
+    color: #fff;
+  }
+
+  .workflow > .site-container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .workflow__shapes {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .workflow-shape {
+    position: absolute;
+    display: block;
+    background-color: #681b0b;
+    background-image:
+      radial-gradient(ellipse at 12% 20%, #f28b43 0 8%, transparent 24%),
+      radial-gradient(ellipse at 48% 78%, #a82e0b 0 11%, transparent 28%),
+      radial-gradient(ellipse at 82% 24%, #ee6f2a 0 8%, transparent 24%),
+      radial-gradient(ellipse at 94% 82%, #6f1806 0 10%, transparent 30%),
+      linear-gradient(112deg, #050505 12%, #742008 29%, #050505 46%, #bc3e10 64%, #050505 83%);
+    background-position: 0% 30%, 25% 70%, 75% 25%, 100% 75%, 0% 50%;
+    background-size: 145% 190%, 165% 175%, 150% 185%, 165% 175%, 230% 100%;
+    opacity: 0.72;
+    animation: workflow-shape-flow 10s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  }
+
+  .workflow-shape--circle {
+    border-radius: 50%;
+  }
+
+  .workflow-shape--square {
+    border-radius: 1.1rem;
+    transform: rotate(18deg);
+  }
+
+  .workflow-shape--pill {
+    border-radius: 999px;
+    transform: rotate(-24deg);
+  }
+
+  .workflow-shape--blob {
+    border-radius: 68% 32% 42% 58% / 48% 62% 38% 52%;
+  }
+
+  .workflow-shape--ring {
+    border-radius: 50%;
+    opacity: 0.55;
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 0.55rem), #000 calc(100% - 0.54rem));
+    mask: radial-gradient(farthest-side, transparent calc(100% - 0.55rem), #000 calc(100% - 0.54rem));
+  }
+
+  .workflow-shape--triangle {
+    clip-path: polygon(50% 0, 0 100%, 100% 100%);
+    animation:
+      workflow-shape-flow 9s ease-in-out infinite alternate,
+      workflow-shape-float 11s ease-in-out infinite alternate;
+  }
+
+  .workflow-shape--a {
+    top: 8%;
+    left: 6%;
+    width: clamp(3.5rem, 7vw, 6rem);
+    height: clamp(3.5rem, 7vw, 6rem);
+    animation-delay: -1.2s;
+  }
+
+  .workflow-shape--b {
+    top: 18%;
+    right: 10%;
+    width: clamp(2.8rem, 5vw, 4.5rem);
+    height: clamp(2.8rem, 5vw, 4.5rem);
+    animation-delay: -3.4s;
+  }
+
+  .workflow-shape--c {
+    top: 44%;
+    left: 2%;
+    width: clamp(5rem, 10vw, 8.5rem);
+    height: clamp(1.4rem, 2.4vw, 2.1rem);
+    animation-delay: -5s;
+  }
+
+  .workflow-shape--d {
+    right: 4%;
+    bottom: 18%;
+    width: clamp(4.5rem, 9vw, 7.5rem);
+    height: clamp(4.5rem, 9vw, 7.5rem);
+    animation-delay: -2.1s;
+  }
+
+  .workflow-shape--e {
+    top: 58%;
+    left: 42%;
+    width: clamp(3rem, 5.5vw, 4.8rem);
+    height: clamp(3rem, 5.5vw, 4.8rem);
+    animation-delay: -6.5s;
+  }
+
+  .workflow-shape--f {
+    top: 12%;
+    left: 58%;
+    width: clamp(3.2rem, 5.5vw, 5rem);
+    height: clamp(2.8rem, 5vw, 4.4rem);
+    animation-delay: -4s;
+  }
+
+  @keyframes workflow-shape-flow {
+    0% {
+      background-position: 0% 25%, 25% 75%, 75% 20%, 100% 80%, 0% 50%;
+    }
+    50% {
+      background-position: 65% 70%, 80% 25%, 20% 75%, 40% 20%, 55% 50%;
+    }
+    100% {
+      background-position: 100% 35%, 0% 20%, 45% 30%, 0% 70%, 100% 50%;
+    }
+  }
+
+  @keyframes workflow-shape-float {
+    0% {
+      transform: translateY(0) rotate(-8deg);
+    }
+    100% {
+      transform: translateY(10px) rotate(10deg);
+    }
+  }
+
+  .workflow h2,
+  .workflow h3 {
+    color: #fff;
+  }
+
+  .workflow .section-index,
+  .workflow .type-lead {
+    color: rgba(255, 255, 255, 0.58);
+  }
+
+  .workflow__heading .type-lead {
+    max-width: 34rem;
+    margin-top: 2rem;
+  }
+
+  .workflow__steps {
+    position: relative;
+    display: grid;
+    margin-top: clamp(5rem, 10vw, 10rem);
+  }
+
+  .workflow__line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .workflow__steps article {
+    padding: 2rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .workflow__steps article > div {
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255, 255, 255, 0.48);
+    font-size: 0.68rem;
+  }
+
+  .workflow__steps h3 {
+    margin-top: 3rem;
+  }
+
+  .workflow__steps p {
+    margin-top: 1rem;
+    color: rgba(255, 255, 255, 0.58);
+    font-size: 0.86rem;
+  }
+
+  .proof {
+    background: #f2c84b;
+  }
+
+  .proof__grid {
+    display: grid;
+    gap: 4rem;
+  }
+
+  .proof__statement h2 {
+    max-width: 13ch;
+    margin-top: 1.5rem;
+    font-size: clamp(2.7rem, 5vw, 6rem);
+  }
+
+  .proof__statement .type-lead {
+    max-width: 36rem;
+    margin-top: 2rem;
+    color: rgba(10, 10, 10, 0.66);
+  }
+
+  .proof__statement .button {
+    margin-top: 2rem;
+  }
+
+  .proof__review {
+    align-self: end;
+    padding: clamp(1.5rem, 4vw, 3rem);
+    background: #fff;
+  }
+
+  .proof__rating {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.72rem;
+  }
+
+  .proof__rating span {
+    color: var(--accent);
+    letter-spacing: 0.12em;
+  }
+
+  .proof__review blockquote {
+    margin: clamp(3rem, 6vw, 6rem) 0;
+    font-size: clamp(1.3rem, 2.2vw, 2.3rem);
+    line-height: 1.28;
+    letter-spacing: -0.035em;
+  }
+
+  .proof__review footer {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    font-size: 0.75rem;
+  }
+
+  .proof__review footer span {
+    color: var(--text-secondary);
+  }
+
+  .proof__review footer a {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: center;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
+
+  .pricing-home__card {
+    display: grid;
+    border: 1px solid var(--border);
+  }
+
+  .pricing-home__card > div,
+  .pricing-home__card > ul {
+    padding: clamp(1.5rem, 4vw, 4rem);
+  }
+
+  .pricing-home__card > div {
+    background: var(--accent-soft);
+  }
+
+  .pricing-home__card h3 {
+    margin-top: 2.5rem;
+    font-size: clamp(4rem, 9vw, 9rem);
+  }
+
+  .pricing-home__card h3 span {
+    font-size: 1rem;
+    letter-spacing: -0.02em;
+  }
+
+  .pricing-home__card > div > p:not(.section-index) {
+    margin-top: 1rem;
+    color: var(--text-secondary);
+  }
+
+  .pricing-home__card .button {
+    margin-top: 3rem;
+  }
+
+  .pricing-home__card ul {
+    margin: 0;
+    list-style: none;
+  }
+
+  .pricing-home__card li {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr;
+    gap: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    padding-block: 0.8rem;
+    font-size: 0.84rem;
+  }
+
+  .faq-home h2 {
+    max-width: 9ch;
+    margin-top: 1.5rem;
+  }
+
+  .faq-home__list {
+    border-top: 1px solid var(--border);
+  }
+
+  .faq-home details {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .faq-home summary {
+    display: grid;
+    grid-template-columns: 2rem 1fr 1.2rem;
+    gap: 0.5rem;
+    padding-block: 1.5rem;
+    cursor: pointer;
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    list-style: none;
+  }
+
+  .faq-home summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-home summary > span {
+    color: var(--text-secondary);
+    font-size: 0.65rem;
+  }
+
+  .faq-home summary i {
+    position: relative;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .faq-home summary i::before,
+  .faq-home summary i::after {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--text);
+    content: '';
+    transition: transform 200ms ease;
+  }
+
+  .faq-home summary i::after {
+    transform: rotate(90deg);
+  }
+
+  .faq-home details[open] summary i::after {
+    transform: rotate(0);
+  }
+
+  .faq-home details > p {
+    max-width: 38rem;
+    padding: 0 0 1.5rem 2.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .final-cta {
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .final-cta h2 {
+    max-width: 12ch;
+    margin-top: 1.5rem;
+    color: #fff;
+  }
+
+  .final-cta p:not(.section-index) {
+    max-width: 38rem;
+    margin-top: 2rem;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.05rem;
+  }
+
+  .final-cta .section-index {
+    color: rgba(255, 255, 255, 0.68);
+  }
+
+  .final-cta > div > div {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .final-cta .button {
+    border-color: #fff;
+    color: #fff;
+  }
+
+  .final-cta .button:hover {
+    background: #fff;
+    color: var(--accent);
+  }
+
+  .final-cta > div > div > a:last-child {
+    font-size: 0.85rem;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
+
+  @media (min-width: 720px) {
+    .home-hero__intro {
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+
+    .stats {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .stats article {
+      padding: 2rem;
+      border-right: 1px solid var(--border);
+    }
+
+    .stats article:first-child {
+      padding-left: 0;
+    }
+
+    .section-head {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+
+    .work__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .work-card--2,
+    .work-card--4 {
+      margin-top: 8rem;
+    }
+
+    .service-list > a {
+      grid-template-columns: 3rem 1fr minmax(15rem, 0.75fr) auto;
+      align-items: start;
+    }
+
+    .service-list > a > p {
+      display: block;
+    }
+
+    .workflow__steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .workflow__line {
+      top: 0;
+      right: 0;
+      bottom: auto;
+      width: auto;
+      height: 1px;
+    }
+
+    .workflow__steps article {
+      min-height: 22rem;
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      border-bottom: 0;
+    }
+
+    .pricing-home__card {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 980px) {
+    .proof__grid {
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-title__motion {
+      animation: none;
+    }
+
+    .hero-reel__track {
+      animation: none;
+    }
+
+    .workflow-shape {
+      animation: none;
+    }
+  }
+</style>

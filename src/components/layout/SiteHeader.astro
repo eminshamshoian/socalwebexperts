@@ -1,0 +1,330 @@
+---
+import { navigation } from '../../data/site';
+
+const mobileNav = navigation.filter((item) => item.label !== 'Home');
+---
+
+<header class="header" data-header>
+  <div class="header__inner">
+    <a class="header__brand" href="/" aria-label="SoCal Web Experts home">
+      <img src="/logo-black.png" width="74" height="74" alt="SoCal Web Experts" fetchpriority="high" decoding="async" />
+    </a>
+
+    <nav class="header__desktop" aria-label="Primary navigation">
+      {mobileNav.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+
+    <div class="header__actions">
+      <a class="header__cta" href="/contact/">Start a project</a>
+      <button class="header__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path class="header__toggle-line header__toggle-line--top" d="M5 9h14" />
+          <path class="header__toggle-line header__toggle-line--bottom" d="M5 15h14" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="header__menu" id="site-menu" aria-hidden="true" inert>
+    <nav aria-label="Mobile navigation">
+      {mobileNav.map((item, index) => (
+        <a href={item.href} style={`--item-delay: ${index * 35}ms`}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <a class="header__menu-cta" href="/contact/">Tell us about your project</a>
+  </div>
+</header>
+
+<div class="header-spacer" aria-hidden="true"></div>
+
+<style>
+  .header {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 100;
+    isolation: isolate;
+    border-bottom: 1px solid transparent;
+    background: #fff;
+    transition: border-color 220ms ease;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .header.is-scrolled {
+    border-color: var(--border);
+  }
+
+  .header__inner {
+    display: flex;
+    width: min(100% - 2rem, var(--container-max));
+    height: 6rem;
+    margin-inline: auto;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header__brand {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    width: 4.6rem;
+    height: 4.6rem;
+    place-items: center;
+    flex-shrink: 0;
+  }
+
+  .header__brand img {
+    width: 4.6rem;
+    height: 4.6rem;
+    object-fit: contain;
+  }
+
+  .header__desktop {
+    display: none;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .header__desktop a,
+  .header__cta {
+    font-size: 0.78rem;
+    font-weight: 540;
+    letter-spacing: -0.01em;
+  }
+
+  .header__desktop a {
+    position: relative;
+    padding-block: 0.5rem;
+  }
+
+  .header__desktop a::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: currentColor;
+    content: '';
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 240ms ease;
+  }
+
+  .header__desktop a:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  .header__actions {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    flex-shrink: 0;
+  }
+
+  .header__cta {
+    display: none;
+    border: 1px solid var(--text);
+    border-radius: 999px;
+    background: var(--text);
+    color: #fff;
+    padding: 0.8rem 1.15rem;
+    transition: background-color 200ms ease, color 200ms ease, opacity 200ms ease;
+  }
+
+  .header__cta:hover {
+    background: #282828;
+    color: #fff;
+  }
+
+  .header__toggle {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    width: 2.8rem;
+    height: 2.8rem;
+    place-content: center;
+    gap: 0.35rem;
+    border: 1px solid var(--border);
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    opacity: 1;
+    visibility: visible;
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .header__toggle svg {
+    display: block;
+    width: 1.25rem;
+    height: 1.25rem;
+    overflow: visible;
+  }
+
+  .header__toggle-line {
+    fill: none;
+    stroke: var(--text);
+    stroke-width: 1.75;
+    stroke-linecap: round;
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 220ms ease;
+  }
+
+  .header.menu-open .header__toggle-line--top {
+    transform: translateY(3px) rotate(45deg);
+  }
+
+  .header.menu-open .header__toggle-line--bottom {
+    transform: translateY(-3px) rotate(-45deg);
+  }
+
+  .header__menu {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    min-height: 100dvh;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8rem 1rem 2rem;
+    background: var(--bg-secondary);
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transform: translateY(-0.5rem);
+    transition: opacity 240ms ease, transform 240ms ease, visibility 240ms ease;
+  }
+
+  .menu-open .header__menu {
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .header__menu nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .header__menu nav a {
+    display: block;
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 0;
+    font-size: clamp(2.2rem, 10vw, 3.8rem);
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: -0.055em;
+    opacity: 0;
+    transform: translateY(0.6rem);
+    transition: opacity 320ms ease var(--item-delay), transform 320ms ease var(--item-delay);
+  }
+
+  .menu-open .header__menu nav a {
+    opacity: 1;
+    transform: none;
+  }
+
+  .header__menu-cta {
+    font-size: 0.85rem;
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+  }
+
+  .header-spacer {
+    height: 6rem;
+  }
+
+  @media (min-width: 768px) {
+    .header__inner {
+      width: min(100% - 5rem, var(--container-max));
+    }
+
+    .header__cta {
+      display: inline-flex;
+    }
+
+  }
+
+  @media (min-width: 980px) {
+    .header__desktop {
+      display: flex;
+    }
+
+    .header__toggle {
+      display: none;
+    }
+
+    .header__menu,
+    .menu-open .header__menu {
+      display: none;
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
+  }
+</style>
+
+<script>
+  function initSiteHeader() {
+    const header = document.querySelector<HTMLElement>('[data-header]');
+    const toggle = header?.querySelector<HTMLButtonElement>('.header__toggle');
+    const menu = header?.querySelector<HTMLElement>('.header__menu');
+    if (!header || !toggle || !menu || header.dataset.ready) return;
+    header.dataset.ready = 'true';
+
+    const desktopQuery = window.matchMedia('(min-width: 980px)');
+
+    const close = () => {
+      header.classList.remove('menu-open');
+      toggle.setAttribute('aria-expanded', 'false');
+      toggle.setAttribute('aria-label', 'Open menu');
+      menu.setAttribute('aria-hidden', 'true');
+      menu.setAttribute('inert', '');
+      document.documentElement.style.overflow = '';
+    };
+
+    const openMenu = () => {
+      header.classList.add('menu-open');
+      toggle.setAttribute('aria-expanded', 'true');
+      toggle.setAttribute('aria-label', 'Close menu');
+      menu.setAttribute('aria-hidden', 'false');
+      menu.removeAttribute('inert');
+      document.documentElement.style.overflow = 'hidden';
+    };
+
+    toggle.addEventListener('click', () => {
+      if (header.classList.contains('menu-open')) {
+        close();
+      } else {
+        openMenu();
+      }
+    });
+
+    menu.querySelectorAll('a').forEach((link) => link.addEventListener('click', close));
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') close();
+    });
+
+    const syncViewport = () => {
+      if (desktopQuery.matches) close();
+    };
+    syncViewport();
+    desktopQuery.addEventListener('change', syncViewport);
+
+    const onScroll = () => header.classList.toggle('is-scrolled', window.scrollY > 20);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+
+  initSiteHeader();
+</script>

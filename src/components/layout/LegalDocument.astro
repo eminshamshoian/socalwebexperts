@@ -11,10 +11,10 @@ export interface Props {
 const { eyebrow, title, description, lastUpdated } = Astro.props;
 ---
 
-<article class="py-24 md:py-32">
+<article class="legal-document section-shell">
   <div class="mx-auto w-full max-w-[900px] px-6 lg:px-16">
-    <header class="mb-12 md:mb-16 fade-in">
-      <p class="type-eyebrow mb-6">{eyebrow}</p>
+    <header class="legal-document__header mb-12 md:mb-16 fade-in">
+      <p class="section-index mb-6">{eyebrow}</p>
       <h1 class="text-[var(--text)] mb-6">{title}</h1>
       <p class="type-lead max-w-2xl">{description}</p>
       <p class="type-meta mt-6">Last updated: {lastUpdated}</p>
@@ -25,7 +25,7 @@ const { eyebrow, title, description, lastUpdated } = Astro.props;
     </div>
 
     <aside
-      class="mt-16 md:mt-20 p-6 md:p-8 border border-[var(--border)] rounded-sm fade-in"
+      class="legal-document__contact mt-16 md:mt-20 p-6 md:p-8 border border-[var(--border)] fade-in"
       style="animation-delay: 0.12s;"
       aria-labelledby="legal-contact-heading"
     >
@@ -59,6 +59,20 @@ const { eyebrow, title, description, lastUpdated } = Astro.props;
 </article>
 
 <style>
+  .legal-document__header {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: clamp(3rem, 7vw, 6rem);
+  }
+
+  .legal-document__header h1 {
+    max-width: 10ch;
+    font-size: clamp(3rem, 7vw, 7rem);
+  }
+
+  .legal-document__contact {
+    background: var(--bg-secondary);
+  }
+
   .legal-prose :global(h2) {
     font-size: 1.25rem;
     font-weight: 500;

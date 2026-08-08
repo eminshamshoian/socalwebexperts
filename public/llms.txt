@@ -1,7 +1,7 @@
 # SoCal Web Experts
 > Fast, secure, SEO-ready websites and local digital marketing for Southern California businesses.
 
-This site is for local and service-based businesses that need a website that generates leads — not just a brochure. SoCal Web Experts designs and builds custom-coded sites with conversion paths (calls, forms, booking), SEO foundations, hosting, and optional Google Ads / social media marketing.
+This site is for local and service based businesses that need a website that generates leads, not just a brochure. SoCal Web Experts designs and builds custom coded sites with conversion paths (calls, forms, booking), SEO foundations, hosting, and optional Google Ads or social media marketing.
 
 ## Primary pages
 - [Home](https://socalwebexperts.com/): Overview of services, process, portfolio, pricing, and FAQ

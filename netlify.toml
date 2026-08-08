@@ -2,7 +2,7 @@
   command = "pnpm build"
   publish = "dist"
 
-# Do NOT enable pretty_urls — it strips trailing slashes and fights
+# Do NOT enable pretty_urls because it strips trailing slashes and fights
 # Astro `trailingSlash: 'always'`, which caused ERR_TOO_MANY_REDIRECTS.
 
 # Safe redirects only (no trailing-slash force rules)
@@ -32,7 +32,7 @@
   to = "/"
   status = 301
 
-# ── Headers ──
+# Headers
 [[headers]]
   for = "/*"
   [headers.values]

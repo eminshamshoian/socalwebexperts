@@ -1,0 +1,292 @@
+---
+import { services, siteConfig } from '../../data/site';
+---
+
+<section class="contact-experience section-shell">
+  <div class="site-container">
+    <div class="contact-experience__hero">
+      <div data-reveal>
+        <p class="section-index texture-tag">Contact / Start a project</p>
+        <h1>Tell us what you are building.</h1>
+      </div>
+      <p class="type-lead" data-reveal style="--reveal-delay:100ms">Share your goals, timeline, and where the current experience is falling short. We will reply within one business day.</p>
+    </div>
+
+    <div class="contact-experience__body">
+      <aside data-reveal>
+        <div>
+          <p class="section-index">Email</p>
+          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+        </div>
+        <div>
+          <p class="section-index">Phone</p>
+          <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}>{siteConfig.phone}</a>
+        </div>
+        <div>
+          <p class="section-index">Based in</p>
+          <p>{siteConfig.address}</p>
+        </div>
+        <p class="contact-experience__note">Free 20 minute intro call. No pressure and no generic sales pitch.</p>
+      </aside>
+
+      <form
+        id="contact-form"
+        name="contact"
+        method="POST"
+        action="/contact/"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        data-reveal
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="hidden" aria-hidden="true">
+          <label>Do not fill this field: <input name="bot-field" type="text" tabindex="-1" autocomplete="off" /></label>
+        </p>
+
+        <div class="contact-experience__row">
+          <label>
+            <span>Name *</span>
+            <input type="text" name="name" autocomplete="name" required placeholder="Your name" />
+          </label>
+          <label>
+            <span>Email *</span>
+            <input type="email" name="email" autocomplete="email" required placeholder="you@company.com" />
+          </label>
+        </div>
+
+        <div class="contact-experience__row">
+          <label>
+            <span>Phone *</span>
+            <input type="tel" name="phone" autocomplete="tel" required placeholder="(555) 555-5555" />
+          </label>
+          <label>
+            <span>What can we help with?</span>
+            <select name="service">
+              <option value="">Choose a service</option>
+              {services.map((service) => <option value={service.id}>{service.title}</option>)}
+              <option value="other">Not sure yet</option>
+            </select>
+          </label>
+        </div>
+
+        <label>
+          <span>Project details *</span>
+          <textarea name="message" rows="5" required placeholder="Tell us about your business, goals, and ideal timeline"></textarea>
+        </label>
+
+        <div class="contact-experience__submit">
+          <button class="button" type="submit">
+            <span data-submit-label>Send inquiry</span>
+            <span class="hidden" data-submit-loading>Sending...</span>
+          </button>
+          <p>By submitting, you agree that we may contact you about this project.</p>
+        </div>
+
+        <div class="contact-experience__status hidden" data-form-status role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-experience {
+    padding-top: clamp(4rem, 8vw, 8rem);
+  }
+
+  .contact-experience__hero {
+    display: grid;
+    gap: 2rem;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: clamp(4rem, 8vw, 8rem);
+  }
+
+  .contact-experience h1 {
+    max-width: 9ch;
+    margin-top: 1.5rem;
+  }
+
+  .contact-experience__hero .type-lead {
+    max-width: 32rem;
+    align-self: end;
+  }
+
+  .contact-experience__body {
+    display: grid;
+    gap: 4rem;
+    padding-top: clamp(4rem, 8vw, 8rem);
+  }
+
+  .contact-experience aside {
+    display: grid;
+    align-content: start;
+    gap: 2rem;
+  }
+
+  .contact-experience aside a,
+  .contact-experience aside > div > p:last-child {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .contact-experience aside a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
+
+  .contact-experience__note {
+    max-width: 20rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+    color: var(--text-secondary);
+    font-size: 0.78rem;
+  }
+
+  .contact-experience form {
+    display: grid;
+    gap: 2rem;
+    padding: clamp(1.5rem, 4vw, 4rem);
+    background: var(--bg-secondary);
+  }
+
+  .contact-experience__row {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .contact-experience label {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .contact-experience label > span {
+    color: var(--text-secondary);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .contact-experience input,
+  .contact-experience select,
+  .contact-experience textarea {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+    outline: 0;
+    background: transparent;
+    padding: 0.7rem 0;
+    color: var(--text);
+    font-size: 0.92rem;
+    transition: border-color 200ms ease;
+  }
+
+  .contact-experience input:focus,
+  .contact-experience select:focus,
+  .contact-experience textarea:focus {
+    border-color: var(--text);
+  }
+
+  .contact-experience textarea {
+    resize: vertical;
+  }
+
+  .contact-experience__submit {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .contact-experience__submit button {
+    background: var(--text);
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .contact-experience__submit button:disabled {
+    cursor: wait;
+    opacity: 0.55;
+  }
+
+  .contact-experience__submit p {
+    max-width: 21rem;
+    color: var(--text-secondary);
+    font-size: 0.68rem;
+  }
+
+  .contact-experience__status {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+    font-size: 0.82rem;
+  }
+
+  .contact-experience__status.is-success {
+    color: #19703a;
+  }
+
+  .contact-experience__status.is-error {
+    color: #b42318;
+  }
+
+  @media (min-width: 760px) {
+    .contact-experience__hero {
+      grid-template-columns: 1.25fr 0.75fr;
+    }
+
+    .contact-experience__body {
+      grid-template-columns: 0.6fr 1.4fr;
+    }
+
+    .contact-experience__row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+
+<script>
+  function initContactExperience() {
+    const form = document.querySelector<HTMLFormElement>('#contact-form');
+    if (!form || form.dataset.ready) return;
+    form.dataset.ready = 'true';
+    const button = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+    const label = form.querySelector<HTMLElement>('[data-submit-label]');
+    const loading = form.querySelector<HTMLElement>('[data-submit-loading]');
+    const status = form.querySelector<HTMLElement>('[data-form-status]');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      if (data.get('bot-field')) return;
+      if (!button || !label || !loading || !status) return;
+
+      button.disabled = true;
+      label.classList.add('hidden');
+      loading.classList.remove('hidden');
+      status.className = 'contact-experience__status hidden';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
+        });
+        if (!response.ok) throw new Error('Submission failed');
+        form.reset();
+        status.textContent = 'Thank you. We will reply within one business day.';
+        status.classList.add('is-success');
+        status.classList.remove('hidden');
+      } catch {
+        status.textContent = 'Something went wrong. Please call us or try again in a moment.';
+        status.classList.add('is-error');
+        status.classList.remove('hidden');
+      } finally {
+        button.disabled = false;
+        label.classList.remove('hidden');
+        loading.classList.add('hidden');
+      }
+    });
+  }
+
+  initContactExperience();
+</script>

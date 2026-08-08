@@ -96,7 +96,7 @@ export interface PricingModel {
   subtitle: string;
   /** Shown struck through before `upfront` when set */
   listUpfront?: string;
-  /** e.g. "Starting from" — shown above the upfront price when set */
+  /** Example: "Starting from", shown above the upfront price when set */
   upfrontPrefix?: string;
   upfront: string;
   /** Label beside upfront price; defaults to "upfront" */

@@ -1,15 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Hero from '../components/sections/Hero.astro';
-import StatsStrip from '../components/sections/StatsStrip.astro';
-import Services from '../components/sections/Services.astro';
-import WhyChooseUs from '../components/sections/WhyChooseUs.astro';
-import HowItWorks from '../components/sections/HowItWorks.astro';
-import Portfolio from '../components/sections/Portfolio.astro';
-import Testimonials from '../components/sections/Testimonials.astro';
-import Pricing from '../components/sections/Pricing.astro';
-import FAQ from '../components/sections/FAQ.astro';
-import CTA from '../components/sections/CTA.astro';
+import HomeExperience from '../components/sections/HomeExperience.astro';
+import { faqPageSchema } from '../utils/seo';
 ---
 
 <BaseLayout
@@ -19,15 +11,7 @@ import CTA from '../components/sections/CTA.astro';
   breadcrumbs={[
     { name: 'Home', url: '/' },
   ]}
+  jsonLd={faqPageSchema()}
 >
-  <Hero />
-  <StatsStrip />
-  <Services />
-  <WhyChooseUs />
-  <HowItWorks />
-  <Portfolio />
-  <Testimonials />
-  <Pricing />
-  <FAQ />
-  <CTA />
+  <HomeExperience />
 </BaseLayout>

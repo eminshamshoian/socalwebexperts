@@ -47,6 +47,9 @@ const modalId = `portfolio-modal-${src.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^
   id={modalId}
   class="portfolio-modal"
   data-portfolio-modal
+  data-lenis-prevent
+  data-lenis-prevent-wheel
+  data-lenis-prevent-touch
   aria-label={title ? `${title} full page preview` : 'Full page preview'}
 >
   <div class="portfolio-modal__chrome">
@@ -57,7 +60,12 @@ const modalId = `portfolio-modal-${src.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^
       </svg>
     </button>
   </div>
-  <div class="portfolio-modal__scroll">
+  <div
+    class="portfolio-modal__scroll"
+    data-lenis-prevent
+    data-lenis-prevent-wheel
+    data-lenis-prevent-touch
+  >
     <img
       src={portfolioImageUrl(src, 1400)}
       srcset={portfolioImageSrcSet(src, [640, 960, 1400])}
@@ -82,8 +90,6 @@ const modalId = `portfolio-modal-${src.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^
     background: transparent;
     cursor: pointer;
     text-align: left;
-    content-visibility: auto;
-    contain-intrinsic-size: auto 720px;
   }
 
   .portfolio-frame:focus,
@@ -99,11 +105,9 @@ const modalId = `portfolio-modal-${src.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^
     overflow: hidden;
     background: none;
     box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
-    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
-                box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  /* Artistic but clean frame shapes — soft organic rectangles */
+  /* Artistic but clean frame shapes with soft organic rectangles */
   .portfolio-frame--1,
   .portfolio-frame--1 .portfolio-frame__media {
     border-radius: 2.25rem 0.85rem 2.5rem 1.15rem;
@@ -130,16 +134,6 @@ const modalId = `portfolio-modal-${src.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^
     height: 100%;
     object-fit: cover;
     object-position: top center;
-    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-
-  .portfolio-frame:hover .portfolio-frame__media {
-    transform: translateY(-3px);
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.28);
-  }
-
-  .portfolio-frame:hover .portfolio-frame__media img {
-    transform: scale(1.03);
   }
 
   .portfolio-frame:focus .portfolio-frame__media,
@@ -242,6 +236,8 @@ const modalId = `portfolio-modal-${src.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^
 
       const closeBtn = modal.querySelector<HTMLElement>('[data-portfolio-close]');
       const scrollArea = modal.querySelector<HTMLElement>('.portfolio-modal__scroll');
+      const siteLenis = () =>
+        (window as Window & { __siteLenis?: { stop: () => void; start: () => void } }).__siteLenis;
 
       const openModal = () => {
         if (scrollArea) scrollArea.scrollTop = 0;
@@ -250,7 +246,9 @@ const modalId = `portfolio-modal-${src.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^
         } else {
           modal.setAttribute('open', '');
         }
+        document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
+        siteLenis()?.stop();
         closeBtn?.focus();
       };
 
@@ -260,7 +258,9 @@ const modalId = `portfolio-modal-${src.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^
         } else {
           modal.removeAttribute('open');
         }
+        document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
+        siteLenis()?.start();
         trigger.focus();
       };
 
@@ -283,7 +283,9 @@ const modalId = `portfolio-modal-${src.replace(/[^a-zA-Z0-9]+/g, '-').replace(/^
       });
 
       modal.addEventListener('close', () => {
+        document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
+        siteLenis()?.start();
       });
     });
   }

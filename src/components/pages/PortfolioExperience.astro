@@ -7,8 +7,8 @@ import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
   <div class="site-container">
     <p class="section-index texture-tag" data-reveal>Portfolio</p>
     <div class="page-hero__grid">
-      <h1 data-reveal>Work that makes businesses easier to trust.</h1>
-      <p class="type-lead" data-reveal style="--reveal-delay:100ms">Websites built around real services, clear decisions, and the next action a customer should take.</p>
+      <h1 data-reveal>Work that earns customer trust.</h1>
+      <p class="type-lead" data-reveal style="--reveal-delay:100ms">Websites that explain your services and make the next step clear.</p>
     </div>
   </div>
 </section>
@@ -55,7 +55,6 @@ import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
 
   .page-hero h1 {
     max-width: 11ch;
-    font-size: clamp(3.2rem, 8vw, 8rem);
   }
 
   .page-hero .type-lead {
@@ -95,9 +94,8 @@ import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
   }
 
   .portfolio-archive__meta h2 {
-    font-size: 1.1rem;
-    line-height: 1.2;
-    letter-spacing: -0.03em;
+    font-size: var(--type-subheading);
+    font-weight: var(--weight-regular);
   }
 
   .portfolio-archive__meta span,

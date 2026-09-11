@@ -52,44 +52,44 @@ export const services: Service[] = [
     id: 'web-design',
     title: 'Custom Web Design',
     shortDescription:
-      'Tailored sites built for your brand, with clear service messaging, strong calls-to-action, and a mobile-first experience that turns visitors into leads.',
+      'Custom, mobile-first websites with clear messaging and simple paths from visit to inquiry.',
     description:
-      'We design and build custom websites that reflect your business and make it easy for people to trust you and take action. Every page is structured for clarity and conversion: service-focused copy, proof where it matters, and fast, polished UX on every device.',
-    heroHeadline: 'Websites that look sharp and turn visitors into customers.',
+      'We build fast, custom websites that explain your services, earn trust, and make it easy to call, book, or request a quote.',
+    heroHeadline: 'Websites built to win customers.',
     icon: 'code',
     slug: 'web-design',
     layout: 'classic',
     features: [
-      'Custom layout and visual design for your brand',
-      'Mobile-first, conversion-focused page structure',
-      'Service and location pages that answer real customer intent',
-      'Strong CTAs: call, quote, book, and forms that work',
-      'Reviews, badges, and portfolio sections that build trust',
-      'Performance-minded build: fast loads and clean UX',
-      'Launch support so you are confident going live',
+      'Custom design for your brand',
+      'Mobile-first page structure',
+      'Service and location pages',
+      'Clear calls, quotes, bookings, and forms',
+      'Reviews and proof that build trust',
+      'Fast loads and clean UX',
+      'Hands-on launch support',
     ],
     highlights: [
       {
         title: 'Brand-First Design',
-        description: 'Layouts and visuals shaped around your business so the site feels uniquely yours, not template-made.',
+        description: 'A custom look shaped around your business, not a template.',
         image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80',
         imageAlt: 'Designer reviewing website analytics on a laptop',
       },
       {
         title: 'Conversion Structure',
-        description: 'Clear service pages, proof, and calls to action placed where visitors are ready to take the next step.',
+        description: 'Service pages, proof, and clear calls to action.',
         image: 'https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=900&q=80',
         imageAlt: 'Person designing a website interface on a computer',
       },
       {
         title: 'Mobile-Ready UX',
-        description: 'Fast, polished experiences on every screen so local customers can call or inquire without friction.',
+        description: 'A fast experience that works on every screen.',
         image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=80',
         imageAlt: 'Smartphone showing a clean mobile website',
       },
       {
         title: 'Launch Support',
-        description: 'From final polish to go-live, we keep the process clear so you launch with confidence.',
+        description: 'Clear support from final review through go-live.',
         image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80',
         imageAlt: 'Team collaborating on a digital project',
       },
@@ -97,32 +97,32 @@ export const services: Service[] = [
     details: [
       {
         title: 'Custom Site Builds',
-        description: 'Purpose-built pages for your services, locations, and offers with a clean visual system.',
+        description: 'Custom pages for your services, locations, and offers.',
         icon: 'code',
       },
       {
         title: 'Lead-Focused Layouts',
-        description: 'Forms, click-to-call, and booking paths designed to capture inquiries from real customers.',
+        description: 'Forms, click-to-call, and booking paths that capture leads.',
         icon: 'target',
       },
       {
         title: 'Performance & SEO Basics',
-        description: 'Fast loads, clean structure, and indexing fundamentals that help you compete locally.',
+        description: 'Fast loads, clean structure, and solid SEO basics.',
         icon: 'zap',
       },
       {
         title: 'Trust & Proof Blocks',
-        description: 'Reviews, credentials, and portfolio moments placed where they strengthen the decision.',
+        description: 'Reviews, credentials, and work placed where they matter.',
         icon: 'shield',
       },
       {
         title: 'Content Guidance',
-        description: 'Messaging that answers what customers actually need to know before they contact you.',
+        description: 'Clear answers to the questions customers ask.',
         icon: 'edit',
       },
       {
         title: 'Done-for-You Launch',
-        description: 'We handle the handoff from draft to live site so nothing important gets missed.',
+        description: 'We take the approved site from draft to live.',
         icon: 'rocket',
       },
     ],
@@ -131,9 +131,9 @@ export const services: Service[] = [
     id: 'social-media',
     title: 'Social Media Marketing',
     shortDescription:
-      'Consistent presence and on-brand content so you stay visible, credible, and top-of-mind alongside your website and ads.',
+      'On-brand content that keeps your business visible, credible, and easy to remember.',
     description:
-      'Social media marketing keeps your business in front of the right audience with a steady rhythm of posts and messaging that matches your brand. We focus on trust and familiarity, so when someone needs your service, they already know who you are.',
+      'We plan and publish useful, on-brand content that keeps your business visible to the people most likely to need it.',
     heroHeadline: 'Stay visible, stay trusted, stay top of mind.',
     icon: 'share',
     slug: 'social-media',
@@ -210,9 +210,9 @@ export const services: Service[] = [
     id: 'google-ads',
     title: 'Google Ads',
     shortDescription:
-      'Paid search campaigns aimed at high-intent local leads, with careful targeting, tracking, and ongoing optimization so your budget works harder.',
+      'Targeted search campaigns that turn local demand into measurable calls and leads.',
     description:
-      'Google Ads puts your business in front of people who are actively searching for what you offer. We handle campaign structure, geo and audience targeting, ad copy, and conversion tracking, then refine based on real lead data, not guesswork.',
+      'We build and manage search campaigns for people already looking for your services, then improve them using real lead data.',
     heroHeadline: 'Reach people already searching for what you offer.',
     icon: 'target',
     slug: 'google-ads',
@@ -333,28 +333,28 @@ export const processSteps: ProcessStep[] = [
     id: 'quick-call',
     step: 1,
     title: 'Quick Call',
-    description: 'We align on your goals, services, service area, and what a successful website should produce.',
+    description: 'We align on your goals, services, customers, and priorities.',
     icon: 'phone',
   },
   {
     id: 'build',
     step: 2,
     title: 'We Build',
-    description: 'We handle design, copy, page structure, and conversion setup around your business goals.',
+    description: 'We handle the design, copy, structure, and lead paths.',
     icon: 'code',
   },
   {
     id: 'launch',
     step: 3,
     title: 'Launch',
-    description: 'We publish with forms, tracking, and SEO fundamentals in place so leads can start flowing.',
+    description: 'We publish with forms, tracking, and SEO basics in place.',
     icon: 'rocket',
   },
   {
     id: 'maintain',
     step: 4,
     title: 'We Maintain',
-    description: 'You get ongoing updates, improvements, and support so your site keeps performing.',
+    description: 'We handle ongoing updates, improvements, and support.',
     icon: 'refresh-cw',
   },
 ];
@@ -556,20 +556,20 @@ export const stats: Stat[] = [
     value: '95',
     suffix: '+',
     description:
-      'Typical mobile Lighthouse performance on sites we ship, verified in PageSpeed Insights, not just screenshots.',
+      'Typical mobile Lighthouse performance on the sites we ship.',
   },
   {
     label: 'Kickoff to launch',
     value: '2 to 4',
     suffix: ' wks',
     description:
-      'Usual timeline for a custom, lead-ready site once content and approvals stay on track.',
+      'Typical timeline when content and approvals stay on track.',
   },
   {
     label: 'Custom builds from',
     value: '$299',
     description:
-      'Setup fee with hosting from $12 per month, clear pricing, and unlimited revisions until you approve launch.',
+      'Setup fee with hosting from $12 monthly and revisions before launch.',
   },
 ];
 

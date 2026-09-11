@@ -66,7 +66,6 @@ const { eyebrow, title, description, lastUpdated } = Astro.props;
 
   .legal-document__header h1 {
     max-width: 10ch;
-    font-size: clamp(3rem, 7vw, 7rem);
   }
 
   .legal-document__contact {
@@ -74,10 +73,10 @@ const { eyebrow, title, description, lastUpdated } = Astro.props;
   }
 
   .legal-prose :global(h2) {
-    font-size: 1.25rem;
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    line-height: 1.3;
+    font-size: var(--type-subheading);
+    font-weight: var(--weight-regular);
+    letter-spacing: -0.035em;
+    line-height: 1.22;
     color: var(--text);
     margin-top: 2rem;
     margin-bottom: 0.75rem;
@@ -88,9 +87,9 @@ const { eyebrow, title, description, lastUpdated } = Astro.props;
   }
 
   .legal-prose :global(h3) {
-    font-size: 1.0625rem;
-    font-weight: 500;
-    line-height: 1.35;
+    font-size: var(--type-subheading);
+    font-weight: var(--weight-regular);
+    line-height: 1.22;
     color: var(--text);
     margin-top: 1.5rem;
     margin-bottom: 0.5rem;
@@ -98,7 +97,7 @@ const { eyebrow, title, description, lastUpdated } = Astro.props;
 
   .legal-prose :global(p),
   .legal-prose :global(li) {
-    font-size: 1rem;
+    font-size: var(--type-body);
     line-height: 1.7;
     color: var(--text-secondary);
   }

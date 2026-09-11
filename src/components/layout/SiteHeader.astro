@@ -1,5 +1,6 @@
 ---
 import { navigation } from '../../data/site';
+import { Menu, X } from '@lucide/astro';
 
 const mobileNav = navigation.filter((item) => item.label !== 'Home');
 ---
@@ -19,10 +20,8 @@ const mobileNav = navigation.filter((item) => item.label !== 'Home');
     <div class="header__actions">
       <a class="header__cta" href="/contact/">Start a project</a>
       <button class="header__toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path class="header__toggle-line header__toggle-line--top" d="M5 9h14" />
-          <path class="header__toggle-line header__toggle-line--bottom" d="M5 15h14" />
-        </svg>
+        <Menu class="header__menu-icon" aria-hidden="true" />
+        <X class="header__close-icon" aria-hidden="true" />
       </button>
     </div>
   </div>
@@ -92,8 +91,8 @@ const mobileNav = navigation.filter((item) => item.label !== 'Home');
 
   .header__desktop a,
   .header__cta {
-    font-size: 0.78rem;
-    font-weight: 540;
+    font-size: var(--type-small);
+    font-weight: var(--weight-medium);
     letter-spacing: -0.01em;
   }
 
@@ -163,29 +162,27 @@ const mobileNav = navigation.filter((item) => item.label !== 'Home');
     backface-visibility: hidden;
   }
 
-  .header__toggle svg {
+  .header__toggle :global(svg) {
     display: block;
     width: 1.25rem;
     height: 1.25rem;
-    overflow: visible;
+    transition: opacity 180ms ease, transform 180ms ease;
   }
 
-  .header__toggle-line {
-    fill: none;
-    stroke: var(--text);
-    stroke-width: 1.75;
-    stroke-linecap: round;
-    transform-box: fill-box;
-    transform-origin: center;
-    transition: transform 220ms ease;
+  .header__close-icon {
+    position: absolute;
+    opacity: 0;
+    transform: rotate(-45deg);
   }
 
-  .header.menu-open .header__toggle-line--top {
-    transform: translateY(3px) rotate(45deg);
+  .header.menu-open .header__menu-icon {
+    opacity: 0;
+    transform: rotate(45deg);
   }
 
-  .header.menu-open .header__toggle-line--bottom {
-    transform: translateY(-3px) rotate(-45deg);
+  .header.menu-open .header__close-icon {
+    opacity: 1;
+    transform: rotate(0);
   }
 
   .header__menu {
@@ -221,7 +218,7 @@ const mobileNav = navigation.filter((item) => item.label !== 'Home');
     border-bottom: 1px solid var(--border);
     padding: 1rem 0;
     font-size: clamp(2.2rem, 10vw, 3.8rem);
-    font-weight: 500;
+    font-weight: var(--weight-regular);
     line-height: 1;
     letter-spacing: -0.055em;
     opacity: 0;
@@ -235,7 +232,7 @@ const mobileNav = navigation.filter((item) => item.label !== 'Home');
   }
 
   .header__menu-cta {
-    font-size: 0.85rem;
+    font-size: var(--type-small);
     text-decoration: underline;
     text-underline-offset: 0.3rem;
   }

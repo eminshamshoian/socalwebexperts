@@ -10,6 +10,7 @@ import {
   yelpReview,
 } from '../../data/site';
 import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
+import { ArrowUpRight, Check, Plus, Star } from '@lucide/astro';
 
 const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#f3c49b'];
 const pricing = pricingModels[0];
@@ -18,10 +19,10 @@ const pricing = pricingModels[0];
 <section class="home-hero">
   <div class="site-container">
     <div class="home-hero__top" data-reveal>
-      <h1 class="hero-title hero-title__motion">We Design.</h1>
+      <h1 class="hero-title hero-title__motion">Websites. Ads. Content.</h1>
       <div class="home-hero__intro">
-        <p>& build fast, focused websites for local businesses, then help them grow through search, ads, and content.</p>
-        <a class="hero-talk" href="/contact/">Show Me What I Can Get</a>
+        <p>Web design, Google Ads, and social media for local businesses ready to grow.</p>
+        <a class="hero-talk" href="/contact/">See what we can build</a>
       </div>
     </div>
   </div>
@@ -53,9 +54,9 @@ const pricing = pricingModels[0];
       <p class="section-index">About Us</p>
     </div>
     <div class="intro__content" data-reveal style="--reveal-delay:100ms">
-      <h2>Senior thinking, direct collaboration, and websites built to perform.</h2>
-      <p class="type-lead">The same people who shape your strategy design and build the final site. No handoffs, no layers, and no template shortcuts.</p>
-      <a href="/contact/">Meet your next web partner <span>↗</span></a>
+      <h2>Direct collaboration. Websites built to perform.</h2>
+      <p class="type-lead">The people who plan your strategy also design and build your site. No handoffs or templates.</p>
+      <a href="/contact/">Meet your web partner <ArrowUpRight aria-hidden="true" /></a>
     </div>
   </div>
 
@@ -75,9 +76,9 @@ const pricing = pricingModels[0];
     <div class="section-head" data-reveal>
       <div>
         <p class="section-index">Selected work</p>
-        <h2>Sites made to earn attention and action.</h2>
+        <h2>Sites built to earn attention and action.</h2>
       </div>
-      <p class="type-lead">A selection of customer focused websites for businesses across healthcare, retail, architecture, food, and automotive.</p>
+      <p class="type-lead">Customer-focused work across healthcare, retail, architecture, food, and automotive.</p>
     </div>
 
     <div class="work__grid">
@@ -110,9 +111,9 @@ const pricing = pricingModels[0];
     <div class="section-head" data-reveal>
       <div>
         <p class="section-index texture-tag">Services</p>
-        <h2>Everything your digital presence needs.</h2>
+        <h2>One team for your digital growth.</h2>
       </div>
-      <p class="type-lead">Strategy, design, engineering, and growth are handled as one connected system.</p>
+      <p class="type-lead">Web design, Google Ads, and social media working together.</p>
     </div>
 
     <div class="service-list">
@@ -126,7 +127,7 @@ const pricing = pricingModels[0];
             </ul>
           </div>
           <p>{service.shortDescription}</p>
-          <span class="service-list__arrow">↗</span>
+          <ArrowUpRight class="service-list__arrow" aria-hidden="true" />
         </a>
       ))}
     </div>
@@ -148,7 +149,7 @@ const pricing = pricingModels[0];
       <p class="section-index" data-reveal>Process</p>
       <div data-reveal>
         <h2>A clear path from first call to launch.</h2>
-        <p class="type-lead">Four focused steps, with direct communication and no mystery in the middle.</p>
+        <p class="type-lead">Four steps, direct communication, and no surprises.</p>
       </div>
     </div>
 
@@ -169,21 +170,23 @@ const pricing = pricingModels[0];
   <div class="site-container proof__grid">
     <div class="proof__statement" data-reveal>
       <p class="section-index texture-tag">Why SoCal</p>
-      <h2>Built for businesses that need a site to do more than look good.</h2>
-      <p class="type-lead">Fast loads, clear messaging, search foundations, and friction free conversion paths come standard.</p>
+      <h2>More than a good-looking website.</h2>
+      <p class="type-lead">Fast loads, clear copy, search foundations, and easy ways to contact you.</p>
       <a class="button" href="/services/web-design/">How we build</a>
     </div>
 
     <div class="proof__review" data-reveal style="--reveal-delay:100ms">
       <div class="proof__rating">
-        <span>★★★★★</span>
+        <span class="proof__stars" aria-label="5 out of 5 stars">
+          {Array.from({ length: 5 }).map(() => <Star aria-hidden="true" fill="currentColor" />)}
+        </span>
         <p>Verified Yelp review</p>
       </div>
       <blockquote>“{yelpReview.quote}”</blockquote>
       <footer>
         <strong>{yelpReview.authorName}</strong>
         <span>{yelpReview.location}</span>
-        <a href={yelpReview.reviewUrl} target="_blank" rel="noopener noreferrer">Read on Yelp ↗</a>
+        <a href={yelpReview.reviewUrl} target="_blank" rel="noopener noreferrer">Read on Yelp <ArrowUpRight aria-hidden="true" /></a>
       </footer>
     </div>
   </div>
@@ -194,9 +197,9 @@ const pricing = pricingModels[0];
     <div class="section-head" data-reveal>
       <div>
         <p class="section-index">Pricing</p>
-        <h2>Clear numbers. No agency fog.</h2>
+        <h2>Clear pricing. No agency fog.</h2>
       </div>
-      <p class="type-lead">A focused starting package for small businesses that need a professional, lead ready website.</p>
+      <p class="type-lead">A professional, lead-ready website for small businesses.</p>
     </div>
 
     <div class="pricing-home__card" data-reveal>
@@ -207,7 +210,7 @@ const pricing = pricingModels[0];
         <a class="button" href="/contact/">Start your website</a>
       </div>
       <ul>
-        {pricing.features.map((feature) => <li><span>✓</span>{feature}</li>)}
+        {pricing.features.map((feature) => <li><Check aria-hidden="true" />{feature}</li>)}
       </ul>
     </div>
   </div>
@@ -222,7 +225,7 @@ const pricing = pricingModels[0];
     <div class="faq-home__list">
       {faqItems.map((faq, index) => (
         <details data-reveal style={`--reveal-delay:${index * 45}ms`}>
-          <summary><span>0{index + 1}</span>{faq.question}<i></i></summary>
+          <summary><span>0{index + 1}</span>{faq.question}<Plus aria-hidden="true" /></summary>
           <p>{faq.answer}</p>
         </details>
       ))}
@@ -234,7 +237,7 @@ const pricing = pricingModels[0];
   <div class="site-container" data-reveal>
     <p class="section-index">Free 20 minute intro call</p>
     <h2>Tell us what you are building.</h2>
-    <p>Share your goals and we will reply within one business day with a clear recommendation and next steps.</p>
+    <p>Share your goals. We will reply within one business day with clear next steps.</p>
     <div>
       <a class="button" href="/contact/">Book a call</a>
       <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}>{siteConfig.phone}</a>
@@ -260,13 +263,13 @@ const pricing = pricingModels[0];
     max-width: none;
     margin: 0;
     font-family: "Inter Variable", "Arial Black", Arial, sans-serif;
-    font-size: clamp(3rem, 14.5vw, 13.2rem);
-    font-weight: 850;
-    line-height: 0.8;
-    letter-spacing: -0.085em;
+    max-width: 12ch;
+    font-size: clamp(3.2rem, 10vw, 9.5rem);
+    font-weight: 620;
+    line-height: 0.86;
+    letter-spacing: -0.07em;
     text-align: center;
     text-transform: uppercase;
-    white-space: nowrap;
   }
 
   .hero-title__motion {
@@ -309,9 +312,9 @@ const pricing = pricingModels[0];
   .home-hero__intro p {
     max-width: 32rem;
     color: var(--text);
-    font-size: clamp(0.9rem, 1.15vw, 1.05rem);
-    font-weight: 700;
-    line-height: 1.38;
+    font-size: var(--type-body);
+    font-weight: var(--weight-regular);
+    line-height: 1.55;
     letter-spacing: -0.02em;
   }
 
@@ -321,8 +324,8 @@ const pricing = pricingModels[0];
     justify-self: center;
     padding-bottom: 0.35rem;
     color: var(--text);
-    font-size: clamp(1rem, 1.4vw, 1.2rem);
-    font-weight: 800;
+    font-size: var(--type-body);
+    font-weight: var(--weight-medium);
     letter-spacing: -0.03em;
     text-decoration: none;
   }
@@ -332,11 +335,8 @@ const pricing = pricingModels[0];
     right: -0.08em;
     bottom: 0;
     left: -0.08em;
-    height: 0.42em;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M1 7.5 C10 2.5, 18 11.5, 28 7 C38 2.5, 48 11, 58 7 C68 3, 78 11.5, 88 7 C98 2.5, 108 11, 119 6.5' fill='none' stroke='%230a0a0a' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: 100% 100%;
+    height: 1px;
+    background: currentColor;
     content: '';
     pointer-events: none;
     transition: transform 220ms ease;
@@ -407,7 +407,6 @@ const pricing = pricingModels[0];
 
   .intro__content h2 {
     max-width: 14ch;
-    font-size: clamp(2.5rem, 5vw, 5.8rem);
   }
 
   .intro__content .type-lead {
@@ -419,9 +418,16 @@ const pricing = pricingModels[0];
     display: inline-flex;
     gap: 0.5rem;
     margin-top: 2rem;
-    font-size: 0.85rem;
+    align-items: center;
+    font-size: var(--type-small);
     text-decoration: underline;
     text-underline-offset: 0.3rem;
+  }
+
+  .intro__content > a :global(svg),
+  .proof__review footer a :global(svg) {
+    width: 1em;
+    height: 1em;
   }
 
   .stats {
@@ -444,7 +450,8 @@ const pricing = pricingModels[0];
 
   .stats h3 {
     margin-top: 1.5rem;
-    font-size: 1rem;
+    font-size: var(--type-subheading);
+    font-weight: var(--weight-regular);
   }
 
   .stats article > span {
@@ -452,7 +459,7 @@ const pricing = pricingModels[0];
     max-width: 24rem;
     margin-top: 0.6rem;
     color: var(--text-secondary);
-    font-size: 0.78rem;
+    font-size: var(--type-small);
   }
 
   .section-head {
@@ -500,12 +507,13 @@ const pricing = pricingModels[0];
   }
 
   .work-card__meta h3 {
-    font-size: 1.05rem;
+    font-size: var(--type-subheading);
+    font-weight: var(--weight-regular);
   }
 
   .work-card__meta p {
     color: var(--text-secondary);
-    font-size: 0.72rem;
+    font-size: var(--type-label);
   }
 
   .work__all {
@@ -537,7 +545,7 @@ const pricing = pricingModels[0];
   }
 
   .service-list h3 {
-    font-size: clamp(1.8rem, 4vw, 4.2rem);
+    font-weight: var(--weight-regular);
   }
 
   .service-list ul {
@@ -558,11 +566,12 @@ const pricing = pricingModels[0];
     display: none;
     max-width: 28rem;
     color: var(--text-secondary);
-    font-size: 0.88rem;
+    font-size: var(--type-body);
   }
 
   .service-list__arrow {
-    font-size: 1.25rem;
+    width: 1.25rem;
+    height: 1.25rem;
   }
 
   .workflow {
@@ -743,6 +752,10 @@ const pricing = pricingModels[0];
     font-size: 0.68rem;
   }
 
+  .workflow__steps article > div b {
+    font-weight: var(--weight-regular);
+  }
+
   .workflow__steps h3 {
     margin-top: 3rem;
   }
@@ -750,7 +763,7 @@ const pricing = pricingModels[0];
   .workflow__steps p {
     margin-top: 1rem;
     color: rgba(255, 255, 255, 0.58);
-    font-size: 0.86rem;
+    font-size: var(--type-body);
   }
 
   .proof {
@@ -765,7 +778,6 @@ const pricing = pricingModels[0];
   .proof__statement h2 {
     max-width: 13ch;
     margin-top: 1.5rem;
-    font-size: clamp(2.7rem, 5vw, 6rem);
   }
 
   .proof__statement .type-lead {
@@ -791,9 +803,15 @@ const pricing = pricingModels[0];
     font-size: 0.72rem;
   }
 
-  .proof__rating span {
+  .proof__stars {
+    display: flex;
+    gap: 0.15rem;
     color: var(--accent);
-    letter-spacing: 0.12em;
+  }
+
+  .proof__stars :global(svg) {
+    width: 0.85rem;
+    height: 0.85rem;
   }
 
   .proof__review blockquote {
@@ -819,6 +837,12 @@ const pricing = pricingModels[0];
     align-self: center;
     text-decoration: underline;
     text-underline-offset: 0.25rem;
+  }
+
+  .proof__review footer a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
   }
 
   .pricing-home__card {
@@ -865,7 +889,12 @@ const pricing = pricingModels[0];
     gap: 0.5rem;
     border-bottom: 1px solid var(--border);
     padding-block: 0.8rem;
-    font-size: 0.84rem;
+    font-size: var(--type-small);
+  }
+
+  .pricing-home__card li :global(svg) {
+    width: 1rem;
+    height: 1rem;
   }
 
   .faq-home h2 {
@@ -887,7 +916,8 @@ const pricing = pricingModels[0];
     gap: 0.5rem;
     padding-block: 1.5rem;
     cursor: pointer;
-    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    font-size: var(--type-subheading);
+    font-weight: var(--weight-regular);
     list-style: none;
   }
 
@@ -900,37 +930,21 @@ const pricing = pricingModels[0];
     font-size: 0.65rem;
   }
 
-  .faq-home summary i {
-    position: relative;
+  .faq-home summary :global(svg) {
     width: 1rem;
     height: 1rem;
-  }
-
-  .faq-home summary i::before,
-  .faq-home summary i::after {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background: var(--text);
-    content: '';
     transition: transform 200ms ease;
   }
 
-  .faq-home summary i::after {
-    transform: rotate(90deg);
-  }
-
-  .faq-home details[open] summary i::after {
-    transform: rotate(0);
+  .faq-home details[open] summary :global(svg) {
+    transform: rotate(45deg);
   }
 
   .faq-home details > p {
     max-width: 38rem;
     padding: 0 0 1.5rem 2.5rem;
     color: var(--text-secondary);
-    font-size: 0.9rem;
+    font-size: var(--type-body);
   }
 
   .final-cta {
@@ -948,7 +962,7 @@ const pricing = pricingModels[0];
     max-width: 38rem;
     margin-top: 2rem;
     color: rgba(255, 255, 255, 0.75);
-    font-size: 1.05rem;
+    font-size: var(--type-body);
   }
 
   .final-cta .section-index {

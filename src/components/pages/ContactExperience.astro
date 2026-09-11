@@ -9,7 +9,7 @@ import { services, siteConfig } from '../../data/site';
         <p class="section-index texture-tag">Contact / Start a project</p>
         <h1>Tell us what you are building.</h1>
       </div>
-      <p class="type-lead" data-reveal style="--reveal-delay:100ms">Share your goals, timeline, and where the current experience is falling short. We will reply within one business day.</p>
+      <p class="type-lead" data-reveal style="--reveal-delay:100ms">Share your goals and timeline. We will reply within one business day.</p>
     </div>
 
     <div class="contact-experience__body">
@@ -26,7 +26,7 @@ import { services, siteConfig } from '../../data/site';
           <p class="section-index">Based in</p>
           <p>{siteConfig.address}</p>
         </div>
-        <p class="contact-experience__note">Free 20 minute intro call. No pressure and no generic sales pitch.</p>
+        <p class="contact-experience__note">Free 20 minute intro call. No pressure.</p>
       </aside>
 
       <form
@@ -126,7 +126,7 @@ import { services, siteConfig } from '../../data/site';
   .contact-experience aside > div > p:last-child {
     display: inline-block;
     margin-top: 0.5rem;
-    font-size: 1rem;
+    font-size: var(--type-body);
   }
 
   .contact-experience aside a:hover {
@@ -139,7 +139,7 @@ import { services, siteConfig } from '../../data/site';
     border-top: 1px solid var(--border);
     padding-top: 1.5rem;
     color: var(--text-secondary);
-    font-size: 0.78rem;
+    font-size: var(--type-small);
   }
 
   .contact-experience form {
@@ -161,7 +161,8 @@ import { services, siteConfig } from '../../data/site';
 
   .contact-experience label > span {
     color: var(--text-secondary);
-    font-size: 0.7rem;
+    font-size: var(--type-label);
+    font-weight: var(--weight-regular);
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -177,7 +178,7 @@ import { services, siteConfig } from '../../data/site';
     background: transparent;
     padding: 0.7rem 0;
     color: var(--text);
-    font-size: 0.92rem;
+    font-size: var(--type-body);
     transition: border-color 200ms ease;
   }
 
@@ -212,13 +213,13 @@ import { services, siteConfig } from '../../data/site';
   .contact-experience__submit p {
     max-width: 21rem;
     color: var(--text-secondary);
-    font-size: 0.68rem;
+    font-size: var(--type-label);
   }
 
   .contact-experience__status {
     border-top: 1px solid var(--border);
     padding-top: 1rem;
-    font-size: 0.82rem;
+    font-size: var(--type-small);
   }
 
   .contact-experience__status.is-success {

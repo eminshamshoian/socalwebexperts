@@ -1,5 +1,5 @@
 ---
-import { navigation, services, siteConfig, portfolioItems } from '../../data/site';
+import { navigation, services, siteConfig } from '../../data/site';
 ---
 
 <footer class="footer">
@@ -9,7 +9,7 @@ import { navigation, services, siteConfig, portfolioItems } from '../../data/sit
         <a href="/" aria-label="SoCal Web Experts home">
           <img src="/logo-black.png" width="192" height="192" alt="SoCal Web Experts" loading="lazy" />
         </a>
-        <p>Websites and growth systems for Southern California businesses.</p>
+        <p>Web design, Google Ads, and social media for Southern California businesses.</p>
       </div>
 
       <div>
@@ -77,20 +77,21 @@ import { navigation, services, siteConfig, portfolioItems } from '../../data/sit
   .footer__brand p {
     max-width: 24rem;
     color: var(--text-secondary);
-    font-size: 0.88rem;
+    font-size: var(--type-body);
   }
 
   .footer__label {
     margin-bottom: 0.75rem;
     color: var(--text-secondary);
-    font-size: 0.68rem;
+    font-size: var(--type-label);
+    font-weight: var(--weight-regular);
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
 
   .footer__grid a,
   .footer__grid > div > p:not(.footer__label) {
-    font-size: 0.88rem;
+    font-size: var(--type-body);
   }
 
   .footer__grid a:hover,
@@ -113,7 +114,7 @@ import { navigation, services, siteConfig, portfolioItems } from '../../data/sit
     border-top: 1px solid var(--border);
     padding-top: 1.5rem;
     color: var(--text-secondary);
-    font-size: 0.68rem;
+    font-size: var(--type-label);
   }
 
   .footer__bottom div {

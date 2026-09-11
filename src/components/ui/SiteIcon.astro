@@ -1,10 +1,8 @@
 ---
 import {
-  BarChart3,
-  CheckCircle2,
-  Code2,
-  Facebook,
-  Instagram,
+  ChartBar,
+  CircleCheck,
+  CodeXml,
   MapPin,
   Palette,
   Pencil,
@@ -30,12 +28,10 @@ interface Props {
 const { name, size = 20, class: className } = Astro.props;
 
 const icons = {
-  'bar-chart': BarChart3,
-  'check-circle': CheckCircle2,
-  code: Code2,
+  'bar-chart': ChartBar,
+  'check-circle': CircleCheck,
+  code: CodeXml,
   edit: Pencil,
-  facebook: Facebook,
-  instagram: Instagram,
   'map-pin': MapPin,
   palette: Palette,
   phone: Phone,
@@ -51,7 +47,7 @@ const icons = {
   zap: Zap,
 } as const;
 
-const Icon = icons[name as keyof typeof icons] ?? CheckCircle2;
+const Icon = icons[name as keyof typeof icons] ?? CircleCheck;
 ---
 
 <Icon size={size} class={className} aria-hidden="true" />

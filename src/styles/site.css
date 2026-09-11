@@ -30,6 +30,14 @@
   --accent-soft: #fee7dc;
   --bg-rgb: 255, 255, 255;
   --container-max: 1440px;
+  --type-display: clamp(3.2rem, 8vw, 8rem);
+  --type-heading: clamp(2.5rem, 5.6vw, 6rem);
+  --type-subheading: clamp(1.25rem, 2vw, 1.9rem);
+  --type-body: 1rem;
+  --type-small: 0.86rem;
+  --type-label: 0.72rem;
+  --weight-regular: 420;
+  --weight-medium: 520;
   color-scheme: light;
 }
 
@@ -64,7 +72,7 @@ body {
   color: var(--text);
   font-family: var(--font-body);
   font-size: 1rem;
-  font-weight: 430;
+  font-weight: var(--weight-regular);
   line-height: 1.55;
   letter-spacing: -0.012em;
   -webkit-font-smoothing: antialiased;
@@ -80,24 +88,24 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   color: var(--text);
   font-family: var(--font-heading);
-  font-weight: 520;
-  line-height: 0.98;
+  font-weight: var(--weight-medium);
+  line-height: 1;
   letter-spacing: -0.055em;
   text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(3.2rem, 8vw, 8.5rem);
+  font-size: var(--type-display);
 }
 
 h2 {
-  font-size: clamp(2.5rem, 5.6vw, 6.4rem);
+  font-size: var(--type-heading);
 }
 
 h3 {
-  font-size: clamp(1.35rem, 2vw, 2.15rem);
-  line-height: 1.08;
-  letter-spacing: -0.04em;
+  font-size: var(--type-subheading);
+  line-height: 1.18;
+  letter-spacing: -0.035em;
 }
 
 p {
@@ -157,8 +165,8 @@ video {
 .section-index,
 .type-eyebrow {
   color: var(--text-secondary);
-  font-size: 0.72rem;
-  font-weight: 560;
+  font-size: var(--type-label);
+  font-weight: var(--weight-medium);
   line-height: 1.2;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -190,23 +198,24 @@ video {
 
 .type-lead {
   color: var(--text);
-  font-size: clamp(1rem, 1.35vw, 1.2rem);
-  font-weight: 700;
-  line-height: 1.4;
+  font-size: var(--type-body);
+  font-weight: var(--weight-regular);
+  line-height: 1.55;
   letter-spacing: -0.02em;
 }
 
 .type-body,
 .type-body-card {
   color: var(--text-secondary);
-  font-size: 0.98rem;
+  font-size: var(--type-body);
   line-height: 1.62;
 }
 
 .type-subheading,
 .type-emphasis {
   color: var(--text);
-  font-size: clamp(1.3rem, 2vw, 2rem);
+  font-size: var(--type-subheading);
+  font-weight: var(--weight-regular);
   line-height: 1.22;
   letter-spacing: -0.035em;
 }
@@ -214,15 +223,15 @@ video {
 .type-card-title,
 .type-faq-question {
   color: var(--text);
-  font-size: 1.12rem;
-  font-weight: 540;
+  font-size: var(--type-subheading);
+  font-weight: var(--weight-medium);
   line-height: 1.25;
   letter-spacing: -0.025em;
 }
 
 .type-meta {
   color: var(--text-secondary);
-  font-size: 0.72rem;
+  font-size: var(--type-label);
   line-height: 1.45;
 }
 
@@ -230,7 +239,7 @@ video {
 .type-form-label,
 .type-form-input {
   color: var(--text-secondary);
-  font-size: 0.86rem;
+  font-size: var(--type-small);
   line-height: 1.5;
 }
 
@@ -258,8 +267,8 @@ video {
   border-radius: 999px;
   padding: 0.8rem 1.35rem;
   color: var(--text);
-  font-size: 0.82rem;
-  font-weight: 560;
+  font-size: var(--type-small);
+  font-weight: var(--weight-medium);
   line-height: 1;
   transition: background-color 220ms ease, color 220ms ease, transform 220ms ease;
 }

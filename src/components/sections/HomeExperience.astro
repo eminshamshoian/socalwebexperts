@@ -123,11 +123,8 @@ const pricing = pricingModels[0];
           <SiteIcon name={service.icon} class="service-list__icon" />
           <div>
             <h3>{service.title}</h3>
-            <ul>
-              {service.features.slice(0, 3).map((feature) => <li>{feature}</li>)}
-            </ul>
+            <p>{service.shortDescription}</p>
           </div>
-          <p>{service.shortDescription}</p>
           <ArrowUpRight class="service-list__arrow" aria-hidden="true" />
         </a>
       ))}
@@ -265,7 +262,7 @@ const pricing = pricingModels[0];
     margin: 0;
     font-family: "Inter Variable", "Arial Black", Arial, sans-serif;
     max-width: 12ch;
-    font-size: var(--type-lg);
+    font-size: clamp(2.7rem, 5.4vw, 4.4rem);
     font-weight: var(--weight-bold);
     line-height: 0.86;
     letter-spacing: -0.07em;
@@ -450,7 +447,7 @@ const pricing = pricingModels[0];
 
   .stats h3 {
     margin-top: 0.45rem;
-    font-size: var(--type-md);
+    font-size: var(--type-sm);
     font-weight: var(--weight-bold);
   }
 
@@ -459,8 +456,9 @@ const pricing = pricingModels[0];
     max-width: 24rem;
     margin-top: 0.3rem;
     color: var(--text-secondary);
-    font-size: var(--type-sm);
+    font-size: 0.875rem;
     font-weight: var(--weight-regular);
+    line-height: 1.45;
   }
 
   .section-head {
@@ -552,24 +550,9 @@ const pricing = pricingModels[0];
     font-weight: var(--weight-bold);
   }
 
-  .service-list ul {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem 1rem;
-    margin: 1.2rem 0 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .service-list li {
-    color: var(--text-secondary);
-    font-size: var(--type-sm);
-    font-weight: var(--weight-regular);
-  }
-
-  .service-list > a > p {
-    display: none;
-    max-width: 28rem;
+  .service-list p {
+    max-width: 36rem;
+    margin-top: 0.7rem;
     color: var(--text-secondary);
     font-size: var(--type-sm);
     font-weight: var(--weight-regular);
@@ -1032,12 +1015,8 @@ const pricing = pricingModels[0];
     }
 
     .service-list > a {
-      grid-template-columns: 3rem 1fr minmax(15rem, 0.75fr) auto;
+      grid-template-columns: 3rem 1fr auto;
       align-items: start;
-    }
-
-    .service-list > a > p {
-      display: block;
     }
 
     .workflow__steps {

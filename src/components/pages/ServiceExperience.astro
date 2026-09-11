@@ -1,7 +1,8 @@
 ---
 import type { Service } from '../../types';
 import { services } from '../../data/site';
-import { ArrowDown, ArrowUpRight } from '@lucide/astro';
+import { ArrowDown, ArrowUpRight, Check } from '@lucide/astro';
+import SiteIcon from '../ui/SiteIcon.astro';
 
 interface Props {
   service: Service;
@@ -9,6 +10,7 @@ interface Props {
 
 const { service } = Astro.props;
 const related = services.filter((item) => item.id !== service.id);
+const highlightIcons = ['palette', 'target', 'zap', 'rocket'];
 
 const imageUrl = (src: string, width: number) => {
   const url = new URL(src);
@@ -44,7 +46,7 @@ const imageUrl = (src: string, width: number) => {
             loading="eager"
             decoding="async"
           />
-          <span>01 / {service.title}</span>
+          <span><SiteIcon name={service.icon} size={14} /> {service.title}</span>
         </div>
       </div>
     </div>
@@ -72,7 +74,7 @@ const imageUrl = (src: string, width: number) => {
                 decoding="async"
               />
             </div>
-            <span>0{index + 1}</span>
+            <SiteIcon name={highlightIcons[index] ?? service.icon} class="service-experience__item-icon" />
             <h3>{item.title}</h3>
             <p>{item.description}</p>
           </article>
@@ -81,7 +83,7 @@ const imageUrl = (src: string, width: number) => {
     </div>
   </section>
 
-  <section class="service-experience__capabilities section-shell section-rule" id="capabilities">
+  <section class="service-experience__capabilities section-shell" id="capabilities">
     <div class="site-container">
       <div class="service-experience__section-head">
         <p class="section-index" data-reveal>Capabilities</p>
@@ -90,7 +92,7 @@ const imageUrl = (src: string, width: number) => {
       <div class="service-experience__capability-list">
         {service.details.map((detail, index) => (
           <article data-reveal style={`--reveal-delay:${index * 45}ms`}>
-            <span>0{index + 1}</span>
+            <SiteIcon name={detail.icon} />
             <h3>{detail.title}</h3>
             <p>{detail.description}</p>
           </article>
@@ -106,18 +108,18 @@ const imageUrl = (src: string, width: number) => {
         <h2 data-reveal>Everything you need to launch.</h2>
       </div>
       <ol>
-        {service.features.map((feature, index) => <li data-reveal><span>0{index + 1}</span>{feature}</li>)}
+        {service.features.map((feature) => <li data-reveal><Check aria-hidden="true" />{feature}</li>)}
       </ol>
     </div>
   </section>
 
-  <section class="service-experience__related section-shell section-rule">
+  <section class="service-experience__related section-shell">
     <div class="site-container">
       <p class="section-index">Keep exploring</p>
       <div>
-        {related.map((item, index) => (
+        {related.map((item) => (
           <a href={`/services/${item.slug}/`}>
-            <span>0{index + 1}</span>
+            <SiteIcon name={item.icon} />
             <h2>{item.title}</h2>
             <ArrowUpRight aria-hidden="true" />
           </a>
@@ -200,6 +202,12 @@ const imageUrl = (src: string, width: number) => {
     font-size: 0.65rem;
   }
 
+  .service-experience__hero-image span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
   .service-experience__section-head {
     display: grid;
     gap: 1.5rem;
@@ -227,11 +235,12 @@ const imageUrl = (src: string, width: number) => {
     object-fit: cover;
   }
 
-  .service-experience__feature-grid article > span {
+  .service-experience__item-icon {
     display: block;
     margin-top: 1rem;
     color: var(--text-secondary);
-    font-size: 0.65rem;
+    width: 1.15rem;
+    height: 1.15rem;
   }
 
   .service-experience__feature-grid h3 {
@@ -251,18 +260,18 @@ const imageUrl = (src: string, width: number) => {
   }
 
   .service-experience__capability-list {
-    border-top: 1px solid var(--border);
+    display: grid;
+    gap: 0.75rem;
   }
 
   .service-experience__capability-list article {
     display: grid;
     grid-template-columns: 2.5rem 1fr;
     gap: 1rem;
-    border-bottom: 1px solid var(--border);
-    padding-block: 2rem;
+    padding: 2rem;
+    background: var(--bg);
   }
 
-  .service-experience__capability-list span,
   .service-experience__capability-list p {
     color: var(--text-secondary);
     font-size: var(--type-body);
@@ -293,21 +302,20 @@ const imageUrl = (src: string, width: number) => {
   .service-experience__included ol {
     margin: 0;
     padding: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.22);
     list-style: none;
   }
 
   .service-experience__included li {
     display: grid;
     grid-template-columns: 2.5rem 1fr;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.22);
     padding-block: 1.3rem;
     font-size: var(--type-body);
   }
 
-  .service-experience__included li span {
+  .service-experience__included li :global(svg) {
     color: rgba(255, 255, 255, 0.45);
-    font-size: 0.65rem;
+    width: 1rem;
+    height: 1rem;
   }
 
   .service-experience__related > div > p {
@@ -315,26 +323,28 @@ const imageUrl = (src: string, width: number) => {
   }
 
   .service-experience__related > div > div {
-    border-top: 1px solid var(--border);
+    display: grid;
+    gap: 0.75rem;
   }
 
   .service-experience__related a {
     display: grid;
     grid-template-columns: 2.5rem 1fr auto;
     align-items: center;
-    border-bottom: 1px solid var(--border);
-    padding-block: 1.5rem;
-    transition: padding 220ms ease, background-color 220ms ease;
+    padding: 1.5rem;
+    background: var(--bg-secondary);
+    transition: transform 220ms ease, background-color 220ms ease;
   }
 
   .service-experience__related a:hover {
-    padding-inline: 1rem;
     background: var(--bg-secondary);
+    transform: translateY(-2px);
   }
 
-  .service-experience__related a span {
+  .service-experience__related a > :global(svg) {
     color: var(--text-secondary);
-    font-size: 0.65rem;
+    width: 1.15rem;
+    height: 1.15rem;
   }
 
   .service-experience__related h2 {

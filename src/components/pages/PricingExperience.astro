@@ -1,12 +1,13 @@
 ---
 import { faqItems, pricingModels } from '../../data/site';
 import { Check, Plus } from '@lucide/astro';
+import SiteIcon from '../ui/SiteIcon.astro';
 
 const plan = pricingModels[0];
 const addOns = [
-  { title: 'Google Ads', price: 'From $500 per month', desc: 'Campaign setup, optimization, and conversion tracking.' },
-  { title: 'Social Media', price: 'From $400 per month', desc: 'Content planning, creation, and a consistent posting schedule.' },
-  { title: 'Ecommerce', price: 'From $2,500', desc: 'Shopify setup with payment, product, and shipping configuration.' },
+  { title: 'Google Ads', price: 'From $500 per month', desc: 'Campaign setup, optimization, and conversion tracking.', icon: 'target' },
+  { title: 'Social Media', price: 'From $400 per month', desc: 'Content planning, creation, and a consistent posting schedule.', icon: 'share' },
+  { title: 'Ecommerce', price: 'From $2,500', desc: 'Shopify setup with payment, product, and shipping configuration.', icon: 'code' },
 ];
 ---
 
@@ -40,7 +41,7 @@ const addOns = [
   </div>
 </section>
 
-<section class="add-ons section-shell section-rule">
+<section class="add-ons section-shell">
   <div class="site-container">
     <div class="add-ons__head">
       <p class="section-index" data-reveal>Optional growth services</p>
@@ -49,7 +50,7 @@ const addOns = [
     <div class="add-ons__list">
       {addOns.map((item, index) => (
         <article data-reveal style={`--reveal-delay:${index * 60}ms`}>
-          <span>0{index + 1}</span>
+          <SiteIcon name={item.icon} />
           <div><h3>{item.title}</h3><p>{item.desc}</p></div>
           <strong>{item.price}</strong>
         </article>
@@ -67,7 +68,7 @@ const addOns = [
     <div class="pricing-faq__items">
       {faqItems.slice(1, 6).map((faq, index) => (
         <details data-reveal style={`--reveal-delay:${index * 50}ms`}>
-          <summary><span>0{index + 1}</span>{faq.question}<Plus aria-hidden="true" /></summary>
+          <summary>{faq.question}<Plus aria-hidden="true" /></summary>
           <p>{faq.answer}</p>
         </details>
       ))}
@@ -175,18 +176,18 @@ const addOns = [
 
   .add-ons__list,
   .pricing-faq__items {
-    border-top: 1px solid var(--border);
+    display: grid;
+    gap: 0.75rem;
   }
 
   .add-ons article {
     display: grid;
     grid-template-columns: 2.5rem 1fr;
     gap: 1rem;
-    border-bottom: 1px solid var(--border);
-    padding-block: 2rem;
+    padding: 2rem;
+    background: var(--bg-secondary);
   }
 
-  .add-ons article > span,
   .add-ons article p {
     color: var(--text-secondary);
     font-size: var(--type-body);
@@ -204,12 +205,13 @@ const addOns = [
   }
 
   .pricing-faq details {
-    border-bottom: 1px solid var(--border);
+    padding-inline: 1.25rem;
+    background: var(--bg-secondary);
   }
 
   .pricing-faq summary {
     display: grid;
-    grid-template-columns: 2.5rem 1fr auto;
+    grid-template-columns: 1fr auto;
     padding-block: 1.5rem;
     cursor: pointer;
     font-size: var(--type-subheading);
@@ -221,7 +223,6 @@ const addOns = [
     display: none;
   }
 
-  .pricing-faq summary span,
   .pricing-faq summary :global(svg) {
     color: var(--text-secondary);
     width: 1rem;

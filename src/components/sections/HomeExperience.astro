@@ -11,6 +11,7 @@ import {
 } from '../../data/site';
 import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
 import { ArrowUpRight, Check, Plus, Star } from '@lucide/astro';
+import SiteIcon from '../ui/SiteIcon.astro';
 
 const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#f3c49b'];
 const pricing = pricingModels[0];
@@ -71,7 +72,7 @@ const pricing = pricingModels[0];
   </div>
 </section>
 
-<section class="work section-shell section-rule">
+<section class="work section-shell">
   <div class="site-container">
     <div class="section-head" data-reveal>
       <div>
@@ -119,7 +120,7 @@ const pricing = pricingModels[0];
     <div class="service-list">
       {services.map((service, index) => (
         <a href={`/services/${service.slug}/`} data-reveal style={`--reveal-delay:${index * 70}ms`}>
-          <span class="service-list__number">0{index + 1}</span>
+          <SiteIcon name={service.icon} class="service-list__icon" />
           <div>
             <h3>{service.title}</h3>
             <ul>
@@ -134,7 +135,7 @@ const pricing = pricingModels[0];
   </div>
 </section>
 
-<section class="workflow section-shell section-rule" id="workflow">
+<section class="workflow section-shell" id="workflow">
   <div class="workflow__shapes" aria-hidden="true">
     <span class="workflow-shape workflow-shape--circle workflow-shape--a"></span>
     <span class="workflow-shape workflow-shape--square workflow-shape--b"></span>
@@ -157,7 +158,7 @@ const pricing = pricingModels[0];
       <span class="workflow__line" aria-hidden="true"></span>
       {processSteps.map((step, index) => (
         <article data-reveal style={`--reveal-delay:${index * 70}ms`}>
-          <div><span>0{step.step}</span><b>{index === processSteps.length - 1 ? '100%' : `${(index + 1) * 25}%`}</b></div>
+          <div><SiteIcon name={step.icon} /></div>
           <h3>{step.title}</h3>
           <p>{step.description}</p>
         </article>
@@ -192,7 +193,7 @@ const pricing = pricingModels[0];
   </div>
 </section>
 
-<section class="pricing-home section-shell section-rule">
+<section class="pricing-home section-shell">
   <div class="site-container">
     <div class="section-head" data-reveal>
       <div>
@@ -225,7 +226,7 @@ const pricing = pricingModels[0];
     <div class="faq-home__list">
       {faqItems.map((faq, index) => (
         <details data-reveal style={`--reveal-delay:${index * 45}ms`}>
-          <summary><span>0{index + 1}</span>{faq.question}<Plus aria-hidden="true" /></summary>
+          <summary>{faq.question}<Plus aria-hidden="true" /></summary>
           <p>{faq.answer}</p>
         </details>
       ))}
@@ -433,12 +434,11 @@ const pricing = pricingModels[0];
   .stats {
     display: grid;
     margin-top: clamp(5rem, 10vw, 10rem);
-    border-top: 1px solid var(--border);
+    gap: 2rem;
   }
 
   .stats article {
     padding-block: 2rem;
-    border-bottom: 1px solid var(--border);
   }
 
   .stats article > p {
@@ -521,7 +521,8 @@ const pricing = pricingModels[0];
   }
 
   .service-list {
-    border-top: 1px solid var(--border);
+    display: grid;
+    gap: 0.75rem;
   }
 
   .service-list > a {
@@ -529,19 +530,20 @@ const pricing = pricingModels[0];
     display: grid;
     grid-template-columns: 2.5rem 1fr auto;
     gap: 1rem;
-    border-bottom: 1px solid var(--border);
-    padding-block: 2rem;
-    transition: background-color 250ms ease, padding 250ms ease;
+    padding: 2rem;
+    background: var(--bg-secondary);
+    transition: background-color 250ms ease, transform 250ms ease;
   }
 
   .service-list > a:hover {
-    padding-inline: 1rem;
-    background: var(--bg-secondary);
+    background: var(--bg-tertiary);
+    transform: translateY(-2px);
   }
 
-  .service-list__number {
+  .service-list__icon {
     color: var(--text-secondary);
-    font-size: 0.68rem;
+    width: 1.15rem;
+    height: 1.15rem;
   }
 
   .service-list h3 {
@@ -742,18 +744,13 @@ const pricing = pricingModels[0];
 
   .workflow__steps article {
     padding: 2rem 1.5rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.04);
   }
 
   .workflow__steps article > div {
     display: flex;
     justify-content: space-between;
     color: rgba(255, 255, 255, 0.48);
-    font-size: 0.68rem;
-  }
-
-  .workflow__steps article > div b {
-    font-weight: var(--weight-regular);
   }
 
   .workflow__steps h3 {
@@ -903,16 +900,18 @@ const pricing = pricingModels[0];
   }
 
   .faq-home__list {
-    border-top: 1px solid var(--border);
+    display: grid;
+    gap: 0.5rem;
   }
 
   .faq-home details {
-    border-bottom: 1px solid var(--border);
+    padding-inline: 1.25rem;
+    background: var(--bg-secondary);
   }
 
   .faq-home summary {
     display: grid;
-    grid-template-columns: 2rem 1fr 1.2rem;
+    grid-template-columns: 1fr 1.2rem;
     gap: 0.5rem;
     padding-block: 1.5rem;
     cursor: pointer;
@@ -923,11 +922,6 @@ const pricing = pricingModels[0];
 
   .faq-home summary::-webkit-details-marker {
     display: none;
-  }
-
-  .faq-home summary > span {
-    color: var(--text-secondary);
-    font-size: 0.65rem;
   }
 
   .faq-home summary :global(svg) {
@@ -942,7 +936,7 @@ const pricing = pricingModels[0];
 
   .faq-home details > p {
     max-width: 38rem;
-    padding: 0 0 1.5rem 2.5rem;
+    padding: 0 0 1.5rem;
     color: var(--text-secondary);
     font-size: var(--type-body);
   }
@@ -1005,7 +999,6 @@ const pricing = pricingModels[0];
 
     .stats article {
       padding: 2rem;
-      border-right: 1px solid var(--border);
     }
 
     .stats article:first-child {
@@ -1048,7 +1041,6 @@ const pricing = pricingModels[0];
 
     .workflow__steps article {
       min-height: 22rem;
-      border-right: 1px solid rgba(255, 255, 255, 0.2);
       border-bottom: 0;
     }
 

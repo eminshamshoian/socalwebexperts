@@ -1,0 +1,57 @@
+---
+import {
+  BarChart3,
+  CheckCircle2,
+  Code2,
+  Facebook,
+  Instagram,
+  MapPin,
+  Palette,
+  Pencil,
+  Phone,
+  RefreshCw,
+  Rocket,
+  Search,
+  Share2,
+  ShieldCheck,
+  Star,
+  Target,
+  TrendingUp,
+  Users,
+  Zap,
+} from '@lucide/astro';
+
+interface Props {
+  name: string;
+  size?: number;
+  class?: string;
+}
+
+const { name, size = 20, class: className } = Astro.props;
+
+const icons = {
+  'bar-chart': BarChart3,
+  'check-circle': CheckCircle2,
+  code: Code2,
+  edit: Pencil,
+  facebook: Facebook,
+  instagram: Instagram,
+  'map-pin': MapPin,
+  palette: Palette,
+  phone: Phone,
+  'refresh-cw': RefreshCw,
+  rocket: Rocket,
+  search: Search,
+  share: Share2,
+  shield: ShieldCheck,
+  star: Star,
+  target: Target,
+  'trending-up': TrendingUp,
+  users: Users,
+  zap: Zap,
+} as const;
+
+const Icon = icons[name as keyof typeof icons] ?? CheckCircle2;
+---
+
+<Icon size={size} class={className} aria-hidden="true" />

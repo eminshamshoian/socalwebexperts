@@ -1,6 +1,7 @@
 ---
 import { portfolioItems } from '../../data/site';
 import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
+import { PanelsTopLeft } from '@lucide/astro';
 ---
 
 <section class="page-hero section-shell">
@@ -26,7 +27,7 @@ import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
           />
         </div>
         <div class="portfolio-archive__meta">
-          <div><span>0{index + 1}</span><h2>{item.title}</h2></div>
+          <div><PanelsTopLeft aria-hidden="true" /><h2>{item.title}</h2></div>
           <p>{item.categoryLabel}</p>
         </div>
       </article>
@@ -34,7 +35,7 @@ import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
   </div>
 </section>
 
-<section class="archive-cta section-shell section-rule">
+<section class="archive-cta section-shell">
   <div class="site-container">
     <p class="section-index">Your project could be next</p>
     <h2>Need a website that works this hard?</h2>
@@ -98,10 +99,15 @@ import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
     font-weight: var(--weight-regular);
   }
 
-  .portfolio-archive__meta span,
+  .portfolio-archive__meta :global(svg),
   .portfolio-archive__meta p {
     color: var(--text-secondary);
     font-size: 0.72rem;
+  }
+
+  .portfolio-archive__meta :global(svg) {
+    width: 1rem;
+    height: 1rem;
   }
 
   .archive-cta {

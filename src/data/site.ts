@@ -508,7 +508,6 @@ export const pricingModels: PricingModel[] = [
       'Launch support',
       'Future updates: $50 per round',
       'Or $50/month unlimited (content, articles, SEO, and more)',
-      'New pages after launch: $100 each',
     ],
     highlighted: true,
   },
@@ -525,7 +524,7 @@ export const faqItems: FAQItem[] = [
     id: '2',
     question: 'What kinds of updates are included?',
     answer:
-      'Unlimited edits are included until you approve the design. After launch, updates are $50 per round, or $50 a month for unlimited updates including content, articles, SEO, and more. New pages are $100 each.',
+      'Unlimited edits are included until you approve the design. After launch, updates are $50 per round, or $50 a month for unlimited updates including content, articles, SEO, and more.',
   },
   {
     id: '3',
@@ -536,7 +535,7 @@ export const faqItems: FAQItem[] = [
     id: '4',
     question: 'What does monthly hosting cover?',
     answer:
-      'Monthly hosting covers keeping your site online with core security. Unlimited edits are included until you\'re satisfied with the design. After launch, updates are $50 per round, or $50 a month for unlimited updates including content, articles, SEO, and more. New pages are $100 each.',
+      'Monthly hosting covers keeping your site online with core security. Unlimited edits are included until you\'re satisfied with the design. After launch, updates are $50 per round, or $50 a month for unlimited updates including content, articles, SEO, and more.',
   },
   {
     id: '5',

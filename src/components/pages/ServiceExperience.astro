@@ -169,7 +169,8 @@ const imageUrl = (src: string, width: number) => {
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
-    font-size: 0.78rem;
+    font-size: var(--type-sm);
+    font-weight: var(--weight-bold);
     text-decoration: underline;
     text-underline-offset: 0.25rem;
   }
@@ -199,7 +200,8 @@ const imageUrl = (src: string, width: number) => {
     bottom: 0.75rem;
     padding: 0.5rem 0.7rem;
     background: #fff;
-    font-size: 0.65rem;
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .service-experience__hero-image span {
@@ -245,14 +247,15 @@ const imageUrl = (src: string, width: number) => {
 
   .service-experience__feature-grid h3 {
     margin-top: 1rem;
-    font-weight: var(--weight-regular);
+    font-weight: var(--weight-bold);
   }
 
   .service-experience__feature-grid p {
     max-width: 34rem;
     margin-top: 0.8rem;
     color: var(--text-secondary);
-    font-size: var(--type-body);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .service-experience__capabilities {
@@ -274,7 +277,8 @@ const imageUrl = (src: string, width: number) => {
 
   .service-experience__capability-list p {
     color: var(--text-secondary);
-    font-size: var(--type-body);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .service-experience__capability-list p {
@@ -283,7 +287,7 @@ const imageUrl = (src: string, width: number) => {
   }
 
   .service-experience__capability-list h3 {
-    font-weight: var(--weight-regular);
+    font-weight: var(--weight-bold);
   }
 
   .service-experience__included {
@@ -309,7 +313,8 @@ const imageUrl = (src: string, width: number) => {
     display: grid;
     grid-template-columns: 2.5rem 1fr;
     padding-block: 1.3rem;
-    font-size: var(--type-body);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .service-experience__included li :global(svg) {
@@ -348,7 +353,8 @@ const imageUrl = (src: string, width: number) => {
   }
 
   .service-experience__related h2 {
-    font-weight: var(--weight-regular);
+    font-size: var(--type-md);
+    font-weight: var(--weight-bold);
   }
 
   .service-experience__related a :global(svg) {

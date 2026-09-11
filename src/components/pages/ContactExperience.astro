@@ -122,11 +122,18 @@ import { services, siteConfig } from '../../data/site';
     gap: 2rem;
   }
 
-  .contact-experience aside a,
+  .contact-experience aside a {
+    display: inline-block;
+    margin-top: 0.5rem;
+    font-size: var(--type-sm);
+    font-weight: var(--weight-bold);
+  }
+
   .contact-experience aside > div > p:last-child {
     display: inline-block;
     margin-top: 0.5rem;
-    font-size: var(--type-body);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .contact-experience aside a:hover {
@@ -139,7 +146,8 @@ import { services, siteConfig } from '../../data/site';
     border-top: 1px solid var(--border);
     padding-top: 1.5rem;
     color: var(--text-secondary);
-    font-size: var(--type-small);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .contact-experience form {
@@ -161,7 +169,7 @@ import { services, siteConfig } from '../../data/site';
 
   .contact-experience label > span {
     color: var(--text-secondary);
-    font-size: var(--type-label);
+    font-size: var(--type-sm);
     font-weight: var(--weight-regular);
     letter-spacing: 0.08em;
     text-transform: uppercase;
@@ -178,7 +186,8 @@ import { services, siteConfig } from '../../data/site';
     background: transparent;
     padding: 0.7rem 0;
     color: var(--text);
-    font-size: var(--type-body);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
     transition: border-color 200ms ease;
   }
 
@@ -213,13 +222,15 @@ import { services, siteConfig } from '../../data/site';
   .contact-experience__submit p {
     max-width: 21rem;
     color: var(--text-secondary);
-    font-size: var(--type-label);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .contact-experience__status {
     border-top: 1px solid var(--border);
     padding-top: 1rem;
-    font-size: var(--type-small);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .contact-experience__status.is-success {

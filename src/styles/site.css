@@ -30,14 +30,19 @@
   --accent-soft: #fee7dc;
   --bg-rgb: 255, 255, 255;
   --container-max: 1440px;
-  --type-display: clamp(3.2rem, 8vw, 8rem);
-  --type-heading: clamp(2.5rem, 5.6vw, 6rem);
-  --type-subheading: clamp(1.25rem, 2vw, 1.9rem);
-  --type-body: 1rem;
-  --type-small: 0.86rem;
-  --type-label: 0.72rem;
-  --weight-regular: 420;
-  --weight-medium: 520;
+  /* Entire site uses these 3 font sizes only. */
+  --type-lg: clamp(2.25rem, 4.2vw, 3.5rem);
+  --type-md: 1.25rem;
+  --type-sm: 1rem;
+  --type-display: var(--type-lg);
+  --type-heading: var(--type-lg);
+  --type-subheading: var(--type-md);
+  --type-body: var(--type-sm);
+  --type-small: var(--type-sm);
+  --type-label: var(--type-sm);
+  --weight-regular: 400;
+  --weight-bold: 600;
+  --weight-medium: var(--weight-bold);
   color-scheme: light;
 }
 
@@ -71,7 +76,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: var(--type-sm);
   font-weight: var(--weight-regular);
   line-height: 1.55;
   letter-spacing: -0.012em;
@@ -88,24 +93,29 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   color: var(--text);
   font-family: var(--font-heading);
-  font-weight: var(--weight-medium);
+  font-weight: var(--weight-bold);
   line-height: 1;
   letter-spacing: -0.055em;
   text-wrap: balance;
 }
 
-h1 {
-  font-size: var(--type-display);
-}
-
+h1,
 h2 {
-  font-size: var(--type-heading);
+  font-size: var(--type-lg);
 }
 
-h3 {
-  font-size: var(--type-subheading);
+h3,
+h4,
+h5,
+h6 {
+  font-size: var(--type-md);
   line-height: 1.18;
   letter-spacing: -0.035em;
+}
+
+strong,
+b {
+  font-weight: var(--weight-bold);
 }
 
 p {
@@ -165,8 +175,8 @@ video {
 .section-index,
 .type-eyebrow {
   color: var(--text-secondary);
-  font-size: var(--type-label);
-  font-weight: var(--weight-medium);
+  font-size: var(--type-sm);
+  font-weight: var(--weight-regular);
   line-height: 1.2;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -198,8 +208,8 @@ video {
 
 .type-lead {
   color: var(--text);
-  font-size: var(--type-body);
-  font-weight: var(--weight-regular);
+  font-size: var(--type-sm);
+  font-weight: var(--weight-bold);
   line-height: 1.55;
   letter-spacing: -0.02em;
 }
@@ -207,39 +217,29 @@ video {
 .type-body,
 .type-body-card {
   color: var(--text-secondary);
-  font-size: var(--type-body);
+  font-size: var(--type-sm);
+  font-weight: var(--weight-regular);
   line-height: 1.62;
 }
 
 .type-subheading,
-.type-emphasis {
-  color: var(--text);
-  font-size: var(--type-subheading);
-  font-weight: var(--weight-regular);
-  line-height: 1.22;
-  letter-spacing: -0.035em;
-}
-
+.type-emphasis,
 .type-card-title,
 .type-faq-question {
   color: var(--text);
-  font-size: var(--type-subheading);
-  font-weight: var(--weight-medium);
+  font-size: var(--type-md);
+  font-weight: var(--weight-bold);
   line-height: 1.25;
   letter-spacing: -0.025em;
 }
 
-.type-meta {
-  color: var(--text-secondary);
-  font-size: var(--type-label);
-  line-height: 1.45;
-}
-
+.type-meta,
 .type-caption,
 .type-form-label,
 .type-form-input {
   color: var(--text-secondary);
-  font-size: var(--type-small);
+  font-size: var(--type-sm);
+  font-weight: var(--weight-regular);
   line-height: 1.5;
 }
 
@@ -267,8 +267,8 @@ video {
   border-radius: 999px;
   padding: 0.8rem 1.35rem;
   color: var(--text);
-  font-size: var(--type-small);
-  font-weight: var(--weight-medium);
+  font-size: var(--type-sm);
+  font-weight: var(--weight-bold);
   line-height: 1;
   transition: background-color 220ms ease, color 220ms ease, transform 220ms ease;
 }

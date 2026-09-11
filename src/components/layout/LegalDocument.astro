@@ -37,7 +37,7 @@ const { eyebrow, title, description, lastUpdated } = Astro.props;
         <li>
           <a
             href={`mailto:${siteConfig.email}`}
-            class="type-caption font-medium text-[var(--text)] hover:text-primary-500 transition-colors"
+            class="type-caption text-[var(--text)] hover:text-primary-500 transition-colors"
           >
             {siteConfig.email}
           </a>
@@ -45,7 +45,7 @@ const { eyebrow, title, description, lastUpdated } = Astro.props;
         <li>
           <a
             href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}
-            class="type-caption font-medium text-[var(--text)] hover:text-primary-500 transition-colors"
+            class="type-caption text-[var(--text)] hover:text-primary-500 transition-colors"
           >
             {siteConfig.phone}
           </a>
@@ -73,8 +73,8 @@ const { eyebrow, title, description, lastUpdated } = Astro.props;
   }
 
   .legal-prose :global(h2) {
-    font-size: var(--type-subheading);
-    font-weight: var(--weight-regular);
+    font-size: var(--type-md);
+    font-weight: var(--weight-bold);
     letter-spacing: -0.035em;
     line-height: 1.22;
     color: var(--text);
@@ -87,8 +87,8 @@ const { eyebrow, title, description, lastUpdated } = Astro.props;
   }
 
   .legal-prose :global(h3) {
-    font-size: var(--type-subheading);
-    font-weight: var(--weight-regular);
+    font-size: var(--type-md);
+    font-weight: var(--weight-bold);
     line-height: 1.22;
     color: var(--text);
     margin-top: 1.5rem;
@@ -97,7 +97,8 @@ const { eyebrow, title, description, lastUpdated } = Astro.props;
 
   .legal-prose :global(p),
   .legal-prose :global(li) {
-    font-size: var(--type-body);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
     line-height: 1.7;
     color: var(--text-secondary);
   }

@@ -22,7 +22,7 @@ const pricing = pricingModels[0];
     <div class="home-hero__top" data-reveal>
       <h1 class="hero-title hero-title__motion">Websites. Ads. Content.</h1>
       <div class="home-hero__intro">
-        <p>Web design, Google Ads, and social media for local businesses ready to grow.</p>
+        <p class="type-lead">Web design, Google Ads, and social media for local businesses ready to grow.</p>
         <a class="hero-talk" href="/contact/">See what we can build</a>
       </div>
     </div>
@@ -265,8 +265,8 @@ const pricing = pricingModels[0];
     margin: 0;
     font-family: "Inter Variable", "Arial Black", Arial, sans-serif;
     max-width: 12ch;
-    font-size: clamp(3.2rem, 10vw, 9.5rem);
-    font-weight: 620;
+    font-size: var(--type-lg);
+    font-weight: var(--weight-bold);
     line-height: 0.86;
     letter-spacing: -0.07em;
     text-align: center;
@@ -312,11 +312,6 @@ const pricing = pricingModels[0];
 
   .home-hero__intro p {
     max-width: 32rem;
-    color: var(--text);
-    font-size: var(--type-body);
-    font-weight: 700;
-    line-height: 1.55;
-    letter-spacing: -0.02em;
   }
 
   .hero-talk {
@@ -325,8 +320,8 @@ const pricing = pricingModels[0];
     justify-self: center;
     padding-bottom: 0.35rem;
     color: var(--text);
-    font-size: var(--type-body);
-    font-weight: 700;
+    font-size: var(--type-sm);
+    font-weight: var(--weight-bold);
     letter-spacing: -0.03em;
     text-decoration: none;
   }
@@ -398,7 +393,8 @@ const pricing = pricingModels[0];
     display: flex;
     justify-content: space-between;
     padding-top: 0.75rem;
-    font-size: 0.75rem;
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .hero-reel__item > p span:last-child {
@@ -423,7 +419,8 @@ const pricing = pricingModels[0];
     gap: 0.5rem;
     margin-top: 2rem;
     align-items: center;
-    font-size: var(--type-small);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-bold);
     text-decoration: underline;
     text-underline-offset: 0.3rem;
   }
@@ -436,33 +433,34 @@ const pricing = pricingModels[0];
 
   .stats {
     display: grid;
-    margin-top: clamp(5rem, 10vw, 10rem);
-    gap: 2rem;
+    margin-top: clamp(2.5rem, 5vw, 4rem);
+    gap: 1.25rem;
   }
 
   .stats article {
-    padding-block: 2rem;
+    padding-block: 0;
   }
 
   .stats article > p {
-    font-size: clamp(3rem, 7vw, 7rem);
-    font-weight: 520;
-    line-height: 1;
-    letter-spacing: -0.06em;
+    font-size: var(--type-lg);
+    font-weight: var(--weight-bold);
+    line-height: 1.05;
+    letter-spacing: -0.05em;
   }
 
   .stats h3 {
-    margin-top: 1.5rem;
-    font-size: var(--type-subheading);
-    font-weight: var(--weight-regular);
+    margin-top: 0.45rem;
+    font-size: var(--type-md);
+    font-weight: var(--weight-bold);
   }
 
   .stats article > span {
     display: block;
     max-width: 24rem;
-    margin-top: 0.6rem;
+    margin-top: 0.3rem;
     color: var(--text-secondary);
-    font-size: var(--type-small);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .section-head {
@@ -510,13 +508,14 @@ const pricing = pricingModels[0];
   }
 
   .work-card__meta h3 {
-    font-size: var(--type-subheading);
-    font-weight: var(--weight-regular);
+    font-size: var(--type-md);
+    font-weight: var(--weight-bold);
   }
 
   .work-card__meta p {
     color: var(--text-secondary);
-    font-size: var(--type-label);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .work__all {
@@ -550,7 +549,7 @@ const pricing = pricingModels[0];
   }
 
   .service-list h3 {
-    font-weight: var(--weight-regular);
+    font-weight: var(--weight-bold);
   }
 
   .service-list ul {
@@ -564,14 +563,16 @@ const pricing = pricingModels[0];
 
   .service-list li {
     color: var(--text-secondary);
-    font-size: 0.72rem;
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .service-list > a > p {
     display: none;
     max-width: 28rem;
     color: var(--text-secondary);
-    font-size: var(--type-body);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .service-list__arrow {
@@ -763,7 +764,8 @@ const pricing = pricingModels[0];
   .workflow__steps p {
     margin-top: 1rem;
     color: rgba(255, 255, 255, 0.58);
-    font-size: var(--type-body);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .proof {
@@ -800,7 +802,8 @@ const pricing = pricingModels[0];
     display: flex;
     align-items: center;
     justify-content: space-between;
-    font-size: 0.72rem;
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .proof__stars {
@@ -815,16 +818,18 @@ const pricing = pricingModels[0];
   }
 
   .proof__review blockquote {
-    margin: clamp(3rem, 6vw, 6rem) 0;
-    font-size: clamp(1.3rem, 2.2vw, 2.3rem);
-    line-height: 1.28;
-    letter-spacing: -0.035em;
+    margin: clamp(2rem, 4vw, 3.5rem) 0;
+    font-size: var(--type-md);
+    font-weight: var(--weight-regular);
+    line-height: 1.35;
+    letter-spacing: -0.025em;
   }
 
   .proof__review footer {
     display: grid;
     grid-template-columns: 1fr auto;
-    font-size: 0.75rem;
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .proof__review footer span {
@@ -860,18 +865,22 @@ const pricing = pricingModels[0];
   }
 
   .pricing-home__card h3 {
-    margin-top: 2.5rem;
-    font-size: clamp(4rem, 9vw, 9rem);
+    margin-top: 1.5rem;
+    font-size: var(--type-lg);
+    font-weight: var(--weight-bold);
   }
 
   .pricing-home__card h3 span {
-    font-size: 1rem;
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
     letter-spacing: -0.02em;
   }
 
   .pricing-home__card > div > p:not(.section-index) {
     margin-top: 1rem;
     color: var(--text-secondary);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .pricing-home__card .button {
@@ -889,7 +898,8 @@ const pricing = pricingModels[0];
     gap: 0.5rem;
     border-bottom: 1px solid var(--border);
     padding-block: 0.8rem;
-    font-size: var(--type-small);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .pricing-home__card li :global(svg) {
@@ -918,8 +928,8 @@ const pricing = pricingModels[0];
     gap: 0.5rem;
     padding-block: 1.5rem;
     cursor: pointer;
-    font-size: var(--type-subheading);
-    font-weight: var(--weight-regular);
+    font-size: var(--type-md);
+    font-weight: var(--weight-bold);
     list-style: none;
   }
 
@@ -941,7 +951,8 @@ const pricing = pricingModels[0];
     max-width: 38rem;
     padding: 0 0 1.5rem;
     color: var(--text-secondary);
-    font-size: var(--type-body);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .final-cta {
@@ -959,7 +970,8 @@ const pricing = pricingModels[0];
     max-width: 38rem;
     margin-top: 2rem;
     color: rgba(255, 255, 255, 0.75);
-    font-size: var(--type-body);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
   }
 
   .final-cta .section-index {
@@ -985,7 +997,8 @@ const pricing = pricingModels[0];
   }
 
   .final-cta > div > div > a:last-child {
-    font-size: 0.85rem;
+    font-size: var(--type-sm);
+    font-weight: var(--weight-bold);
     text-decoration: underline;
     text-underline-offset: 0.25rem;
   }
@@ -998,14 +1011,11 @@ const pricing = pricingModels[0];
 
     .stats {
       grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
     }
 
     .stats article {
-      padding: 2rem;
-    }
-
-    .stats article:first-child {
-      padding-left: 0;
+      padding: 0;
     }
 
     .section-head {

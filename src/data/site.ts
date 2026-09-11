@@ -52,7 +52,7 @@ export const services: Service[] = [
     id: 'web-design',
     title: 'Custom Web Design',
     shortDescription:
-      'Custom, mobile-first websites with clear messaging and simple paths from visit to inquiry.',
+      'Custom websites that explain your services and make it easy to call, book, or request a quote.',
     description:
       'We build fast, custom websites that explain your services, earn trust, and make it easy to call, book, or request a quote.',
     heroHeadline: 'Websites built to win customers.',
@@ -131,7 +131,7 @@ export const services: Service[] = [
     id: 'social-media',
     title: 'Social Media Marketing',
     shortDescription:
-      'On-brand content that keeps your business visible, credible, and easy to remember.',
+      'On-brand posts that keep your business visible, trusted, and easy to remember.',
     description:
       'We plan and publish useful, on-brand content that keeps your business visible to the people most likely to need it.',
     heroHeadline: 'Stay visible, stay trusted, stay top of mind.',
@@ -210,7 +210,7 @@ export const services: Service[] = [
     id: 'google-ads',
     title: 'Google Ads',
     shortDescription:
-      'Targeted search campaigns that turn local demand into measurable calls and leads.',
+      'Search ads that reach people already looking for your services nearby.',
     description:
       'We build and manage search campaigns for people already looking for your services, then improve them using real lead data.',
     heroHeadline: 'Reach people already searching for what you offer.',
@@ -507,6 +507,7 @@ export const pricingModels: PricingModel[] = [
       'Clear conversion paths (calls, forms, booking)',
       'Launch support',
       'Future updates: $50 per round',
+      'Or $50/month unlimited (content, articles, SEO, and more)',
       'New pages after launch: $100 each',
     ],
     highlighted: true,
@@ -524,7 +525,7 @@ export const faqItems: FAQItem[] = [
     id: '2',
     question: 'What kinds of updates are included?',
     answer:
-      'Unlimited edits and revisions are included until you approve the final design. After launch, updates are $50 per round, and new pages are $100 each.',
+      'Unlimited edits are included until you approve the design. After launch, updates are $50 per round, or $50 a month for unlimited updates including content, articles, SEO, and more. New pages are $100 each.',
   },
   {
     id: '3',
@@ -535,7 +536,7 @@ export const faqItems: FAQItem[] = [
     id: '4',
     question: 'What does monthly hosting cover?',
     answer:
-      'Monthly hosting covers keeping your site online with core security. Unlimited edits are included until you\'re satisfied with the design; after launch, updates are $50 per round and new pages are $100 each.',
+      'Monthly hosting covers keeping your site online with core security. Unlimited edits are included until you\'re satisfied with the design. After launch, updates are $50 per round, or $50 a month for unlimited updates including content, articles, SEO, and more. New pages are $100 each.',
   },
   {
     id: '5',

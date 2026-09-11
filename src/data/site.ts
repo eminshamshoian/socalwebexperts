@@ -529,7 +529,7 @@ export const faqItems: FAQItem[] = [
   {
     id: '3',
     question: 'How fast can we launch?',
-    answer: 'Most projects launch within weeks, depending on content readiness and approval speed.',
+    answer: 'Most projects launch in 2–5 business days when content and approvals are ready.',
   },
   {
     id: '4',
@@ -560,8 +560,8 @@ export const stats: Stat[] = [
   },
   {
     label: 'Kickoff to launch',
-    value: '2 to 4',
-    suffix: ' wks',
+    value: '2–5',
+    suffix: ' business days',
     description:
       'Typical timeline when content and approvals stay on track.',
   },

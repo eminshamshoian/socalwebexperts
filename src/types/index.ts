@@ -159,6 +159,7 @@ export interface Stat {
   value: string;
   suffix?: string;
   description: string;
+  icon: string;
 }
 
 // Social Links

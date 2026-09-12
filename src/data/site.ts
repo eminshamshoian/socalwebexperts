@@ -557,6 +557,7 @@ export const stats: Stat[] = [
     suffix: '+',
     description:
       'Typical mobile Lighthouse performance on the sites we ship.',
+    icon: 'gauge',
   },
   {
     label: 'Kickoff to launch',
@@ -564,12 +565,14 @@ export const stats: Stat[] = [
     suffix: ' business days',
     description:
       'Typical timeline when content and approvals stay on track.',
+    icon: 'clock',
   },
   {
     label: 'Custom builds from',
     value: '$299',
     description:
       'Setup fee with hosting from $12 monthly and revisions before launch.',
+    icon: 'circle-dollar-sign',
   },
 ];
 

@@ -31,9 +31,9 @@
   --bg-rgb: 255, 255, 255;
   --container-max: 1440px;
   /* Entire site uses these 3 font sizes only. */
-  --type-lg: clamp(2.25rem, 4.2vw, 3.5rem);
-  --type-md: 1.25rem;
-  --type-sm: 1rem;
+  --type-lg: clamp(1.85rem, 3.4vw, 2.75rem);
+  --type-md: 1.125rem;
+  --type-sm: 0.9375rem;
   --type-display: var(--type-lg);
   --type-heading: var(--type-lg);
   --type-subheading: var(--type-md);

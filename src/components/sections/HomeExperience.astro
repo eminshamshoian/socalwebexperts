@@ -50,6 +50,13 @@ const pricing = pricingModels[0];
 </section>
 
 <section class="intro section-shell section-rule">
+  <div class="intro__shapes" aria-hidden="true">
+    <span class="intro-shape intro-shape--circle intro-shape--a"></span>
+    <span class="intro-shape intro-shape--square intro-shape--b"></span>
+    <span class="intro-shape intro-shape--pill intro-shape--c"></span>
+    <span class="intro-shape intro-shape--blob intro-shape--d"></span>
+  </div>
+
   <div class="site-container editorial-grid">
     <div data-reveal>
       <p class="section-index">About Us</p>
@@ -64,6 +71,9 @@ const pricing = pricingModels[0];
   <div class="site-container stats">
     {stats.map((stat, index) => (
       <article data-reveal style={`--reveal-delay:${index * 70}ms`}>
+        <div class="stats__icon">
+          <SiteIcon name={stat.icon} size={18} />
+        </div>
         <p>{stat.value}{stat.suffix}</p>
         <h3>{stat.label}</h3>
         <span>{stat.description}</span>
@@ -262,7 +272,7 @@ const pricing = pricingModels[0];
     margin: 0;
     font-family: "Inter Variable", "Arial Black", Arial, sans-serif;
     max-width: 12ch;
-    font-size: clamp(2.7rem, 5.4vw, 4.4rem);
+    font-size: clamp(3.15rem, 6.8vw, 5.25rem);
     font-weight: var(--weight-bold);
     line-height: 0.86;
     letter-spacing: -0.07em;
@@ -402,6 +412,95 @@ const pricing = pricingModels[0];
     to { transform: translateX(calc(-50% - 0.5rem)); }
   }
 
+  .intro {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .intro > .site-container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .intro__shapes {
+    display: none;
+  }
+
+  .intro-shape {
+    position: absolute;
+    display: block;
+    background-color: #fee7dc;
+    background-image:
+      radial-gradient(ellipse at 12% 20%, #f28b43 0 8%, transparent 24%),
+      radial-gradient(ellipse at 48% 78%, #fdba74 0 11%, transparent 28%),
+      radial-gradient(ellipse at 82% 24%, #fb923c 0 8%, transparent 24%),
+      radial-gradient(ellipse at 94% 82%, #ffedd5 0 10%, transparent 30%),
+      linear-gradient(112deg, #fff7ed 12%, #fed7aa 29%, #fff7ed 46%, #fdba74 64%, #fff7ed 83%);
+    background-position: 0% 30%, 25% 70%, 75% 25%, 100% 75%, 0% 50%;
+    background-size: 145% 190%, 165% 175%, 150% 185%, 165% 175%, 230% 100%;
+    opacity: 0.22;
+    animation: intro-shape-flow 12s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+  }
+
+  .intro-shape--circle {
+    border-radius: 50%;
+  }
+
+  .intro-shape--square {
+    border-radius: 1rem;
+    transform: rotate(16deg);
+  }
+
+  .intro-shape--pill {
+    border-radius: 999px;
+    transform: rotate(-22deg);
+  }
+
+  .intro-shape--blob {
+    border-radius: 68% 32% 42% 58% / 48% 62% 38% 52%;
+  }
+
+  .intro-shape--a {
+    top: 4%;
+    right: -1.2rem;
+    width: 5.5rem;
+    height: 5.5rem;
+    animation-delay: -1.5s;
+  }
+
+  .intro-shape--b {
+    top: 38%;
+    left: -1.1rem;
+    width: 3.4rem;
+    height: 3.4rem;
+    animation-delay: -4s;
+  }
+
+  .intro-shape--c {
+    right: 12%;
+    bottom: 22%;
+    width: 6.2rem;
+    height: 1.35rem;
+    animation-delay: -2.4s;
+  }
+
+  .intro-shape--d {
+    left: 18%;
+    bottom: 6%;
+    width: 4.2rem;
+    height: 4.2rem;
+    animation-delay: -6s;
+  }
+
+  @keyframes intro-shape-flow {
+    0% {
+      background-position: 0% 25%, 25% 75%, 75% 20%, 100% 80%, 0% 50%;
+    }
+    100% {
+      background-position: 100% 35%, 0% 20%, 45% 30%, 0% 70%, 100% 50%;
+    }
+  }
+
   .intro__content h2 {
     max-width: 14ch;
   }
@@ -436,6 +535,10 @@ const pricing = pricingModels[0];
 
   .stats article {
     padding-block: 0;
+  }
+
+  .stats__icon {
+    display: none;
   }
 
   .stats article > p {
@@ -986,6 +1089,49 @@ const pricing = pricingModels[0];
     text-underline-offset: 0.25rem;
   }
 
+  @media (max-width: 719px) {
+    .intro__shapes {
+      display: block;
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .stats article {
+      display: grid;
+      grid-template-columns: 2.7rem 1fr;
+      column-gap: 0.95rem;
+      row-gap: 0.12rem;
+      border-top: 1px solid var(--border);
+      padding-block: 1.15rem;
+    }
+
+    .stats article:last-child {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats__icon {
+      display: flex;
+      grid-row: 1 / span 3;
+      align-items: center;
+      justify-content: center;
+      align-self: start;
+      width: 2.7rem;
+      height: 2.7rem;
+      margin-top: 0.2rem;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .stats article > p,
+    .stats h3,
+    .stats article > span {
+      grid-column: 2;
+    }
+  }
+
   @media (min-width: 720px) {
     .home-hero__intro {
       grid-template-columns: 1fr;
@@ -1056,7 +1202,8 @@ const pricing = pricingModels[0];
       animation: none;
     }
 
-    .workflow-shape {
+    .workflow-shape,
+    .intro-shape {
       animation: none;
     }
   }

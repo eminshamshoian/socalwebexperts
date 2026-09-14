@@ -13,22 +13,6 @@ import { services, siteConfig } from '../../data/site';
     </div>
 
     <div class="contact-experience__body">
-      <aside data-reveal>
-        <div>
-          <p class="section-index">Email</p>
-          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
-        </div>
-        <div>
-          <p class="section-index">Phone</p>
-          <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}>{siteConfig.phone}</a>
-        </div>
-        <div>
-          <p class="section-index">Based in</p>
-          <p>{siteConfig.address}</p>
-        </div>
-        <p class="contact-experience__note">Free 20 minute intro call. No pressure.</p>
-      </aside>
-
       <form
         id="contact-form"
         name="contact"
@@ -84,6 +68,22 @@ import { services, siteConfig } from '../../data/site';
 
         <div class="contact-experience__status hidden" data-form-status role="status" aria-live="polite"></div>
       </form>
+
+      <aside data-reveal>
+        <div>
+          <p class="section-index">Email</p>
+          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a>
+        </div>
+        <div>
+          <p class="section-index">Phone</p>
+          <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}>{siteConfig.phone}</a>
+        </div>
+        <div>
+          <p class="section-index">Based in</p>
+          <p>{siteConfig.address}</p>
+        </div>
+        <p class="contact-experience__note">Free 20 minute intro call. No pressure.</p>
+      </aside>
     </div>
   </div>
 </section>
@@ -247,7 +247,7 @@ import { services, siteConfig } from '../../data/site';
     }
 
     .contact-experience__body {
-      grid-template-columns: 0.6fr 1.4fr;
+      grid-template-columns: 1.4fr 0.6fr;
     }
 
     .contact-experience__row {

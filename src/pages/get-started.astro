@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PricingExperience from '../components/pages/PricingExperience.astro';
+---
+
+<BaseLayout
+  title="Get Started | SoCal Web Experts"
+  description="Pick the plan that fits. Pay to begin, and we'll reach out to shape the rest."
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Get Started', url: '/get-started/' },
+  ]}
+>
+  <PricingExperience layout="start" />
+</BaseLayout>

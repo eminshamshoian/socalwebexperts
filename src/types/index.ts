@@ -102,10 +102,14 @@ export interface PricingModel {
   /** Label beside upfront price; defaults to "upfront" */
   upfrontLabel?: string;
   monthly: string;
+  /** Short label after the monthly price, such as "/ month, all in" */
+  monthlyLabel?: string;
   /** When set, hosting is shown as "{monthly} a month or {yearly} yearly" */
   yearly?: string;
   description?: string;
   features: string[];
+  /** Grouped feature layout. Falls back to `features` when omitted. */
+  featureGroups?: { label: string; items: string[] }[];
   /** Optional; prefer listing updates in `features` for display */
   updatesNote?: string;
   highlighted?: boolean;

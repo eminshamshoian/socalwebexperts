@@ -491,25 +491,82 @@ export const heroShowcaseItems: PortfolioItem[] = [
 // Pricing Models
 export const pricingModels: PricingModel[] = [
   {
-    id: 'website',
-    title: 'Website Build',
-    subtitle: 'Dazzling Prices .',
-    upfrontPrefix: 'Starting from',
-    upfront: '$299',
-    upfrontLabel: 'setup fee',
-    monthly: '$12',
-    yearly: '$99',
+    id: 'care',
+    title: 'Care',
+    subtitle: 'For busy business owners',
+    upfront: '$150',
+    upfrontLabel: 'buildout',
+    monthly: '$50',
+    monthlyLabel: '/ month, all-inclusive',
+    description: 'We build the site, launch it with you, then keep hosting, editing, and writing for $50 a month.',
     features: [
-      'Unlimited edits until you\'re satisfied',
-      'Custom website build',
-      'SEO foundation setup',
-      'Performance-first, mobile-first design',
-      'Clear conversion paths (calls, forms, booking)',
-      'Launch support',
-      'Future updates: $50 per round',
-      'Or $50/month unlimited (content, articles, SEO, and more)',
+      'Unlimited edits each month',
+      'New pages when you need them',
+      'Ongoing support',
+      'Hosting and security',
+      '4 blog posts a month, if you want them',
+      'Custom brand design',
+      'Logo design',
+      'Accessibility pages',
+      'Mobile-ready pages',
+      'SEO on every page',
+      'Forms and click-to-call',
+      'Reviews and proof',
+      'Direct help while we build',
+      'A review before anything goes live',
+      'We publish the finished site',
+    ],
+    featureGroups: [
+      {
+        label: 'Every month',
+        items: [
+          'Unlimited edits',
+          'New pages when you need them',
+          'Ongoing support',
+          'Hosting and security',
+          '4 blog posts, if you want them',
+        ],
+      },
+      {
+        label: 'The website',
+        items: [
+          'Unlimited pages',
+          'Custom brand design',
+          'Logo design',
+          'Accessibility pages',
+          'Mobile-ready pages',
+          'SEO on every page',
+          'Forms and click-to-call',
+          'Reviews and proof',
+        ],
+      },
+      {
+        label: 'Go-live',
+        items: [
+          'Direct help while we build',
+          'A review before launch',
+          'We publish the finished site',
+        ],
+      },
     ],
     highlighted: true,
+  },
+  {
+    id: 'launch',
+    title: 'Launch',
+    subtitle: 'Lower monthly cost',
+    upfront: '$299',
+    upfrontLabel: 'buildout',
+    monthly: '$15',
+    monthlyLabel: '/ month hosting',
+    description: 'The same website foundation. Pay for changes only when you need them.',
+    features: [
+      'Unlimited pages',
+      'Hosting included',
+      'Ongoing support',
+      'Edits are $50 per round',
+      'Blog posts included in each edit round',
+    ],
   },
 ];
 
@@ -524,7 +581,7 @@ export const faqItems: FAQItem[] = [
     id: '2',
     question: 'What kinds of updates are included?',
     answer:
-      'Unlimited edits are included until you approve the design. After launch, updates are $50 per round, or $50 a month for unlimited updates including content, articles, SEO, and more.',
+      'Care includes unlimited edits and up to 4 blog posts a month. Launch keeps the monthly cost lower: edits are $50 per round, and blog posts are included in those rounds.',
   },
   {
     id: '3',
@@ -533,9 +590,9 @@ export const faqItems: FAQItem[] = [
   },
   {
     id: '4',
-    question: 'What does monthly hosting cover?',
+    question: 'What does the monthly fee cover?',
     answer:
-      'Monthly hosting covers keeping your site online with core security. Unlimited edits are included until you\'re satisfied with the design. After launch, updates are $50 per round, or $50 a month for unlimited updates including content, articles, SEO, and more.',
+      'Care is $50 a month, all in: hosting, unlimited edits, unlimited support, and 4 blog posts a month if you want them. Launch is $15 a month for hosting, with edits at $50 per round.',
   },
   {
     id: '5',
@@ -569,9 +626,9 @@ export const stats: Stat[] = [
   },
   {
     label: 'Custom builds from',
-    value: '$299',
+    value: '$150',
     description:
-      'Setup fee with hosting from $12 monthly and revisions before launch.',
+      'Buildout from $150 with Care, or $299 with $15 monthly Launch hosting.',
     icon: 'circle-dollar-sign',
   },
 ];

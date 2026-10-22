@@ -497,8 +497,8 @@ export const pricingModels: PricingModel[] = [
     upfront: '$150',
     upfrontLabel: 'buildout',
     monthly: '$50',
-    monthlyLabel: '/ month, with 1 blog',
-    description: 'We build the site, launch it with you, then keep hosting and editing for $50 a month. One blog post is included. Extra posts are $25.',
+    monthlyLabel: '/ month, all-inclusive',
+    description: 'We build the site, launch it with you, then keep hosting and editing for $50 a month.',
     features: [
       'Unlimited edits each month',
       'New pages when you need them',

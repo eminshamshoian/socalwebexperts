@@ -15,9 +15,9 @@ SoCal Web Experts builds fast, secure, conversion-focused websites that help ser
 - Google Ads Management: https://socalwebexperts.com/services/google-ads/
 
 ## Pricing
-- Care: $150 buildout and $50/mo, with unlimited pages, edits, support, and 4 monthly blog posts if desired
-- Launch: $299 buildout and $15/mo hosting, with edits at $50 per round including blog posts
-- Post-launch updates: $50 per round, or $50/month unlimited (content, articles, SEO, and more)
+- Care: $150 buildout and $50/mo, with unlimited pages, edits, support, and 1 blog post included. Extra blog posts are $25
+- Launch: $299 buildout and $15/mo hosting. Edits are $50 per round, up to 2 pages. Blog posts are $25 each and are not included
+- Post-launch updates: Care is $50/month with unlimited edits and 1 blog. Launch edits are $50 per round, up to 2 pages. Extra or standalone blog posts are $25
 - Details: https://socalwebexperts.com/pricing/
 
 ## Key pages

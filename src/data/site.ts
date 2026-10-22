@@ -497,14 +497,15 @@ export const pricingModels: PricingModel[] = [
     upfront: '$150',
     upfrontLabel: 'buildout',
     monthly: '$50',
-    monthlyLabel: '/ month, all-inclusive',
-    description: 'We build the site, launch it with you, then keep hosting, editing, and writing for $50 a month.',
+    monthlyLabel: '/ month, with 1 blog',
+    description: 'We build the site, launch it with you, then keep hosting and editing for $50 a month. One blog post is included. Extra posts are $25.',
     features: [
       'Unlimited edits each month',
       'New pages when you need them',
       'Ongoing support',
       'Hosting and security',
-      '4 blog posts a month, if you want them',
+      '1 blog post included',
+      'Extra blog posts are $25',
       'Custom brand design',
       'Logo design',
       'Accessibility pages',
@@ -524,7 +525,8 @@ export const pricingModels: PricingModel[] = [
           'New pages when you need them',
           'Ongoing support',
           'Hosting and security',
-          '4 blog posts, if you want them',
+          '1 blog post included',
+          'Extra blog posts are $25',
         ],
       },
       {
@@ -559,13 +561,14 @@ export const pricingModels: PricingModel[] = [
     upfrontLabel: 'buildout',
     monthly: '$15',
     monthlyLabel: '/ month hosting',
-    description: 'The same website foundation. Pay for changes only when you need them.',
+    description: 'The same website foundation. Edits and blog posts are billed only when you need them.',
     features: [
       'Unlimited pages',
       'Hosting included',
       'Ongoing support',
       'Edits are $50 per round',
-      'Blog posts included in each edit round',
+      'Up to 2 pages per edit round',
+      'Blog posts are $25 each',
     ],
   },
 ];
@@ -581,7 +584,7 @@ export const faqItems: FAQItem[] = [
     id: '2',
     question: 'What kinds of updates are included?',
     answer:
-      'Care includes unlimited edits and up to 4 blog posts a month. Launch keeps the monthly cost lower: edits are $50 per round, and blog posts are included in those rounds.',
+      'Care includes unlimited edits and 1 blog post a month. Extra blog posts are $25. On Launch, edits are $50 per round and cover up to 2 pages. Blog posts are $25 each and are not included.',
   },
   {
     id: '3',
@@ -592,7 +595,7 @@ export const faqItems: FAQItem[] = [
     id: '4',
     question: 'What does the monthly fee cover?',
     answer:
-      'Care is $50 a month, all in: hosting, unlimited edits, unlimited support, and 4 blog posts a month if you want them. Launch is $15 a month for hosting, with edits at $50 per round.',
+      'Care is $50 a month: hosting, unlimited edits, ongoing support, and 1 blog post. Extra posts are $25. Launch is $15 a month for hosting. Edits are $50 per round, up to 2 pages, and blog posts are $25 each.',
   },
   {
     id: '5',

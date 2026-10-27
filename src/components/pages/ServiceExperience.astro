@@ -27,7 +27,7 @@ const imageUrl = (src: string, width: number) => {
     <div class="site-container">
       <div class="service-experience__hero-grid">
         <div data-reveal>
-          <h1 class="visually-hidden">{service.heroHeadline}</h1>
+          <h1>{service.heroHeadline}</h1>
           <p class="type-lead">{service.description}</p>
           <div class="service-experience__actions">
             <a class="button" href="/get-started/">Start a project</a>
@@ -146,8 +146,13 @@ const imageUrl = (src: string, width: number) => {
     gap: 4rem;
   }
 
+  .service-experience__hero h1 {
+    max-width: 11ch;
+  }
+
   .service-experience__hero .type-lead {
     max-width: 38rem;
+    margin-top: 1.5rem;
   }
 
   .service-experience__actions {

@@ -173,6 +173,113 @@ video {
   padding-top: var(--page-title-offset);
 }
 
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+#main-content {
+  position: relative;
+}
+
+#main-content > :not(.page-accents) {
+  position: relative;
+  z-index: 1;
+}
+
+.page-accents {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 11rem;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.page-accent {
+  position: absolute;
+  display: block;
+  background-color: #fee7dc;
+  background-image:
+    radial-gradient(ellipse at 12% 20%, #f28b43 0 8%, transparent 24%),
+    radial-gradient(ellipse at 48% 78%, #fdba74 0 11%, transparent 28%),
+    radial-gradient(ellipse at 82% 24%, #fb923c 0 8%, transparent 24%),
+    radial-gradient(ellipse at 94% 82%, #ffedd5 0 10%, transparent 30%),
+    linear-gradient(112deg, #fff7ed 12%, #fed7aa 29%, #fff7ed 46%, #fdba74 64%, #fff7ed 83%);
+  background-position: 0% 30%, 25% 70%, 75% 25%, 100% 75%, 0% 50%;
+  background-size: 145% 190%, 165% 175%, 150% 185%, 165% 175%, 230% 100%;
+  animation: page-accent-flow 12s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
+}
+
+.page-accent--circle {
+  top: -1.35rem;
+  right: -2.35rem;
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 50%;
+}
+
+.page-accent--square {
+  top: 0.35rem;
+  left: -1.55rem;
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 0.7rem;
+  transform: rotate(16deg);
+  animation-delay: -4s;
+}
+
+.page-accent--pill {
+  top: 5.4rem;
+  left: -3.15rem;
+  width: 4.8rem;
+  height: 1.15rem;
+  border-radius: 999px;
+  transform: rotate(-22deg);
+  animation-delay: -2.4s;
+}
+
+@keyframes page-accent-flow {
+  0% {
+    background-position: 0% 25%, 25% 75%, 75% 20%, 100% 80%, 0% 50%;
+  }
+  100% {
+    background-position: 100% 35%, 0% 20%, 45% 30%, 0% 70%, 100% 50%;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-accent--circle {
+    top: -1.1rem;
+    right: -1.6rem;
+    width: 5.6rem;
+    height: 5.6rem;
+  }
+
+  .page-accent--square {
+    top: 0.85rem;
+    left: -1.15rem;
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+
+  .page-accent--pill {
+    top: 6.5rem;
+    left: -3.4rem;
+    width: 6rem;
+    height: 1.35rem;
+  }
+}
+
 .section-rule {
   border-top: 1px solid var(--border);
 }
@@ -348,7 +455,8 @@ video {
     transform: none;
   }
 
-  .texture-tag {
+  .texture-tag,
+  .page-accent {
     animation: none;
   }
 }

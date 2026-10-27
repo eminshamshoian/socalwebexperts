@@ -5,11 +5,8 @@ import { services, siteConfig } from '../../data/site';
 <section class="contact-experience section-shell">
   <div class="site-container">
     <div class="contact-experience__hero">
-      <div data-reveal>
-        <p class="section-index texture-tag">Contact / Start a project</p>
-        <h1>Tell us what you are building.</h1>
-      </div>
-      <p class="type-lead" data-reveal style="--reveal-delay:100ms">Share your goals and timeline. We will reply within one business day.</p>
+      <h1 class="visually-hidden">Tell us what you are building.</h1>
+      <p class="type-lead" data-reveal>Share your goals and timeline. We will reply within one business day.</p>
     </div>
 
     <div class="contact-experience__body">
@@ -97,12 +94,7 @@ import { services, siteConfig } from '../../data/site';
     display: grid;
     gap: 2rem;
     border-bottom: 1px solid var(--border);
-    padding-bottom: clamp(4rem, 8vw, 8rem);
-  }
-
-  .contact-experience h1 {
-    max-width: 9ch;
-    margin-top: 1.5rem;
+    padding-bottom: clamp(2rem, 4vw, 3rem);
   }
 
   .contact-experience__hero .type-lead {
@@ -242,10 +234,6 @@ import { services, siteConfig } from '../../data/site';
   }
 
   @media (min-width: 760px) {
-    .contact-experience__hero {
-      grid-template-columns: 1.25fr 0.75fr;
-    }
-
     .contact-experience__body {
       grid-template-columns: 1.4fr 0.6fr;
     }

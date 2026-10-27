@@ -23,6 +23,7 @@ SoCal Web Experts builds fast, secure, conversion-focused websites that help ser
 ## Key pages
 - Home: https://socalwebexperts.com/
 - Portfolio: https://socalwebexperts.com/portfolio/
+- Get started: https://socalwebexperts.com/get-started/
 - Contact / free strategy call: https://socalwebexperts.com/contact/
 - Privacy: https://socalwebexperts.com/privacy/
 - Terms: https://socalwebexperts.com/terms/

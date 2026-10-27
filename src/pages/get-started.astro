@@ -1,15 +1,237 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PricingExperience from '../components/pages/PricingExperience.astro';
+import { siteConfig } from '../data/site';
+
+const nextUrl = `${siteConfig.url}/get-started/?submitted=1#plans`;
+const timelines = [
+  { id: 'timeline-asap', label: 'As soon as possible' },
+  { id: 'timeline-two-weeks', label: 'Within two weeks' },
+  { id: 'timeline-deciding', label: "I'm still deciding" },
+];
 ---
 
 <BaseLayout
   title="Get Started | SoCal Web Experts"
-  description="Pick the plan that fits. Pay to begin, and we'll reach out to shape the rest."
+  description="Tell us about your business, then choose a website plan and pay to begin."
   breadcrumbs={[
     { name: 'Home', url: '/' },
     { name: 'Get Started', url: '/get-started/' },
   ]}
 >
-  <PricingExperience layout="start" />
+  <section class="start-intake section-shell" id="details">
+    <div class="site-container">
+      <p class="section-index texture-tag" data-reveal>Get started</p>
+      <h1 data-reveal>Tell us about your business.</h1>
+      <p class="type-lead" data-reveal style="--reveal-delay:80ms">A few details, then choose the plan that fits.</p>
+
+      <form
+        class="start-intake__form"
+        action={`https://formsubmit.co/${siteConfig.email}`}
+        method="POST"
+        data-reveal
+        style="--reveal-delay:140ms"
+      >
+        <input type="hidden" name="_subject" value="New Get Started inquiry" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_captcha" value="false" />
+        <input type="hidden" name="_next" value={nextUrl} />
+        <input type="hidden" name="_autoresponse" value="Thanks. We received your details. Choose a plan on the next step and we will be in touch." />
+        <p class="start-intake__honey" aria-hidden="true">
+          <label>Leave this blank<input type="text" name="_honey" tabindex="-1" autocomplete="off" /></label>
+        </p>
+
+        <div class="start-intake__row">
+          <label>
+            <span>Name</span>
+            <input type="text" name="Name" autocomplete="name" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="Email" autocomplete="email" required />
+          </label>
+        </div>
+
+        <div class="start-intake__row">
+          <label>
+            <span>Phone</span>
+            <input type="tel" name="Phone" autocomplete="tel" inputmode="tel" required />
+          </label>
+          <label>
+            <span>Business name</span>
+            <input type="text" name="Business name" autocomplete="organization" required />
+          </label>
+        </div>
+
+        <fieldset>
+          <legend>When should we start your website?</legend>
+          <div class="start-intake__choices">
+            {timelines.map((option, index) => (
+              <label>
+                <input
+                  type="radio"
+                  id={option.id}
+                  name="When should we start your website?"
+                  value={option.label}
+                  required={index === 0}
+                />
+                <span>{option.label}</span>
+              </label>
+            ))}
+          </div>
+        </fieldset>
+
+        <button class="button" type="submit">Continue</button>
+      </form>
+    </div>
+  </section>
+
+  <div id="plans">
+    <PricingExperience layout="start" />
+  </div>
 </BaseLayout>
+
+<style>
+  .start-intake h1 {
+    max-width: 12ch;
+    margin-top: 1.5rem;
+  }
+
+  .start-intake .type-lead {
+    max-width: 32rem;
+    margin-top: 1.5rem;
+  }
+
+  .start-intake__form {
+    display: grid;
+    gap: 2rem;
+    max-width: 46rem;
+    margin-top: clamp(3rem, 6vw, 5rem);
+  }
+
+  .start-intake__row,
+  .start-intake label,
+  .start-intake fieldset {
+    min-width: 0;
+  }
+
+  .start-intake__row {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .start-intake label {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .start-intake label > span,
+  .start-intake legend {
+    color: var(--text-secondary);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .start-intake input[type="text"],
+  .start-intake input[type="email"],
+  .start-intake input[type="tel"] {
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+    border-radius: 0;
+    outline: 0;
+    background: transparent;
+    padding: 0.85rem 0;
+    color: var(--text);
+    font-size: 1rem;
+    font-weight: var(--weight-regular);
+    transition: border-color 200ms ease;
+  }
+
+  .start-intake input[type="text"]:focus,
+  .start-intake input[type="email"]:focus,
+  .start-intake input[type="tel"]:focus {
+    border-color: var(--text);
+  }
+
+  .start-intake fieldset {
+    margin: 0;
+    border: 0;
+    padding: 0;
+  }
+
+  .start-intake__choices {
+    display: grid;
+    margin-top: 0.85rem;
+  }
+
+  .start-intake__choices label {
+    display: flex;
+    min-height: 3.25rem;
+    align-items: center;
+    gap: 0.85rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+  }
+
+  .start-intake__choices input {
+    width: 1.15rem;
+    height: 1.15rem;
+    margin: 0;
+    accent-color: var(--accent);
+  }
+
+  .start-intake__choices label > span {
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text);
+    font-size: 1rem;
+  }
+
+  .start-intake button {
+    justify-self: start;
+    cursor: pointer;
+  }
+
+  .start-intake__honey {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+  }
+
+  #plans {
+    scroll-margin-top: 7rem;
+  }
+
+  @media (min-width: 760px) {
+    .start-intake__row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>
+
+<script>
+  function showSelectedPlans() {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('submitted') !== '1' && window.location.hash !== '#plans') return;
+    const plans = document.getElementById('plans');
+    if (!plans) return;
+
+    const root = document.documentElement;
+    const previous = root.style.scrollBehavior;
+    root.style.scrollBehavior = 'auto';
+    plans.scrollIntoView();
+    root.style.scrollBehavior = previous;
+
+    const lenis = (window as Window & { __siteLenis?: { scrollTo: (target: HTMLElement, options: { immediate: boolean }) => void } }).__siteLenis;
+    lenis?.scrollTo(plans, { immediate: true });
+  }
+
+  showSelectedPlans();
+  window.addEventListener('pageshow', () => requestAnimationFrame(showSelectedPlans));
+  window.addEventListener('load', () => requestAnimationFrame(showSelectedPlans));
+</script>

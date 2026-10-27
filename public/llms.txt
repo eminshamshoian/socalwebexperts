@@ -10,6 +10,7 @@ This site is for local and service based businesses that need a website that gen
 - [Google Ads](https://socalwebexperts.com/services/google-ads/): Paid search for high-intent local leads
 - [Portfolio](https://socalwebexperts.com/portfolio/): Example client websites
 - [Pricing](https://socalwebexperts.com/pricing/): Setup fee, hosting, and add-ons
+- [Get Started](https://socalwebexperts.com/get-started/): Project details form, then plan selection
 - [Contact](https://socalwebexperts.com/contact/): Book a free strategy call
 
 ## Business facts

@@ -4,17 +4,8 @@ import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
 import { PanelsTopLeft } from '@lucide/astro';
 ---
 
-<section class="page-hero section-shell">
-  <div class="site-container">
-    <p class="section-index texture-tag" data-reveal>Portfolio</p>
-    <div class="page-hero__grid">
-      <h1 data-reveal>Work that earns customer trust.</h1>
-      <p class="type-lead" data-reveal style="--reveal-delay:100ms">Websites that explain your services and make the next step clear.</p>
-    </div>
-  </div>
-</section>
-
-<section class="portfolio-archive section-shell section-rule">
+<section class="portfolio-archive section-shell page-title-section">
+  <h1 class="visually-hidden">Work that earns customer trust.</h1>
   <div class="site-container portfolio-archive__grid">
     {portfolioItems.map((item, index) => (
       <article data-reveal style={`--reveal-delay:${(index % 3) * 60}ms`}>
@@ -44,25 +35,6 @@ import { PanelsTopLeft } from '@lucide/astro';
 </section>
 
 <style>
-  .page-hero {
-    padding-top: clamp(4rem, 8vw, 8rem);
-  }
-
-  .page-hero__grid {
-    display: grid;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .page-hero h1 {
-    max-width: 11ch;
-  }
-
-  .page-hero .type-lead {
-    max-width: 32rem;
-    align-self: end;
-  }
-
   .portfolio-archive__grid {
     display: grid;
     gap: clamp(5rem, 10vw, 10rem) 1.5rem;
@@ -121,10 +93,6 @@ import { PanelsTopLeft } from '@lucide/astro';
   }
 
   @media (min-width: 800px) {
-    .page-hero__grid {
-      grid-template-columns: 1.3fr 0.7fr;
-    }
-
     .portfolio-archive__grid {
       grid-template-columns: 1fr 1fr;
     }

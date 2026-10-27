@@ -25,10 +25,9 @@ const imageUrl = (src: string, width: number) => {
 <article class="service-experience">
   <section class="service-experience__hero section-shell">
     <div class="site-container">
-      <p class="section-index texture-tag" data-reveal>Service / {service.title}</p>
       <div class="service-experience__hero-grid">
         <div data-reveal>
-          <h1>{service.heroHeadline}</h1>
+          <h1 class="visually-hidden">{service.heroHeadline}</h1>
           <p class="type-lead">{service.description}</p>
           <div class="service-experience__actions">
             <a class="button" href="/get-started/">Start a project</a>
@@ -139,22 +138,16 @@ const imageUrl = (src: string, width: number) => {
 
 <style>
   .service-experience__hero {
-    padding-top: clamp(4rem, 8vw, 8rem);
+    padding-top: var(--page-title-offset);
   }
 
   .service-experience__hero-grid {
     display: grid;
     gap: 4rem;
-    margin-top: 2rem;
-  }
-
-  .service-experience__hero h1 {
-    max-width: 11ch;
   }
 
   .service-experience__hero .type-lead {
     max-width: 38rem;
-    margin-top: 2rem;
   }
 
   .service-experience__actions {

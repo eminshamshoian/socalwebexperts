@@ -16,26 +16,9 @@ const addOns = [
 ];
 ---
 
-{layout === 'start' ? (
-  <section class="start-hero">
-    <div class="site-container">
-      <h1>Choose a plan</h1>
-      <p>Pay to begin, and we'll reach out to shape the rest.</p>
-    </div>
-  </section>
-) : (
-  <section class="pricing-page-hero section-shell">
-    <div class="site-container">
-      <p class="section-index texture-tag" data-reveal>Pricing</p>
-      <div>
-        <h1 data-reveal>Professional websites without the agency markup.</h1>
-        <p class="type-lead" data-reveal style="--reveal-delay:100ms">Two ways to launch the same custom website. Care keeps the edits going. Launch keeps the monthly bill smaller.</p>
-      </div>
-    </div>
-  </section>
-)}
+{layout === 'pricing' && <h1 class="visually-hidden">Professional websites without the agency markup.</h1>}
 
-<section class:list={['pricing-main', 'section-shell', layout === 'pricing' && 'section-rule', layout === 'start' && 'pricing-main--start']}>
+<section class:list={['pricing-main', 'section-shell', layout === 'pricing' && 'page-title-section', layout === 'start' && 'pricing-main--start']}>
   <div class="site-container pricing-pair">
     {pricingModels.map((plan, index) => (
       <article class={`pricing-card pricing-card--${plan.id}`} data-reveal style={`--reveal-delay:${index * 80}ms`}>
@@ -118,42 +101,6 @@ const addOns = [
 )}
 
 <style>
-  .pricing-page-hero {
-    padding-top: clamp(4rem, 8vw, 8rem);
-  }
-
-  .pricing-page-hero > div > div {
-    display: grid;
-    gap: 2rem;
-    margin-top: 2rem;
-  }
-
-  .pricing-page-hero h1 {
-    max-width: 12ch;
-  }
-
-  .pricing-page-hero .type-lead {
-    max-width: 32rem;
-    align-self: end;
-  }
-
-  .start-hero {
-    padding: clamp(3rem, 6vw, 4.5rem) 0 0;
-  }
-
-  .start-hero h1 {
-    font-size: clamp(2rem, 4vw, 2.75rem);
-    font-weight: 600;
-  }
-
-  .start-hero p {
-    max-width: 26rem;
-    margin-top: 0.75rem;
-    color: var(--text-secondary);
-    font-size: var(--type-sm);
-    font-weight: var(--weight-regular);
-  }
-
   .pricing-main--start {
     padding-top: 2.5rem;
   }
@@ -459,10 +406,6 @@ const addOns = [
   }
 
   @media (min-width: 800px) {
-    .pricing-page-hero > div > div {
-      grid-template-columns: 1.3fr 0.7fr;
-    }
-
     .pricing-card__main + .pricing-card__features,
     .pricing-card__main + ul {
       margin-top: 0;

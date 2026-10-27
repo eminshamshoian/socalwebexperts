@@ -34,7 +34,7 @@ const mobileNav = navigation.filter((item) => item.label !== 'Home');
         </a>
       ))}
     </nav>
-    <a class="header__menu-cta" href="/contact/">Tell us about your project</a>
+    <a class="header__menu-cta" href="/get-started/">Get started</a>
   </div>
 </header>
 
@@ -232,10 +232,36 @@ const mobileNav = navigation.filter((item) => item.label !== 'Home');
   }
 
   .header__menu-cta {
-    font-size: var(--type-sm);
-    font-weight: var(--weight-bold);
-    text-decoration: underline;
-    text-underline-offset: 0.3rem;
+    position: relative;
+    display: inline-block;
+    align-self: flex-start;
+    flex-shrink: 0;
+    padding-bottom: 0.55rem;
+    color: var(--text);
+    font-size: clamp(1.7rem, 6vw, 2.2rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    text-decoration: none;
+  }
+
+  .header__menu-cta::after {
+    position: absolute;
+    right: -0.08em;
+    bottom: 0;
+    left: -0.08em;
+    height: 0.38em;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 12' preserveAspectRatio='none'%3E%3Cpath d='M1 7.5 C10 2.5, 18 11.5, 28 7 C38 2.5, 48 11, 58 7 C68 3, 78 11.5, 88 7 C98 2.5, 108 11, 119 6.5' fill='none' stroke='%23f05423' stroke-width='3.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    background-size: 100% 100%;
+    content: '';
+    pointer-events: none;
+    transition: transform 220ms ease;
+  }
+
+  .header__menu-cta:hover::after {
+    transform: translateY(2px) scaleX(1.02);
   }
 
   .header-spacer {

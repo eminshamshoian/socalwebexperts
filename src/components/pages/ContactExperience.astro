@@ -5,7 +5,7 @@ import { services, siteConfig } from '../../data/site';
 <section class="contact-experience section-shell">
   <div class="site-container">
     <div class="contact-experience__hero">
-      <h1 class="visually-hidden">Tell us what you are building.</h1>
+      <h1 data-reveal>Tell us what you are building.</h1>
       <p class="type-lead" data-reveal>Share your goals and timeline. We will reply within one business day.</p>
     </div>
 
@@ -97,9 +97,12 @@ import { services, siteConfig } from '../../data/site';
     padding-bottom: clamp(2rem, 4vw, 3rem);
   }
 
+  .contact-experience h1 {
+    max-width: 9ch;
+  }
+
   .contact-experience__hero .type-lead {
     max-width: 32rem;
-    align-self: end;
   }
 
   .contact-experience__body {

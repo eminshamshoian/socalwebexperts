@@ -8,14 +8,13 @@ export interface Props {
   lastUpdated: string;
 }
 
-const { eyebrow, title, description, lastUpdated } = Astro.props;
+const { title, description, lastUpdated } = Astro.props;
 ---
 
 <article class="legal-document section-shell page-title-section">
   <div class="mx-auto w-full max-w-[900px] px-6 lg:px-16">
     <header class="legal-document__header mb-12 md:mb-16 fade-in">
-      <p class="section-index mb-6">{eyebrow}</p>
-      <h1 class="visually-hidden">{title}</h1>
+      <h1 class="text-[var(--text)] mb-6">{title}</h1>
       <p class="type-lead max-w-2xl">{description}</p>
       <p class="type-meta mt-6">Last updated: {lastUpdated}</p>
     </header>

@@ -39,7 +39,6 @@ const {
 const pathname = Astro.url.pathname.endsWith('/') || Astro.url.pathname === '/'
   ? Astro.url.pathname
   : `${Astro.url.pathname}/`;
-const isHome = pathname === '/';
 const canonicalURL = Astro.site ? new URL(pathname, Astro.site) : new URL(pathname, Astro.url.origin);
 const robotsContent = noindex
   ? 'noindex, nofollow'
@@ -135,13 +134,6 @@ const structuredData = buildGraph(graphNodes);
     <a href="#main-content" class="skip-link">Skip to main content</a>
     <SiteHeader />
     <main id="main-content" class="flex-1" tabindex="-1">
-      {!isHome && (
-        <div class="page-accents" aria-hidden="true">
-          <span class="page-accent page-accent--circle"></span>
-          <span class="page-accent page-accent--square"></span>
-          <span class="page-accent page-accent--pill"></span>
-        </div>
-      )}
       <slot />
     </main>
     <SiteFooter />

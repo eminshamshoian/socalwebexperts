@@ -13,17 +13,17 @@ const timelines = [
 
 <BaseLayout
   title="Get Started | SoCal Web Experts"
-  description="Tell us about your business, then choose a website plan and pay to begin."
+  description="Tell us about your business so we can get your website moving."
   breadcrumbs={[
     { name: 'Home', url: '/' },
     { name: 'Get Started', url: '/get-started/' },
   ]}
 >
-  <section class="start-intake section-shell" id="details">
+  <section class="start-intake section-shell page-title-section" id="details">
     <div class="site-container">
       <p class="section-index texture-tag" data-reveal>Get started</p>
       <h1 data-reveal>Tell us about your business.</h1>
-      <p class="type-lead" data-reveal style="--reveal-delay:80ms">A few details, then choose the plan that fits.</p>
+      <p class="type-lead" data-reveal style="--reveal-delay:80ms">Share a few details so we can get your website moving.</p>
 
       <form
         class="start-intake__form"
@@ -36,7 +36,7 @@ const timelines = [
         <input type="hidden" name="_template" value="table" />
         <input type="hidden" name="_captcha" value="false" />
         <input type="hidden" name="_next" value={nextUrl} />
-        <input type="hidden" name="_autoresponse" value="Thanks. We received your details. Choose a plan on the next step and we will be in touch." />
+        <input type="hidden" name="_autoresponse" value="Thanks. We received your details. You can get started and pay on the next step, and we will be in touch." />
         <p class="start-intake__honey" aria-hidden="true">
           <label>Leave this blank<input type="text" name="_honey" tabindex="-1" autocomplete="off" /></label>
         </p>
@@ -86,7 +86,7 @@ const timelines = [
     </div>
   </section>
 
-  <div id="plans">
+  <div id="plans" hidden>
     <PricingExperience layout="start" />
   </div>
 </BaseLayout>
@@ -217,9 +217,11 @@ const timelines = [
 <script>
   function showSelectedPlans() {
     const params = new URLSearchParams(window.location.search);
-    if (params.get('submitted') !== '1' && window.location.hash !== '#plans') return;
+    if (params.get('submitted') !== '1') return;
     const plans = document.getElementById('plans');
     if (!plans) return;
+
+    plans.hidden = false;
 
     const root = document.documentElement;
     const previous = root.style.scrollBehavior;
@@ -229,6 +231,7 @@ const timelines = [
 
     const lenis = (window as Window & { __siteLenis?: { scrollTo: (target: HTMLElement, options: { immediate: boolean }) => void } }).__siteLenis;
     lenis?.scrollTo(plans, { immediate: true });
+    window.dispatchEvent(new Event('resize'));
   }
 
   showSelectedPlans();

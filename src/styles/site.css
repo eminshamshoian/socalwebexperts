@@ -28,6 +28,7 @@
   --border-strong: rgba(10, 10, 10, 0.7);
   --accent: #f05423;
   --accent-soft: #fee7dc;
+  --page-title-offset: clamp(1.5rem, 3vw, 2.75rem);
   --bg-rgb: 255, 255, 255;
   --container-max: 1440px;
   /* Entire site uses these 3 font sizes only. */
@@ -166,6 +167,10 @@ video {
 
 .section-shell {
   padding-block: clamp(5.5rem, 10vw, 10rem);
+}
+
+.page-title-section {
+  padding-top: var(--page-title-offset);
 }
 
 .section-rule {

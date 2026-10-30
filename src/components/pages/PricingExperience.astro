@@ -1,7 +1,8 @@
 ---
-import { faqItems, pricingModels } from '../../data/site';
-import { Check, Plus } from '@lucide/astro';
+import { faqItems } from '../../data/site';
+import { Plus } from '@lucide/astro';
 import SiteIcon from '../ui/SiteIcon.astro';
+import PricingCards from '../ui/PricingCards.astro';
 
 interface Props {
   layout?: 'pricing' | 'start';
@@ -20,51 +21,14 @@ const addOns = [
   <section class="pricing-page-hero section-shell page-title-section">
     <div class="site-container">
       <h1 data-reveal>Professional websites without the agency markup.</h1>
-      <p class="type-lead" data-reveal>Two ways to launch the same custom website. Care keeps the edits going. Launch keeps the monthly bill smaller.</p>
+      <p class="type-lead" data-reveal>One $150 buildout. Pick $50 a month for everything, or $15 a month for hosting and maintenance.</p>
     </div>
   </section>
 )}
 
 <section class:list={['pricing-main', 'section-shell', layout === 'pricing' && 'section-rule', layout === 'start' && 'pricing-main--start']}>
-  <div class="site-container pricing-pair">
-    {pricingModels.map((plan, index) => (
-      <article class={`pricing-card pricing-card--${plan.id}`} data-reveal style={`--reveal-delay:${index * 80}ms`}>
-        <div class="pricing-card__main">
-          <p class="section-index">{plan.subtitle}</p>
-          <h2>{plan.title}</h2>
-          {plan.description && <p class="pricing-card__note">{plan.description}</p>}
-          <p class="pricing-card__price">
-            <strong>{plan.upfront}</strong>
-            <span>buildout</span>
-          </p>
-          <p class="pricing-card__hosting">{plan.monthly}<span> {plan.monthlyLabel}</span></p>
-          <a
-            class="button"
-            href={plan.id === 'care' ? 'https://buy.stripe.com/6oU7sK58EexagEN9Bc8ww03' : '/contact/'}
-            target={plan.id === 'care' ? '_blank' : undefined}
-            rel={plan.id === 'care' ? 'noopener noreferrer' : undefined}
-          >Start with {plan.title}</a>
-        </div>
-        {plan.featureGroups ? (
-          <div class="pricing-card__features">
-            <div class="pricing-card__feature-box">
-              {plan.featureGroups.map((group) => (
-                <div>
-                  <p>{group.label}</p>
-                  <ul>
-                    {group.items.map((feature) => <li><Check aria-hidden="true" />{feature}</li>)}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <ul>
-            {plan.features.map((feature) => <li><Check aria-hidden="true" />{feature}</li>)}
-          </ul>
-        )}
-      </article>
-    ))}
+  <div class="site-container">
+    <PricingCards />
   </div>
 </section>
 
@@ -120,226 +84,6 @@ const addOns = [
   .pricing-main--start {
     padding-top: 2.5rem;
   }
-  .pricing-pair {
-    display: grid;
-    gap: 1.25rem;
-  }
-
-  .pricing-card {
-    display: flex;
-    min-height: 100%;
-    flex-direction: column;
-    padding: clamp(1.5rem, 4vw, 3rem);
-  }
-
-  .pricing-card h2 {
-    margin-top: 1.5rem;
-    font-size: clamp(1.7rem, 2.4vw, 2.15rem);
-    font-weight: 800;
-    letter-spacing: -0.06em;
-  }
-
-  .pricing-card__main {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .pricing-card__price {
-    display: flex;
-    align-items: baseline;
-    gap: 0.55rem;
-    margin-top: 2.5rem;
-  }
-
-  .pricing-card__price strong {
-    font-size: clamp(3.4rem, 7vw, 5.5rem);
-    font-weight: 800;
-    letter-spacing: -0.07em;
-    line-height: 0.9;
-  }
-
-  .pricing-card__price span,
-  .pricing-card__hosting span {
-    font-size: var(--type-sm);
-    font-weight: var(--weight-regular);
-  }
-
-  .pricing-card__hosting,
-  .pricing-card__hosting span {
-    font-size: var(--type-sm);
-    font-weight: var(--weight-regular);
-    letter-spacing: -0.012em;
-  }
-
-  .pricing-card__hosting {
-    margin-top: 1.15rem;
-  }
-
-  .pricing-card__note {
-    max-width: 28rem;
-    margin-top: 1rem;
-    font-size: var(--type-sm);
-    font-weight: var(--weight-regular);
-    line-height: 1.45;
-  }
-
-  .pricing-card ul {
-    margin: 2rem 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  .pricing-card li {
-    display: grid;
-    grid-template-columns: 1.25rem 1fr;
-    gap: 0.65rem;
-    align-items: start;
-    padding-block: 0.85rem;
-    font-size: var(--type-sm);
-    font-weight: var(--weight-regular);
-  }
-
-  .pricing-card li :global(svg) {
-    width: 1rem;
-    height: 1rem;
-    margin-top: 0.15rem;
-  }
-
-  .pricing-card__main .button {
-    align-self: stretch;
-    justify-content: center;
-    min-height: 3rem;
-    margin-top: 1.25rem;
-    margin-bottom: 0;
-    padding: 0.8rem 1.35rem;
-    font-size: var(--type-sm);
-  }
-
-  .pricing-card__main + .pricing-card__features,
-  .pricing-card__main + ul {
-    margin-top: 2rem;
-  }
-
-  .pricing-card--care {
-    width: 100%;
-    padding: 1.35rem 1.35rem 1.35rem 1.15rem;
-    border-radius: 2rem;
-    background: #ffd4c2;
-    color: #1a0904;
-  }
-
-  .pricing-card--care .section-index,
-  .pricing-card--care .pricing-card__note,
-  .pricing-card--care .pricing-card__price span,
-  .pricing-card--care .pricing-card__hosting span {
-    color: #3d140b;
-  }
-
-  .pricing-card--care h2,
-  .pricing-card--care .pricing-card__price strong,
-  .pricing-card--care .pricing-card__hosting {
-    color: #1a0904;
-  }
-
-  .pricing-card__features {
-    display: grid;
-    gap: 1.5rem;
-  }
-
-  .pricing-card__features > div,
-  .pricing-card__feature-box > div {
-    min-width: 0;
-  }
-
-  .pricing-card__features p {
-    margin-bottom: 0.45rem;
-    font-size: 0.72rem;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .pricing-card__features ul {
-    margin: 0;
-  }
-
-  .pricing-card__features li {
-    border: 0;
-    padding-block: 0.28rem;
-  }
-
-  .pricing-card--care .button {
-    border-color: #1a0904;
-    background: #1a0904;
-    padding: 0.8rem 1.35rem;
-    color: #fff;
-    font-size: var(--type-sm);
-  }
-
-  .pricing-card--care .button:hover {
-    background: #fff;
-    color: #1a0904;
-  }
-
-  .pricing-card--launch {
-    width: 100%;
-    padding: 1.35rem 1.35rem 1.35rem 1.15rem;
-    border: 1px solid #0a0a0a;
-    border-radius: 1.15rem;
-    background: #fff;
-    color: #0a0a0a;
-  }
-
-  .pricing-card--launch .section-index,
-  .pricing-card--launch .pricing-card__note,
-  .pricing-card--launch .pricing-card__price span,
-  .pricing-card--launch .pricing-card__hosting span {
-    color: #3d3d3a;
-  }
-
-  .pricing-card--launch h2,
-  .pricing-card--launch .pricing-card__price strong,
-  .pricing-card--launch .pricing-card__hosting {
-    color: #0a0a0a;
-    font-weight: var(--weight-regular);
-  }
-
-  .pricing-card--launch .pricing-card__price strong {
-    font-size: clamp(2.25rem, 3.6vw, 3rem);
-  }
-
-  .pricing-card--launch li {
-    border: 0;
-    padding-block: 0.35rem;
-  }
-
-  @media (max-width: 799px) {
-    .pricing-card--launch {
-      height: auto;
-      min-height: 0;
-    }
-
-    .pricing-card--launch ul {
-      height: auto !important;
-      min-height: 0 !important;
-      margin-bottom: 0;
-    }
-  }
-
-  .pricing-card--launch .button {
-    border-color: #0a0a0a;
-    background: #0a0a0a;
-    padding: 0.8rem 1.35rem;
-    color: #fff;
-    font-size: var(--type-sm);
-  }
-
-  .pricing-card--launch .button:hover {
-    background: #fff;
-    color: #0a0a0a;
-  }
-
   .add-ons__head,
   .pricing-faq__head {
     display: grid;
@@ -422,69 +166,6 @@ const addOns = [
   }
 
   @media (min-width: 800px) {
-    .pricing-card__main + .pricing-card__features,
-    .pricing-card__main + ul {
-      margin-top: 0;
-    }
-
-    .pricing-card--care,
-    .pricing-card--launch {
-      display: grid;
-      grid-template-columns: minmax(16rem, 0.9fr) minmax(18rem, 1.1fr);
-      column-gap: 1.25rem;
-      align-items: center;
-      min-height: 0;
-      padding: 1.15rem 1.15rem 1.15rem 1.75rem;
-    }
-
-    .pricing-card--care h2 {
-      font-size: clamp(1.7rem, 2.4vw, 2.15rem);
-    }
-
-    .pricing-card--care .pricing-card__price strong {
-      font-size: clamp(4.2rem, 7vw, 6.5rem);
-    }
-
-    .pricing-card--launch ul {
-      align-self: stretch;
-      box-sizing: border-box;
-      width: 100%;
-      margin: 0;
-      padding: 1rem 1.1rem;
-      border: 1px solid #0a0a0a;
-      border-radius: 1.15rem;
-      background: #fff;
-      color: #0a0a0a;
-    }
-
-    .pricing-card--care .pricing-card__features {
-      align-self: center;
-      margin: 0;
-      padding: 0;
-      border: 0;
-      background: transparent;
-    }
-
-    .pricing-card--care .pricing-card__feature-box {
-      display: grid;
-      box-sizing: border-box;
-      width: 100%;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      column-gap: 1rem;
-      padding: 1rem 1.1rem;
-      border: 1px solid #0a0a0a;
-      border-radius: 1.15rem;
-      background: #fff;
-    }
-
-    .pricing-card--launch ul {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      align-content: start;
-      column-gap: 1rem;
-      row-gap: 0;
-    }
-
     .add-ons__head,
     .pricing-faq__head {
       grid-template-columns: 0.6fr 1.4fr;
@@ -500,21 +181,3 @@ const addOns = [
     }
   }
 </style>
-
-<script>
-  function matchLaunchFeatureBox() {
-    const care = document.querySelector<HTMLElement>('.pricing-card--care .pricing-card__feature-box');
-    const launch = document.querySelector<HTMLElement>('.pricing-card--launch ul');
-    if (!care || !launch) return;
-    if (!window.matchMedia('(min-width: 800px)').matches) {
-      launch.style.minHeight = '';
-      return;
-    }
-    launch.style.minHeight = `${Math.round(care.getBoundingClientRect().height)}px`;
-  }
-
-  matchLaunchFeatureBox();
-  const careBox = document.querySelector('.pricing-card--care .pricing-card__feature-box');
-  if (careBox) new ResizeObserver(matchLaunchFeatureBox).observe(careBox);
-  window.addEventListener('resize', matchLaunchFeatureBox);
-</script>

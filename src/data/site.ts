@@ -557,14 +557,15 @@ export const pricingModels: PricingModel[] = [
     id: 'launch',
     title: 'Launch',
     subtitle: 'Lower monthly cost',
-    upfront: '$299',
+    upfront: '$150',
     upfrontLabel: 'buildout',
     monthly: '$15',
-    monthlyLabel: '/ month hosting',
+    monthlyLabel: '/ month hosting and maintenance',
+    yearly: '$99',
     description: 'The same website foundation. Edits and blog posts are billed only when you need them.',
     features: [
       'Unlimited pages',
-      'Hosting included',
+      'Hosting and maintenance included',
       'Ongoing support',
       'Edits are $50 per round',
       'Up to 2 pages per edit round',
@@ -595,7 +596,7 @@ export const faqItems: FAQItem[] = [
     id: '4',
     question: 'What does the monthly fee cover?',
     answer:
-      'Care is $50 a month: hosting, unlimited edits, ongoing support, and 1 blog post. Extra posts are $25. Launch is $15 a month for hosting. Edits are $50 per round, up to 2 pages, and blog posts are $25 each.',
+      'Care is $50 a month: hosting, unlimited edits, ongoing support, and 1 blog post. Extra posts are $25. Launch is $15 a month for hosting and maintenance, or $99 if you pay yearly. Edits are $50 per round, up to 2 pages, and blog posts are $25 each.',
   },
   {
     id: '5',
@@ -631,7 +632,7 @@ export const stats: Stat[] = [
     label: 'Custom builds from',
     value: '$150',
     description:
-      'Buildout from $150 with Care, or $299 with $15 monthly Launch hosting.',
+      '$150 buildout, then $50 a month all-inclusive or $15 a month for hosting ($99 a year if paid yearly).',
     icon: 'circle-dollar-sign',
   },
 ];

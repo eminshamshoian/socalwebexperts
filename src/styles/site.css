@@ -1,4 +1,4 @@
-@import "@fontsource-variable/inter";
+@import "@fontsource-variable/inter/opsz.css";
 @import "tailwindcss";
 
 @theme {
@@ -32,7 +32,7 @@
   --bg-rgb: 255, 255, 255;
   --container-max: 1440px;
   /* Entire site uses these 3 font sizes only. */
-  --type-lg: clamp(1.85rem, 3.4vw, 2.75rem);
+  --type-lg: clamp(2.25rem, calc(1.6rem + 2.5vw), 3.5rem);
   --type-md: 1.125rem;
   --type-sm: 0.9375rem;
   --type-display: var(--type-lg);
@@ -42,7 +42,7 @@
   --type-small: var(--type-sm);
   --type-label: var(--type-sm);
   --weight-regular: 400;
-  --weight-bold: 600;
+  --weight-bold: 500;
   --weight-medium: var(--weight-bold);
   color-scheme: light;
 }
@@ -80,7 +80,7 @@ body {
   font-size: var(--type-sm);
   font-weight: var(--weight-regular);
   line-height: 1.55;
-  letter-spacing: -0.012em;
+  letter-spacing: -0.011em;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -95,8 +95,9 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text);
   font-family: var(--font-heading);
   font-weight: var(--weight-bold);
-  line-height: 1;
-  letter-spacing: -0.055em;
+  font-variation-settings: "opsz" 32;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
   text-wrap: balance;
 }
 
@@ -110,8 +111,8 @@ h4,
 h5,
 h6 {
   font-size: var(--type-md);
-  line-height: 1.18;
-  letter-spacing: -0.035em;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
 }
 
 strong,

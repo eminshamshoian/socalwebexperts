@@ -1,0 +1,217 @@
+---
+import { pricingModels } from '../../data/site';
+import { Check } from '@lucide/astro';
+
+interface Props {
+  headingLevel?: 'h2' | 'h3';
+}
+
+const { headingLevel: Heading = 'h2' } = Astro.props;
+const stripeCare = 'https://buy.stripe.com/6oU7sK58EexagEN9Bc8ww03';
+---
+
+<div class="pricing-cards">
+  {pricingModels.map((plan, index) => {
+    const groups = plan.featureGroups ?? [{ label: 'What you get', items: plan.features }];
+    const isCare = plan.id === 'care';
+    return (
+      <article class={`plan plan--${plan.id}`} data-reveal style={`--reveal-delay:${index * 80}ms`}>
+        <header class="plan__head">
+          <p class="section-index">{plan.subtitle}</p>
+          <Heading>{plan.title}</Heading>
+          {plan.description && <p class="plan__note">{plan.description}</p>}
+        </header>
+
+        <dl class="plan__prices">
+          <div class="plan__price plan__price--build">
+            <dt>One-time buildout</dt>
+            <dd><strong>{plan.upfront}</strong></dd>
+          </div>
+          <div class="plan__price plan__price--monthly">
+            <dt>{isCare ? 'All-inclusive' : 'Hosting and maintenance'}</dt>
+            <dd><strong>{plan.monthly}</strong><span>/ month</span></dd>
+          </div>
+          {plan.yearly && (
+            <div class="plan__price plan__price--yearly">
+              <dt>Or pay yearly</dt>
+              <dd><strong>{plan.yearly}</strong><span>/ year</span><em>Save $81</em></dd>
+            </div>
+          )}
+        </dl>
+
+        <a
+          class="button"
+          href={isCare ? stripeCare : '/contact/'}
+          target={isCare ? '_blank' : undefined}
+          rel={isCare ? 'noopener noreferrer' : undefined}
+        >Start with {plan.title}</a>
+
+        <div class="plan__features">
+          {groups.map((group) => (
+            <div>
+              <p>{group.label}</p>
+              <ul>
+                {group.items.map((feature) => <li><Check aria-hidden="true" />{feature}</li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </article>
+    );
+  })}
+</div>
+
+<style>
+  .pricing-cards {
+    display: grid;
+    gap: 1.25rem;
+    align-items: stretch;
+  }
+
+  .plan {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    border: 1px solid var(--text);
+    border-radius: 1.5rem;
+    background: var(--bg);
+    color: var(--text);
+  }
+
+  .plan--care {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  .plan__head :global(h2),
+  .plan__head :global(h3) {
+    margin-top: 1rem;
+    font-size: clamp(1.7rem, 2.4vw, 2.15rem);
+    font-weight: 500;
+    letter-spacing: -0.03em;
+  }
+
+  .plan__note {
+    max-width: 28rem;
+    margin-top: 0.75rem;
+    color: var(--text-secondary);
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
+    line-height: 1.45;
+  }
+
+  .plan__prices {
+    display: grid;
+    margin: 0;
+    border-block: 1px solid var(--border-strong);
+  }
+
+  .plan__price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.25rem 1rem;
+    padding-block: 1rem;
+  }
+
+  .plan__price + .plan__price {
+    border-top: 1px solid var(--border);
+  }
+
+  .plan__price dt {
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
+    color: var(--text-secondary);
+  }
+
+  .plan__price dd {
+    display: flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    margin: 0;
+  }
+
+  .plan__price strong {
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .plan__price--build strong {
+    font-size: clamp(3rem, 5vw, 4.25rem);
+  }
+
+  .plan__price--monthly strong,
+  .plan__price--yearly strong {
+    font-size: clamp(1.75rem, 2.6vw, 2.25rem);
+  }
+
+  .plan__price span {
+    font-size: var(--type-sm);
+    color: var(--text-secondary);
+  }
+
+  .plan__price em {
+    margin-left: 0.35rem;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    background: var(--accent);
+    color: var(--color-on-primary);
+    font-size: 0.72rem;
+    font-style: normal;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .plan .button {
+    justify-content: center;
+    min-height: 3rem;
+    padding: 0.8rem 1.35rem;
+    font-size: var(--type-sm);
+  }
+
+  .plan__features {
+    display: grid;
+    gap: 1.25rem;
+  }
+
+  .plan__features p {
+    margin-bottom: 0.35rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .plan__features ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .plan__features li {
+    display: grid;
+    grid-template-columns: 1.25rem 1fr;
+    gap: 0.65rem;
+    align-items: start;
+    padding-block: 0.3rem;
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
+  }
+
+  .plan__features li :global(svg) {
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.15rem;
+    color: var(--accent);
+  }
+
+  @media (min-width: 900px) {
+    .pricing-cards {
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+  }
+</style>

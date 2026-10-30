@@ -27,11 +27,11 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
     </div>
   </div>
 
-  <div class="hero-reel" aria-label="Selected website projects">
-    <div class="hero-reel__track">
+  <div class="hero-reel" aria-label="Selected website projects" data-hero-reel>
+    <div class="hero-reel__track" data-hero-reel-track>
       {[...portfolioItems.slice(0, 5), ...portfolioItems.slice(0, 5)].map((item, index) => {
         return (
-          <article class="hero-reel__item" style={`--card-color:${projectColors[index % projectColors.length]}`}>
+          <article class="hero-reel__item" data-hero-reel-item>
             <div class="hero-reel__media">
               <ScrollableProjectImage
                 src={item.image}
@@ -40,7 +40,10 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
                 shapeIndex={index + 100}
               />
             </div>
-            <p><span>{item.title}</span><span>{item.categoryLabel}</span></p>
+            <p>
+              <span>{item.title}</span>
+              <span>{item.categoryLabel}</span>
+            </p>
           </article>
         );
       })}
@@ -61,9 +64,9 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
       <p class="section-index">About Us</p>
     </div>
     <div class="intro__content" data-reveal style="--reveal-delay:100ms">
-      <h2>Direct collaboration. Websites built to perform.</h2>
-      <p class="type-lead">The people who plan your strategy also design and build your site. No handoffs or templates.</p>
-      <a href="/contact/">Meet your web partner <ArrowUpRight aria-hidden="true" /></a>
+      <h2>Websites that bring small businesses more customers.</h2>
+      <p class="type-lead">We design, build, and host your website, then keep it updated for you. You work with the same person from start to finish. No templates, no runaround.</p>
+      <a href="/contact/">Have any more questions? <ArrowUpRight aria-hidden="true" /></a>
     </div>
   </div>
 
@@ -342,32 +345,38 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
   }
 
   .hero-reel {
-    width: max-content;
-    margin-top: clamp(4rem, 8vw, 8rem);
-    padding-bottom: 1rem;
+    width: 100%;
+    margin-top: clamp(2.5rem, 5vw, 4.5rem);
+    padding-block: 1.5rem clamp(4rem, 7vw, 6rem);
+    overflow: hidden;
+    cursor: grab;
+    touch-action: pan-y;
+    user-select: none;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .hero-reel.is-dragging {
+    cursor: grabbing;
   }
 
   .hero-reel__track {
+    position: relative;
     display: flex;
-    gap: 1rem;
-    padding-left: 1rem;
-    animation: reel 42s linear infinite;
-  }
-
-  .hero-reel:hover .hero-reel__track {
-    animation-play-state: paused;
+    width: max-content;
+    gap: 1.5rem;
+    padding-left: 1.5rem;
+    will-change: transform;
   }
 
   .hero-reel__item {
-    width: min(76vw, 31rem);
+    width: min(62vw, 22rem);
     flex: 0 0 auto;
+    will-change: transform;
   }
 
   .hero-reel__media {
-    height: clamp(21rem, 54vw, 37rem);
-    padding: clamp(1.2rem, 3vw, 2.6rem);
-    overflow: hidden;
-    background: var(--card-color);
+    height: clamp(15rem, 38vw, 25rem);
   }
 
   .hero-reel__media :global(.portfolio-frame),
@@ -382,23 +391,25 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
     height: 100%;
     object-fit: cover;
     object-position: top;
-    box-shadow: 0 1.2rem 3rem rgba(0, 0, 0, 0.16);
+    -webkit-user-drag: none;
   }
 
   .hero-reel__item > p {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 0.75rem;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.6rem;
+    align-items: baseline;
+    padding: 0.85rem 0.2rem 0;
     font-size: var(--type-sm);
     font-weight: var(--weight-regular);
   }
 
-  .hero-reel__item > p span:last-child {
-    color: var(--text-secondary);
+  .hero-reel__item > p span:first-child {
+    font-weight: var(--weight-bold);
   }
 
-  @keyframes reel {
-    to { transform: translateX(calc(-50% - 0.5rem)); }
+  .hero-reel__item > p span:last-child {
+    color: var(--text-secondary);
   }
 
   .intro {
@@ -412,7 +423,10 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
   }
 
   .intro__shapes {
-    display: none;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
   }
 
   .intro-shape {
@@ -491,7 +505,7 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
   }
 
   .intro__content h2 {
-    max-width: 14ch;
+    max-width: 18ch;
   }
 
   .intro__content .type-lead {
@@ -1021,15 +1035,37 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
     text-underline-offset: 0.25rem;
   }
 
-  @media (max-width: 719px) {
-    .intro__shapes {
-      display: block;
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+  @media (min-width: 720px) {
+    .intro-shape--a {
+      top: 8%;
+      right: 4%;
+      width: clamp(7rem, 10vw, 10rem);
+      height: clamp(7rem, 10vw, 10rem);
     }
 
+    .intro-shape--b {
+      top: 38%;
+      left: 2%;
+      width: clamp(4.5rem, 6vw, 6rem);
+      height: clamp(4.5rem, 6vw, 6rem);
+    }
+
+    .intro-shape--c {
+      right: 14%;
+      bottom: 34%;
+      width: clamp(8rem, 12vw, 11rem);
+      height: clamp(1.8rem, 2.4vw, 2.4rem);
+    }
+
+    .intro-shape--d {
+      left: 30%;
+      bottom: 6%;
+      width: clamp(5rem, 7vw, 7rem);
+      height: clamp(5rem, 7vw, 7rem);
+    }
+  }
+
+  @media (max-width: 719px) {
     .stats article {
       display: grid;
       grid-template-columns: 2.7rem 1fr;
@@ -1127,13 +1163,156 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
       animation: none;
     }
 
-    .hero-reel__track {
-      animation: none;
-    }
-
     .workflow-shape,
     .intro-shape {
       animation: none;
     }
   }
 </style>
+
+<script>
+  function initHeroReel() {
+    const reel = document.querySelector<HTMLElement>('[data-hero-reel]');
+    const track = reel?.querySelector<HTMLElement>('[data-hero-reel-track]');
+    if (!reel || !track || reel.dataset.ready) return;
+    reel.dataset.ready = 'true';
+
+    const items = Array.from(track.querySelectorAll<HTMLElement>('[data-hero-reel-item]'));
+    const half = items.length / 2;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const cruiseSpeed = reduceMotion ? 0 : 0.045;
+
+    let centers: number[] = [];
+    let loop = 0;
+    let reelWidth = 0;
+    let offset = 0;
+    let speed = cruiseSpeed;
+    let targetSpeed = cruiseSpeed;
+    let dragging = false;
+    let dragged = false;
+    let startX = 0;
+    let startOffset = 0;
+    let lastX = 0;
+    let lastTime = 0;
+    let velocity = 0;
+    let frame = 0;
+    let previous = 0;
+
+    const measure = () => {
+      reelWidth = reel.clientWidth;
+      loop = items[half].offsetLeft - items[0].offsetLeft;
+      centers = items.map((item) => item.offsetLeft + item.offsetWidth / 2);
+    };
+
+    const wrap = () => {
+      if (!loop) return;
+      while (offset <= -loop) {
+        offset += loop;
+        startOffset += loop;
+      }
+      while (offset > 0) {
+        offset -= loop;
+        startOffset -= loop;
+      }
+    };
+
+    // Cards follow an arch: position and rotation change, size never does.
+    const render = () => {
+      track.style.transform = `translate3d(${offset.toFixed(2)}px, 0, 0)`;
+      const halfWidth = reelWidth / 2;
+      const depth = Math.min(reelWidth * 0.055, 64);
+      items.forEach((item, index) => {
+        const distance = Math.max(-1.6, Math.min(1.6, (centers[index] + offset - halfWidth) / halfWidth));
+        const lift = distance * distance * depth;
+        item.style.transform = `translate3d(0, ${lift.toFixed(2)}px, 0) rotate(${(distance * 6).toFixed(2)}deg)`;
+      });
+    };
+
+    const tick = (time: number) => {
+      const delta = Math.min(time - (previous || time), 50);
+      previous = time;
+      if (!dragging) {
+        speed += (targetSpeed - speed) * 0.05;
+        offset -= speed * delta;
+      }
+      wrap();
+      render();
+      frame = requestAnimationFrame(tick);
+    };
+
+    const start = () => {
+      if (frame) return;
+      previous = 0;
+      frame = requestAnimationFrame(tick);
+    };
+
+    const stop = () => {
+      cancelAnimationFrame(frame);
+      frame = 0;
+    };
+
+    reel.addEventListener('pointerenter', (event) => {
+      if (event.pointerType === 'mouse') targetSpeed = 0;
+    });
+    reel.addEventListener('pointerleave', (event) => {
+      if (event.pointerType === 'mouse') targetSpeed = cruiseSpeed;
+    });
+
+    reel.addEventListener('pointerdown', (event) => {
+      if (event.button !== 0) return;
+      dragging = true;
+      dragged = false;
+      startX = lastX = event.clientX;
+      startOffset = offset;
+      lastTime = performance.now();
+      velocity = 0;
+    });
+
+    window.addEventListener('pointermove', (event) => {
+      if (!dragging) return;
+      const distance = event.clientX - startX;
+      if (!dragged && Math.abs(distance) > 6) {
+        dragged = true;
+        reel.classList.add('is-dragging');
+      }
+      if (!dragged) return;
+      offset = startOffset + distance;
+      const now = performance.now();
+      velocity = (event.clientX - lastX) / Math.max(1, now - lastTime);
+      lastX = event.clientX;
+      lastTime = now;
+    });
+
+    const endDrag = () => {
+      if (!dragging) return;
+      dragging = false;
+      reel.classList.remove('is-dragging');
+      if (dragged) speed = Math.max(-2, Math.min(2, -velocity));
+    };
+    window.addEventListener('pointerup', endDrag);
+    window.addEventListener('pointercancel', endDrag);
+
+    reel.addEventListener('click', (event) => {
+      if (!dragged) return;
+      event.preventDefault();
+      event.stopPropagation();
+      dragged = false;
+    }, true);
+
+    reel.addEventListener('dragstart', (event) => event.preventDefault());
+
+    measure();
+    render();
+    new ResizeObserver(() => {
+      measure();
+      render();
+    }).observe(reel);
+
+    new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) start();
+      else stop();
+    }).observe(reel);
+  }
+
+  initHeroReel();
+</script>

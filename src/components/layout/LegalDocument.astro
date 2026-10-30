@@ -15,7 +15,7 @@ const { title, description, lastUpdated } = Astro.props;
   <div class="mx-auto w-full max-w-[900px] px-6 lg:px-16">
     <header class="legal-document__header mb-12 md:mb-16 fade-in">
       <h1 class="text-[var(--text)] mb-6">{title}</h1>
-      <p class="type-lead max-w-2xl">{description}</p>
+      <p class="type-lead">{description}</p>
       <p class="type-meta mt-6">Last updated: {lastUpdated}</p>
     </header>
 
@@ -60,11 +60,7 @@ const { title, description, lastUpdated } = Astro.props;
 <style>
   .legal-document__header {
     border-bottom: 1px solid var(--border);
-    padding-bottom: clamp(3rem, 7vw, 6rem);
-  }
-
-  .legal-document__header h1 {
-    max-width: 10ch;
+    padding-bottom: clamp(2rem, 4vw, 3rem);
   }
 
   .legal-document__contact {

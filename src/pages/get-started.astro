@@ -91,12 +91,7 @@ const timelines = [
 </BaseLayout>
 
 <style>
-  .start-intake h1 {
-    max-width: 12ch;
-  }
-
   .start-intake .type-lead {
-    max-width: 32rem;
     margin-top: 1.25rem;
   }
 
@@ -104,7 +99,11 @@ const timelines = [
     display: grid;
     gap: 2rem;
     max-width: 46rem;
-    margin-top: clamp(3rem, 6vw, 5rem);
+    margin-top: clamp(2rem, 4vw, 3rem);
+    padding: clamp(1.5rem, 4vw, 3rem);
+    border: 1px solid #f6e3d9;
+    border-radius: 1.5rem;
+    background: #fdf8f5;
   }
 
   .start-intake__row,
@@ -136,22 +135,22 @@ const timelines = [
   .start-intake input[type="email"],
   .start-intake input[type="tel"] {
     width: 100%;
-    border: 0;
-    border-bottom: 1px solid var(--border);
-    border-radius: 0;
+    border: 1px solid #eedcd2;
+    border-radius: 0.75rem;
     outline: 0;
-    background: transparent;
-    padding: 0.85rem 0;
+    background: #fff;
+    padding: 0.85rem 1rem;
     color: var(--text);
     font-size: 1rem;
     font-weight: var(--weight-regular);
-    transition: border-color 200ms ease;
+    transition: border-color 200ms ease, box-shadow 200ms ease;
   }
 
   .start-intake input[type="text"]:focus,
   .start-intake input[type="email"]:focus,
   .start-intake input[type="tel"]:focus {
-    border-color: var(--text);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(240, 84, 35, 0.12);
   }
 
   .start-intake fieldset {
@@ -162,6 +161,7 @@ const timelines = [
 
   .start-intake__choices {
     display: grid;
+    gap: 0.5rem;
     margin-top: 0.85rem;
   }
 
@@ -170,8 +170,17 @@ const timelines = [
     min-height: 3.25rem;
     align-items: center;
     gap: 0.85rem;
-    border-bottom: 1px solid var(--border);
+    padding-inline: 1rem;
+    border: 1px solid #eedcd2;
+    border-radius: 0.75rem;
+    background: #fff;
     cursor: pointer;
+    transition: border-color 200ms ease;
+  }
+
+  .start-intake__choices label:hover,
+  .start-intake__choices label:has(input:checked) {
+    border-color: var(--accent);
   }
 
   .start-intake__choices input {
@@ -208,6 +217,19 @@ const timelines = [
   @media (min-width: 760px) {
     .start-intake__row {
       grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (min-width: 980px) {
+    .start-intake .site-container {
+      display: grid;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .start-intake__form {
+      width: 100%;
+      text-align: left;
     }
   }
 </style>

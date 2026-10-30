@@ -174,6 +174,22 @@ video {
   padding-top: var(--page-title-offset);
 }
 
+.page-title-section h1 {
+  max-width: 26ch;
+}
+
+.page-title-section h1 + .type-lead {
+  max-width: 48rem;
+}
+
+.page-hero-compact {
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.page-hero-compact + .section-shell {
+  padding-top: clamp(3rem, 6vw, 5rem);
+}
+
 .section-rule {
   border-top: 1px solid var(--border);
 }

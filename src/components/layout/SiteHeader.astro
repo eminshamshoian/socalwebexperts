@@ -149,8 +149,8 @@ const mobileNav = navigation.filter((item) => item.label !== 'Home');
     display: grid;
     width: 2.8rem;
     height: 2.8rem;
-    place-content: center;
-    gap: 0.35rem;
+    place-items: center;
+    padding: 0;
     border: 1px solid var(--border);
     border-radius: 50%;
     background: #fff;
@@ -164,13 +164,13 @@ const mobileNav = navigation.filter((item) => item.label !== 'Home');
 
   .header__toggle :global(svg) {
     display: block;
+    grid-area: 1 / 1;
     width: 1.25rem;
     height: 1.25rem;
     transition: opacity 180ms ease, transform 180ms ease;
   }
 
   .header__close-icon {
-    position: absolute;
     opacity: 0;
     transform: rotate(-45deg);
   }

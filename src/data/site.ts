@@ -411,24 +411,47 @@ export const testimonials: Testimonial[] = [
   },
 ];
 
-// Verified Yelp review
-export const yelpReview: YelpReview = {
-  reviewId: 't3wCBOwua2fHxP_lnm-Rwg',
-  businessId: 'sF9nR-iGFXVFIVYoxv31Ug',
-  businessUrl: 'https://www.yelp.ca/biz/socal-web-experts-glendale',
-  reviewUrl: 'https://www.yelp.ca/biz/socal-web-experts-glendale?hrid=t3wCBOwua2fHxP_lnm-Rwg',
-  authorName: 'Adena M.',
-  authorProfileUrl: 'https://www.yelp.com/user_details?userid=6kVeiHHr-XIJKtIDKVVwIA',
-  location: 'Glendale, CA',
-  date: 'March 19, 2026',
-  rating: 5,
-  quote:
-    "SoCal Web Experts designed and created a website for my new clothing business. I'm very pleased and happy with their work and they delivered exactly what I asked for. Thank you for helping me build my brand and business and making the process of shopping easy and smooth for my clients. Appreciate the dedication and effort that was shown!",
-  badge: 'First to review on Yelp',
-};
+// Verified Yelp reviews
+export const yelpReviews: YelpReview[] = [
+  {
+    reviewId: 't3wCBOwua2fHxP_lnm-Rwg',
+    businessId: 'sF9nR-iGFXVFIVYoxv31Ug',
+    businessUrl: 'https://www.yelp.ca/biz/socal-web-experts-glendale',
+    reviewUrl: 'https://www.yelp.ca/biz/socal-web-experts-glendale?hrid=t3wCBOwua2fHxP_lnm-Rwg',
+    authorName: 'Adena M.',
+    authorProfileUrl: 'https://www.yelp.com/user_details?userid=6kVeiHHr-XIJKtIDKVVwIA',
+    location: 'Glendale, CA',
+    date: 'March 19, 2026',
+    rating: 5,
+    quote:
+      "SoCal Web Experts designed and created a website for my new clothing business. I'm very pleased and happy with their work and they delivered exactly what I asked for. Thank you for helping me build my brand and business and making the process of shopping easy and smooth for my clients. Appreciate the dedication and effort that was shown!",
+    badge: 'First to review on Yelp',
+  },
+  {
+    reviewId: 'yRSjQ9MUc8GuEuLpu4ii8A',
+    businessId: 'sF9nR-iGFXVFIVYoxv31Ug',
+    businessUrl: 'https://www.yelp.ca/biz/socal-web-experts-glendale',
+    reviewUrl: 'https://www.yelp.ca/biz/socal-web-experts-glendale?hrid=yRSjQ9MUc8GuEuLpu4ii8A',
+    authorName: 'Amelia S.',
+    authorProfileUrl: 'https://www.yelp.com/user_details?userid=8aqJA2aqXgaM6CM6vMeD0g',
+    location: 'Los Angeles, CA',
+    date: 'November 4, 2026',
+    rating: 5,
+    quote:
+      "SoCal Web Expert was amazing! I had no idea where to start with my business website and domain, but they guided me through every step, explained all the details, and offered thoughtful advice and feedback tailored to my needs. I'd definitely recommend them!",
+  },
+];
 
 // Portfolio Items
 export const portfolioItems: PortfolioItem[] = [
+  {
+    id: '9',
+    title: 'Kim Ramirez Therapy',
+    category: 'web-design',
+    categoryLabel: 'Therapist',
+    image: '/portfolio/screencapture-kramireztherapy-2026-11-04-20_52_18.png',
+    scrollableImage: true,
+  },
   {
     id: '1',
     title: 'Billing Fortress',

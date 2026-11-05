@@ -6,10 +6,10 @@ import {
   services,
   siteConfig,
   stats,
-  yelpReview,
+  yelpReviews,
 } from '../../data/site';
 import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
-import { ArrowUpRight, Plus, Star } from '@lucide/astro';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Plus, Star } from '@lucide/astro';
 import SiteIcon from '../ui/SiteIcon.astro';
 import PricingCards from '../ui/PricingCards.astro';
 
@@ -29,7 +29,7 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
 
   <div class="hero-reel" aria-label="Selected website projects" data-hero-reel>
     <div class="hero-reel__track" data-hero-reel-track>
-      {[...portfolioItems.slice(0, 5), ...portfolioItems.slice(0, 5)].map((item, index) => {
+      {[...portfolioItems.slice(0, 6), ...portfolioItems.slice(0, 6)].map((item, index) => {
         return (
           <article class="hero-reel__item" data-hero-reel-item>
             <div class="hero-reel__media">
@@ -185,19 +185,47 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
       <a class="button" href="/services/web-design/">How we build</a>
     </div>
 
-    <div class="proof__review" data-reveal style="--reveal-delay:100ms">
-      <div class="proof__rating">
-        <span class="proof__stars" aria-label="5 out of 5 stars">
-          {Array.from({ length: 5 }).map(() => <Star aria-hidden="true" fill="currentColor" />)}
-        </span>
-        <p>Verified Yelp review</p>
+    <div class="proof__review" data-proof-reviews data-reveal style="--reveal-delay:100ms">
+      <div class="proof__track" data-proof-track>
+        {yelpReviews.map((review) => (
+          <article class="proof__slide">
+            <div class="proof__rating">
+              <span class="proof__stars" aria-label="5 out of 5 stars">
+                {Array.from({ length: 5 }).map(() => <Star aria-hidden="true" fill="currentColor" />)}
+              </span>
+              <p>Verified Yelp review</p>
+            </div>
+            <blockquote>“{review.quote}”</blockquote>
+            <footer>
+              <strong>{review.authorName}</strong>
+              <span>{review.location}</span>
+              <a href={review.reviewUrl} target="_blank" rel="noopener noreferrer">Read on Yelp <ArrowUpRight aria-hidden="true" /></a>
+            </footer>
+          </article>
+        ))}
+        <article class="proof__slide" aria-hidden="true" data-proof-clone>
+          <div class="proof__rating">
+            <span class="proof__stars">
+              {Array.from({ length: 5 }).map(() => <Star aria-hidden="true" fill="currentColor" />)}
+            </span>
+            <p>Verified Yelp review</p>
+          </div>
+          <blockquote>“{yelpReviews[0].quote}”</blockquote>
+          <footer>
+            <strong>{yelpReviews[0].authorName}</strong>
+            <span>{yelpReviews[0].location}</span>
+            <a href={yelpReviews[0].reviewUrl} target="_blank" rel="noopener noreferrer" tabindex="-1">Read on Yelp <ArrowUpRight aria-hidden="true" /></a>
+          </footer>
+        </article>
       </div>
-      <blockquote>“{yelpReview.quote}”</blockquote>
-      <footer>
-        <strong>{yelpReview.authorName}</strong>
-        <span>{yelpReview.location}</span>
-        <a href={yelpReview.reviewUrl} target="_blank" rel="noopener noreferrer">Read on Yelp <ArrowUpRight aria-hidden="true" /></a>
-      </footer>
+      <div class="proof__controls">
+        <button type="button" class="proof__arrow" data-proof-prev aria-label="Previous review"><ArrowLeft aria-hidden="true" /></button>
+        <p class="proof__count" aria-live="polite"><span data-proof-current>1</span> / {yelpReviews.length}</p>
+        <div class="proof__dots" aria-hidden="true">
+          {yelpReviews.map((_, i) => <span class={i === 0 ? 'is-active' : ''} data-proof-dot></span>)}
+        </div>
+        <button type="button" class="proof__arrow" data-proof-next aria-label="Next review"><ArrowRight aria-hidden="true" /></button>
+      </div>
     </div>
   </div>
 </section>
@@ -883,8 +911,78 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
 
   .proof__review {
     align-self: end;
-    padding: clamp(1.5rem, 4vw, 3rem);
+    overflow: hidden;
     background: #fff;
+  }
+
+  .proof__track {
+    display: flex;
+    transition: transform 700ms cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .proof__controls {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    padding: 0 clamp(1.5rem, 4vw, 3rem) clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .proof__arrow {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 1px solid var(--text);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+    transition: background 180ms ease, color 180ms ease;
+  }
+
+  .proof__arrow:hover,
+  .proof__arrow:focus-visible {
+    background: var(--text);
+    color: #fff;
+  }
+
+  .proof__arrow :global(svg) {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .proof__count {
+    margin: 0;
+    font-size: var(--type-sm);
+    font-weight: var(--weight-regular);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .proof__dots {
+    display: flex;
+    flex: 1;
+    gap: 0.4rem;
+  }
+
+  .proof__dots span {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 50%;
+    background: rgba(10, 10, 10, 0.2);
+    transition: background 180ms ease, transform 180ms ease;
+  }
+
+  .proof__dots span.is-active {
+    background: var(--accent);
+    transform: scale(1.2);
+  }
+
+  .proof__slide {
+    display: flex;
+    flex: 0 0 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: clamp(1.5rem, 4vw, 3rem);
   }
 
   .proof__rating {
@@ -1171,6 +1269,84 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
 </style>
 
 <script>
+  function initProofReviews() {
+    const box = document.querySelector<HTMLElement>('[data-proof-reviews]');
+    const track = box?.querySelector<HTMLElement>('[data-proof-track]');
+    if (!box || !track) return;
+    const total = track.children.length; // real slides + one clone of the first
+    const count = total - 1;
+    const prev = box.querySelector<HTMLButtonElement>('[data-proof-prev]');
+    const next = box.querySelector<HTMLButtonElement>('[data-proof-next]');
+    const current = box.querySelector<HTMLElement>('[data-proof-current]');
+    const dots = Array.from(box.querySelectorAll<HTMLElement>('[data-proof-dot]'));
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (count < 2) {
+      box.querySelector('.proof__controls')?.setAttribute('hidden', '');
+      return;
+    }
+
+    let index = 0;
+    let paused = false;
+
+    const place = (animate: boolean) => {
+      track.style.transition = animate && !reduceMotion ? '' : 'none';
+      track.style.transform = `translateX(-${index * 100}%)`;
+      if (!animate || reduceMotion) {
+        void track.offsetWidth;
+        track.style.transition = '';
+      }
+      const shown = index % count;
+      if (current) current.textContent = String(shown + 1);
+      dots.forEach((dot, i) => dot.classList.toggle('is-active', i === shown));
+    };
+
+    const forward = () => {
+      if (index >= total - 1) return;
+      index += 1;
+      place(true);
+    };
+
+    const back = () => {
+      if (index === 0) {
+        index = total - 1; // jump to the clone of slide one, then slide back from it
+        place(false);
+      }
+      index -= 1;
+      requestAnimationFrame(() => place(true));
+    };
+
+    // Landed on the clone of slide one: jump back to the real one without animation.
+    const settle = () => {
+      if (index !== total - 1) return;
+      index = 0;
+      place(false);
+    };
+    track.addEventListener('transitionend', (event) => {
+      if (event.target === track) settle();
+    });
+    if (reduceMotion) track.addEventListener('transitionrun', settle);
+
+    next?.addEventListener('click', () => {
+      if (reduceMotion && index === total - 1) settle();
+      forward();
+      if (reduceMotion) settle();
+    });
+    prev?.addEventListener('click', back);
+
+    box.addEventListener('pointerenter', () => { paused = true; });
+    box.addEventListener('pointerleave', () => { paused = false; });
+    box.addEventListener('focusin', () => { paused = true; });
+    box.addEventListener('focusout', () => { paused = false; });
+
+    if (reduceMotion) return;
+    setInterval(() => {
+      if (paused || document.hidden) return;
+      forward();
+    }, 6500);
+  }
+
+  initProofReviews();
+
   function initHeroReel() {
     const reel = document.querySelector<HTMLElement>('[data-hero-reel]');
     const track = reel?.querySelector<HTMLElement>('[data-hero-reel-track]');

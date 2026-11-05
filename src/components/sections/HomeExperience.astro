@@ -209,7 +209,7 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
         <p class="section-index">Pricing</p>
         <h2>Clear pricing. No agency fog.</h2>
       </div>
-      <p class="type-lead">Same custom website. Choose how much help you want after it goes live.</p>
+      <p class="type-lead">We got plans for every appetite.</p>
     </div>
 
     <PricingCards headingLevel="h3" />
@@ -1177,8 +1177,9 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
     if (!reel || !track || reel.dataset.ready) return;
     reel.dataset.ready = 'true';
 
-    const items = Array.from(track.querySelectorAll<HTMLElement>('[data-hero-reel-item]'));
+    let items = Array.from(track.querySelectorAll<HTMLElement>('[data-hero-reel-item]'));
     const half = items.length / 2;
+    const originals = items.slice(0, half);
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const cruiseSpeed = reduceMotion ? 0 : 0.045;
 
@@ -1198,9 +1199,26 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
     let frame = 0;
     let previous = 0;
 
+    // Keep the track longer than one loop plus the viewport so it never runs out.
+    const fill = () => {
+      let guard = 0;
+      while (guard++ < 12) {
+        const last = items[items.length - 1];
+        const trackEnd = last.offsetLeft + last.offsetWidth;
+        if (trackEnd >= loop + reelWidth + 48 || !loop) break;
+        originals.forEach((source) => {
+          const clone = source.cloneNode(true) as HTMLElement;
+          clone.setAttribute('aria-hidden', 'true');
+          track.appendChild(clone);
+          items.push(clone);
+        });
+      }
+    };
+
     const measure = () => {
       reelWidth = reel.clientWidth;
       loop = items[half].offsetLeft - items[0].offsetLeft;
+      fill();
       centers = items.map((item) => item.offsetLeft + item.offsetWidth / 2);
     };
 

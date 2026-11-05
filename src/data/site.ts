@@ -557,19 +557,31 @@ export const pricingModels: PricingModel[] = [
     id: 'launch',
     title: 'Launch',
     subtitle: 'Lower monthly cost',
-    upfront: '$150',
+    upfront: '$499',
     upfrontLabel: 'buildout',
     monthly: '$15',
     monthlyLabel: '/ month hosting and maintenance',
     yearly: '$99',
-    description: 'The same website foundation. Edits and blog posts are billed only when you need them.',
+    inherits: 'Everything in Care, except unlimited edits, new pages and the monthly blog post. Those are pay-as-you-go instead.',
+    footnote: 'Hosting is optional. If you would rather host the site yourself, we will hand over the files and you can skip the monthly fee.',
+    description: 'The same complete website. Edits and blog posts are billed only when you need them.',
     features: [
-      'Unlimited pages',
-      'Hosting and maintenance included',
+      'Hosting and maintenance',
       'Ongoing support',
       'Edits are $50 per round',
       'Up to 2 pages per edit round',
       'Blog posts are $25 each',
+    ],
+    featureGroups: [
+      {
+        label: 'Instead, pay as you go',
+        items: [
+          'Hosting and maintenance',
+          'Ongoing support',
+          'Edits are $50 per round, up to 2 pages',
+          'Blog posts are $25 each',
+        ],
+      },
     ],
   },
 ];
@@ -596,7 +608,7 @@ export const faqItems: FAQItem[] = [
     id: '4',
     question: 'What does the monthly fee cover?',
     answer:
-      'Care is $50 a month: hosting, unlimited edits, ongoing support, and 1 blog post. Extra posts are $25. Launch is $15 a month for hosting and maintenance, or $99 if you pay yearly. Edits are $50 per round, up to 2 pages, and blog posts are $25 each.',
+      'Care is $150 to build, then $50 a month for hosting, unlimited edits, ongoing support, and 1 blog post. Extra posts are $25. Launch is $499 to build, then $15 a month for hosting and maintenance, or $99 if you pay yearly. Hosting on Launch is optional if you would rather host the site yourself. Edits are $50 per round, up to 2 pages, and blog posts are $25 each.',
   },
   {
     id: '5',
@@ -617,7 +629,7 @@ export const stats: Stat[] = [
     value: '95',
     suffix: '+',
     description:
-      'Typical mobile Lighthouse performance on the sites we ship.',
+      'Fast on every phone.',
     icon: 'gauge',
   },
   {
@@ -625,14 +637,14 @@ export const stats: Stat[] = [
     value: '2–5',
     suffix: ' business days',
     description:
-      'Typical timeline when content and approvals stay on track.',
+      'Live in days, not months.',
     icon: 'clock',
   },
   {
     label: 'Custom builds from',
     value: '$150',
     description:
-      '$150 buildout, then $50 a month all-inclusive or $15 a month for hosting ($99 a year if paid yearly).',
+      'A complete site, built around you.',
     icon: 'circle-dollar-sign',
   },
 ];

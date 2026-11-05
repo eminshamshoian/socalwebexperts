@@ -106,6 +106,10 @@ export interface PricingModel {
   monthlyLabel?: string;
   /** When set, hosting is shown as "{monthly} a month or {yearly} yearly" */
   yearly?: string;
+  /** Small print shown at the bottom of the card */
+  footnote?: string;
+  /** Line shown above the feature list, e.g. "Everything in Care, minus..." */
+  inherits?: string;
   description?: string;
   features: string[];
   /** Grouped feature layout. Falls back to `features` when omitted. */

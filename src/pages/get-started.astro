@@ -26,19 +26,16 @@ const timelines = [
 
       <form
         class="start-intake__form"
-        action={`https://formsubmit.co/${siteConfig.email}`}
+        action="https://api.web3forms.com/submit"
         method="POST"
         data-reveal
         style="--reveal-delay:140ms"
       >
-        <input type="hidden" name="_subject" value="New Get Started inquiry" />
-        <input type="hidden" name="_template" value="table" />
-        <input type="hidden" name="_captcha" value="false" />
-        <input type="hidden" name="_next" value={nextUrl} />
-        <input type="hidden" name="_autoresponse" value="Thanks. We received your details. You can get started and pay on the next step, and we will be in touch." />
-        <p class="start-intake__honey" aria-hidden="true">
-          <label>Leave this blank<input type="text" name="_honey" tabindex="-1" autocomplete="off" /></label>
-        </p>
+        <input type="hidden" name="access_key" value="27de75aa-c4b8-478d-8b7b-a4b14d1687e7" />
+        <input type="hidden" name="subject" value="New Get Started inquiry" />
+        <input type="hidden" name="from_name" value="SoCal Web Experts" />
+        <input type="hidden" name="redirect" value={nextUrl} />
+        <input type="checkbox" name="botcheck" class="start-intake__honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
 
         <div class="start-intake__row">
           <label>

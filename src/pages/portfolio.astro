@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PortfolioExperience from '../components/pages/PortfolioExperience.astro';
+import { portfolioItems } from '../data/site';
+import { portfolioSchema } from '../utils/seo';
 ---
 
 <BaseLayout
@@ -9,6 +11,7 @@ import PortfolioExperience from '../components/pages/PortfolioExperience.astro';
   keywords="web design portfolio Los Angeles, website examples Orange County, SoCal Web Experts work"
   ogImage="https://socalwebexperts.com/portfolio/ev-design-1400.webp"
   ogImageAlt="EV Design Studio website shown in the SoCal Web Experts portfolio"
+  jsonLd={portfolioSchema(portfolioItems)}
   breadcrumbs={[
     { name: 'Home', url: '/' },
     { name: 'Portfolio', url: '/portfolio/' },

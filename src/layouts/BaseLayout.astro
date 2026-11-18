@@ -2,6 +2,7 @@
 import '../styles/site.css';
 import SiteHeader from '../components/layout/SiteHeader.astro';
 import SiteFooter from '../components/layout/SiteFooter.astro';
+import interLatin from '@fontsource-variable/inter/files/inter-latin-opsz-normal.woff2?url';
 import { siteConfig } from '../data/site';
 import {
   absoluteUrl,
@@ -69,6 +70,7 @@ if (jsonLd) {
 }
 
 const structuredData = buildGraph(graphNodes);
+const isDefaultOgImage = ogImage === absoluteUrl('/og-image.jpg');
 ---
 
 <!doctype html>
@@ -76,6 +78,8 @@ const structuredData = buildGraph(graphNodes);
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
 
     <!-- Icons / PWA -->
     <link rel="icon" href="/favicon.ico" sizes="any" />
@@ -115,8 +119,8 @@ const structuredData = buildGraph(graphNodes);
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    {isDefaultOgImage && <meta property="og:image:width" content="1200" />}
+    {isDefaultOgImage && <meta property="og:image:height" content="630" />}
     <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:site_name" content={siteConfig.name} />
     <meta property="og:locale" content="en_US" />

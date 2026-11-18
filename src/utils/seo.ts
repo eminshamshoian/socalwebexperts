@@ -1,5 +1,5 @@
 import { siteConfig, services, faqItems, pricingModels } from '../data/site';
-import type { FAQItem } from '../types';
+import type { FAQItem, PortfolioItem } from '../types';
 
 const siteURL = siteConfig.url || 'https://socalwebexperts.com';
 
@@ -24,6 +24,14 @@ export function organizationSchema() {
     image: absoluteUrl('/og-image.jpg'),
     email: siteConfig.email,
     telephone: siteConfig.phone,
+    contactPoint: {
+      '@type': 'ContactPoint',
+      contactType: 'sales',
+      telephone: siteConfig.phone,
+      email: siteConfig.email,
+      areaServed: 'US-CA',
+      availableLanguage: 'English',
+    },
     sameAs: siteConfig.socials.map((s) => s.url).filter((url) => url && url !== '#'),
   };
 }
@@ -205,6 +213,30 @@ export function pricingSchema() {
           },
         ],
         availability: 'https://schema.org/InStock',
+      })),
+    },
+  };
+}
+
+export function portfolioSchema(items: PortfolioItem[]) {
+  return {
+    '@type': 'CollectionPage',
+    '@id': absoluteUrl('/portfolio/#webpage'),
+    name: 'Portfolio',
+    url: absoluteUrl('/portfolio/'),
+    isPartOf: { '@id': `${siteURL}/#website` },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'CreativeWork',
+          name: item.title,
+          genre: item.categoryLabel,
+          creator: { '@id': `${siteURL}/#organization` },
+          ...(item.description ? { description: item.description } : {}),
+        },
       })),
     },
   };

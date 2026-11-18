@@ -10,7 +10,7 @@ import {
 } from '../../data/site';
 import '@fontsource-variable/plus-jakarta-sans/index.css';
 import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
-import { ArrowLeft, ArrowRight, ArrowUpRight, Plus, Star } from '@lucide/astro';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Phone, Plus, Star } from '@lucide/astro';
 import SiteIcon from '../ui/SiteIcon.astro';
 import PricingCards from '../ui/PricingCards.astro';
 
@@ -20,7 +20,7 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
 <section class="home-hero">
   <div class="site-container">
     <div class="home-hero__top" data-reveal>
-      <h1 class="hero-title">Get a website that makes your <span class="hero-title__squiggle">phone</span> ring.</h1>
+      <h1 class="hero-title">Get a website that makes your <span class="hero-title__squiggle">phone<Phone class="hero-title__icon" aria-hidden="true" /></span> ring.</h1>
       <div class="home-hero__intro">
         <p class="type-lead">Built for you, live in 2–5 days, $199 to start. No agency runaround.</p>
         <a class="hero-talk" href="/get-started/">Get Started Now</a>
@@ -332,7 +332,31 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
   .hero-title__squiggle {
     position: relative;
     display: inline-block;
+    padding-top: 0.5em;
     padding-bottom: 0.08em;
+  }
+
+  .hero-title__icon {
+    position: absolute;
+    top: 0.02em;
+    right: -0.16em;
+    width: 0.62em;
+    height: 0.62em;
+    stroke-width: 2.2;
+    color: var(--accent);
+    transform: rotate(18deg);
+    transform-origin: 50% 70%;
+    animation: hero-phone-ring 5s ease-in-out 1.5s infinite;
+    pointer-events: none;
+  }
+
+  @keyframes hero-phone-ring {
+    0%, 12%, 100% { transform: rotate(18deg); }
+    2% { transform: rotate(32deg); }
+    4% { transform: rotate(6deg); }
+    6% { transform: rotate(30deg); }
+    8% { transform: rotate(8deg); }
+    10% { transform: rotate(24deg); }
   }
 
   .hero-title__squiggle::after {
@@ -1190,6 +1214,7 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .hero-title__icon,
     .workflow-shape,
     .intro-shape {
       animation: none;

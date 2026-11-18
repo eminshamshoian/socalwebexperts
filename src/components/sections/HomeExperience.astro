@@ -332,31 +332,32 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
   .hero-title__squiggle {
     position: relative;
     display: inline-block;
-    padding-top: 0.5em;
+    padding-top: 0.38em;
     padding-bottom: 0.08em;
   }
 
   .hero-title__icon {
+    --ring-base: 135deg;
     position: absolute;
-    top: 0.02em;
-    right: -0.16em;
-    width: 0.62em;
-    height: 0.62em;
-    stroke-width: 2.2;
+    top: 0.04em;
+    right: 0.02em;
+    width: 0.4em;
+    height: 0.4em;
     color: var(--accent);
-    transform: rotate(18deg);
-    transform-origin: 50% 70%;
+    stroke-width: 2.4;
+    transform: rotate(var(--ring-base));
+    transform-origin: 50% 80%;
     animation: hero-phone-ring 5s ease-in-out 1.5s infinite;
     pointer-events: none;
   }
 
   @keyframes hero-phone-ring {
-    0%, 12%, 100% { transform: rotate(18deg); }
-    2% { transform: rotate(32deg); }
-    4% { transform: rotate(6deg); }
-    6% { transform: rotate(30deg); }
-    8% { transform: rotate(8deg); }
-    10% { transform: rotate(24deg); }
+    0%, 12%, 100% { transform: rotate(var(--ring-base)); }
+    2% { transform: rotate(calc(var(--ring-base) + 12deg)); }
+    4% { transform: rotate(calc(var(--ring-base) - 12deg)); }
+    6% { transform: rotate(calc(var(--ring-base) + 10deg)); }
+    8% { transform: rotate(calc(var(--ring-base) - 8deg)); }
+    10% { transform: rotate(calc(var(--ring-base) + 5deg)); }
   }
 
   .hero-title__squiggle::after {

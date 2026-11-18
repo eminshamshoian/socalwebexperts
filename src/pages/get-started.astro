@@ -1,9 +1,17 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import PricingExperience from '../components/pages/PricingExperience.astro';
 import { siteConfig } from '../data/site';
 
-const nextUrl = `${siteConfig.url}/get-started/?submitted=1#plans`;
+const thanksUrl = `${siteConfig.url}/get-started/thanks/`;
+
+const steps = [
+  { label: 'You', title: 'Who are we building for?' },
+  { label: 'Business', title: 'Tell us about your business.' },
+  { label: 'Project', title: 'What do you need?' },
+];
+
+const needs = ['A new website', 'A redesign of my current site', 'Google Ads', 'Social media'];
+
 const timelines = [
   { id: 'timeline-asap', label: 'As soon as possible' },
   { id: 'timeline-two-weeks', label: 'Within two weeks' },
@@ -13,7 +21,7 @@ const timelines = [
 
 <BaseLayout
   title="Get Started | SoCal Web Experts"
-  description="Tell us about your business so we can get your website moving."
+  description="Tell us about your business in three quick steps and we will get your website moving. Websites start at a $199 buildout."
   breadcrumbs={[
     { name: 'Home', url: '/' },
     { name: 'Get Started', url: '/get-started/' },
@@ -21,70 +29,153 @@ const timelines = [
 >
   <section class="start-intake section-shell page-title-section" id="details">
     <div class="site-container">
-      <h1 data-reveal>Tell us about your business.</h1>
-      <p class="type-lead" data-reveal>Share a few details so we can get your website moving.</p>
+      <h1 data-reveal>Let's get your website moving.</h1>
+      <p class="type-lead" data-reveal>Three quick steps. It takes about a minute.</p>
 
       <form
         class="start-intake__form"
         action="https://api.web3forms.com/submit"
         method="POST"
+        novalidate
+        data-start-form
+        data-thanks={thanksUrl}
         data-reveal
         style="--reveal-delay:140ms"
       >
         <input type="hidden" name="access_key" value="27de75aa-c4b8-478d-8b7b-a4b14d1687e7" />
         <input type="hidden" name="subject" value="New Get Started inquiry" />
         <input type="hidden" name="from_name" value="SoCal Web Experts" />
-        <input type="hidden" name="redirect" value={nextUrl} />
-        <input type="checkbox" name="botcheck" class="start-intake__honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
+        <input type="hidden" name="redirect" value={thanksUrl} />
+        <input type="hidden" name="What they need" value="" data-needs-output />
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
 
-        <div class="start-intake__row">
-          <label>
-            <span>Name</span>
-            <input type="text" name="Name" autocomplete="name" required />
-          </label>
-          <label>
-            <span>Email</span>
-            <input type="email" name="Email" autocomplete="email" required />
-          </label>
-        </div>
-
-        <div class="start-intake__row">
-          <label>
-            <span>Phone</span>
-            <input type="tel" name="Phone" autocomplete="tel" inputmode="tel" required />
-          </label>
-          <label>
-            <span>Business name</span>
-            <input type="text" name="Business name" autocomplete="organization" required />
-          </label>
-        </div>
-
-        <fieldset>
-          <legend>When should we start your website?</legend>
-          <div class="start-intake__choices">
-            {timelines.map((option, index) => (
-              <label>
-                <input
-                  type="radio"
-                  id={option.id}
-                  name="When should we start your website?"
-                  value={option.label}
-                  required={index === 0}
-                />
-                <span>{option.label}</span>
-              </label>
-            ))}
+        <div class="progress" data-progress>
+          <div
+            class="progress__track"
+            role="progressbar"
+            aria-label="Form progress"
+            aria-valuemin="1"
+            aria-valuemax={steps.length}
+            aria-valuenow="1"
+            aria-valuetext={`Step 1 of ${steps.length}: ${steps[0].label}`}
+            data-progress-bar
+          >
+            <span class="progress__fill" data-progress-fill></span>
           </div>
-        </fieldset>
+          <ol class="progress__steps">
+            {steps.map((step, index) => (
+              <li data-progress-step class:list={[index === 0 && 'is-current']}>
+                <span class="progress__dot" aria-hidden="true">{index + 1}</span>
+                <span class="progress__label">{step.label}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
 
-        <button class="button" type="submit">Continue</button>
+        <p class="start-intake__status" role="status" aria-live="polite" data-status>Step 1 of {steps.length}</p>
+
+        <div class="step is-active" data-step>
+          <h2 tabindex="-1">{steps[0].title}</h2>
+          <div class="start-intake__row">
+            <div class="field">
+              <label for="f-name">Name</label>
+              <input id="f-name" type="text" name="Name" autocomplete="name" required />
+              <p class="field__error" id="f-name-err" data-error></p>
+            </div>
+            <div class="field">
+              <label for="f-email">Email</label>
+              <input id="f-email" type="email" name="Email" autocomplete="email" inputmode="email" required />
+              <p class="field__error" id="f-email-err" data-error></p>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone</label>
+            <input id="f-phone" type="tel" name="Phone" autocomplete="tel" inputmode="tel" required />
+            <p class="field__error" id="f-phone-err" data-error></p>
+          </div>
+        </div>
+
+        <div class="step" data-step>
+          <h2 tabindex="-1">{steps[1].title}</h2>
+          <div class="start-intake__row">
+            <div class="field">
+              <label for="f-business">Business name</label>
+              <input id="f-business" type="text" name="Business name" autocomplete="organization" required />
+              <p class="field__error" id="f-business-err" data-error></p>
+            </div>
+            <div class="field">
+              <label for="f-industry">What do you do?</label>
+              <input id="f-industry" type="text" name="Industry" placeholder="Plumbing, dental, bakery..." required />
+              <p class="field__error" id="f-industry-err" data-error></p>
+            </div>
+          </div>
+          <div class="start-intake__row">
+            <div class="field">
+              <label for="f-city">City</label>
+              <input id="f-city" type="text" name="City" autocomplete="address-level2" required />
+              <p class="field__error" id="f-city-err" data-error></p>
+            </div>
+            <div class="field">
+              <label for="f-site">Current website <span class="field__optional">(optional)</span></label>
+              <input id="f-site" type="url" name="Current website" inputmode="url" autocomplete="url" placeholder="https://" />
+              <p class="field__error" id="f-site-err" data-error></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="step" data-step>
+          <h2 tabindex="-1">{steps[2].title}</h2>
+          <fieldset>
+            <legend>What are you looking for? <span class="field__optional">(optional)</span></legend>
+            <div class="start-intake__choices start-intake__choices--grid">
+              {needs.map((need, index) => (
+                <label>
+                  <input type="checkbox" value={need} data-need id={`need-${index}`} />
+                  <span>{need}</span>
+                </label>
+              ))}
+            </div>
+          </fieldset>
+
+          <div class="field">
+            <label for="f-goals">Anything we should know? <span class="field__optional">(optional)</span></label>
+            <textarea id="f-goals" name="Goals" rows="3" placeholder="What would make this website a win for you?"></textarea>
+          </div>
+
+          <fieldset>
+            <legend>When should we start your website?</legend>
+            <div class="start-intake__choices" role="radiogroup" aria-describedby="timeline-err">
+              {timelines.map((option, index) => (
+                <label>
+                  <input
+                    type="radio"
+                    id={option.id}
+                    name="When should we start your website?"
+                    value={option.label}
+                    required={index === 0}
+                  />
+                  <span>{option.label}</span>
+                </label>
+              ))}
+            </div>
+            <p class="field__error" id="timeline-err" data-error></p>
+          </fieldset>
+        </div>
+
+        <p class="start-intake__fail" role="alert" data-fail hidden>
+          Something went wrong sending that. Please try again, or email
+          <a href={`mailto:${siteConfig.email}`}>{siteConfig.email}</a> or call
+          <a href={`tel:${siteConfig.phone.replace(/[^0-9]/g, '')}`}>{siteConfig.phone}</a>.
+        </p>
+
+        <div class="start-intake__actions">
+          <button class="button button--ghost" type="button" data-back>Back</button>
+          <button class="button button--solid" type="button" data-next>Continue</button>
+          <button class="button button--solid" type="submit" data-submit>Submit</button>
+        </div>
       </form>
     </div>
   </section>
-
-  <div id="plans" hidden>
-    <PricingExperience layout="start" />
-  </div>
 </BaseLayout>
 
 <style>
@@ -94,32 +185,167 @@ const timelines = [
 
   .start-intake__form {
     display: grid;
-    gap: 2rem;
+    gap: 1.75rem;
     max-width: 46rem;
     margin-top: clamp(2rem, 4vw, 3rem);
-    padding: clamp(1.5rem, 4vw, 3rem);
+    padding: clamp(1.25rem, 4vw, 3rem);
     border: 1px solid #f6e3d9;
     border-radius: 1.5rem;
     background: #fdf8f5;
   }
 
-  .start-intake__row,
-  .start-intake label,
-  .start-intake fieldset {
-    min-width: 0;
+  /* Progress */
+  .progress {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .progress__track {
+    position: relative;
+    height: 0.5rem;
+    overflow: hidden;
+    border-radius: 999px;
+    background: #f1dfd5;
+  }
+
+  .progress__fill {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 33.333%;
+    border-radius: inherit;
+    background-color: var(--accent);
+    background-image: linear-gradient(
+      110deg,
+      rgba(255, 255, 255, 0) 30%,
+      rgba(255, 255, 255, 0.55) 50%,
+      rgba(255, 255, 255, 0) 70%
+    );
+    background-size: 200% 100%;
+    transition: width 650ms cubic-bezier(0.22, 1, 0.36, 1);
+    animation: progress-sheen 2.2s linear infinite;
+  }
+
+  @keyframes progress-sheen {
+    from { background-position: 200% 0; }
+    to { background-position: -200% 0; }
+  }
+
+  .progress__steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .progress__steps li {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-secondary);
+    font-size: var(--type-sm);
+    transition: color 300ms ease;
+  }
+
+  .progress__steps li:nth-child(2) { justify-content: center; }
+  .progress__steps li:nth-child(3) { justify-content: flex-end; }
+
+  .progress__dot {
+    display: grid;
+    width: 1.75rem;
+    height: 1.75rem;
+    place-items: center;
+    border: 1px solid #eedcd2;
+    border-radius: 50%;
+    background: #fff;
+    font-size: 0.8rem;
+    font-weight: var(--weight-bold);
+    transition: background-color 300ms ease, color 300ms ease, border-color 300ms ease, transform 400ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .progress__steps li.is-current,
+  .progress__steps li.is-done {
+    color: var(--text);
+  }
+
+  .progress__steps li.is-current .progress__dot {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: scale(1.12);
+  }
+
+  .progress__steps li.is-done .progress__dot {
+    border-color: var(--accent);
+    background: var(--accent);
+    color: #fff;
+  }
+
+  .progress__label {
+    font-weight: var(--weight-bold);
+  }
+
+  .start-intake__status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  /* Steps */
+  .step h2 {
+    margin-bottom: 1.5rem;
+    font-size: var(--type-md);
+    font-weight: var(--weight-bold);
+    outline: 0;
+  }
+
+  .step {
+    display: grid;
+    gap: 1.5rem;
+    align-content: start;
+  }
+
+  .is-enhanced .step {
+    display: none;
+  }
+
+  .is-enhanced .step.is-active {
+    display: grid;
+    animation: step-in 420ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .is-enhanced .step.is-active.from-back {
+    animation-name: step-in-back;
+  }
+
+  @keyframes step-in {
+    from { opacity: 0; transform: translateX(1.25rem); }
+    to { opacity: 1; transform: none; }
+  }
+
+  @keyframes step-in-back {
+    from { opacity: 0; transform: translateX(-1.25rem); }
+    to { opacity: 1; transform: none; }
   }
 
   .start-intake__row {
     display: grid;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
-  .start-intake label {
+  .field,
+  .start-intake fieldset {
+    min-width: 0;
+  }
+
+  .field {
     display: grid;
-    gap: 0.75rem;
+    gap: 0.6rem;
   }
 
-  .start-intake label > span,
+  .field label,
   .start-intake legend {
     color: var(--text-secondary);
     font-size: var(--type-sm);
@@ -128,26 +354,54 @@ const timelines = [
     text-transform: uppercase;
   }
 
+  .field__optional {
+    letter-spacing: 0;
+    text-transform: none;
+    opacity: 0.8;
+  }
+
   .start-intake input[type="text"],
   .start-intake input[type="email"],
-  .start-intake input[type="tel"] {
+  .start-intake input[type="tel"],
+  .start-intake input[type="url"],
+  .start-intake textarea {
     width: 100%;
+    min-height: 3.25rem;
     border: 1px solid #eedcd2;
     border-radius: 0.75rem;
     outline: 0;
     background: #fff;
     padding: 0.85rem 1rem;
     color: var(--text);
+    font: inherit;
     font-size: 1rem;
     font-weight: var(--weight-regular);
     transition: border-color 200ms ease, box-shadow 200ms ease;
   }
 
-  .start-intake input[type="text"]:focus,
-  .start-intake input[type="email"]:focus,
-  .start-intake input[type="tel"]:focus {
+  .start-intake textarea {
+    resize: vertical;
+  }
+
+  .start-intake input:focus,
+  .start-intake textarea:focus {
     border-color: var(--accent);
-    box-shadow: 0 0 0 3px rgba(240, 84, 35, 0.12);
+    box-shadow: 0 0 0 3px rgba(240, 84, 35, 0.16);
+  }
+
+  .start-intake input[aria-invalid="true"] {
+    border-color: #c0341a;
+  }
+
+  .field__error {
+    min-height: 0;
+    margin: 0;
+    color: #b02a12;
+    font-size: var(--type-sm);
+  }
+
+  .field__error:empty {
+    display: none;
   }
 
   .start-intake fieldset {
@@ -172,7 +426,7 @@ const timelines = [
     border-radius: 0.75rem;
     background: #fff;
     cursor: pointer;
-    transition: border-color 200ms ease;
+    transition: border-color 200ms ease, background-color 200ms ease;
   }
 
   .start-intake__choices label:hover,
@@ -180,7 +434,17 @@ const timelines = [
     border-color: var(--accent);
   }
 
+  .start-intake__choices label:has(input:checked) {
+    background: var(--accent-soft);
+  }
+
+  .start-intake__choices label:has(input:focus-visible) {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
   .start-intake__choices input {
+    flex: none;
     width: 1.15rem;
     height: 1.15rem;
     margin: 0;
@@ -188,32 +452,95 @@ const timelines = [
   }
 
   .start-intake__choices label > span {
-    letter-spacing: 0;
-    text-transform: none;
-    color: var(--text);
     font-size: 1rem;
   }
 
-  .start-intake button {
-    justify-self: start;
+  .start-intake__fail {
+    margin: 0;
+    padding: 0.9rem 1rem;
+    border-radius: 0.75rem;
+    background: #fde8e3;
+    color: #8a2410;
+    font-size: var(--type-sm);
+  }
+
+  .start-intake__fail a {
+    text-decoration: underline;
+  }
+
+  /* Actions */
+  .start-intake__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .start-intake__actions .button {
+    flex: 1 1 8rem;
+    min-height: 3.25rem;
     cursor: pointer;
   }
 
-  .start-intake__honey {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
+  .button--solid {
+    background: var(--text);
+    color: #fff;
   }
 
-  #plans {
-    scroll-margin-top: 7rem;
+  .button--solid:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .button--solid:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+  }
+
+  .button--ghost {
+    background: transparent;
+  }
+
+  /* Without JS everything shows and the buttons collapse to one Submit */
+  .start-intake__form:not(.is-enhanced) [data-back],
+  .start-intake__form:not(.is-enhanced) [data-next] {
+    display: none;
+  }
+
+  .is-enhanced [data-submit],
+  .is-enhanced [data-back] {
+    display: none;
+  }
+
+  .is-enhanced.on-last [data-submit] {
+    display: inline-flex;
+  }
+
+  .is-enhanced.on-last [data-next] {
+    display: none;
+  }
+
+  .is-enhanced.not-first [data-back] {
+    display: inline-flex;
   }
 
   @media (min-width: 760px) {
     .start-intake__row {
       grid-template-columns: 1fr 1fr;
+    }
+
+    .start-intake__choices--grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .start-intake__actions {
+      justify-content: flex-end;
+    }
+
+    .start-intake__actions .button {
+      flex: 0 0 auto;
+      min-width: 9rem;
     }
   }
 
@@ -229,29 +556,184 @@ const timelines = [
       text-align: left;
     }
   }
+
+  @media (max-width: 480px) {
+    .progress__label {
+      display: none;
+    }
+
+    .progress__steps li,
+    .progress__steps li:nth-child(2),
+    .progress__steps li:nth-child(3) {
+      justify-content: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .progress__fill {
+      animation: none;
+      transition: none;
+    }
+
+    .is-enhanced .step.is-active {
+      animation: none;
+    }
+
+    .progress__dot {
+      transition: none;
+    }
+  }
 </style>
 
 <script>
-  function showSelectedPlans() {
-    const params = new URLSearchParams(window.location.search);
-    if (params.get('submitted') !== '1') return;
-    const plans = document.getElementById('plans');
-    if (!plans) return;
+  const form = document.querySelector<HTMLFormElement>('[data-start-form]');
 
-    plans.hidden = false;
+  if (form) {
+    const steps = Array.from(form.querySelectorAll<HTMLElement>('[data-step]'));
+    const dots = Array.from(form.querySelectorAll<HTMLElement>('[data-progress-step]'));
+    const fill = form.querySelector<HTMLElement>('[data-progress-fill]')!;
+    const bar = form.querySelector<HTMLElement>('[data-progress-bar]')!;
+    const status = form.querySelector<HTMLElement>('[data-status]')!;
+    const back = form.querySelector<HTMLButtonElement>('[data-back]')!;
+    const next = form.querySelector<HTMLButtonElement>('[data-next]')!;
+    const submit = form.querySelector<HTMLButtonElement>('[data-submit]')!;
+    const fail = form.querySelector<HTMLElement>('[data-fail]')!;
+    const needsOutput = form.querySelector<HTMLInputElement>('[data-needs-output]')!;
+    const labels = dots.map((d) => d.querySelector('.progress__label')?.textContent ?? '');
+    let current = 0;
 
-    const root = document.documentElement;
-    const previous = root.style.scrollBehavior;
-    root.style.scrollBehavior = 'auto';
-    plans.scrollIntoView();
-    root.style.scrollBehavior = previous;
+    form.classList.add('is-enhanced');
 
-    const lenis = (window as Window & { __siteLenis?: { scrollTo: (target: HTMLElement, options: { immediate: boolean }) => void } }).__siteLenis;
-    lenis?.scrollTo(plans, { immediate: true });
-    window.dispatchEvent(new Event('resize'));
+    const messages: Record<string, string> = {
+      valueMissing: 'This field is required.',
+      typeMismatch: 'Please enter a valid value.',
+    };
+
+    const errorFor = (el: HTMLInputElement | HTMLTextAreaElement) => {
+      if (el.type === 'radio') return form.querySelector<HTMLElement>('#timeline-err');
+      return document.getElementById(`${el.id}-err`);
+    };
+
+    const messageFor = (el: HTMLInputElement | HTMLTextAreaElement) => {
+      if (el.validity.valueMissing) return el.type === 'radio' ? 'Please choose an option.' : messages.valueMissing;
+      if (el.type === 'email') return 'Please enter a valid email address.';
+      if (el.type === 'url') return 'Please enter a full address, like https://example.com.';
+      return messages.typeMismatch;
+    };
+
+    const clearError = (el: HTMLInputElement | HTMLTextAreaElement) => {
+      const err = errorFor(el);
+      if (err) err.textContent = '';
+      if (el.type === 'radio') {
+        form.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((r) => r.removeAttribute('aria-invalid'));
+      } else {
+        el.removeAttribute('aria-invalid');
+        el.removeAttribute('aria-describedby');
+      }
+    };
+
+    const validateStep = (index: number) => {
+      const fields = Array.from(
+        steps[index].querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[name], textarea[name]'),
+      );
+      let firstInvalid: HTMLInputElement | HTMLTextAreaElement | null = null;
+      for (const el of fields) {
+        if (el.validity.valid) {
+          clearError(el);
+          continue;
+        }
+        const err = errorFor(el);
+        if (err) err.textContent = messageFor(el);
+        if (el.type === 'radio') {
+          form.querySelectorAll<HTMLInputElement>('input[type="radio"]').forEach((r) => r.setAttribute('aria-invalid', 'true'));
+        } else {
+          el.setAttribute('aria-invalid', 'true');
+          if (err) el.setAttribute('aria-describedby', err.id);
+        }
+        firstInvalid ??= el;
+      }
+      firstInvalid?.focus();
+      return !firstInvalid;
+    };
+
+    const show = (index: number, direction: 'forward' | 'back', moveFocus = true) => {
+      current = index;
+      steps.forEach((step, i) => {
+        const active = i === index;
+        step.classList.toggle('is-active', active);
+        step.classList.toggle('from-back', active && direction === 'back');
+      });
+      dots.forEach((dot, i) => {
+        dot.classList.toggle('is-current', i === index);
+        dot.classList.toggle('is-done', i < index);
+        if (i === index) dot.setAttribute('aria-current', 'step');
+        else dot.removeAttribute('aria-current');
+      });
+      const pct = ((index + 1) / steps.length) * 100;
+      fill.style.width = `${pct}%`;
+      bar.setAttribute('aria-valuenow', String(index + 1));
+      bar.setAttribute('aria-valuetext', `Step ${index + 1} of ${steps.length}: ${labels[index]}`);
+      status.textContent = `Step ${index + 1} of ${steps.length}: ${labels[index]}`;
+      form.classList.toggle('on-last', index === steps.length - 1);
+      form.classList.toggle('not-first', index > 0);
+      if (moveFocus) steps[index].querySelector<HTMLElement>('h2')?.focus({ preventScroll: false });
+    };
+
+    next.addEventListener('click', () => {
+      if (validateStep(current)) show(current + 1, 'forward');
+    });
+
+    back.addEventListener('click', () => show(current - 1, 'back'));
+
+    form.addEventListener('input', (event) => {
+      const el = event.target as HTMLInputElement;
+      if (el.matches?.('input[name], textarea[name]') && el.validity.valid) clearError(el);
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (current < steps.length - 1) {
+        if (validateStep(current)) show(current + 1, 'forward');
+        return;
+      }
+      if (!validateStep(current)) return;
+
+      needsOutput.value = Array.from(form.querySelectorAll<HTMLInputElement>('[data-need]:checked'))
+        .map((c) => c.value)
+        .join(', ') || 'Not specified';
+
+      fail.hidden = true;
+      submit.disabled = true;
+      const originalLabel = submit.textContent;
+      submit.textContent = 'Sending...';
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: { Accept: 'application/json' },
+          body: new FormData(form),
+        });
+        const result = await response.json();
+        if (!response.ok || !result.success) throw new Error('Submit failed');
+
+        try {
+          const data = new FormData(form);
+          sessionStorage.setItem(
+            'swe-lead',
+            JSON.stringify({ name: String(data.get('Name') ?? ''), email: String(data.get('Email') ?? '') }),
+          );
+        } catch {
+          /* storage unavailable, the thanks page still works */
+        }
+        window.location.href = form.dataset.thanks ?? '/get-started/thanks/';
+      } catch {
+        fail.hidden = false;
+        submit.disabled = false;
+        submit.textContent = originalLabel;
+        fail.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    });
+
+    show(0, 'forward', false);
   }
-
-  showSelectedPlans();
-  window.addEventListener('pageshow', () => requestAnimationFrame(showSelectedPlans));
-  window.addEventListener('load', () => requestAnimationFrame(showSelectedPlans));
 </script>

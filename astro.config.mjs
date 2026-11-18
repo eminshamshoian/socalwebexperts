@@ -14,6 +14,7 @@ export default defineConfig({
     sitemap({
       filter: (page) =>
         !page.includes('/404') &&
+        !page.includes('/get-started/thanks') &&
         !page.endsWith('.html'),
       serialize(item) {
         const url = item.url.endsWith('/') || item.url === 'https://socalwebexperts.com'

@@ -147,6 +147,26 @@ export function servicePageSchema(service: {
   };
 }
 
+export function servicesIndexSchema() {
+  return {
+    '@type': 'CollectionPage',
+    '@id': absoluteUrl('/services/#webpage'),
+    name: 'Services',
+    url: absoluteUrl('/services/'),
+    isPartOf: { '@id': `${siteURL}/#website` },
+    about: { '@id': `${siteURL}/#localbusiness` },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: services.map((service, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: absoluteUrl(`/services/${service.slug}/`),
+        name: service.title,
+      })),
+    },
+  };
+}
+
 export function buildGraph(nodes: Record<string, unknown>[]) {
   return {
     '@context': 'https://schema.org',

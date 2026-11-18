@@ -19,6 +19,7 @@ import { navigation, services, siteConfig } from '../../data/site';
 
       <div>
         <p class="footer__label">Services</p>
+        <a href="/services/">All services</a>
         {services.map((service) => <a href={`/services/${service.slug}/`}>{service.title}</a>)}
         <a href="/portfolio/">Selected Projects</a>
       </div>

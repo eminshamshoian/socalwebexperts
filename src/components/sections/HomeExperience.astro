@@ -119,28 +119,16 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
   </div>
 </section>
 
-<section class="services-home section-shell section-rule" id="services">
+<section class="services-home section-shell section-rule" id="services" aria-labelledby="services-home-title">
   <div class="site-container">
     <div class="section-head" data-reveal>
       <div>
         <p class="section-index texture-tag">Services</p>
-        <h2>One team for your digital growth.</h2>
+        <h2 id="services-home-title">One team for your digital growth.</h2>
       </div>
       <p class="type-lead">Web design, Google Ads, and social media working together.</p>
     </div>
-
-    <div class="service-list">
-      {services.map((service, index) => (
-        <a href={`/services/${service.slug}/`} data-reveal style={`--reveal-delay:${index * 70}ms`}>
-          <SiteIcon name={service.icon} class="service-list__icon" />
-          <div>
-            <h3>{service.title}</h3>
-            <p>{service.shortDescription}</p>
-          </div>
-          <ArrowUpRight class="service-list__arrow" aria-hidden="true" />
-        </a>
-      ))}
-    </div>
+    <a class="button" href="/services/" data-reveal>Explore all services</a>
   </div>
 </section>
 
@@ -652,49 +640,6 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
 
   .work__all {
     margin-top: 4rem;
-  }
-
-  .service-list {
-    display: grid;
-    gap: 0.75rem;
-  }
-
-  .service-list > a {
-    position: relative;
-    display: grid;
-    grid-template-columns: 2.5rem 1fr auto;
-    gap: 1rem;
-    padding: 2rem;
-    background: var(--bg-secondary);
-    transition: background-color 250ms ease, transform 250ms ease;
-  }
-
-  .service-list > a:hover {
-    background: var(--bg-tertiary);
-    transform: translateY(-2px);
-  }
-
-  .service-list__icon {
-    color: var(--text-secondary);
-    width: 1.15rem;
-    height: 1.15rem;
-  }
-
-  .service-list h3 {
-    font-weight: var(--weight-bold);
-  }
-
-  .service-list p {
-    max-width: 36rem;
-    margin-top: 0.7rem;
-    color: var(--text-secondary);
-    font-size: var(--type-sm);
-    font-weight: var(--weight-regular);
-  }
-
-  .service-list__arrow {
-    width: 1.25rem;
-    height: 1.25rem;
   }
 
   .workflow {
@@ -1224,11 +1169,6 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
     .work-card--2,
     .work-card--4 {
       margin-top: 8rem;
-    }
-
-    .service-list > a {
-      grid-template-columns: 3rem 1fr auto;
-      align-items: start;
     }
 
     .workflow__steps {

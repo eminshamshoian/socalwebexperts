@@ -29,7 +29,7 @@ const serviceKeywords: Record<string, string> = {
   ogImageAlt={service.highlights[0].imageAlt}
   breadcrumbs={[
     { name: 'Home', url: '/' },
-    { name: 'Services', url: '/#services' },
+    { name: 'Services', url: '/services/' },
     { name: service.title, url: `/services/${service.slug}/` },
   ]}
   jsonLd={servicePageSchema(service)}

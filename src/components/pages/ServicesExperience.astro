@@ -1,0 +1,206 @@
+---
+import { services } from '../../data/site';
+import { ArrowUpRight, Check } from '@lucide/astro';
+import SiteIcon from '../ui/SiteIcon.astro';
+
+const imageUrl = (src: string, width: number) => {
+  const url = new URL(src);
+  url.searchParams.set('auto', 'format');
+  url.searchParams.set('fit', 'crop');
+  url.searchParams.set('w', String(width));
+  url.searchParams.set('q', '78');
+  return url.toString();
+};
+---
+
+<section class="services-hero section-shell page-title-section page-hero-compact" aria-labelledby="services-title">
+  <div class="site-container">
+    <h1 id="services-title" data-reveal>Everything your business needs to get found and get called.</h1>
+    <p class="type-lead" data-reveal>
+      Custom web design, Google Ads, and social media for Southern California businesses. Pick one service or run them together.
+    </p>
+  </div>
+</section>
+
+<section class="services-index section-shell section-rule" aria-labelledby="services-list-title">
+  <div class="site-container">
+    <h2 id="services-list-title" class="services-index__title">All services</h2>
+    <ul class="services-index__list">
+      {services.map((service, index) => (
+        <li data-reveal style={`--reveal-delay:${index * 70}ms`}>
+          <article class="service-card" aria-labelledby={`service-${service.slug}`}>
+            <div class="service-card__media">
+              <img
+                src={imageUrl(service.highlights[0].image, 900)}
+                srcset={[480, 720, 900].map((width) => `${imageUrl(service.highlights[0].image, width)} ${width}w`).join(', ')}
+                sizes="(max-width: 900px) calc(100vw - 2rem), 42vw"
+                width="900"
+                height="680"
+                alt={service.highlights[0].imageAlt}
+                loading={index === 0 ? 'eager' : 'lazy'}
+                decoding="async"
+              />
+            </div>
+            <div class="service-card__body">
+              <SiteIcon name={service.icon} class="service-card__icon" />
+              <h3 id={`service-${service.slug}`}>{service.title}</h3>
+              <p class="service-card__lead">{service.description}</p>
+              <ul class="service-card__features">
+                {service.features.slice(0, 4).map((feature) => (
+                  <li><Check aria-hidden="true" />{feature}</li>
+                ))}
+              </ul>
+              <a class="button" href={`/services/${service.slug}/`}>
+                Explore {service.title}
+                <ArrowUpRight aria-hidden="true" />
+              </a>
+            </div>
+          </article>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
+
+<section class="services-cta section-shell section-rule" aria-labelledby="services-cta-title">
+  <div class="site-container">
+    <p class="section-index">Not sure where to start?</p>
+    <h2 id="services-cta-title">Start with a website. Add the rest when you are ready.</h2>
+    <div class="services-cta__actions">
+      <a class="button" href="/get-started/">Get started</a>
+      <a href="/pricing/">See pricing</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .services-hero .type-lead {
+    margin-top: 1.25rem;
+  }
+
+  .services-index__title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .services-index__list {
+    display: grid;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .service-card {
+    display: grid;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    background: var(--bg-secondary);
+  }
+
+  .service-card__media {
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+  }
+
+  .service-card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .service-card__body {
+    display: grid;
+    align-content: center;
+    justify-items: start;
+    gap: 1rem;
+    padding: clamp(1.5rem, 4vw, 3rem);
+  }
+
+  .service-card__icon {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: var(--accent);
+  }
+
+  .service-card h3 {
+    font-weight: var(--weight-bold);
+  }
+
+  .service-card__lead {
+    max-width: 36rem;
+    color: var(--text-secondary);
+    font-weight: var(--weight-regular);
+  }
+
+  .service-card__features {
+    display: grid;
+    gap: 0.6rem;
+    margin: 0.25rem 0 0.75rem;
+    padding: 0;
+    list-style: none;
+    font-size: var(--type-sm);
+  }
+
+  .service-card__features li {
+    display: grid;
+    grid-template-columns: 1.25rem 1fr;
+    gap: 0.6rem;
+    align-items: start;
+  }
+
+  .service-card__features :global(svg) {
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.2rem;
+    color: var(--accent);
+  }
+
+  .service-card .button {
+    gap: 0.4rem;
+  }
+
+  .service-card .button :global(svg) {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .services-cta h2 {
+    max-width: 18ch;
+    margin-top: 1rem;
+  }
+
+  .services-cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+
+  .services-cta__actions > a:last-child {
+    font-size: var(--type-sm);
+    font-weight: var(--weight-bold);
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
+
+  @media (min-width: 900px) {
+    .service-card {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .service-card__media {
+      aspect-ratio: auto;
+      min-height: 26rem;
+    }
+
+    .services-index__list > li:nth-child(even) .service-card__media {
+      order: 2;
+    }
+  }
+</style>

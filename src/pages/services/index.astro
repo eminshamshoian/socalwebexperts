@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ServicesExperience from '../../components/pages/ServicesExperience.astro';
+import { servicesIndexSchema } from '../../utils/seo';
+---
+
+<BaseLayout
+  title="Services | Web Design, Google Ads and Social Media | SoCal Web Experts"
+  description="Custom web design, Google Ads, and social media marketing for Los Angeles and Orange County businesses. Websites start at a $199 buildout."
+  keywords="web design services Los Angeles, Google Ads management Orange County, social media marketing SoCal, local marketing services Glendale"
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Services', url: '/services/' },
+  ]}
+  jsonLd={servicesIndexSchema()}
+>
+  <ServicesExperience />
+</BaseLayout>

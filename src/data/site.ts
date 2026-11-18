@@ -34,7 +34,7 @@ export const navigation: NavItem[] = [
   { label: 'Home', href: '/' },
   {
     label: 'Services',
-    href: '/#services',
+    href: '/services/',
     children: [
       { label: 'Custom Web Design', href: '/services/web-design/' },
       { label: 'Social Media Marketing', href: '/services/social-media/' },

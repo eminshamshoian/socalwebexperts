@@ -101,11 +101,12 @@ export interface PricingModel {
   upfront: string;
   /** Label beside upfront price; defaults to "upfront" */
   upfrontLabel?: string;
-  monthly: string;
-  /** Short label after the monthly price, such as "/ month, all in" */
-  monthlyLabel?: string;
-  /** When set, hosting is shown as "{monthly} a month or {yearly} yearly" */
-  yearly?: string;
+  /** Recurring price, such as "$49" */
+  recurring: string;
+  /** Billing period for the recurring price */
+  period: 'month' | 'year';
+  /** Label above the recurring price */
+  recurringLabel?: string;
   /** Small print shown at the bottom of the card */
   footnote?: string;
   /** Line shown above the feature list, e.g. "Everything in Care, minus..." */

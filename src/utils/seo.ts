@@ -38,7 +38,7 @@ export function localBusinessSchema() {
     email: siteConfig.email,
     image: absoluteUrl('/og-image.jpg'),
     logo: absoluteUrl('/icon-512.png'),
-    priceRange: '$$',
+    priceRange: '$199+',
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Glendale',

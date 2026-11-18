@@ -9,7 +9,7 @@ This site is for local and service based businesses that need a website that gen
 - [Social Media Marketing](https://socalwebexperts.com/services/social-media/): On-brand content and posting
 - [Google Ads](https://socalwebexperts.com/services/google-ads/): Paid search for high-intent local leads
 - [Portfolio](https://socalwebexperts.com/portfolio/): Example client websites
-- [Pricing](https://socalwebexperts.com/pricing/): Care ($150 + $50/mo) and Launch ($499 + $15/mo) plans, and add-ons
+- [Pricing](https://socalwebexperts.com/pricing/): $199 buildout, then Care ($49/mo) or Hosting ($99/yr), and add-ons
 - [Get Started](https://socalwebexperts.com/get-started/): Project details form, then plan selection
 - [Contact](https://socalwebexperts.com/contact/): Book a free strategy call
 
@@ -19,8 +19,11 @@ This site is for local and service based businesses that need a website that gen
 - Email: hello@socalwebexperts.com
 - Area served: Los Angeles, Glendale, Orange County, California
 - Both plans include the same complete custom website: unlimited pages, brand and logo design, accessibility pages, mobile-ready pages, SEO, forms and click-to-call, reviews, and a review before launch
-- Care: $150 buildout, then $50/mo all-inclusive, with unlimited pages, edits, support, and 1 blog post included. Extra blog posts are $25
-- Launch: $499 buildout, then $15/mo hosting and maintenance, or $99/yr if paid yearly. Hosting is optional if the client hosts the site themselves. Edits are $50 per round, up to 2 pages. Blog posts are $25 each and are not included
+- Every website is a one-time $199 buildout, then the client chooses Care or Hosting
+- Care: $49/mo all-inclusive, with hosting, unlimited edits and pages, support, lead form emails sent to the client, and 1 blog post included. Extra blog posts are $25
+- Hosting: $99/yr, billed yearly only (no monthly option), covering hosting and maintenance. Edits are $50 per round, up to 2 pages. Blog posts are $25 each. The client is responsible for their own form email receiving service
+- After the second month of Care, clients can switch to Hosting only and are not charged for hosting for that first year
+- Clients who cancel and want to keep the website code pay a one-time $199, regardless of prior payments
 
 ## Policies
 - [Privacy Policy](https://socalwebexperts.com/privacy/)

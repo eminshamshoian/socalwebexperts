@@ -28,10 +28,9 @@ const stripeCare = 'https://buy.stripe.com/6oU7sK58EexagEN9Bc8ww03';
             <dd><strong>{plan.upfront}</strong></dd>
           </div>
           <div class="plan__price plan__price--monthly">
-            <dt>{isCare ? 'All-inclusive' : 'Hosting and maintenance'}</dt>
+            <dt>{plan.recurringLabel}</dt>
             <dd>
-              <strong>{plan.monthly}</strong><span>/ month</span>
-              {plan.yearly && <small>or {plan.yearly} yearly</small>}
+              <strong>{plan.recurring}</strong><span>/ {plan.period}</span>
             </dd>
           </div>
         </dl>

@@ -16,9 +16,11 @@ SoCal Web Experts builds fast, secure, conversion-focused websites that help ser
 
 ## Pricing
 - Both plans include the same complete custom website: unlimited pages, brand and logo design, accessibility pages, mobile-ready pages, SEO, forms and click-to-call, reviews, and a review before launch
-- Care: $150 buildout, then $50/mo all-inclusive, with unlimited pages, edits, support, and 1 blog post included. Extra blog posts are $25
-- Launch: $499 buildout, then $15/mo hosting and maintenance, or $99/yr if paid yearly. Hosting is optional if the client hosts the site themselves. Edits are $50 per round, up to 2 pages. Blog posts are $25 each and are not included
-- Post-launch updates: Care is $50/month with unlimited edits and 1 blog. Launch edits are $50 per round, up to 2 pages. Extra or standalone blog posts are $25
+- Every website is a one-time $199 buildout, then the client chooses Care or Hosting
+- Care: $49/mo all-inclusive, with hosting, unlimited edits and pages, support, lead form emails sent to the client, and 1 blog post included. Extra blog posts are $25
+- Hosting: $99/yr, billed yearly only (no monthly option), covering hosting and maintenance. Edits are $50 per round, up to 2 pages. Blog posts are $25 each. The client is responsible for their own form email receiving service
+- After the second month of Care, clients can switch to Hosting only and are not charged for hosting for that first year
+- Clients who cancel and want to keep the website code pay a one-time $199, regardless of prior payments
 - Details: https://socalwebexperts.com/pricing/
 
 ## Key pages

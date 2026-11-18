@@ -688,7 +688,7 @@ export const stats: Stat[] = [
   },
   {
     label: 'Custom builds from',
-    value: '$150',
+    value: '$199',
     description:
       'A complete site, built around you.',
     icon: 'circle-dollar-sign',

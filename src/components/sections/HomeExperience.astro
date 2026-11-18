@@ -8,6 +8,7 @@ import {
   stats,
   yelpReviews,
 } from '../../data/site';
+import '@fontsource-variable/bricolage-grotesque/index.css';
 import ScrollableProjectImage from '../ui/ScrollableProjectImage.astro';
 import { ArrowLeft, ArrowRight, ArrowUpRight, Plus, Star } from '@lucide/astro';
 import SiteIcon from '../ui/SiteIcon.astro';
@@ -19,9 +20,9 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
 <section class="home-hero">
   <div class="site-container">
     <div class="home-hero__top" data-reveal>
-      <h1 class="hero-title hero-title__motion">Get a website that makes your phone ring.</h1>
+      <h1 class="hero-title">Your next customer is searching right now. Make sure they find you.</h1>
       <div class="home-hero__intro">
-        <p class="type-lead">Built for you, live in 2–5 days, $199 to start. No agency runaround.</p>
+        <p class="type-lead">Custom websites for Los Angeles and Orange County businesses. $199 to build, live in days.</p>
         <a class="hero-talk" href="/get-started/">Get Started Now</a>
       </div>
     </div>
@@ -276,45 +277,16 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
   .hero-title {
     display: block;
     width: 100%;
-    max-width: 100%;
-    margin: 0;
-    font-family: "Inter Variable", "Arial Black", Arial, sans-serif;
-    font-size: clamp(2.65rem, 8.2vw, 5.4rem);
-    font-weight: var(--weight-bold);
-    line-height: 0.96;
+    max-width: 18ch;
+    margin: 0 auto;
+    color: var(--text);
+    font-family: "Bricolage Grotesque Variable", "Inter Variable", Arial, sans-serif;
+    font-size: clamp(2.1rem, 5.4vw, 4rem);
+    font-weight: 600;
+    line-height: 1.06;
     letter-spacing: -0.03em;
     text-align: center;
     text-wrap: balance;
-    text-transform: uppercase;
-  }
-
-  .hero-title__motion {
-    padding-right: 0.04em;
-    background-color: #050505;
-    background-image:
-      radial-gradient(ellipse at 10% 20%, #ff9b4a 0 8%, transparent 24%),
-      radial-gradient(ellipse at 42% 72%, #bf3b0c 0 10%, transparent 28%),
-      radial-gradient(ellipse at 76% 22%, #ff7a2f 0 8%, transparent 25%),
-      radial-gradient(ellipse at 92% 78%, #7b1d07 0 10%, transparent 30%),
-      linear-gradient(112deg, #050505 10%, #8b2409 28%, #050505 45%, #d94c14 62%, #050505 82%);
-    background-position: 0% 30%, 25% 70%, 75% 25%, 100% 75%, 0% 50%;
-    background-size: 145% 190%, 165% 175%, 150% 185%, 165% 175%, 230% 100%;
-    color: transparent;
-    -webkit-background-clip: text;
-    background-clip: text;
-    animation: hero-title-flow 8s cubic-bezier(0.45, 0, 0.55, 1) infinite alternate;
-  }
-
-  @keyframes hero-title-flow {
-    0% {
-      background-position: 0% 25%, 25% 75%, 75% 20%, 100% 80%, 0% 50%;
-    }
-    50% {
-      background-position: 65% 70%, 80% 25%, 20% 75%, 40% 20%, 55% 50%;
-    }
-    100% {
-      background-position: 100% 35%, 0% 20%, 45% 30%, 0% 70%, 100% 50%;
-    }
   }
 
   .home-hero__intro {
@@ -1198,10 +1170,6 @@ const projectColors = ['#f4b5a7', '#c7d8f5', '#f2d577', '#b8d8c0', '#d7c6ec', '#
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-title__motion {
-      animation: none;
-    }
-
     .workflow-shape,
     .intro-shape {
       animation: none;

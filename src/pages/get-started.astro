@@ -117,7 +117,7 @@ const timelines = [
             </div>
             <div class="field">
               <label for="f-site">Current website <span class="field__optional">(optional)</span></label>
-              <input id="f-site" type="url" name="Current website" inputmode="url" autocomplete="url" placeholder="https://" />
+              <input id="f-site" type="text" name="Current website" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="yourbusiness.com" />
               <p class="field__error" id="f-site-err" data-error></p>
             </div>
           </div>
@@ -363,7 +363,6 @@ const timelines = [
   .start-intake input[type="text"],
   .start-intake input[type="email"],
   .start-intake input[type="tel"],
-  .start-intake input[type="url"],
   .start-intake textarea {
     width: 100%;
     min-height: 3.25rem;
@@ -617,7 +616,6 @@ const timelines = [
     const messageFor = (el: HTMLInputElement | HTMLTextAreaElement) => {
       if (el.validity.valueMissing) return el.type === 'radio' ? 'Please choose an option.' : messages.valueMissing;
       if (el.type === 'email') return 'Please enter a valid email address.';
-      if (el.type === 'url') return 'Please enter a full address, like https://example.com.';
       return messages.typeMismatch;
     };
 

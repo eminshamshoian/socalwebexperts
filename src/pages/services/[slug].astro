@@ -19,11 +19,17 @@ const serviceKeywords: Record<string, string> = {
   'social-media': 'social media marketing Los Angeles, Instagram management Orange County, social media agency SoCal',
   'google-ads': 'Google Ads management Los Angeles, PPC agency Orange County, local Google Ads Glendale',
 };
+
+const serviceMeta: Record<string, string> = {
+  'web-design': 'Custom-coded, mobile-first websites for Los Angeles and Orange County businesses. Built to rank on Google and turn visitors into calls, bookings, and quotes.',
+  'social-media': 'Social media management for Los Angeles and Orange County businesses. On-brand content planned, created, and posted so the right customers keep seeing you.',
+  'google-ads': 'Google Ads management for Los Angeles and Orange County businesses. Search campaigns for people already looking for you, improved with real lead data.',
+};
 ---
 
 <BaseLayout
-  title={`${service.title} in Los Angeles and OC | SoCal Web Experts`}
-  description={service.description}
+  title={`${service.title} Los Angeles & OC | SoCal Web Experts`}
+  description={serviceMeta[service.slug] ?? service.description}
   keywords={serviceKeywords[service.slug] || `${service.title} Los Angeles, ${service.title} Orange County`}
   ogImage={service.highlights[0].image}
   ogImageAlt={service.highlights[0].imageAlt}

@@ -1,4 +1,5 @@
-import { siteConfig, services, faqItems } from '../data/site';
+import { siteConfig, services, faqItems, pricingModels } from '../data/site';
+import type { FAQItem } from '../types';
 
 const siteURL = siteConfig.url || 'https://socalwebexperts.com';
 
@@ -114,11 +115,10 @@ export function breadcrumbSchema(items: { name: string; url: string }[]) {
   };
 }
 
-export function faqPageSchema() {
+export function faqPageSchema(items: FAQItem[] = faqItems) {
   return {
     '@type': 'FAQPage',
-    '@id': `${siteURL}/#faq`,
-    mainEntity: faqItems.map((faq) => ({
+    mainEntity: items.map((faq) => ({
       '@type': 'Question',
       name: faq.question,
       acceptedAnswer: {
@@ -162,6 +162,49 @@ export function servicesIndexSchema() {
         position: index + 1,
         url: absoluteUrl(`/services/${service.slug}/`),
         name: service.title,
+      })),
+    },
+  };
+}
+
+export function pricingSchema() {
+  const buildout = pricingModels[0].upfront.replace('$', '');
+  return {
+    '@type': 'Service',
+    '@id': absoluteUrl('/pricing/#service'),
+    name: 'Custom website design and hosting',
+    serviceType: 'Web design',
+    provider: { '@id': `${siteURL}/#localbusiness` },
+    areaServed: { '@type': 'State', name: 'California' },
+    url: absoluteUrl('/pricing/'),
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Website plans',
+      itemListElement: pricingModels.map((plan) => ({
+        '@type': 'Offer',
+        name: `${plan.title} plan`,
+        description: plan.description,
+        url: absoluteUrl('/pricing/'),
+        priceCurrency: 'USD',
+        price: buildout,
+        priceSpecification: [
+          {
+            '@type': 'PriceSpecification',
+            name: 'One-time buildout',
+            price: buildout,
+            priceCurrency: 'USD',
+          },
+          {
+            '@type': 'UnitPriceSpecification',
+            name: plan.recurringLabel,
+            price: plan.recurring.replace('$', ''),
+            priceCurrency: 'USD',
+            billingDuration: 1,
+            billingIncrement: 1,
+            unitCode: plan.period === 'year' ? 'ANN' : 'MON',
+          },
+        ],
+        availability: 'https://schema.org/InStock',
       })),
     },
   };

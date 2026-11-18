@@ -1,12 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PricingExperience from '../components/pages/PricingExperience.astro';
+import { faqItems } from '../data/site';
+import { faqPageSchema, pricingSchema } from '../utils/seo';
 ---
 
 <BaseLayout
-  title="Website Pricing | $199 Buildout, Care $49/mo or Hosting $99/yr | SoCal Web Experts"
-  description="Custom website for a flat $199 buildout. Then choose Care at $49 a month (hosting, unlimited edits, lead form emails, 1 blog post) or Hosting at $99 a year. Switch from Care to Hosting after month two. Edits on Hosting are $50 per round."
+  title="Website Pricing | $199 Buildout | SoCal Web Experts"
+  description="Custom website for a flat $199 buildout, then Care at $49/mo or Hosting at $99/yr. Switch from Care to Hosting after month two."
   keywords="affordable website design Los Angeles, website pricing Orange County, website setup SoCal, web design SoCal"
+  jsonLd={[faqPageSchema(faqItems.slice(1, 8)), pricingSchema()]}
   breadcrumbs={[
     { name: 'Home', url: '/' },
     { name: 'Pricing', url: '/pricing/' },

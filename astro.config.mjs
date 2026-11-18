@@ -38,7 +38,6 @@ export default defineConfig({
           isLegal || isSiteMap ? 'yearly' : isHome || isService || isCore ? 'weekly' : 'monthly'
         );
         item.priority = isHome ? 1.0 : isService ? 0.9 : isCore ? 0.8 : isSiteMap ? 0.2 : isLegal ? 0.3 : 0.5;
-        item.lastmod = new Date().toISOString();
         return item;
       },
     }),
